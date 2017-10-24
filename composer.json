@@ -1,0 +1,22 @@
+{
+	"name" : "indrakaw/ci-deploy-into-shared-hosting/settings",
+	"description" : "EXPERIMENTAL. I'm trying some methods to deploy and PHP web app into 'limited' shared hosting.",
+	"keyword" : ["website"],
+	"license": "MIT",
+	"type": "project",
+	"require": {
+		"php": ">=5.3.2",
+		"codeigniter/framework": "3.1.*",
+		"robloach/component-installer": "^0.2.3",
+		"components/jquery": "^3.1",
+		"components/bootstrap": "^3.3"
+	},
+	"require-dev": {
+		"mikey179/vfsStream": "1.1.*",
+		"kenjis/ci-phpunit-test": "^0.13.0"
+	},
+	"config": {
+	"component-dir": "public/assets/vendor",
+		"component-baseurl": "/assets/vendor"
+	}
+}
