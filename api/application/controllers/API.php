@@ -600,6 +600,7 @@ class API extends REST_Controller {
 		
 		if(isset($id)){
 			$myrow = $this->API_model->get_profile_info($id);
+			//echo $this->db->last_query();
 			 
 		}
 		
