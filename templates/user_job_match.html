@@ -81,9 +81,10 @@ span.itemPrice {
     <div> Suggested Jobs - Following </div>
     
     <div class="row">
-    <div ng-if="matching_jobs_for_user_list.length == '0' "> 
+    <div ng-if="matching_jobs_for_user_list.length == '0' && matching_jobs_for_user_unfollow_list.length == '0'"> 
     <p style="margin:0px;    margin-left: 15px;">Sorry - we’ll keep looking. 
-Your desired criteria does not pop up as often as others, so we don't currently have any new matches for you. We will keep you posted!</p>
+Your desired criteria does not pop up as often as others, so we don't currently have any new matches for you. We will keep you posted!
+</p>
 <p style="margin:0px;    margin-left: 15px;">Hint - <a href="#!/user/profile//">Customize your profile! Add employment locations and industry experience to increase matches.</a></p>
 </div>
     	

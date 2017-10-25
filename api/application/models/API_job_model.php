@@ -8,7 +8,7 @@ class API_job_model extends CI_Model {
 	{
 		$sql = "SELECT JP.jobpost_id, JP.jobpost_companyid, fnStripTags(JP.jobpost_description) AS jobpost_description, TY.type_name AS jobpost_title,  JP.jobpost_jobtype, AJ.applied_date, COM.company_name,
 				DATE_FORMAT( AJ.applied_date,'%m/%d/%Y') applied_date_only, DATE_FORMAT( AJ.applied_date,'%H:%i %p') applied_time_only,
-				IF(USC.users_profilepic IS NULL OR USC.users_profilepic = '', 'admin-no-image.png', USC.users_profilepic) AS company_logo,
+				IF(USC.users_profilepic IS NULL OR USC.users_profilepic = '', 'no-image.png', USC.users_profilepic) AS company_logo,
 				hia_cities.name AS city_name, hia_states.name AS state_name, hia_countries.name AS country_name
 
 				FROM hia_user_applied_jobs AS AJ
@@ -63,7 +63,7 @@ class API_job_model extends CI_Model {
 	function user_saved_job_query($user_id='', $save_type='', $company_id="",$current_job_id = "",$level = "")
 	{
 		$sql = "SELECT JP.jobpost_id, JP.jobpost_companyid, fnStripTags(JP.jobpost_description) AS jobpost_description, TY.type_name AS jobpost_title,  JP.jobpost_jobtype, SJ.saved_date, COM.company_name, COM.company_name, UFC.id AS following_id,
-		IF(USC.users_profilepic IS NULL OR USC.users_profilepic = '', 'admin-no-image.png', USC.users_profilepic) AS company_logo,
+		IF(USC.users_profilepic IS NULL OR USC.users_profilepic = '', 'no-image.png', USC.users_profilepic) AS company_logo,
 		DATE_FORMAT( JP.jobpost_added_datetime,'%m/%d/%Y') job_post_date_only, DATE_FORMAT( JP.jobpost_added_datetime,'%H:%i %p') job_post_time_only,
 		hia_cities.name AS city_name, hia_states.name AS state_name, hia_countries.name AS country_name
 				
@@ -121,7 +121,7 @@ class API_job_model extends CI_Model {
 	function user_viewed_job_query($user_id='', $viewing_type='', $company_id="")
 	{
 		$sql = "SELECT JP.jobpost_id, JP.jobpost_companyid, fnStripTags(JP.jobpost_description) AS jobpost_description, TY.type_name AS jobpost_title,  JP.jobpost_jobtype, MAX(VJ.viewing_date) AS viewing_date, COM.company_name, UFC.id AS following_id,
-		IF(USC.users_profilepic IS NULL OR USC.users_profilepic = '', 'admin-no-image.png', USC.users_profilepic) AS company_logo,
+		IF(USC.users_profilepic IS NULL OR USC.users_profilepic = '', 'no-image.png', USC.users_profilepic) AS company_logo,
 		DATE_FORMAT( JP.jobpost_added_datetime,'%m/%d/%Y') job_post_date_only, DATE_FORMAT( JP.jobpost_added_datetime,'%H:%i %p') job_post_time_only,
 		hia_cities.name AS city_name, hia_states.name AS state_name, hia_countries.name AS country_name
 
@@ -171,7 +171,7 @@ class API_job_model extends CI_Model {
 				SUM(JOB_MATCH.jobfit_status) AS jobfit_status,  SUM( JOB_MATCH.employeefit_status ) AS employeefit_status,  SUM( JOB_MATCH.skill_status ) AS skill_status,
 				SUM( JOB_MATCH.industry_status ) AS industry_status,  SUM( JOB_MATCH.area_status ) AS area_status,
 				 SUM( JOB_MATCH.location_status ) AS location_status ,
-				 IF(US.users_profilepic IS NULL OR US.users_profilepic = '', 'admin-no-image.png', US.users_profilepic) AS company_logo,
+				 IF(US.users_profilepic IS NULL OR US.users_profilepic = '', 'no-image.png', US.users_profilepic) AS company_logo,
 				 hia_cities.name AS city_name, hia_states.name AS state_name, hia_countries.name AS country_name
 
 				FROM
@@ -299,7 +299,7 @@ class API_job_model extends CI_Model {
 		$sql = "SELECT UAJ.*, DATE_FORMAT( UAJ.applied_date,'%m-%d-%Y') applied_date_only, DATE_FORMAT( UAJ.applied_date,'%H:%i %p') applied_time_only,
 				US.users_firstname, US.users_lastname, 
 				SUBSTRING_INDEX(US.users_bio, ' ', 4)  AS users_bio, IF(US.users_phone IS NULL OR US.users_phone = '', 'N/A', US.users_phone) AS users_phone, 
-				IF(US.users_profilepic IS NULL OR US.users_profilepic = '', 'admin-no-image.png', US.users_profilepic) AS users_profilepic,
+				IF(US.users_profilepic IS NULL OR US.users_profilepic = '', 'no-image.png', US.users_profilepic) AS users_profilepic,
 				hia_cities.name AS city_name, hia_states.name AS state_name, hia_countries.name AS country_name
 				FROM hia_user_applied_jobs AS UAJ
 				JOIN hia_users AS US ON(UAJ.user_id = US.users_id AND US.users_status != '1')
@@ -350,7 +350,7 @@ class API_job_model extends CI_Model {
 	function company_details_from_job_query( $job_id='', $user_id='' )
 	{
 		$sql = "SELECT JP.*, CM.company_name, UFC.id AS following_id,
-				IF(US.users_profilepic IS NULL OR US.users_profilepic = '', 'admin-no-image.png', US.users_profilepic) AS users_profilepic
+				IF(US.users_profilepic IS NULL OR US.users_profilepic = '', 'no-image.png', US.users_profilepic) AS users_profilepic
 				FROM hia_jobpost AS JP
 				JOIN hia_company AS CM ON (JP.jobpost_companyid = CM.company_id)
 				JOIN hia_users AS US ON (CM.company_id = US.users_companyid AND US.users_type='2' AND US.users_status != '1')
