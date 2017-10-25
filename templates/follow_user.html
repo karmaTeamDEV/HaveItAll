@@ -38,7 +38,8 @@
 
     <div id="following" class="tab-pane fade ">
     <div ng-if="user_following_company_list.length < 1">
-      <p>Nothing to Show</p>
+      <p style="margin:0px;">Follow talent back! Gain exposure and passively keep them engaged by posting news, events or meet-ups to your feed.  </p>
+      <p style="margin:0px;">Hint - <a href="#!/user/profile//">Customize your profile to make a stronger first impression!</a></p>
     </div>  
                 <!-- <div id="following_company_id{{users.id}}" class="col-md-4 col-sm-12 col-xs-12 profile_details"  ng-repeat="users in user_following_company_list" >
                         <div class="well profile_view">
@@ -123,7 +124,10 @@
     </div>
     <div id="following_me" class="tab-pane fade">
     <div ng-if="company_following_user_list.length < 1">
-       <p>Nothing to Show</p>
+       <p style="margin:0px;">Sorry - we’ll keep marketing you. 
+You don't currently have anymore followers but we will keep you posted!
+</p>
+<p style="margin:0px;">Hint - <a href="#!/user/profile//">Customize your profile to make a stronger impression! Add employment locations or industry experience to increase matches.</a></p>
     </div>  
                 <!-- <div class="col-md-4 col-sm-12 col-xs-12 profile_details"  ng-repeat="users in company_following_user_list" >
                         <div class="well profile_view">
@@ -201,7 +205,9 @@
     
     <div id="suggested" class="tab-pane fade">
     <div ng-if="suggeted_user_for_company_list.length < 1 ">
-      <p>Nothing to Show</p>
+       <p style="margin:0px;">Sorry - we’ll keep looking. Your desired criteria does not pop up as often as others, so we don't currently have any new matches for you. We will keep you posted!
+</p>
+<p style="margin:0px;">Hint - <a href="#!/user/profile//">Customize your profile! Add employment locations and industry experience to increase matches </a></p>
     </div>  
                 <!-- <div id="suggested{{users.users_id}}" class="col-md-4 col-sm-12 col-xs-12 profile_details"  ng-repeat="users in suggeted_user_for_company_list" >
                         <div class="well profile_view">
