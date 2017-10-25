@@ -10,6 +10,6 @@ echo "Jai Jagannath.";
 
 <body>
 Hello Biswa ............ ! It is haveitall FROM BAMU
-NOW BISWAjit
+NOW BISWAJIT ...
 </body>
 </html>
