@@ -660,7 +660,8 @@
                   <div style="width:94%;" ng-if="titlesList.length > 0 ">
                     <div ng-repeat="title in titlesList | filter: query | limitTo:titlesLimit">
                       <div class="pull-left" style="width:70%">
-                        <span class="blue" style="font-weight:bold;margin-top: 10px;">{{title.company_name}} </span> :
+                        <span class="blue" style="font-weight:bold;margin-top: 10px;" ng-if="title.other_company != ''">{{title.other_company}} </span> 
+                        <span class="blue" style="font-weight:bold;margin-top: 10px;" ng-if="title.company_name != ''">{{title.company_name}} </span>:
 
                         <span  ng-repeat="subtitle in title.titles | filter: query | limitTo:subtitlesLimit" ng-if="title.titles != '' && title.other_title_text == NULL ">
                           <span>
