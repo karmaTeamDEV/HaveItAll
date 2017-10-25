@@ -23,3 +23,5 @@ public/assets/vendor/*
 */cache/*
 !*/cache/index.html
 !*/cache/.htaccess
+api/application/config/database.php
+js/app.js

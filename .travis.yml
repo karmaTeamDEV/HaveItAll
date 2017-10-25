@@ -15,7 +15,6 @@ before_install:
   - sudo apt-get install lftp
   
 before_script:
-  - composer update
   - chmod 0777 ./bin/test.sh
   - chmod 0777 ./bin/deploy.sh
  
