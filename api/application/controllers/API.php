@@ -1326,19 +1326,22 @@ correlating field of study selections that you have made.", 200); // 200 being t
 	function addTitles_post()
 	{
 		$post_data = json_decode(file_get_contents("php://input"));	
-		//echo '<pre>';print_r($post_data);  
+		//echo '<pre>';print_r($post_data);   
 		if(isset($post_data))
 		{			
 			if($post_data->othercompany){
-				$companydata = array(	
-					'company_name' =>$post_data->othercompany					 
-				);
-				$c_id = $this->API_model->insert_cmn_tbl('company_master',$companydata);
-				$company_id = $c_id;
+				// $companydata = array(	
+				// 	'company_name' =>$post_data->othercompany					 
+				// );
+				// $c_id = $this->API_model->insert_cmn_tbl('company_master',$companydata);
+				// $company_id = $c_id;
+				$other_company = $post_data->othercompany;
+				$company_id = '0';
 			}else{
 				//$company_id = $post_data->company_id;
 				$company = $this->API_model->get_company_master($post_data->company_id);			 
 				$company_id = $company[0]['company_id'];
+				$other_company = '';
 			}
 
 			if($post_data->other_title_text){
@@ -1354,10 +1357,11 @@ correlating field of study selections that you have made.", 200); // 200 being t
 					'company_id' =>$company_id,						 	
 					'start_year' =>$post_data->start_year,
 					'end_year' =>$post_data->end_year,
-					'other_title_text' =>$other_title_text
+					'other_title_text' =>$other_title_text,
+					'other_company' =>$other_company
 			);
  
-			//echo $post_data->action ;
+			//echo '<pre>';print_r($data);   exit;
 			
 			if($post_data->action== "insert"){					
 					

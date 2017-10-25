@@ -110,7 +110,9 @@
     </thead>
     <tbody>
       <tr ng-repeat="titlelebel in titleData" ng-if="titleData.length != ''">
-        <td>{{titlelebel.company_name}}</td>
+        <td><span ng-if="titlelebel.other_company != '' ">{{titlelebel.other_company}}</span>
+        <span ng-if="titlelebel.company_name != '' ">{{titlelebel.company_name}}</span>
+        </td>
         <td > <span ng-repeat="title_list in titlelebel.titles" ng-if="titlelebel.titles != '' && titlelebel.other_title_text == NULL ">
           {{title_list.type_name}} |
         </span>
