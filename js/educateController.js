@@ -33,6 +33,7 @@
 				}	 
 				resetForm();
 				$scope.subeducationlist = []; 
+				$scope.selection = [];
 				$scope.educationForm.$setPristine();				 
 				fetchrecordsCMSService.fetchrecordsCMS('','getlistEducation',$localStorage.ses_userdata.users_id).then(fetch_edulist, errorDetails);
 			}
@@ -134,7 +135,7 @@
 
 
 	$scope.removeducate = function(id){ 
-	//alert(id);   	 
+		//alert(id);   	 
 		var urlpath = serviceurl + "API/deleteeducate";	 
 		var info = {id:id};
 		commonpostService.cmnpost(urlpath,info).then(educate_remove, errorDetails);
