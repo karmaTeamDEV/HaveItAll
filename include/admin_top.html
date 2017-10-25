@@ -1,0 +1,29 @@
+<!-- Navigation -->
+   <div class="top">
+        <div class="container">
+          <div class="row">
+           <div class="container">
+             <div class="col-lg-3 col-md-3 col-ms-3 col-xs-3">
+              <a href="#!/control/admin"><img src="public/images/logo.png"/ ></a>
+             </div>
+             <div class="col-lg-9 col-md-9 col-ms-9 col-xs-9">
+             <div class="dropdown" style="float: right; color:#fff; ">
+              {{userInfo_email}}
+				<button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">
+					<img src="public/images/burger.png"/ width="40">
+				</button>
+				<ul class="pull-right dropdown-menu" style="cursor:pointer;">
+						<li><a href="#!/control/manageuser">Manage User</a></li>
+					 	<li><a href="#!/control/managecms">Manage CMS</a></li>
+					 	<li><a href="#!/control/manageindustry">Manage Industry</a></li>
+						<li><a href="#!/control/managecompany">Manage Company</a></li>
+					    <li><a ng-click="logout();">Logout</a></li>
+				</ul>
+			 </div>
+			 </div>
+		  </div>
+		 </div>
+		</div>
+</div>
+<ui-view name="menuContentadmin"></ui-view>
+<div ng-include="'include/bottom.html'"></div>

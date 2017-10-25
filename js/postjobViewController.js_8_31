@@ -1,0 +1,248 @@
+﻿(function () {
+    'use strict';
+    app.filter('reverse', function() {
+    return function(items) {
+      return items.slice().reverse();
+    };
+  });
+    app.controller('postjobViewController', function ($scope,checkjobService ,getMatercmsService,$state,getfitService,$localStorage,commonpostService,fetchrecordsCMSService) { 
+     $scope.panelnav = true;
+     $scope.panelnav1 = false;
+     $scope.listTab = true; 
+     $scope.editjobTab = false; 
+     $scope.editpostjob ={}
+     $scope.yearlistFrom = ['25','24','23','22','21','20','19','18','17','16','15','14','13','12','11','10','9','8','7','6','5','4','3','2','1','0']; 
+     var toYearsList = ['25','24','23','22','21','20','19','18','17','16','15','14','13','12','11','10','9','8','7','6','5','4','3','2','1','0'];   
+     $scope.yearlistTo = [];
+            
+    $scope.resetToYears = function(selectedFromYear){
+        $scope.yearlistTo = toYearsList;
+        $scope.yearlistTo = $scope.yearlistTo.slice(0,toYearsList.indexOf(selectedFromYear));
+      } 
+
+$scope.levelList=[];  
+    var fetch_seniority = function (data) {
+      $scope.levelList = data;
+      //alert(JSON.stringify($scope.levelList));
+    };  
+    fetchrecordsCMSService.fetchrecordsCMS('','getseniorityList','').then(fetch_seniority, errorDetails);
+     $scope.activeList = function(tab,tab1){
+     	 $scope.panelnav = tab1;
+     	 $scope.panelnav1 = tab;
+     };
+
+     var errorDetails = function (serviceResp) {
+		  $scope.Error = "Something went wrong ??";
+	   };
+	 	$scope.joblist = {};	
+     var fetch_arraylist = function(data){     	
+     	$scope.jobpostlist = data;
+     //	alert(JSON.stringify(data));
+     }
+   
+     var url = serviceurl + "API/getpostjobList/";
+     var obj = {id:$localStorage.ses_userdata.users_companyid,status:'0'}
+     commonpostService.cmnpost(url,obj).then(fetch_arraylist, errorDetails);
+
+     var fetch_arraylistinactive = function(data){     	
+     	$scope.jobpostlistinactive = data;
+     	//alert(JSON.stringify(data));
+     }
+
+     var url = serviceurl + "API/getpostjobList/";
+     var obj = {id:$localStorage.ses_userdata.users_companyid,status:'1'}
+     commonpostService.cmnpost(url,obj).then(fetch_arraylistinactive, errorDetails);    
+ 	 
+ 	  
+ 	 var get_joblist = function(data){  	 	  	
+ 	 	 //alert(JSON.stringify(data));
+     	var url = serviceurl + "API/getpostjobList/";
+     	var obj = {id:$localStorage.ses_userdata.users_companyid,status:'0'}
+     	commonpostService.cmnpost(url,obj).then(fetch_arraylist, errorDetails);
+	    var obj = {id:$localStorage.ses_userdata.users_companyid,status:'1'}
+	    commonpostService.cmnpost(url,obj).then(fetch_arraylistinactive, errorDetails); 
+     }
+
+ 	 $scope.inactivePostjob = function(jobid){ 	 	  
+ 	 	 fetchrecordsCMSService.fetchrecordsCMS('','inactivePostjob',jobid).then(get_joblist, errorDetails);  	 	  
+ 	 }
+       
+      
+      $scope.reset = function(jid){
+          $scope.listTab = true; 
+          $scope.editjobTab = false; 
+      } 
+
+      
+
+      var fetch_jobFit = function (data) {     
+        $scope.jobFits = data;
+      };
+      getfitService.fetchfit('job_fit').then(fetch_jobFit, errorDetails);
+
+
+
+      // var fetch_employerFit = function (data) {     
+      //   $scope.employerFits = data;
+      // };
+      // getfitService.fetchfit('employer_fit').then(fetch_employerFit, errorDetails);
+
+
+      var get_type = function (data) {
+        $scope.all_master_title_data = data;          
+      };      
+      getfitService.fetchfit('titles').then(get_type, errorDetails);
+
+
+
+      $scope.indastry_data = {};
+      var fetch_list = function (data) {     
+        $scope.indastry_data = data;
+          //alert(JSON.stringify($scope.indastry_data));
+     };
+     fetchrecordsCMSService.fetchrecordsCMS('','getIndustryList','').then(fetch_list, errorDetails);
+
+     
+     
+     var fetch_locationlist = function (data) {   
+          $scope.location_data = data;
+        //alert(JSON.stringify($scope.location_data));
+     };
+     fetchrecordsCMSService.fetchrecordsCMS('','getlocationsList','').then(fetch_locationlist, errorDetails);
+
+
+
+     var fetch_skilllist = function (data) { 
+        $scope.skill_data = data;                 
+     }; 
+     fetchrecordsCMSService.fetchrecordsCMS('','getskillsList','').then(fetch_skilllist, errorDetails);
+
+
+ 
+    var fetch_area = function (data) {    
+      $scope.areaList =  data;             
+    };
+    $scope.getArea =  function(id) {       
+      fetchrecordsCMSService.fetchrecordsCMS('','getAreaList',id).then(fetch_area, errorDetails); 
+    };
+
+    var getlocationlist = function (data) {   
+          $scope.editpostjob.locations = data;
+        //alert(JSON.stringify($scope.location_data));
+     };
+
+    var fetch_arrayjoblist = function(data){   
+          //fetchrecordsCMSService.fetchrecordsCMS('','getlocationsList','').then(getlocationlist, errorDetails);
+          $scope.editpostjob = data[0]; 
+         // alert(JSON.stringify($scope.editpostjob));        
+          //fetchrecordsCMSService.fetchrecordsCMS('','getAreaList',$scope.editpostjob.jobpost_industry).then(fetch_area, errorDetails);
+          
+          $scope.editpostjob.locations = [];
+          angular.forEach($scope.editpostjob.location, function(value, key) {
+               $scope.editpostjob.locations.push(value.locations_id);
+          }); 
+           
+          $scope.editpostjob.jobpost_industry = [];
+          angular.forEach($scope.editpostjob.arealist, function(value1, key1) {
+               $scope.editpostjob.jobpost_industry.push(value1.industry_id);
+          });
+
+          // $scope.editpostjob.jobpost_skills = [];
+          // angular.forEach($scope.editpostjob.skill, function(value2, key2) {
+          //      $scope.editpostjob.jobpost_skills.push(value2.skills_id);
+          // });
+          $scope.editpostjob.jobpost_jobfit = [];          
+          angular.forEach($scope.editpostjob.jobfit, function(value3, key3) {
+               $scope.editpostjob.jobpost_jobfit.push(value3.type_id);
+          });
+          $scope.editpostjob.jobpost_employer = [];
+          angular.forEach($scope.editpostjob.employerfit, function(value4, key4) {
+               $scope.editpostjob.jobpost_employer.push(value4.type_id);
+          });           
+          $scope.editpostjob.jobpost_seniority = [];
+          angular.forEach($scope.editpostjob.seniority, function(value5, key5) {
+               $scope.editpostjob.jobpost_seniority.push(value5.seniority_id);
+          });
+          getMatercmsService.getListinfo('state',$scope.editpostjob.jobpost_countryid).then(get_statelist, errorDetails);
+          getMatercmsService.getListinfo('city',$scope.editpostjob.jobpost_stateid).then(get_citylist, errorDetails);
+
+          $scope.editpostjob.country_id =$scope.editpostjob.jobpost_countryid;
+          $scope.editpostjob.state_id = $scope.editpostjob.jobpost_stateid;
+          $scope.editpostjob.city_id=$scope.editpostjob.jobpost_cityid;
+          //alert(JSON.stringify($scope.editpostjob.jobpost_industry));           
+      }  
+
+      $scope.updatejob = function(jid){
+         // alert(jid);
+          $scope.listTab = false; 
+          $scope.editjobTab = true; 
+          var url = serviceurl + "API/getjobpost/";
+          var object = {id:jid}
+          commonpostService.cmnpost(url,object).then(fetch_arrayjoblist, errorDetails);   
+           //var toYearsList = ['25','24','23','22','21','20','19','18','17','16','15','14','13','12','11','10','9','8','7','6','5','4','3','2','1','0'];   
+         //  $scope.yearlistTo = toYearsList;
+           //$scope.yearlistTo = $scope.yearlistTo.slice(0,toYearsList.indexOf(selectedFromYear));   
+
+      }	
+      var get_success = function(data){ 
+          $scope.listTab = true; 
+          $scope.editjobTab = false;
+          var url = serviceurl + "API/getpostjobList/";
+          var obj = {id:$localStorage.ses_userdata.users_companyid,status:'0'}
+          commonpostService.cmnpost(url,obj).then(fetch_arraylist, errorDetails);
+          var obj = {id:$localStorage.ses_userdata.users_companyid,status:'1'}
+          commonpostService.cmnpost(url,obj).then(fetch_arraylistinactive, errorDetails); 
+          $('#mydiv').hide();          
+      }
+
+      $scope.updatepostjobFrm = function(frm){        
+          $('#mydiv').show();
+          $scope.editpostjob.users_id = $scope.editpostjob.jobpost_userid;  
+          $scope.editpostjob.users_companyid = $scope.editpostjob.jobpost_companyid;       
+          $scope.editpostjob.action = 'edit';
+          //alert(JSON.stringify($scope.editpostjob));
+        
+          var url = serviceurl + "API/addpostJob/";
+          commonpostService.cmnpost(url,$scope.editpostjob).then(get_success, errorDetails); 
+      }
+
+       $scope.employerFits = [];
+     var check_employerFit = function (data) {      
+        $scope.employerFits = data;
+        //alert(JSON.stringify($scope.employerFits));       
+     };
+
+     var list = {user_id:$localStorage.ses_userdata.users_id,type:'employer_fit'};
+     checkjobService.checkedjobfit(list).then(check_employerFit, errorDetails);
+
+      // City list 
+      $scope.cities =[];
+      var get_citylist = function (data) {      
+        $scope.cities =data;      
+      };
+      $scope.getStateCities = function(){         
+        getMatercmsService.getListinfo('city',$scope.editpostjob.state_id).then(get_citylist, errorDetails);    
+      }   
+
+      //State List
+      $scope.states =[];
+      var get_statelist = function (data) {       
+        $scope.states =data;
+        $scope.cities =[];
+      };
+
+      $scope.getCountryStates = function(){            
+        getMatercmsService.getListinfo('state',$scope.editpostjob.country_id).then(get_statelist, errorDetails);    
+       }     
+
+      // Country List
+      $scope.countries=[];
+      var get_countrylist = function (data) { 
+        $scope.countries =data;       
+      };
+      getMatercmsService.getListinfo('country','').then(get_countrylist, errorDetails); 
+
+       
+      
+})
+})();

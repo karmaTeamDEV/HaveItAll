@@ -1,0 +1,423 @@
+﻿(function () {
+  'use strict';
+  app.filter('reverse', function() {
+    return function(items) {
+      return items.slice().reverse();
+    };
+  });
+
+  app.controller('PostJobController', function ($scope,$window,$sce,$state,getProfileService,commonpostService,getMatercmsService,fetchrecordsCMSService,getfitService,checkjobService,$localStorage,$location,$document,$filter,$timeout) { 
+    $scope.postjobinfo ={}; 
+     //$location.path('user/postjobview'); 
+     $scope.selectedTitle = {originalObject:{type_id:''}};
+
+    $scope.next = function() {    
+      //alert(JSON.stringify($scope.selectedTitle));  
+      $scope.postjobinfo.jobpost_title = $scope.selectedTitle.originalObject.type_id;       
+      //alert(JSON.stringify($scope.postjobinfo.jobpost_title));
+      if($scope.postjobinfo.jobpost_title == ""){
+         bootbox.alert('Job Title is required !');
+         return false;
+      }
+      if($scope.selectionLevel.length == 0){
+         bootbox.alert('Seniority / Level is required !');
+         return false;
+      }
+      // if($scope.postjobinfo.country_id == undefined){
+      //    bootbox.alert('Country is required !');
+      //    return false;
+      // }
+       
+      //alert($scope.postjobinfo.jobpost_title)      
+      $scope.data.selectedIndex = Math.min($scope.data.selectedIndex + 1, 3) ;
+    };
+    $scope.next1 = function() {   
+      $scope.postjobinfo.jobpost_title = $scope.selectedTitle.originalObject.type_id;
+     if($scope.postjobinfo.jobpost_title == undefined){
+         bootbox.alert('Job Title is required !');
+         return false;
+      }
+      if($scope.selectionLevel.length == 0){
+         bootbox.alert('Seniority / Level is required !');
+         return false;
+      }     
+       
+      if($scope.postjobinfo.country_id == undefined){
+         bootbox.alert('Country is required !');
+         return false;
+      }
+      if($scope.postjobinfo.state_id == undefined){
+         bootbox.alert('Prov/State is required !');
+         return false;
+      } 
+      if($scope.postjobinfo.city_id == undefined){
+         bootbox.alert('City is required !');
+         return false;
+      }
+      if($scope.postjobinfo.jobpost_jobtype == undefined){
+         bootbox.alert('Job Type is required !');
+         return false;
+      }
+      // if($scope.postjobinfo.jobpost_url == undefined){
+      //    bootbox.alert('Job Url is required !');
+      //    return false;
+      // }       
+           
+      $scope.data.selectedIndex = Math.min($scope.data.selectedIndex + 1, 3) ;
+    };
+    $scope.previous = function() {
+      $scope.data.selectedIndex = Math.max($scope.data.selectedIndex - 1, 0);
+    };
+
+    $scope.yearlistFrom = [25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0]; 
+    var toYearsList = [25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0];   
+    $scope.yearlistTo = [];
+            
+    $scope.resetToYears = function(selectedFromYear){
+        $scope.yearlistTo = toYearsList;
+        $scope.yearlistTo = $scope.yearlistTo.slice(0,toYearsList.indexOf(selectedFromYear));
+      } 
+
+    $scope.levelList=[];  
+    var fetch_seniority = function (data) {
+      $scope.levelList = data;
+      //alert(JSON.stringify($scope.levelList));
+    };  
+    fetchrecordsCMSService.fetchrecordsCMS('','getseniorityList','').then(fetch_seniority, errorDetails);
+    var deleteRecord = function (data) {
+       
+      fetchrecordsCMSService.fetchrecordsCMS('','getalljobdata',$scope.postjobinfo.jobpost_id).then(get_datalist, errorDetails);  
+    };
+    $scope.removeRecord =  function(jobpost_id,industry_id) {       
+     // alert(jobpost_id);
+     var urlpath = serviceurl + "API/deletejobpostIndustry/";
+        $scope.postjobinfo.jobpost_id = jobpost_id;
+        $scope.postjobinfo.industry_id = industry_id;        
+        commonpostService.cmnpost(urlpath,$scope.postjobinfo).then(deleteRecord, errorDetails);
+    };
+
+    $scope.dataList = [];
+    var get_datalist = function (data) {
+      $scope.dataList = data;
+      //alert(JSON.stringify($scope.dataList));  
+    };
+    
+    var get_success = function(data){ 
+      //$scope.jobpostForm.$setPristine();   		 
+       //$window.location.href = '#!/user/postjobview';
+       //alert(data.status);       
+      $scope.postjobinfo.jobpost_id = data.status;       
+      fetchrecordsCMSService.fetchrecordsCMS('','getalljobdata',$scope.postjobinfo.jobpost_id).then(get_datalist, errorDetails); 
+      $scope.data.selectedIndex = Math.min($scope.data.selectedIndex + 1, 3) ;
+    }
+    var errorDetails = function (serviceResp) {
+      $scope.Error = "Something went wrong ??";
+    };
+
+    var fetch_area = function (data) {    
+      $scope.areaList =  data;
+      //alert(JSON.stringify($scope.areaList));      
+    };  
+
+    $scope.getArea =  function(id) {       
+      fetchrecordsCMSService.fetchrecordsCMS('','getAreaList',id).then(fetch_area, errorDetails); 
+    };
+    
+    $scope.publish = function(){
+      $scope.postjobinfo.jobpost_title = $scope.selectedTitle.originalObject.type_id;
+      if($scope.postjobinfo.jobpost_title == undefined){
+         bootbox.alert('Job Title is required !');
+         return false;
+      }
+      if($scope.selectionLevel.length == 0){
+         bootbox.alert('Seniority / Level is required !');
+         return false;
+      }     
+       
+      if($scope.postjobinfo.country_id == undefined){
+         bootbox.alert('Country is required !');
+         return false;
+      }
+      if($scope.postjobinfo.state_id == undefined){
+         bootbox.alert('Prov/State is required !');
+         return false;
+      } 
+      if($scope.postjobinfo.city_id == undefined){
+         bootbox.alert('City is required !');
+         return false;
+      }
+      if($scope.postjobinfo.jobpost_jobtype == undefined){
+         bootbox.alert('Job Type is required !');
+         return false;
+      }
+      // if($scope.postjobinfo.jobpost_url == undefined){
+      //    bootbox.alert('Job Url is required !');
+      //    return false;
+      // } 
+      if($scope.postjobinfo.jobpost_tilldata == undefined){
+           bootbox.alert('Last date is required !');
+           return false;
+      } 
+      if($scope.postjobinfo.jobpost_industry == undefined){
+         bootbox.alert('Relevant Industry is required !');
+         return false;
+      }
+
+      $window.location.href = '#!/user/postjobview';
+    };
+
+    $scope.postjob = function(){
+      $scope.postjobinfo.jobpost_title = $scope.selectedTitle.originalObject.type_id;  
+      if($scope.postjobinfo.jobpost_title == undefined){
+         bootbox.alert('Job Title is required !');
+         return false;
+      }
+      if($scope.selectionLevel.length == 0){
+         bootbox.alert('Seniority / Level is required !');
+         return false;
+      }       
+      if($scope.postjobinfo.country_id == undefined){
+         bootbox.alert('Country is required !');
+         return false;
+      }
+      if($scope.postjobinfo.state_id == undefined){
+         bootbox.alert('Prov/State is required !');
+         return false;
+      } 
+      if($scope.postjobinfo.city_id == undefined){
+         bootbox.alert('City is required !');
+         return false;
+      }
+      if($scope.postjobinfo.jobpost_jobtype == undefined){
+         bootbox.alert('Job Type is required !');
+         return false;
+      }
+      // if($scope.postjobinfo.jobpost_url == undefined){
+      //    bootbox.alert('Job Url is required !');
+      //    return false;
+      // } 
+      if($scope.postjobinfo.jobpost_tilldata == undefined){
+           bootbox.alert('Last date is required !');
+           return false;
+      } 
+       
+        // alert(JSON.stringify($scope.postjobinfo));
+        $scope.postjobinfo.jobpost_employer = $scope.selectionEmployer;
+        $scope.postjobinfo.jobpost_jobfit = $scope.selectionJob;
+        $scope.postjobinfo.jobpost_seniority = $scope.selectionLevel;
+        $scope.postjobinfo.users_id = $localStorage.ses_userdata.users_id;
+        $scope.postjobinfo.users_companyid = $localStorage.ses_userdata.users_companyid;  
+
+        if($localStorage.jobpost_id){
+          $scope.postjobinfo.jobpost_id = $localStorage.jobpost_id;
+          $scope.postjobinfo.action = 'edit';
+        }else{
+          $scope.postjobinfo.action = 'insert';
+          $scope.postjobinfo.jobpost_id = '';
+        }       
+       // alert(JSON.stringify($scope.postjobinfo));
+        var url = serviceurl + "API/addpostJob/";
+        commonpostService.cmnpost(url,$scope.postjobinfo).then(get_success, errorDetails);       
+      };
+
+    //   $scope.doFocus = function(){			
+    //     setTimeout(function(){
+    //      document.querySelector('#autoCompleteId').focus();
+    //    },0);			  
+    //   };
+
+    //   $scope.searchFromMaster = function(typedthings){		 
+    // 		$scope.searchResult = $filter('filter')($scope.all_master_title_data, typedthings);    		 
+    // 		if(typedthings.length === 0){
+    // 			$scope.showLoader = false;				  
+    // 		} 		
+	   // }
+      var fetch_jobFit = function (data) {     
+        $scope.jobFits = data;
+      };
+      getfitService.fetchfit('job_fit').then(fetch_jobFit, errorDetails);
+
+
+
+      // var fetch_employerFit = function (data) {     
+      //   $scope.employerFits = data;
+      // };
+      // getfitService.fetchfit('employer_fit').then(fetch_employerFit, errorDetails);
+
+
+      var get_type = function (data) {
+        $scope.all_master_title_data = data;
+        //alert(JSON.stringify(data));
+        // angular.forEach(data, function(value, key) {			
+        //   $scope.all_master_title_data.push(value.type_name);
+        // });	
+      };	
+      
+      getfitService.fetchfit('titles').then(get_type, errorDetails);
+
+
+      $scope.indastry_data = {};
+      var fetch_list = function (data) { 	
+        $scope.indastry_data = data;
+    		//alert(JSON.stringify($scope.indastry_data));
+    	};
+    	fetchrecordsCMSService.fetchrecordsCMS('','getIndustryList','').then(fetch_list, errorDetails);
+     
+    	
+    	var fetch_locationlist = function (data) { 	
+    		$scope.location_data = data;
+        //alert(JSON.stringify($scope.location_data));
+    	};
+    	fetchrecordsCMSService.fetchrecordsCMS('','getlocationsList','').then(fetch_locationlist, errorDetails);
+
+
+    	var fetch_skilllist = function (data) {	
+        $scope.skill_data = data;			 	
+    	}; 
+      fetchrecordsCMSService.fetchrecordsCMS('','getskillsList','').then(fetch_skilllist, errorDetails);
+
+      
+     //   if($localStorage.jobid){ 
+     //    alert($localStorage.jobid);
+     //    fetchrecordsCMSService.fetchrecordsCMS('','getjobitem',$localStorage.jobid).then(fetch_arraylist, errorDetails);
+
+     //    var fetch_arraylist = function(data){      
+     //      $scope.postjobinfo = data;
+     //      alert(JSON.stringify($scope.postjobinfo));
+     //    }         
+       
+
+     // }
+       $scope.industryList = [];
+       var check_industry = function (data) {       
+       $scope.industryList = data;          
+          //alert(JSON.stringify($scope.industryList));   
+       };     
+     fetchrecordsCMSService.fetchrecordsCMS('','getlistIndustry',$localStorage.ses_userdata.users_id).then(check_industry, errorDetails);
+
+     $scope.jobFits = [];
+     var check_jobFit = function (data) {
+        $scope.jobFits = data;       
+        //alert(JSON.stringify($scope.jobFitslist));   
+     };    
+      
+     var list_job_fit = {user_id:$localStorage.ses_userdata.users_id,type:'job_fit'};
+     checkjobService.checkedjobfit(list_job_fit).then(check_jobFit, errorDetails);
+
+     $scope.employerFits = [];
+     var check_employerFit = function (data) {      
+        $scope.employerFits = data;
+        //alert(JSON.stringify($scope.employerFits));       
+     };
+
+     var list = {user_id:$localStorage.ses_userdata.users_id,type:'employer_fit'};
+     checkjobService.checkedjobfit(list).then(check_employerFit, errorDetails);
+
+      // City list 
+      $scope.cities =[];
+      var get_citylist = function (data) {      
+        $scope.cities =data;      
+      };
+      $scope.getStateCities = function(){         
+        getMatercmsService.getListinfo('city',$scope.postjobinfo.state_id).then(get_citylist, errorDetails);    
+      }   
+
+      //State List
+      $scope.states =[];
+      var get_statelist = function (data) {       
+        $scope.states =data;
+        $scope.cities =[];
+      };
+
+      $scope.getCountryStates = function(){            
+        getMatercmsService.getListinfo('state',$scope.postjobinfo.country_id).then(get_statelist, errorDetails);    
+       }     
+
+      // Country List
+      $scope.countries=[];
+      var get_countrylist = function (data) { 
+        $scope.countries =data;       
+      };
+      getMatercmsService.getListinfo('country','').then(get_countrylist, errorDetails); 
+
+      var fetch_profile = function (data) {
+         $scope.postjobinfo.jobpost_description = data[0].users_bio;      
+      };
+      getProfileService.getProfileinfo($localStorage.ses_userdata.users_id).then(fetch_profile, errorDetails);
+
+      $scope.selectionLevel =[];
+      $scope.toggleSelectionLevel = function toggleSelectionLevel(id) {
+        var idx = $scope.selectionLevel.indexOf(id);        
+        // is currently selected
+        if (idx > -1) {
+          $scope.selectionLevel.splice(idx, 1);
+        }      
+        // is newly selected
+        else {
+          $scope.selectionLevel.push(id);
+        }
+        //alert(JSON.stringify($scope.selectionLevel));       
+      };      
+
+      $scope.selectionJob =[];
+      $scope.toggleSelectionJob = function toggleSelectionJob(id) {
+        var idx = $scope.selectionJob.indexOf(id);        
+        // is currently selected
+        if (idx > -1) {
+          $scope.selectionJob.splice(idx, 1);
+        }      
+        // is newly selected
+        else {
+          $scope.selectionJob.push(id);
+        }
+        //alert(JSON.stringify($scope.selectionLevel));       
+      };
+
+      $scope.selectionEmployer =[];
+      $scope.toggleSelectionEmployer = function toggleSelectionEmployer(id) {
+        var idx = $scope.selectionEmployer.indexOf(id);        
+        // is currently selected
+        if (idx > -1) {
+          $scope.selectionEmployer.splice(idx, 1);
+        }      
+        // is newly selected
+        else {
+          $scope.selectionEmployer.push(id);
+        }
+        //alert(JSON.stringify($scope.selectionLevel));       
+      };
+      $scope.indastryStatus = function(id){
+        fetchrecordsCMSService.fetchrecordsCMS('','getAreaList',id).then(fetch_area, errorDetails);
+      }
+
+      var list_industry = function(data){
+        //alert(JSON.stringify(data));
+         fetchrecordsCMSService.fetchrecordsCMS('','getalljobdata',$scope.postjobinfo.jobpost_id).then(get_datalist, errorDetails);  
+        $scope.postjobinfo.relation_id = data.relation_id;
+      }  
+      $scope.toggleSelectionIndastry = function(id,status) {
+        // alert(id);alert(status);
+        $scope.postjobinfo.jobpost_industry = id;
+        $scope.postjobinfo.industry_status = status;
+        //alert(JSON.stringify($scope.postjobinfo)); 
+        var urlpath = serviceurl + "API/add_industry/";
+        commonpostService.cmnpost(urlpath,$scope.postjobinfo).then(list_industry, errorDetails); 
+        //alert(JSON.stringify($scope.selectionLevel));       
+      };
+      var list_area = function(data){
+         fetchrecordsCMSService.fetchrecordsCMS('','getalljobdata',$scope.postjobinfo.jobpost_id).then(get_datalist, errorDetails);  
+       // alert(JSON.stringify(data));
+       // $scope.postjobinfo.relation_id = data.relation_id;
+       $scope.postjobinfo.area_relation_id = data.area_relation_id;
+      }
+       
+      $scope.toggleSelectionArea = function(id,status) {
+        $scope.postjobinfo.jobpost_area = id;
+        $scope.postjobinfo.area_status = status;
+        //alert(JSON.stringify($scope.postjobinfo)); 
+        var urlpath = serviceurl + "API/add_functionality_area/";
+        commonpostService.cmnpost(urlpath,$scope.postjobinfo).then(list_area, errorDetails);       
+      }; 
+
+})
+})();

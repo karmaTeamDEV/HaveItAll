@@ -1,0 +1,91 @@
+  <section id="industryfrmid" class="container content-section text-left">
+    <div class="row">
+     <div class="row">
+          <table width="100%">
+           <tr>
+             <td align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>  
+              <td align="center"><h3>MANAGE INDUSTRIES</h3></td>  
+             <td align="right"> <!-- <a href="#!/user/editprofile" style="color:##008cc9">Back</a> --></td>            
+           </tr>
+          </table>
+        </div>
+     <div class="col-lg-3"></div>
+     <div class="col-lg-6">
+       <div> 
+
+         <form name="industrycmsForm" ng-submit="submitForm(industrycmsForm)" novalidate>
+          <div class="form-group">
+             <select class="form-control" ng-model="industry.industry_id"  ng-options="ind.industry_id as ind.industry_name for ind in industrylist">
+            <option value="">SELECT INDUSTRY</option>
+            </select>
+          </div>
+
+
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Name" name="name" ng-model="industry.name" required />
+            <div ng-messages="industrycmsForm.name.$err" ng-if="industrycmsForm.name.$invalid && !industrycmsForm.name.$pristine">
+              <div ng-message="required" style="color:red;font-size:14px;">Name is required!</div>
+            </div>
+          </div>
+          <div class="form-group">
+           <select class="form-control back_color" name="selectedstatus" ng-model="industry.selectedstatus" required>
+             <option value="">Select status</option>
+             <option value="0">Active</option>
+             <option value="1">Inactive</option>
+           </select>
+           <div ng-messages="industrycmsForm.selectedstatus.$err" ng-if="industrycmsForm.selectedstatus.$invalid && !industrycmsForm.selectedstatus.$pristine">
+              <div ng-message="required" style="color:red;font-size:14px;">Status is required!</div>
+            </div>
+         </div>
+
+         <div class="form-group">
+          <button class="btn btn-primary"  ng-disabled="industrycmsForm.$invalid">SUBMIT</button>            
+        </div>
+      </form>
+    </div> 
+    <div class="form-group" >            
+      <input type="text" class="form-control" placeholder="Search Industries" ng-model="searchIndustries" required />
+    </div>
+
+    <div class="row">
+     <table class="table">
+      <thead>
+        <tr>
+          <th align="left">Name</th>
+          <th align="right">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="industry in industriesList | filter:searchIndustries">
+          <td align="left">
+            <a ng-click="editIndustry(industry.industry_id);" style="cursor:pointer; font-weight: bold;">{{industry.industry_name}}</a>
+            <table width="100%">
+             <!--  <tr >                 
+                <td colspan="3">Name</td>
+                <td colspan="1"></td>
+                <td>Status</td>
+              </tr> -->
+              <tr ng-repeat="area in industry.functional_area | filter:searchIndustries">
+                <td colspan="3" class="blue" >
+                 <a ng-click="editArea(area.area_id);" style="cursor:pointer;">{{area.area_name}} [{{area.area_status === '0' ? 'Active':'InActive'}}]</a></td>
+                <td colspan="2"></td>
+                <td colspan="1"></td>
+              </tr>
+              
+            </table>
+          </td>
+          <td align="left">{{industry.industry_status === '0' ? 'Active':'InActive'}}</td>
+        </tr>
+      </tbody> 
+    </table>
+  </div>
+</div>
+</div>
+<div class="bottom_space"></div>
+</section>
+<!-- Footer -->
+
+
+
+
+

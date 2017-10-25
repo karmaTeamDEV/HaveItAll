@@ -1,0 +1,34 @@
+<html>
+<head>
+</head>
+<body>
+<div class="modal-header">
+<h3 class="modal-title">publish your job <button class="pull-right" type="button" ng-click="close()">x</button></h3>
+
+</div>
+<div class="modal-body">
+	 <div class="form-group">
+        <label for="exampleInputPassword1" class='control-label'>Start Date</label>
+         <div class="input-group">
+          <input type="text" uib-datepicker-popup="{{dateformat}}" min-date="mindate" is-open="showdp2"   placeholder="Choose a date" class="form-control" ng-model="publishlist.startdate" ng-click="showcalendar2($event)">
+           <span class="input-group-addon" style="cursor: pointer">
+                  <i class="fa fa-lg fa-calendar"></i>
+           </span>                       
+        </div>                    
+     </div>
+     <div class="form-group">
+        <label for="exampleInputPassword1" class='control-label'>End Date</label>
+         <div class="input-group">
+          <input type="text" uib-datepicker-popup="{{dateformat}}" min-date="mindate" is-open="showdp1"   placeholder="Choose a date" class="form-control" ng-model="publishlist.enddate" ng-click="showcalendar1($event)">
+           <span class="input-group-addon" style="cursor: pointer">
+                  <i class="fa fa-lg fa-calendar"></i>
+           </span>                       
+        </div>                    
+     </div>
+     <button class="btn btn-primary text-right" type="button" ng-click="publish()" >Submit</button>
+</div>
+<!-- <div class="modal-footer">
+<button class="btn btn-warning" type="button" ng-click="close()">Close</button>
+</div> -->
+</body>
+</html>

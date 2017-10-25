@@ -1,0 +1,81 @@
+<style type="text/css">
+	.nav-pills>li>a
+	{
+		border: 1px solid #ccc !important;
+	}
+</style>
+
+ <div style="background-color:#FFF;">
+
+    <section class= "container content-section text-center">  
+             
+                <div class="col-lg-12 col-md-12 col-ms-12 col-xs-12">
+                	<div class="col-md-2">
+				  		<!-- <ul class="nav nav-pills nav-stacked">
+				  		<li ng-class="{ active: isSet(1) }">
+				          	<a href ng-click="setTab(1)">Culture Fit</a>
+				       	</li>
+				       	<li ng-class="{ active: isSet(2) }">
+				          	<a href ng-click="setTab(2)">Job Fit</a>
+				       	</li>
+				       	
+				       	
+				     	</ul> -->
+				  	</div>
+				    <div class="col-md-8">
+
+				  		<div class="jumbotron" style="margin-bottom:15%;">
+				  		<div align="right"><a href="#!/user/profile//" style="color:##008cc9" >Back</a></div>
+				       	<div ng-show="isSet(1)">				       		  
+				         	 <h3>Job Fit</h3>
+				         	 <div class="alert alert-success" ng-show="displaySuccessMsg">
+				              {{successmsg}}
+				             </div>
+				             <div class="alert alert-success" ng-show="displayFailsMsg">
+				              {{failuresmsg}}
+				             </div>
+				          	 <table width="100%">               
+				               <tr class="border_grey" ng-repeat="jobFit in jobFits">
+				               <td align="left">{{jobFit.typeName}}{{jobinfo.typeId}}</td>
+				               <td align="right">
+				               <div class="checkbox disabled">
+				                  <label>
+				                    <input type="checkbox" class="checkboxsize" ng-checked="jobinfo.indexOf(jobFit.typeId) > -1" value={{jobFit.typeId}} ng-click="toggleJobfit(jobFit.typeId,checkStatus)" ng-init='checkStatus=false' ng-model='checkStatus'>
+				                  </label>
+				                   </div>
+				                   </td>
+				               </tr>              
+				             </table>
+				        </div>
+					<!-- 	<div ng-show="isSet(2)">
+				          <h3>Culture Fit</h3>
+				          <div class="alert alert-success" ng-show="displayempSuccessMsg">
+			              {{successempmsg}}
+			              </div>
+			              <div class="alert alert-success" ng-show="displayempFailsMsg">
+			              {{failuresempmsg}}
+			              </div>
+				          <table width="100%">
+               
+			               <tr class="border_grey" ng-repeat="empFit in employerFits">
+			               <td align="left">{{empFit.typeName}}{{empinfo.typeId}}</td>
+			               <td align="right">
+			               <div class="checkbox disabled">
+			                  <label>
+			                    <input type="checkbox" class="checkboxsize" ng-checked="empinfo.indexOf(empFit.typeId) > -1" value={{empFit.typeId}} ng-click="toggleEmpfit(empFit.typeId,empcheckStatus)" ng-init='empcheckStatus=false' ng-model='empcheckStatus'>
+			                  </label>
+			                   </div>
+			                   </td>
+			               </tr>              
+			               </table>
+				     	</div> -->				        
+				  		</div>
+                	</div>  
+                          <div class="bottom_space"></div>
+              
+            	</div>            
+           
+      
+    </section>
+	
+</div>

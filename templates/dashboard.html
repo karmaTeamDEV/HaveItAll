@@ -1,0 +1,254 @@
+<style type="text/css">
+md-tabs-canvas {
+    display: none !important; 
+  }
+md-tabs[md-border-bottom] md-tabs-wrapper {
+    border-width: 0 0 0px !important;
+  }
+  </style>
+<section class="container content-section text-left">
+  <div class="row"> 
+    <div  ng-cloak>
+      <!-- <form name="jobpostForm" ng-submit="postjob(jobpostForm)" novalidate> -->
+      <md-content class="md-padding"  style="margin-bottom: 100px;">
+
+       <md-tabs md-selected="data.selectedIndex" md-dynamic-height md-border-bottom>
+        <md-tab id="tab1" >
+          <md-tab-label>Section 1</md-tab-label>
+          <md-tab-body>
+            <div class="blue" align="center" style="font-size: 20px;">Your Employer Profile 
+              <span style="float: right;"><img src="public/images/1.png"></span>
+            </div>  
+            <div align="center" style="color: #666;font-size: 16px;">Take 1 minute to help us target and market you to the right talent.</div>
+            <hr>
+
+            <md-content class="md-padding"> 
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4">      
+             <div class="row">
+              <div for="exampleInputEmail1" class='control-label' style="margin-bottom: 10px;"><b>Job Fit</b>:    What type of jobs do you employ?</div>
+              <div style="overflow-y: scroll;height: 300px;" >
+               
+                <div  ng-repeat="jobFit in jobFits">
+                  <div  style="float: left;">
+                    <label class="switch">
+                      <input type="checkbox" value={{jobFit.type_id}} ng-click="toggleJobfit(jobFit.type_id)">
+                      <div class="slider round"></div>
+                    </label>
+                  </div>          
+                  <div class="text2" style="float: left;">{{jobFit.type_name}}</div>
+                  <div class="clearfix"></div>
+                </div> 
+              </div>               
+              <div class="clearfix"></div>
+            </div>  
+            </div>
+            <div class="clearfix"></div>
+            <div class="row" align="center" style="margin-top: 20px;">
+              <button ng-click="next()" class="btn btn-primary">Next</button>
+            </div>
+          </md-content> 
+
+        </md-tab-body>
+      </md-tab>
+      <md-tab id="tab2">
+        <md-tab-label>Section 2</md-tab-label>
+        <md-tab-body>
+          <div class="blue" align="center" style="font-size: 20px;">Your Employer Profile 
+            <span style="float: right;"><img src="public/images/2.png"></span>
+          </div>  
+          <div align="center" style="color: #666;font-size: 16px;">Take 1 minute to help us target and market you to the right talent.</div>
+          <hr>
+          <md-content class="md-padding"> 
+          <div class="col-lg-4"></div>
+          <div class="col-lg-5">
+            <div class="row">
+              <div for="exampleInputEmail1" class='control-label' style="margin-bottom: 10px;"><b>Culture Fit</b>:  Which of the following best reflect your culture?</div>
+              <div style="overflow-y: scroll;height: 350px;" >
+                <div  ng-repeat="employer in employerFits">
+                  <div  style="float: left;">
+                    <label class="switch">
+                      <input type="checkbox" value={{employer.type_id}} ng-click="toggleSelection(employer.type_id,employer.type_name)">
+                      <div class="slider round"></div>
+                    </label>
+                  </div>          
+                  <div class="text2" style="float: left;">{{employer.type_name}}</div>
+                  <div class="clearfix"></div>
+                </div> 
+              </div>               
+              <div class="clearfix"></div>
+
+            </div> 
+            </div>
+             <div class="clearfix"></div>
+            <div class="row" align="center" style="margin-top: 25px;">                 
+            <button class="btn btn-default back" ng-click="previous()">Back</button>                    
+            <button ng-click="next()" class="btn btn-primary">Next</button>
+            </div>
+          </md-content>                
+        </md-tab-body>
+      </md-tab>
+      <md-tab id="tab3">
+        <md-tab-label>Section 3</md-tab-label>
+        <md-tab-body>
+          <div class="blue" align="center" style="font-size: 20px;">Your Employer Profile 
+            <span style="float: right;"><img src="public/images/3.png"></span>
+          </div>  
+          <div align="center" style="color: #666;font-size: 16px;">Take 1 minute to help us target and market you to the right talent.</div>
+          <hr>
+          <md-content class="md-padding">
+           <div class="col-lg-4"></div>
+          <div class="col-lg-5">                   
+            <div class="row" >
+              <div for="exampleInputEmail1" class='control-label' style="margin-bottom: 10px;"><b>Industries</b>: Select the industries that you hire for</div>
+               <!-- Select the industries that you hire for?  -->  
+                <div style="overflow-y: scroll;height: 350px;" >
+                <div  ng-repeat="industry in industrydata">
+                  <div  style="float: left;">
+                    <label class="switch">
+                      <input type="checkbox" value={{industry.industry_id}} ng-click="toggleIndustry(industry.industry_id,industry.industry_name)">
+                      <div class="slider round"></div>
+                    </label>
+                  </div>          
+                  <div class="text2" style="float: left;">{{industry.industry_name}}</div>
+                  <div class="clearfix"></div>
+                </div> 
+              </div>               
+              <div class="clearfix"></div>
+
+            </div> 
+            </div> 
+            <div class="clearfix"></div> 
+             <div class="row" align="center"  style="margin-top: 25px;">               
+            <button class="btn btn-default back" ng-click="previous()">Back</button>                    
+            <button ng-click="next()" class="btn btn-primary">Next</button> 
+            </div>
+
+          </md-content>
+        </md-tab-body>
+      </md-tab>
+
+      <md-tab id="tab4">
+        <md-tab-label>Section 4</md-tab-label>
+        <md-tab-body>
+         <div class="blue" align="center" style="font-size: 20px;">Your Employer Profile 
+          <span style="float: right;"><img src="public/images/4.png"></span>
+        </div>  
+        <div align="center" style="color: #666;font-size: 16px;">Take 1 minute to help us target and market you to the right talent.</div>
+        <hr>
+        <md-content class="md-padding"> 
+         <div class="col-lg-1"></div>
+         <div class="col-lg-11">
+         <div class="row">
+          <div for="exampleInputEmail1" class='control-label' style="margin-bottom: 10px;" align="center"><b>Industry Experience</b>:  Select the experience you look for in future employees </div>
+                <div ng-repeat="seniority in selectionIndustryname">
+                <table width="80%" align="center">
+                    <tr>
+                        <td width="40%" class="blue"><b>{{seniority.name}}</b></td>
+                        <td ng-repeat="level in levelList">
+                           <div><input type="checkbox" class="checkboxsize" value="level.seniority_id" ng-click="toggleSeniority(seniority.industry_id,level.seniority_id)"> {{level.seniority_name}}</div>
+                        </td>                                                
+                    </tr>
+                </table>                 
+                <div class="clearfix"></div>
+               </div>                
+          </div> 
+          </div> 
+          <div class="clearfix"></div>
+
+         <div class="row" align="center" style="margin-top: 20px;">
+        <button class="btn btn-default back" ng-click="previous()">Back</button>                    
+        <button ng-click="next()" class="btn btn-primary">Skip/Next</button> 
+        </div>
+
+      </md-content>
+    </md-tab-body>
+  </md-tab>
+
+  <md-tab id="tab5">
+    <md-tab-label>Section 5</md-tab-label>
+    <md-tab-body>
+     <div class="blue" align="center" style="font-size: 20px;">Your Basic Profile Is Complete!
+     <span style="float: right;"><img src="public/images/11.png"></span>
+    </div> <br> 
+    <div align="center" style="color: #666;font-size: 16px;"><span class="blue">Customize</span> – tell people why they should work for you & increase your following</div>
+    <hr>
+    <md-content class="md-padding"> 
+     <div class="form-group">
+      <div for="exampleInputEmail1" class='control-label' style="color: #666;margin-bottom: 5px;">Your Employer Profile</div>
+     <!--  <textarea placeholder="About your org..." style="width: 100%;padding: 10px;" rows="5" ng-model="company_bio"></textarea>  --> 
+
+      <textarea placeholder="About your org..." style="width: 100%;padding: 10px;" rows="5" data-ui-tinymce data-ng-model="company_bio"></textarea>                    
+    </div>           
+     <div class="form-group" align="center">
+    <button class="btn btn-default back" ng-click="previous()">Back</button>                     
+   <button ng-click="next()" class="btn btn-primary">Skip/Next</button> 
+    </div>
+
+  </md-content>
+</md-tab-body>
+</md-tab>
+<md-tab id="tab6">
+    <md-tab-label>Section 6</md-tab-label>
+    <md-tab-body>
+     <div class="blue" align="center" style="font-size: 20px;">Your Basic Profile Is Complete!
+     <span style="float: right;"><img src="public/images/22.png"></span>
+    </div> <br> 
+    <div align="center" style="color: #666;font-size: 16px;margin-right: 69px;"><span class="blue">Customize</span> – explain your benefits & culture</div>
+    <hr>
+    <md-content class="md-padding"> 
+     <div class="form-group">
+      <div ng-repeat="employ in empnamelist">
+      <div for="exampleInputEmail1" class='control-label' style="color: #666;margin-bottom: 5px;"><b>{{employ.name}}</b></div>
+      <textarea placeholder="Add text explanation" style="width: 100%;padding: 10px;" rows="5" ng-model="family_friend" ng-change=get_desc(employ.id,family_friend);></textarea> 
+
+      </div>
+
+
+      </div>
+
+     <div class="form-group" align="center">
+      <button class="btn btn-default back" ng-click="skip()">Skip-View Profile</button>                     
+      <button ng-click="next()" class="btn btn-primary">Next</button> 
+     </div>
+     
+  </md-content>
+</md-tab-body>
+</md-tab>
+<md-tab id="tab7">
+    <md-tab-label>Section 7</md-tab-label>
+    <md-tab-body>
+     <div class="blue" align="center" style="font-size: 20px;">Your Basic Profile Is Complete!
+     <span style="float: right;"><img src="public/images/33.png"></span>
+    </div> <br> 
+    <div align="center" style="color: #666;font-size: 16px;margin-right: 69px;"><span class="blue">Customize</span> – add pictures to your corporate profile</div>
+    <hr>
+    <md-content class="md-padding"> 
+     <div class="form-group">
+       <div align="center" ng-if="employerdata.users_profilepic == '' ">
+         <img src="public/images/upload.png" ng-click="select_file()" style="cursor: pointer;">
+       </div>
+
+        <div align="center" ng-if="employerdata.users_profilepic != '' ">
+         <img ng-src="upload/{{employerdata.users_profilepic}}"  style="width: 25%;" ng-click="select_file()"  style="cursor: pointer;"> 
+       </div>
+
+      <input type="file" id="image_pro" ng-model="profileImage" accept="image/*" name="image_pro" onchange="angular.element(this).scope().updateProfilePhoto(this);" style="display: none;">                
+    </div>           
+  <div class="form-group" align="center">
+   <button class="btn btn-default back" ng-click="skip()">Skip-View Profile</button>                    
+   <button ng-click="skip()" class="btn btn-primary">Done</button> 
+  </div>
+
+  </md-content>
+</md-tab-body>
+</md-tab>
+
+</md-tabs>
+</md-content>
+<!--  </form> -->
+</div>
+</div>
+
+</section>
+

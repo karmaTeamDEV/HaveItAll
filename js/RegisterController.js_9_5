@@ -1,0 +1,41 @@
+﻿(function () {
+	'use strict';
+	app.controller('RegisterController', function ($scope,$state,$location,$localStorage,registeruserService) { 
+		
+		$scope.userregisterInfo = {};
+
+		function resetForm(){
+			$scope.userregisterInfo.first_name = '';
+			$scope.userregisterInfo.last_name = '';
+			$scope.userregisterInfo.username = '';
+			$scope.userregisterInfo.password = '';
+		}
+
+		var errorDetails = function (serviceResp) {
+			$scope.Error = "Something went wrong ??";
+		};
+
+		var registeruserSuccess = function (data) {
+		//alert(data.success);
+		if(data.success == 1){
+			$localStorage.ses_userdata = data.list[0];	
+			$state.go("user.appHome");	
+		} else {
+			bootbox.alert(data.error);
+			//alert(data.error);
+		}		   
+	};
+	
+	$localStorage.email = '';
+	$scope.registercompanyRuser = function(){	  
+		 //alert(JSON.stringify($scope.userregisterInfo));
+		  //alert($localStorage.ses_jobfit);	  
+		  $scope.userregisterInfo.ses_employerfit = $localStorage.ses_employerfit;
+		  $scope.userregisterInfo.ses_jobfit = $localStorage.ses_jobfit;
+		  $localStorage.email = $scope.userregisterInfo.username;
+		  registeruserService.registerCompanyUser($scope.userregisterInfo).then(registeruserSuccess, errorDetails);
+
+		};
+	})
+
+})();

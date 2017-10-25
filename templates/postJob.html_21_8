@@ -1,0 +1,159 @@
+<!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" /> -->
+<!-- About Section -->
+<section class="container content-section text-left">    
+
+  <div class="container">
+    <div class="row">
+      <h4 class="text-center">Post a Job</h4>
+      <div class="col col-md-2"></div>
+      <div class="col col-md-8" style="border: 1px solid #ccc;">
+        <form name="jobpostForm" ng-submit="postjob(jobpostForm)" novalidate>
+
+
+          <div class="form-group required">
+            <label for="exampleInputEmail1" class='control-label'>Job Title / Designation:</label>
+           <!--  <pre>{{postjobinfo|json}}</pre> -->
+            <!-- <autocomplete attr-inputclass="form-control" ng-model="postjobinfo.jobpost_title" name="title" attr-placeholder="Ex: Senior Mobile Developer" click-activation="true" data="all_master_title_data" on-type="searchFromMaster" on-select="doFocus" attr-inputid="autoCompleteId">             
+            </autocomplete> -->
+             <select ng-model="postjobinfo.jobpost_title" name="title" ng-options="title.type_id  as title.type_name for title in all_master_title_data" required class="form-control">
+              <option value="" selected>- select - </option>     
+            </select>
+
+          </div>
+ 
+          <div ng-messages="jobpostForm.title.$err" ng-if="jobpostForm.title.$invalid && !jobpostForm.title.$pristine">
+            <div ng-message="required" style="color:red;font-size:14px;">Job Title / Designation is required !</div>            
+          </div>
+
+           <div class="form-group required">
+            <label for="exampleInputEmail1" class='control-label'>Seniority:</label>
+           
+             <select ng-model="postjobinfo.jobpost_seniority" name="jobpost_seniority" ng-options="level.seniority_id  as level.seniority_name for level in levelList" required class="form-control" multiple="multiple">
+              <option value="" selected>- select - </option>     
+            </select>
+
+          </div>
+ 
+          <div ng-messages="jobpostForm.jobpost_seniority.$err" ng-if="jobpostForm.jobpost_seniority.$invalid && !jobpostForm.jobpost_seniority.$pristine">
+            <div ng-message="required" style="color:red;font-size:14px;">Seniority is required !</div>            
+          </div>
+          <div class="form-group required">
+            <label for="exampleTextarea" class='control-label'>Job Description:</label>
+            <textarea class="form-control" ng-model="postjobinfo.jobpost_description" name="description" required  rows="7"></textarea>
+          </div>
+
+          <div ng-messages="jobpostForm.description.$err" ng-if="jobpostForm.description.$invalid && !jobpostForm.description.$pristine">
+            <div ng-message="required" style="color:red;font-size:14px;">Job description is required !</div>            
+          </div>
+          <div class="form-group required">
+            <label for="exampleTextarea" class='control-label'>Work Experience:</label>
+            <select name="jobpost_exp_minimum" style="width:100px;" ng-model="postjobinfo.jobpost_exp_minimum" ng-options="yearFrom  as yearFrom for yearFrom in yearlistFrom|reverse"  ng-change="resetToYears(postjobinfo.jobpost_exp_minimum);" required>
+              <option value="" selected>- Minimum - </option>     
+            </select>
+            <span ng-messages="jobpostForm.jobpost_exp_minimum.$err" ng-if="jobpostForm.jobpost_exp_minimum.$invalid && !jobpostForm.jobpost_exp_minimum.$pristine">
+            <span ng-message="required" style="color:red;font-size:14px;">Year is required!</span>            
+            </span>
+            to
+            <select name="jobpost_exp_maximum" ng-model="postjobinfo.jobpost_exp_maximum" style="width:110px; margin-left:8px;" ng-options="yearTo as yearTo for yearTo in yearlistTo|reverse" required>
+              <option value="" selected>- Maximum -</option>      
+            </select>
+            <span ng-messages="jobpostForm.jobpost_exp_maximum.$err" ng-if="jobpostForm.jobpost_exp_maximum.$invalid && !jobpostForm.jobpost_exp_maximum.$pristine">
+            <span ng-message="required" style="color:red;font-size:14px;">Year is required!</span>          
+            </span>
+          </div>
+
+
+          <div class="form-group required">
+            <label for="exampleSelect1" class='control-label'>Location</label>
+            <select placeholder="Select..." ng-model="postjobinfo.jobpost_locations" name="jobpost_locations" ng-options="location.locations_id as location.locations_name for location in location_data" multiple="multiple" required class="form-control" style="height: 130px;">          
+            </select>
+          </div>
+          <div ng-messages="jobpostForm.jobpost_locations.$err" ng-if="jobpostForm.location.$invalid && !jobpostForm.location.$pristine">
+            <div ng-message="required" style="color:red;font-size:14px;">Location is required !</div>            
+          </div>
+
+          <div class="form-group required">
+            <label for="exampleSelect1" class='control-label'>Job Type</label>
+            <select class="form-control" ng-model="postjobinfo.jobpost_jobtype" name="job_type" required>
+              <option value="">- select type -</option>
+              <option value="FullTime">Full Time</option>
+              <option value="Contract">Contract</option>
+              <option value="PartTime">Part Time</option>      
+              <option value="Temporary">Temporary</option>
+            </select>
+          </div>
+
+          <div ng-messages="jobpostForm.job_type.$err" ng-if="jobpostForm.job_type.$invalid && !jobpostForm.job_type.$pristine">
+            <div ng-message="required" style="color:red;font-size:14px;">Job Type is required !</div>    
+          </div>
+
+          <div class="form-group required">
+            <label for="exampleSelect1" class='control-label'>Industry</label>
+            <select name="industry" ng-model="postjobinfo.jobpost_industry" class="form-control" ng-options="indastry.industry_id as indastry.industry_name for indastry in indastry_data" required  ng-change="getArea(postjobinfo.jobpost_industry)">
+              <option value="">- select industry - </option>      
+            </select>
+          </div>
+
+          <div ng-messages="jobpostForm.name.$err" ng-if="jobpostForm.industry.$invalid && !jobpostForm.industry.$pristine">
+            <div ng-message="required" style="color:red;font-size:14px;">Industry is required !</div>    
+          </div> 
+
+          <div class="form-group required">
+            <label for="exampleInputPassword1" class='control-label'>Functional Area</label>    
+
+            <select ng-model="postjobinfo.jobpost_area" name="jobpost_area" ng-options="area.area_id as area.area_name for area in areaList" multiple="multiple" required class="form-control" style="height: 130px;">
+              <option value="">-select-</option>          
+            </select>
+
+
+          </div>
+
+          <div class="form-group required">
+            <label for="exampleInputPassword1" class='control-label'>KeySkills</label>
+
+            <select placeholder="Select Keyskills..." ng-model="postjobinfo.jobpost_skills" name="jobpost_skills" ng-options="skill.skills_id as skill.skills_name for skill in skill_data" multiple="multiple" required class="form-control" style="height: 130px;">
+              <option value="">-select-</option>          
+            </select>
+          </div>
+
+          <div class="form-group required">
+            <label for="exampleTextarea" class='control-label'>Job Url:</label>
+            <input type="text" name="url" class="form-control" ng-model="postjobinfo.jobpost_url"  required  >
+          </div>
+
+          <div ng-messages="jobpostForm.name.$err" ng-if="jobpostForm.url.$invalid && !jobpostForm.url.$pristine">
+            <div ng-message="required" style="color:red;font-size:14px;">Job url is required !</div>            
+          </div>
+
+          <div class="form-group required">
+            <label for="exampleInputPassword1" class='control-label'>Job Fit</label>    
+
+            <select placeholder="Select jobfit..." ng-model="postjobinfo.jobpost_jobfit" name="jobpost_jobfit" ng-options="job.type_id as job.type_name for job in jobFits" multiple="multiple" required class="form-control" style="height: 130px;">
+             <option value="">-select-</option>          
+           </select>
+         </div>
+         <div class="form-group required">
+          <label for="exampleInputPassword1" class='control-label'>Employer Fit</label>
+
+          <select placeholder="Select employer fit..." ng-model="postjobinfo.jobpost_employer" name="jobpost_employer" ng-options="employer.type_id as employer.type_name for employer in employerFits" multiple="multiple" required class="form-control" style="height: 130px;">
+           <option value="">-select-</option>          
+         </select>
+       </div>
+
+
+       <ul class="media-date text-uppercase reviews list-inline">
+        <li class="mm"><button type="submit" class="btn btn-primary">Cancel</button></li>
+        <li class="aaaa">    
+          <button [disabled]="loading" class="btn btn-success" ng-disabled="jobpostForm.$invalid" >Publish</button>  
+        </li>
+      </ul>
+    </form>
+  </div>
+  <div class="col col-md-2"></div>
+
+</div>
+</div>
+<div class="clear"></div>
+<div class="bottom_space"></div>
+</section>
+

@@ -1,0 +1,62 @@
+
+    <!-- Intro Header -->
+    <!-- About Section -->
+
+    <div style="background-color:#FFF;">
+
+    <section class="container content-section text-left">
+        <div class="row">
+          <table width="100%">
+           <tr>
+             <td align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>  
+              <td align="center"><h3>Education</h3></td>  
+             <td align="right"> <a href="#!/user/profile//" style="color:##008cc9">Back</a></td>            
+           </tr>
+          </table>
+        </div>
+        <div class="row">
+        
+         <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+            <div>
+             <div class="alert alert-success" ng-show="displaySuccessMsg">
+              {{successmsg}}
+             </div>
+             <div class="alert alert-success" ng-show="displayFailsMsg">
+              {{failuresmsg}}
+             </div>
+             <uib-accordion>
+              <uib-accordion-group ng-repeat="education in educations">
+               <uib-accordion-heading> 
+                 <uib-accordion-title>
+                   <div> 
+                     <div style="float:left;">
+                      <input type="checkbox" class="checkboxsize" ng-checked="education.selected || checkedParents.indexOf(education.parentTypeID) > -1" ng-click="toggleEducation($index,education.parentTypeID)" >
+                    </div>
+                    <div style="float:left;padding-top:7px;padding-left:5px;">
+                     <span style="margin-left:7px;">{{education.parentTypeName}}</span>
+                    </div> 
+                    <div style="clear:both;"></div>
+                   </div> 
+                  </uib-accordion-title>
+                  </uib-accordion-heading>
+                  <uib-accordion-body>
+                   <div ng-repeat="child in education.childrecords">
+                    <div style="float:left;">
+                     <input type="checkbox" class="checkboxsize" value={{child.type_id}} ng-checked="edu_degrees.indexOf(child.type_id) > -1" ng-click="toggleDegree(child.type_id,checkdegreeStatus,child.type_parent_id)" ng-init='checkdegreeStatus=false' ng-model='checkdegreeStatus'>
+                    </div>
+                    <div style="float:left;padding-top:5px;padding-left:5px;">
+                     <span>{{child.type_name}}</span>
+                    </div> 
+                    <div style="clear:both;"></div>
+                   </div>
+                  </uib-accordion-body>
+                </uib-accordion-group>
+              </uib-accordion>
+              </div> 
+        </div>
+        </div>
+         <div class="bottom_space"></div>        
+    </section>
+
+</div>

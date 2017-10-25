@@ -1,0 +1,195 @@
+
+
+<div id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+         <img src="public/images/burger.png">
+       </button>
+       <a class="navbar-brand page-scroll" href="#page-top" style="margin-top:-15px;">
+         <img src="public/images/logo.png" height="40">
+       </a>
+     </div>
+
+     <!-- Collect the nav links, forms, and other content for toggling -->
+     <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+      <ul class="nav navbar-nav" style="cursor:pointer;">
+        <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+        <li class="hidden">
+          <a href="#page-top"></a>
+        </li>
+        <li>
+          <a class="page-scroll" href="#!/employer-register">For Employers</a>
+        </li>
+        
+        <li>
+          <a class="page-scroll" href="#!/login">Login</a>
+        </li>
+      </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container -->
+</nav>
+
+<!-- Intro Header -->
+<header class="intro" style="padding:140px 0px!important;background:url(public/images/back_signup.jpg)no-repeat center center scroll !important;">
+  <div class="intro-body">
+    <div class="container">
+
+      <div class="row">
+        <div class="col-lg-2 col-md-2 col-ms-2 col-xs-2">&nbsp;</div>
+        <div class="col-lg-8 col-md-8 col-ms-8 col-xs-8">
+          <div class="box_space2">
+           <div class="box_inner">
+             <div class="box2">
+             <span ng-if="company_matched_before_reg.length > 0 "> <span style="font-size:36px;">{{company_matched_before_reg.length}}+</span> Employer Matches </span>
+             <span ng-if="company_matched_before_reg.length <= 0 " style="font-size:30px;"> See Employer Matches </span>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="box_space2">
+         <div class="box_inner">
+           <div class="box2" style="background-color:#008cc9;">
+            
+             <span ng-if="job_matched_before_reg.length > 0 "> <span style="font-size:36px;">{{job_matched_before_reg.length}}+</span> Employer Matches </span>
+             <span ng-if="job_matched_before_reg.length <= 0 " style="font-size:30px;"> See Job Matches  </span>
+            
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    <div class="col-lg-2 col-md-2 col-ms-2 col-xs-2">&nbsp;</div>
+  </div>
+  <div class="clear"></div>
+</div>
+<div class="container">
+  <div class="row">
+   <div class="col-lg-1 col-md-1 col-ms-1 col-xs-1">&nbsp;</div>
+   <div class="col-lg-10 col-md-10 col-ms-10 col-xs-10 box_w" style="background-color:#fff;border-radius:10px;margin-top:20px;color:#000; padding:10px 10px 40px;">
+
+     <div class="col-lg-6 col-md-6 text-left">
+      <table>
+       <tr>
+         <td  width="60">&nbsp;</td>
+         <td>
+           <div style="padding-top:50px;">
+             <strong>Please Register Your Profile – It’s Free!</strong><br> We’ll match you to organizations that fit your criteria, notify you when jobs you want become vacant and enable you to conveniently track your applications. 
+           </div>
+         </td>
+       </tr>
+       <tr>
+         <tr><td colspan="2" height="10">&nbsp;</td></tr>
+         <td valign="top"><img src="public/images/lock.png"/></td>
+         <td>SSL safe and secure</td>
+       </tr>
+       <tr><td colspan="2" height="10">&nbsp;</td></tr>
+       <tr>
+         <td valign="top"><img src="public/images/img2.png"/></td>
+         <td>Everything in one place. Discover the relevant articles, events, workshops and jobs of your favorite companies!</td>
+        </tr>
+        <tr><td colspan="2" height="10">&nbsp;</td></tr>
+        <tr>
+         <td valign="top"><img src="public/images/img3.png"/></td>
+         <td>Cut through all the noise of social media and job boards by following employers that interest you.</td>
+        </tr>
+        <tr><td colspan="2" height="10">&nbsp;</td></tr>
+        <tr>
+         <td valign="top"><img src="public/images/img4.png"/></td>
+         <td>Privacy share or comment on articles with hiring decision makers.</td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-lg-6 col-md-6 text-left">
+     <form name="userregisterForm" ng-submit="registercompanyRuser(userregisterForm)" novalidate>
+      <table width="100%">
+       <tr>
+         <td colspan="2" class="blue" align="center">
+           <div style="padding:20px 0px;"><img src="public/images/logo_black.png"/></div>
+           <div style="padding:20px 0px;">Private, Professional, Pro-active Free!
+           </div>
+         </td>
+       </tr>
+       <tr>
+         <td> <input type="text" class="form-control" placeholder="First Name" style="width:100%;" name="first_name" placeholder="First Name" ng-model="userregisterInfo.first_name" required>
+          
+         </td>
+
+         <td> <input type="text" class="form-control" name="last_name" placeholder="Last Name" ng-model="userregisterInfo.last_name" required style="width:100%"  ></td>
+       </tr>
+       <tr>
+         <td>
+           <div ng-messages="userregisterForm.first_name.$err" ng-if="userregisterForm.first_name.$invalid && !userregisterForm.first_name.$pristine">
+            <div ng-message="required" style="color:red;font-size:14px;">First name is required !</div>
+            
+          </div>
+        </td>
+        <td>
+         <div ng-messages="userregisterForm.last_name.$err" ng-if="userregisterForm.last_name.$invalid && !userregisterForm.last_name.$pristine">
+          <div ng-message="required" style="color:red;font-size:14px;">Last name is required !</div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+     <td colspan="2"><input type="text" class="form-control" name="username" placeholder="Email" ng-model="userregisterInfo.username" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" required style="width:100%;color:#333;"></td>
+   </tr>
+   <tr>
+     <td>
+       <div ng-messages="userregisterForm.username.$err" ng-if="userregisterForm.username.$invalid && !userregisterForm.username.$pristine">
+        <div ng-message="pattern" style="color:red;font-size:14px;margin-top:5px;">Enter a valid email! </div>      
+      </div>  
+    </td>
+  </tr>
+  <tr>
+   <td colspan="2"><input type="password" class="form-control" name="password" ng-minlength="6"  ng-model="userregisterInfo.password" 
+     placeholder="Password (6 or more characters)" style="width:100%;color:#333;" required>
+   </td>
+ </tr>
+ <tr>           
+   <td>
+    <div ng-messages="userregisterForm.password.$err" ng-if="userregisterForm.password.$invalid && !userregisterForm.password.$pristine">                  
+      <div ng-message="required" style="color:red;font-size:14px;">Password is too short!</div>
+    </div>
+    
+  </td>
+</tr>
+<tr>
+<td>
+        <div style="padding-right: 5px;">
+          <a style="font-family: 'Arial';" href="https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id={{linkedinAuthCredentials.client_id}}&redirect_uri={{linkedinAuthCredentials.redirect_uri}}&state={{linkedinAuthCredentials.csrf_token}}&scope={{linkedinAuthCredentials.scopes}}">
+            <img src="public/images/linkedinbtn.png" />  
+          </a>
+        </div>
+</td>
+ <td>
+  <div class="text-center" style="padding:20px 0px; ">
+    <button [disabled]="loading" class="btn btn-primary" ng-disabled="userregisterForm.$invalid" style="width: 100%;">Sign Up</button>  
+  </div>
+</td>
+</tr>
+<tr>
+  <td colspan="2">
+   <div class="text-center" >By clicking Sign Up you agree to our<br/>
+    <span class="blue"><a href="#!/term-and-conditions" target="_blank">Terms & Conditions</a></span> and <span class="blue"><a href="#!/privacy" target="_blank">Privacy Policy</a></span></div>
+  </tr>
+</table>
+</form>
+</div>
+
+</div>
+<div class="col-lg-1 col-md-1 col-ms-1 col-xs-1">&nbsp;</div>
+</div>
+
+</div>
+
+
+</div>
+</header>
+<div ng-include="'include/footer.html'"></div>

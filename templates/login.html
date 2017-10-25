@@ -1,0 +1,50 @@
+ 
+<div class="login_back">
+
+    <div class="col-md-6 col-md-offset-3 text-right logarea">
+       
+   <div style="margin-bottom:20px;" align="center">
+   <a href="#!/home"><img src="public/images/logo3.png" class="img-responsive"></a>
+   </div>
+     
+        <form name="loginForm" ng-submit="login(loginForm)" novalidate>
+            <div class="form-group" >           
+                <input type="text" class="form-control logbox" placeholder="Email" name="username" ng-model="userInfo.username" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" required />
+                <div ng-messages="loginForm.username.$err" ng-if="loginForm.username.$invalid && !loginForm.username.$pristine">
+                    <div ng-message="pattern" class="message_log" >Enter a valid email! </div>			
+                </div>
+                
+            </div>
+            <div class="form-group" >            
+                <input type="password" class="form-control logbox" name="password" placeholder="Password" ng-model="userInfo.usrpasswrd" required />
+                <div ng-messages="loginForm.password.$err" ng-if="loginForm.password.$invalid && !loginForm.password.$pristine">
+                    <div ng-message="required" class="message_log" >Password is required</div>
+                </div>
+            </div>
+            <table class="logbox" align="center">
+            
+            <tr>
+            <td><div class="form-group pull-left fortext">
+                 <a style="float:left;color:#fff;text-align:left;" href="#!/forgot-psw">Forgot password?</a>
+                <!-- <a href="#!/register" style="color:#fff;text-align:left;">Register</a> -->
+                </div>
+                </td>
+                <td>
+                <div class="form-group text-right">
+          <a href="https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id={{linkedinAuthCredentials.client_id}}&redirect_uri={{linkedinAuthCredentials.redirect_uri}}&state={{linkedinAuthCredentials.csrf_token}}&scope={{linkedinAuthCredentials.scopes}}">
+            <img src="public/images/linkedinbtn.png" height="35">  
+          </a>
+        </div></td>
+                <td><div class="form-group pull-right" > <button [disabled]="loading" class="btn btn-primary"  ng-disabled="loginForm.$invalid">Login</button>  </div></td>
+                </tr>
+                <tr>
+                <td colspan="3" align="right">
+                <!--  <a style="float:right;text-transform: capitalize;color:#fff;text-align:right" href="#!/forgot-psw">Forgot password?</a> -->
+                </td>
+                </tr>
+            </tr>
+            </table>
+       </form>
+     
+   </div>
+</div>

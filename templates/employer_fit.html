@@ -1,0 +1,45 @@
+    <!-- About Section -->
+
+    
+    <section class="container content-section text-left">
+        <div class="row">
+          <table width="100%">
+           <tr>
+             <td align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>  
+              <td align="center"><h3>Employer Fit</h3></td>  
+             <td align="right"> <a href="#!/user/editprofile" style="color:##008cc9">Back</a></td>            
+           </tr>
+          </table>
+        </div>
+        <div class="row">
+        
+         <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+            <div>
+             <div class="alert alert-success" ng-show="displaySuccessMsg">
+              {{successmsg}}
+             </div>
+             <div class="alert alert-success" ng-show="displayFailsMsg">
+              {{failuresmsg}}
+             </div>
+              
+               <table width="100%">
+               
+               <tr class="border_grey" ng-repeat="jobFit in jobFits">
+               <td>{{jobFit.typeName}}{{jobinfo.typeId}}</td>
+               <td align="right">
+               <div class="checkbox disabled">
+                  <label>
+                    <input type="checkbox" class="checkboxsize" ng-checked="jobinfo.indexOf(jobFit.typeId) > -1" value={{jobFit.typeId}} ng-click="toggleJobfit(jobFit.typeId,checkStatus)" ng-init='checkStatus=false' ng-model='checkStatus'>
+                  </label>
+                   </div>
+                   </td>
+               </tr>              
+               </table>
+              </div> 
+        </div>
+        </div>
+         <div class="bottom_space"></div>        
+    </section>
+
+

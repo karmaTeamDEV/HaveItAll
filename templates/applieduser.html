@@ -1,0 +1,80 @@
+ 
+<style>
+  .backsection
+  {
+    margin-bottom:10px;background-color:#ffffff;border:none;padding-bottom:10px;padding-top:10px;
+  }
+  .botton_12
+  {
+    width:50%;float:left;
+  }
+</style>
+<!-- About Section -->
+<div style="background-color:#edebeb;"> 
+  <section class="content-section text-left">
+    <div class="row" style="width: 89%;"> 
+      <div align="right"> <a href="#!/user/postjobview/" style="color:##008cc9; text-transform: uppercase;"><strong>Back</strong> </a></div>
+    </div>
+  </section>
+
+
+  <section class="container">
+    <div class="row backsection">
+
+
+      <div class="container">
+        <div class="tab-content">
+
+
+
+          <div ng-if="suggeted_user_for_company_list.length < 1 ">
+            <p>Nothing to Show</p>
+          </div>  
+
+
+          <div class="row">
+            <div id="suggested{{users.users_id}}" class="col-md-6"  ng-repeat="users in suggeted_user_for_company_list" >      
+              <div class="panel panel-default  panel--styled">
+               <div class="panel-body" style="padding:10px 0px!important">
+                <div class="col-md-12 panelTop" > 
+                  <div class="col-md-4">  
+                    <img class="img-responsive" src="upload/{{users.users_profilepic}}" alt="" style="width:120px;"/>
+                  </div>
+                  <div class="col-md-8" style="height:130px;">  
+                    <h3>{{users.users_firstname}}  {{users.users_lastname}}</h3>
+                    <!-- <h4>{{users.jobfit_status}} {{users.employeefit_status}} {{users.location_status}} {{users.industry_status}} {{users.area_status}}</h4>-->
+                    Address: {{users.city_name}}, {{users.state_name}}, {{users.country_name}}<br>
+                    Phone #: {{users.users_phone}} 
+                  </div>                 
+                    <div class="col-md-12" style="min-height:180px;"> 
+                              
+                            <div>{{users.users_bio | limitTo:300}}</div>
+                            <span ng-if="users.users_bio != '' " style="color: #008cc9" ng-click="view_a_user_for_company( users.user_id, 'applied_view')">more</span>
+
+                          </div>                                                
+                          <!-- <div class="panelBottom">
+                            <div class="text-center" style="width:50%;float:left;">
+                              <span ng-if="users.viewing_company_id == '' ||  users.viewing_company_id == NULL ">
+                                <button type="button" class="btn btn-success"  ng-click="view_a_user_for_company( users.users_id, 'suggested' )">
+                                 <i class="fa fa-book"></i> Learn More </button> 
+                               </span>           
+                             </div>
+                             <div class="botton_12 text-center">                     
+                              <button type="button" class="btn btn-primary "  ng-click="follow_a_user_for_company( users.users_id )">
+                                <i class="fa fa-user"> </i> Follow </button>                                                    
+                              </div>
+                            </div> -->
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                      </div> 
+
+                    </div>
+                  </div> 
+                </div>
+              </section> 
+
+              <div class="bottom_space"></div>
+
+            </div>

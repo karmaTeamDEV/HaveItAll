@@ -1,0 +1,515 @@
+<script src="public/carouselengine/amazingcarousel.js"></script>
+<link rel="stylesheet" type="text/css" href="public/carouselengine/initcarousel-1.css">
+<script src="public/carouselengine/initcarousel-1.js"></script>
+<style>
+  .backsection
+  {
+    margin-bottom:10px;background-color:#ffffff;border:none;padding-bottom:10px;padding-top:10px;
+  }
+</style>
+<!-- About Section -->
+<div style="background-color:#fff;">   
+
+  <section class="content-section text-left">
+
+    <div class="row">      
+
+      <div class="container" style="cursor: pointer;">
+
+        <!-- Tab 1 Start/////////////////////////////////////////// -->
+        <div ng-show="listTab">
+          <ul class="nav nav-tabs" >
+
+            <li id="notviewed_tab" class="active" ng-click="activeList(false,true)"><a data-toggle="tab" data-target="#notviewed"> Active Jobs  </a></li>
+            <li id="viewed_tab" ng-click="activeList(true,false)"><a data-toggle="tab" data-target="#viewed"> InActive Jobs </a></li>
+          </ul>
+
+          <div class="tab-content" style="padding:0px;">
+            <div id="notviewed">
+              <div ng-show="panelnav">
+               <div class="profile_details">
+                <div style="width:100%;">
+                  <div align="center" ng-if="jobpostlist.length == '0' ">No Record Found</div>
+
+                  <!-- Box start -->
+
+                  <div class="box8_left" ng-repeat="joblist in jobpostlist" ng-if="jobpostlist.length > '0' ">
+                    <div class="box8_back">
+                     <div style="width: 100%;">
+                       <table width="100%">
+                         <tr>
+                           <td width="50%">
+                             <div class="blue" align="left" style="margin-bottom: 5px;">{{joblist.title_name}} ({{joblist.jobpost_jobtype}})</div>
+                           </td>
+                           <td width="50%">
+                             <div style="margin-bottom: 5px;" align="right">
+                             <span ng-repeat="seniority in joblist.seniority">{{seniority.seniority_name}} | </span>
+                             </div>
+                           </td>
+                         </tr>
+                       </table>
+                     </div>
+                     <table cellspacing="2">                 
+                       <tr>
+                        <td width="100"><span style="margin-right:5px;"><img src="public/images/experience.png" /></span>
+                         <!--  {{joblist.jobpost_exp_minimum}}-{{joblist.jobpost_exp_maximum}} Years --></td>
+                          <td width="20">&nbsp;</td>
+                          <td><span style="margin-right:5px;"><img src="public/images/location.png" /></span><span ng-repeat="loc in joblist.location"> {{loc.locations_name}} ,</span></td>
+                        </tr>
+                        <tr>
+                          <td valign="top">Location</td>
+                          <td width="20" valign="top">:</td>
+                          <td><span class="blue">{{joblist.countryname}},{{joblist.statename}},{{joblist.cityname}}</span></td>
+                        </tr>
+                        <tr>
+                          <td valign="top" width="100">Relevant Titles</td>
+                          <td width="20" valign="top">:</td>
+                          <td><span ng-repeat="area in joblist.arealist">{{area.industry_name}} ,</span></td>
+                        </tr>
+                        <tr>
+                          <td valign="top" width="120">Job Fit & Cultural Fit</td>
+                          <td width="20" valign="top">:</td>
+                          <td><span ng-repeat="job in joblist.jobfit">{{job.type_name}} ,<span ng-repeat="employer in joblist.employerfit">{{employer.type_name}} ,</span></td>
+                        </tr>
+                        <tr>
+                          <td valign="top" width="120" >Job Description</td>
+                          <td width="20" valign="top">:</td>
+                          <td valign="top">{{joblist.jobpost_description}}</td>
+                        </tr>
+                        <tr>
+                          <td valign="top" width="80" >Job URL</td>
+                          <td width="20" valign="top">:</td>
+                          <td valign="top">{{joblist.jobpost_url}}</td>
+                        </tr>
+                      </table>
+                    </div>
+                    <div class="box9_back">
+                     <div class="pull-left">
+                       <span style="margin-right:10px;" ng-if="userInfo_usersid == joblist.jobpost_userid  || userInfo_type== '2' ">
+                         <!-- {{userInfo_usersid}} {{userInfo_type}} -->
+                         <img src="public/images/editjob.png" width="26" title="Edit" ng-click="updatejob(joblist.jobpost_id)"/>
+                       </span>
+                       
+                 <span> Applied: {{joblist.applyed_users}}</span>
+                 <span> Viewed: {{joblist.viewed_user}}</span>
+                 
+                       <!-- 5,00,000 - 15,00,000P.A --> </div>
+                       <div class="pull-right"><!-- Posted By  -->
+                         <span ng-if="userInfo_usersid == joblist.jobpost_userid  || userInfo_type== '2' ">
+                           <img src="public/images/inactive.png" width="26" title="Inactive" ng-click="inactivePostjob(joblist.jobpost_id)" /></span>
+                           <!--  <span class="blue"> Sonali Sushmita,</span> 32 -->
+                         </div>
+                         <div style="clear:both;"></div>
+                       </div>
+                     </div>  
+                   </div>
+                   <!-- Box end -->
+
+                 </div>
+               </div>
+             </div>
+
+             <div id="viewed" class="tab-pane fade">
+                <div ng-show="panelnav1">
+
+                  <div   class="profile_details">
+                    <div style="width:100%;">
+
+                      <div align="center" ng-if="jobpostlistinactive.length == '0' ">No Record Found</div>
+                      <!-- Box start -->
+
+                      <div class="box8_left" ng-repeat="joblist in jobpostlistinactive" ng-if="jobpostlistinactive.length > '0' ">
+                       <div class="box8_back">
+                         <div style="width: 100%;">
+                           <table width="100%">
+                             <tr>
+                               <td width="50%">
+                                 <div class="blue" align="left" style="margin-bottom: 5px;">{{joblist.title_name}}</div>
+                               </td>
+                               <td width="50%">
+                                <div style="margin-bottom: 5px;" align="right">
+                                 <span ng-repeat="seniority in joblist.seniority">{{seniority.seniority_name}} | </span>
+                                 </div>
+                               </td>
+                             </tr>
+                           </table>
+                         </div>
+                         <table cellspacing="2">                 
+                           <tr>
+                            <td width="100"><span style="margin-right:5px;"><img src="public/images/experience.png" /></span>
+                             <!--  {{joblist.jobpost_exp_minimum}}-{{joblist.jobpost_exp_maximum}} Years --></td>
+                              <td width="20">&nbsp;</td>
+                              <td><span style="margin-right:5px;"><img src="public/images/location.png" /></span><span ng-repeat="loc in joblist.location"> {{loc.locations_name}} ,</span></td>
+                            </tr>
+                            <tr>
+                              <td valign="top">Location</td>
+                              <td width="20" valign="top">:</td>
+                              <td><span class="blue">{{joblist.countryname}},{{joblist.statename}},{{joblist.cityname}}</span></td>
+                            </tr>
+                            <tr>
+                              <td valign="top" width="100">Relevant Titles</td>
+                              <td width="20" valign="top">:</td>
+                              <td><span ng-repeat="area in joblist.arealist">{{area.industry_name}} ,</span></td>
+                            </tr>
+                            <tr>
+                              <td valign="top" width="120">Job Fit & Cultural Fit</td>
+                              <td width="20" valign="top">:</td>
+                              <td><span ng-repeat="job in joblist.jobfit">{{job.type_name}} ,<span ng-repeat="employer in joblist.employerfit">{{employer.type_name}} ,</span></td>
+                            </tr>
+                            <tr>
+                              <td valign="top" width="120" >Job Description</td>
+                              <td width="20" valign="top">:</td>
+                              <td valign="top">{{joblist.jobpost_description}}</td>
+                            </tr>
+                            <tr>
+                              <td valign="top" width="80" >Job URL</td>
+                              <td width="20" valign="top">:</td>
+                              <td valign="top">{{joblist.jobpost_url}}</td>
+                            </tr>
+                          </table>
+                        </div>
+                        <div class="box9_back">
+                         <div class="pull-left">
+                           <span style="margin-right:10px;"> </span>
+                         </div>
+                         <div class="pull-right">                        
+                           <span></span>                       
+                         </div>
+                         <div style="clear:both;"></div>
+                       </div>
+                     </div>  
+                   </div>
+                 </div>
+               </div>
+             </div> 
+
+         </div>
+       </div>
+
+       <!-- Tab 2 Start/////////////////////////////////////////// -->
+       <div ng-show="editjobTab"> 
+          <h4 class="text-center">Edit Job</h4>
+          <form name="editjobpostForm" ng-submit="updatepostjobFrm(editjobpostForm)" novalidate>
+
+
+          <div class="form-group required">
+            <label for="exampleInputEmail1" class='control-label'>Job Title / Designation:</label>
+           <!--  <pre>{{editpostjob|json}}</pre> -->
+            
+             <select ng-model="editpostjob.jobpost_title" name="title" ng-options="title.type_id  as title.type_name for title in all_master_title_data" required class="form-control">
+              <option value="">- Job Title - </option>     
+            </select>
+
+          </div>
+ 
+          <div ng-messages="editjobpostForm.title.$err" ng-if="editjobpostForm.title.$invalid && !editjobpostForm.title.$pristine">
+            <div ng-message="required" style="color:red;font-size:14px;">Job Title / Designation is required !</div>            
+          </div>
+ <div class="form-group required">
+            <label for="exampleInputEmail1" class='control-label'>Seniority:</label>
+           
+             <select ng-model="editpostjob.jobpost_seniority" name="jobpost_seniority" ng-options="level.seniority_id  as level.seniority_name for level in levelList" required class="form-control" multiple="multiple">
+              <option value="" selected>- Select Seniority - </option>     
+            </select>
+
+          </div>
+ 
+          <div ng-messages="jobpostForm.jobpost_seniority.$err" ng-if="jobpostForm.jobpost_seniority.$invalid && !jobpostForm.jobpost_seniority.$pristine">
+            <div ng-message="required" style="color:red;font-size:14px;">Seniority is required !</div>            
+          </div>
+          <div class="form-group">
+            <label for="exampleTextarea" class='control-label'>Job Description:</label>
+            <textarea class="form-control" ng-model="editpostjob.jobpost_description" name="description"  rows="7"></textarea>
+          </div>
+
+          <div ng-messages="editjobpostForm.description.$err" ng-if="editjobpostForm.description.$invalid && !editjobpostForm.description.$pristine">
+            <div ng-message="required" style="color:red;font-size:14px;">Job description is required !</div>            
+          </div>
+         <!--  <div class="form-group required">
+            <label for="exampleTextarea" class='control-label'>Work Experience:</label>
+            <select name="jobpost_exp_minimum" style="width:100px;" ng-model="editpostjob.jobpost_exp_minimum" ng-options="yearFrom  as yearFrom for yearFrom in yearlistFrom|reverse"  ng-change="resetToYears(editpostjob.jobpost_exp_minimum);" required>
+              <option value="" selected>- Minimum - </option>     
+            </select>
+            <span ng-messages="editjobpostForm.jobpost_exp_minimum.$err" ng-if="editjobpostForm.jobpost_exp_minimum.$invalid && !editjobpostForm.jobpost_exp_minimum.$pristine">
+            <span ng-message="required" style="color:red;font-size:14px;">Year is required!</span>            
+            </span>
+            to
+            <select name="jobpost_exp_maximum" ng-model="editpostjob.jobpost_exp_maximum" style="width:110px; margin-left:8px;" ng-options="yearTo as yearTo for yearTo in yearlistTo|reverse" required>
+              <option value="" selected>- Maximum -</option>      
+            </select>
+            <span ng-messages="editjobpostForm.jobpost_exp_maximum.$err" ng-if="editjobpostForm.jobpost_exp_maximum.$invalid && !editjobpostForm.jobpost_exp_maximum.$pristine">
+            <span ng-message="required" style="color:red;font-size:14px;">Year is required!</span>          
+            </span>
+          </div> -->
+
+
+          <!-- <div class="form-group required">
+            <label for="exampleSelect1" class='control-label'>Location</label>
+            <select placeholder="Select..." ng-model="editpostjob.jobpost_locations" name="jobpost_locations" ng-options="location.locations_id as location.locations_name for location in location_data" multiple="multiple" required class="form-control" style="height: 130px;">          
+            </select>
+          </div>
+          <div ng-messages="editjobpostForm.jobpost_locations.$err" ng-if="editjobpostForm.location.$invalid && !editjobpostForm.location.$pristine">
+            <div ng-message="required" style="color:red;font-size:14px;">Location is required !</div>            
+          </div> -->
+
+           <div class="form-group">
+            <label for="exampleSelect1" class='control-label'>Country</label>
+          
+            <select ng-model="editpostjob.country_id" name="country_id" class=" form-control" 
+              ng-options="country.id as country.name for country in countries" ng-change="getCountryStates()" required >
+             <option value="">*- Select Country -</option>
+            </select>
+          </div>
+          <div ng-messages="jobpostForm.country_id.$err" ng-if="jobpostForm.country_id.$invalid && !jobpostForm.country_id.$pristine">
+            <div ng-message="required" style="color:red;font-size:14px;">Country is required !</div>            
+          </div>
+
+           <div class="form-group">
+            <label for="exampleSelect1" class='control-label'>State</label>          
+            <select ng-model="editpostjob.state_id" name="state_id" class="form-control"   ng-options="state.id as state.name for state in states" ng-change="getStateCities()" required>
+             <option value="">*- Select State -</option>  
+            </select>
+          </div>
+          <div ng-messages="jobpostForm.state_id.$err" ng-if="jobpostForm.state_id.$invalid && !jobpostForm.state_id.$pristine">
+            <div ng-message="required" style="color:red;font-size:14px;">State is required !</div>            
+          </div>
+
+          <div class="form-group">
+            <label for="exampleSelect1" class='control-label'>City</label>          
+            <select ng-model="editpostjob.city_id" name="city_id" class="form-control" ng-options="city.id as city.name for city in cities">
+             <option value="">*- Select City -</option>  
+            </select>
+          </div>
+          <div ng-messages="jobpostForm.city_id.$err" ng-if="jobpostForm.city_id.$invalid && !jobpostForm.city_id.$pristine">
+            <div ng-message="required" style="color:red;font-size:14px;">City is required !</div>            
+          </div>
+
+         <!--  <div class="form-group ">
+            <label for="exampleSelect1" class='control-label'>Location</label>            
+             <select-multiple ng-model="editpostjob.locations" name="locations" transform-to-model="transformToModel" transform-to-view="transformToView" placeholder="- Select location -" style="width: 100%;">
+            </select-multiple> 
+          </div> -->
+
+          <div class="form-group required">
+            <label for="exampleSelect1" class='control-label'>Job Type</label>
+            <select class="form-control" ng-model="editpostjob.jobpost_jobtype" name="job_type" required>
+              <option value="">- Select Job Type -</option>
+              <option value="FullTime">Full Time</option>
+              <option value="Contract">Contract</option>
+              <option value="PartTime">Part Time</option>      
+              <option value="Temporary">Temporary</option>
+            </select>
+          </div>
+
+          <div ng-messages="editjobpostForm.job_type.$err" ng-if="editjobpostForm.job_type.$invalid && !editjobpostForm.job_type.$pristine">
+            <div ng-message="required" style="color:red;font-size:14px;">Job Type is required !</div>    
+          </div>
+
+          <div class="form-group required">
+            <label for="exampleSelect1" class='control-label'>Relevant Industry Experience</label>
+            <select name="jobpost_industry" ng-model="editpostjob.jobpost_industry" class="form-control" ng-options="indastry.industry_id as indastry.industry_name for indastry in indastry_data" required   multiple="multiple" style="height: 130px;">
+              <option value="">- Relevant Industry Experience- </option>      
+            </select>
+          </div>
+
+          
+          
+
+          <!-- <div class="form-group required">
+            <label for="exampleInputPassword1" class='control-label'>Functional Area</label>    
+
+            <select ng-model="editpostjob.jobpost_area" name="jobpost_area" ng-options="area.area_id as area.area_name for area in areaList" multiple="multiple" required class="form-control" style="height: 130px;">
+              <option value="">-select-</option>          
+            </select>
+
+
+          </div> -->
+
+         <!--  <div class="form-group required">
+            <label for="exampleInputPassword1" class='control-label'>KeySkills</label>
+
+            <select placeholder="Select Keyskills..." ng-model="editpostjob.jobpost_skills" name="jobpost_skills" ng-options="skill.skills_id as skill.skills_name for skill in skill_data" multiple="multiple" required class="form-control" style="height: 130px;">
+              <option value="">-select-</option>          
+            </select>
+          </div> -->
+
+          <div class="form-group required">
+            <label for="exampleTextarea" class='control-label'>Job Link / URL:</label>
+            <input type="text" name="url" class="form-control" ng-model="editpostjob.jobpost_url"  required  placeholder="*- Job Link / URL -">
+          </div>
+
+          <div ng-messages="editjobpostForm.name.$err" ng-if="editjobpostForm.url.$invalid && !editjobpostForm.url.$pristine">
+            <div ng-message="required" style="color:red;font-size:14px;">Job url is required !</div>            
+          </div>
+
+          <div class="form-group required">
+            <label for="exampleInputPassword1" class='control-label'>Job Fit</label>    
+
+            <select placeholder="Select jobfit..." ng-model="editpostjob.jobpost_jobfit" name="jobpost_jobfit" ng-options="job.type_id as job.type_name for job in jobFits" multiple="multiple" required class="form-control" style="height: 130px;">
+             <option value="">-Select Job Fit-</option>          
+           </select>
+         </div>
+         <div class="form-group required">
+          <label for="exampleInputPassword1" class='control-label'>Employer Fit</label>
+
+          <select placeholder="Select employer fit..." ng-model="editpostjob.jobpost_employer" name="jobpost_employer" ng-options="employer.type_id as employer.type_name for employer in employerFits" multiple="multiple" required class="form-control" style="height: 130px;">
+           <option value="">-Select Employer Fit-</option>          
+         </select>
+       </div>
+
+
+       <ul class="media-date text-uppercase reviews list-inline">
+        <li class="mm"><button type="submit" class="btn btn-primary" ng-click="reset()">Cancel</button></li>
+        <li class="aaaa">    
+          <button [disabled]="loading" class="btn btn-success" ng-disabled="editjobpostForm.$invalid" >Update</button>  
+        </li>
+      </ul>
+    </form>
+       </div>
+
+
+     </div>
+   </div>
+ </section>
+
+
+
+<div class="bottom_space"></div>
+</div>
+
+<script>
+
+  $(document).ready(function(){
+    activaTab('notviewed_tab');
+  });
+
+  function activaTab(tab){
+    $('.nav-tabs a[href="#' + tab + '"]').tab('show');
+  };
+
+</script>
+<style type="text/css">
+ .box8_left
+ {
+  width:49.1%;float:left;margin-right:.8%;font-size: 12px;
+}
+.box8_right
+{
+  width:49.1%;float:left;font-size: 12px;
+}
+
+.box8_back
+{
+  background-color:#F8F8F8;padding:20px 15px;
+}
+.box9_back
+{
+  background-color:#E5E5E5;padding:5px; margin-bottom:10px;
+}
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape) { 
+  .box8_left
+  {
+    width:100%;float:left;
+  }
+  .box8_right
+  {
+    width:100%;float:left;
+  }
+
+}
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : portrait) { 
+  .box8_left
+  {
+    width:100%;float:left;
+  }
+  .box8_right
+  {
+    width:100%;float:left;
+  }
+}
+@media only screen 
+and (min-device-width : 414px) 
+and (max-device-width : 736px)
+and (orientation : landscape) { 
+  .box8_left
+  {
+    width:100%;float:left;
+  }
+  .box8_right
+  {
+    width:100%;float:left;
+  }
+}
+@media only screen 
+and (min-device-width : 414px) 
+and (max-device-width : 736px)
+and (orientation : portrait) { 
+  .box8_left
+  {
+    width:100%;float:left;
+  }
+  .box8_right
+  {
+    width:100%;float:left;
+  }
+}
+
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 667px)
+and (orientation : landscape) { 
+  .box8_left
+  {
+    width:100%;float:left;
+  }
+  .box8_right
+  {
+    width:100%;float:left;
+  }
+}
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 667px)
+and (orientation : portrait) { 
+  .box8_left
+  {
+    width:100%;float:left;
+  }
+  .box8_right
+  {
+    width:100%;float:left;
+  }
+}
+@media only screen 
+and (device-width: 360px) 
+and (device-height: 640px) 
+and (orientation : landscape) { 
+  .box8_left
+  {
+    width:100%;float:left;
+  }
+  .box8_right
+  {
+    width:100%;float:left;
+  }
+}
+@media only screen 
+and (device-width: 360px) 
+and (device-height: 640px) 
+and (orientation : portrait) { 
+  .box8_left
+  {
+    width:100%;float:left;
+  }
+  .box8_right
+  {
+    width:100%;float:left;
+  }
+}
+</style>

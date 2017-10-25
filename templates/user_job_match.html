@@ -1,0 +1,370 @@
+<style>
+  .backsection
+  {
+    margin-bottom:10px;background-color:#ffffff;border:none;padding-bottom:10px;padding-top:10px;
+  }
+  .left{
+	       margin-top: 10px !important; 
+  }
+  h1, h2, h3, h4, h5, h6{
+	       margin: 0 0 7px !important; 
+	  
+  }
+  
+  /*----------------------
+JOB Card Styles 
+----------------------*/
+.panel.panel--styled {
+    background: #FFF;
+	/*background: #F4F2F3;*/
+}
+
+.panelTop {
+    padding: 3px;
+}
+
+.panelBottom {
+    border-top: 1px solid #e7e7e7;
+    padding-top: 20px;
+}
+.btn-add-to-cart {
+    background: #FD5A5B;
+    color: #fff;
+}
+.btn.btn-add-to-cart.focus, .btn.btn-add-to-cart:focus, .btn.btn-add-to-cart:hover  {
+	color: #fff;   
+    background: #FD7172;
+	outline: none;
+}
+.btn-add-to-cart:active {
+	background: #F9494B;
+	outline: none;
+}
+
+
+span.itemPrice {
+    font-size: 24px;
+    color: #FA5B58;
+}
+  
+</style>
+<!-- About Section -->
+<div style="background-color:#edebeb;"> 
+  <section class="container content-section text-left">
+    <div class="row"> </div>
+  </section>
+
+
+<section class="container">
+  <div class="row backsection">
+  
+  
+<div class="container">
+  <!--jobfit_status, employeefit_status, skill_status, industry_status, area_status, Location
+<h2>Dynamic Tabs</h2>-->
+  <ul class="nav nav-tabs">
+    
+<li id="matching_tab"  ><a data-toggle="tab" data-target="#matching"> My Jobs <span  ng-if="show_tab == 'myjobs'"  ng-init="click_on_tab('matching_tab', 'matching')"></span></a></li>
+<li id="saved_tab" ><a data-toggle="tab" data-target="#saved"> Saved <span  ng-if="show_tab == 'saved'"  ng-init="click_on_tab('saved_tab', 'saved')"></span> </a></li>
+<li id="applied_tab" ><a data-toggle="tab" data-target="#applied">Applied <span  ng-if="show_tab == 'applied'"  ng-init="click_on_tab('applied_tab', 'applied')"></span> </a></li>    
+  </ul>
+
+  <div class="tab-content">
+  	<br />
+
+
+    <div id="matching" class="tab-pane fade">
+    	
+   <!-- <div ng-if="matching_jobs_for_user_list.length < 1 ">
+      <p>Nothing to Show</p>
+    </div>--> 
+    <div> Suggested Jobs - Following </div>
+    
+    <div class="row">
+    <div ng-if="matching_jobs_for_user_list.length == '0' "> 
+    <p style="margin:0px;    margin-left: 15px;">Sorry - we’ll keep looking. 
+Your desired criteria does not pop up as often as others, so we don't currently have any new matches for you. We will keep you posted!</p>
+<p style="margin:0px;    margin-left: 15px;">Hint - <a href="#!/user/profile//">Customize your profile! Add employment locations and industry experience to increase matches.</a></p>
+</div>
+    	
+        	 <div id="matching{{jobs.jobpost_id}}" class="col-md-6" ng-repeat="jobs in matching_jobs_for_user_list" >				
+                        <div class="panel panel-default  panel--styled">
+                            <div class="panel-body">
+                                <div class="col-md-12 panelTop" >	
+                                    <div class="col-md-4">	
+                                        <img class="img-responsive" src="upload/{{jobs.company_logo}}" alt="" style="width:120px;"/>
+                                    </div>
+                                    <div class="col-md-8" style="height:130px;">	
+                                        <span><h5 class="brief"><i>{{jobs.jobpost_title}}</i></h5> </span>
+                                        <span><strong> {{jobs.company_name}} </strong>| </span><br />
+                                        <span>{{jobs.job_post_date_only}} </span><br />
+
+                                        <span>{{jobs.country_name}}, {{jobs.state_name}}, {{jobs.city_name}} </span>
+                                                
+                                </div>
+                               <!-- <div hm-read-more hm-text="{{company.full_com_desc | filter: query | limitTo:850}}"></div>-->
+                                <div class="col-md-12" style="min-height:180px;">	
+                                 <!--  <p hm-read-more
+                                    hm-text=" {{jobs.jobpost_description}} " 
+                                    hm-limit="250" 
+                                    hm-more-text=" more" 
+                                    hm-less-text=" less"
+                                    hm-dots-class="dots"
+                                    hm-link-class="links">
+                                  </p> -->
+                                   <div>{{jobs.jobpost_description | limitTo:250}}</div><span ng-if="jobs.jobpost_description != '' " style="color: #008cc9" ng-click="view_a_job_for_user( jobs.jobpost_id,'myjobs')">more</span>
+                                </div>
+                                                            
+                                <div class="col-xs-12 panelBottom">
+                                
+                                    <div class="col-xs-4 text-center">
+                                        <button type="button" class="btn btn-success "  ng-click="view_a_job_for_user( jobs.jobpost_id,'myjobs')">View </button>					
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                    
+                                        <button type="button" class="btn btn-warning "  ng-click="save_a_job_for_user( jobs.jobpost_id )"> Save </button>
+                                                                
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                    
+                                        <button type="button" class="btn btn-primary " ng-click="apply_for_job_user( jobs.jobpost_id )"><i class="fa fa-user"> </i> Apply </button>
+                                                                
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
+                </div>
+        
+        
+      
+    </div>  
+      
+      
+       <div> Suggested Jobs – Not Following </div><br><br>
+      
+
+    <div class="row"> 
+    	
+        
+        
+        	 <div id="suggested{{jobs.jobpost_id}}" class="col-md-6" ng-repeat="jobs in matching_jobs_for_user_unfollow_list" >				
+                        <div class="panel panel-default  panel--styled">
+                            <div class="panel-body">
+                                <div class="col-md-12 panelTop" >	
+                                    <div class="col-md-4">	
+                                        <img class="img-responsive" src="upload/{{jobs.company_logo}}" alt="" style="width:120px;"/>
+                                    </div>
+                                    <div class="col-md-8" style="height:130px;">	
+                                        <span><h5 class="brief"><i>{{jobs.jobpost_title}}</i></h5> </span>
+                                        <span><strong> {{jobs.company_name}} </strong>| </span><br />
+                                        <span>{{jobs.job_post_date_only}} </span><br />
+
+                                        <span>{{jobs.country_name}}, {{jobs.state_name}}, {{jobs.city_name}} </span>
+                                                
+                                </div>
+                               <!-- <div hm-read-more hm-text="{{company.full_com_desc | filter: query | limitTo:850}}"></div>-->
+                                <div class="col-md-12" style="min-height:180px;">	
+                                  <!-- <p hm-read-more
+                                    hm-text=" {{jobs.jobpost_description}} " 
+                                    hm-limit="250" 
+                                    hm-more-text=" more" 
+                                    hm-less-text=" less"
+                                    hm-dots-class="dots"
+                                    hm-link-class="links">
+                                  </p> -->
+                                   <div>{{jobs.jobpost_description | limitTo:250}}</div><span ng-if="jobs.jobpost_description != '' " style="color: #008cc9" ng-click="view_a_job_for_user( jobs.jobpost_id)">more</span>
+                                </div>
+                                                            
+                                <div class="col-xs-12 panelBottom">
+                                
+                                    <div class="col-xs-4 text-center">
+                                        <button type="button" class="btn btn-success "  ng-click="view_a_job_for_user( jobs.jobpost_id, 'myjobs')"> View </button>					
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                    
+                                        <button type="button" class="btn btn-warning "  ng-click="save_a_job_for_user( jobs.jobpost_id )"> Save </button>
+                                                                
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                    
+                                        <button type="button" class="btn btn-primary " ng-click="apply_for_job_user( jobs.jobpost_id ); follow_a_company_for_user( jobs.jobpost_companyid );">
+                                <i class="fa fa-user"> </i> Apply & Follow </button>
+                                                                
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
+                </div>
+      
+    </div>  
+      
+      
+    </div>
+    
+    
+    <div id="saved" class="tab-pane fade">
+   
+    <div ng-if="not_viewed_company_for_user_list.length < 1 ">
+      <p>Nothing to Show</p>
+    </div>  
+      
+    <div class="row"> 
+    	
+        <div id="saved{{jobs.jobpost_id}}" class="col-md-6" ng-repeat="jobs in saved_job_for_user_list" >				
+                        <div class="panel panel-default  panel--styled">
+                            <div class="panel-body">
+                                <div class="col-md-12 panelTop" >	
+                                    <div class="col-md-4">	
+                                        <img class="img-responsive" src="upload/{{jobs.company_logo}}" alt="" style="width:120px;"/>
+                                    </div>
+                                    <div class="col-md-8" style="height:130px;">	
+                                        <span><h5 class="brief"><i>{{jobs.jobpost_title}}</i></h5> </span>
+                                        <span><strong> {{jobs.company_name}} </strong>| </span><br />
+                                        <span>{{jobs.job_post_date_only}} </span><br />
+
+                                        <span>{{jobs.country_name}}, {{jobs.state_name}}, {{jobs.city_name}} </span>
+                                                
+                                </div>
+                               <!-- <div hm-read-more hm-text="{{company.full_com_desc | filter: query | limitTo:850}}"></div>-->
+                                <div class="col-md-12" style="min-height:180px;">	
+                                  <!-- <p hm-read-more
+                                    hm-text=" {{jobs.jobpost_description}} " 
+                                    hm-limit="250" 
+                                    hm-more-text=" more" 
+                                    hm-less-text=" less"
+                                    hm-dots-class="dots"
+                                    hm-link-class="links">
+                                  </p> -->
+                                  <div>{{jobs.jobpost_description | limitTo:250}}</div><span ng-if="jobs.jobpost_description != '' " style="color: #008cc9" ng-click="view_a_job_for_user( jobs.jobpost_id,'saved')">more</span>
+                                </div>
+                                                            
+                                <div class="col-xs-12 panelBottom">
+                                
+                                    <div class="col-xs-6 text-center">
+                                        <button type="button" class="btn btn-success "  ng-click="view_a_job_for_user( jobs.jobpost_id,'saved')">
+                              View </button>					
+                                    </div>
+                                    
+                                    <div class="col-xs-6 text-center">
+                                    
+                                        <button type="button" class="btn btn-primary " ng-click="apply_for_job_user( jobs.jobpost_id )">
+                                <i class="fa fa-user"> </i> Apply </button>
+                                                                
+                                    </div>
+                                    
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
+                </div>
+        
+    </div>  
+      
+    </div>
+    
+    
+    
+    <div id="applied" class="tab-pane fade ">
+    <div ng-if="user_applied_jobs_list.length < 1">
+      <p>Nothing to Show</p>
+    </div>  
+        <div class="row"> 
+            
+            <div id="applied_jobs{{jobs.jobpost_id}}" class="col-md-6" ng-repeat="jobs in user_applied_jobs_list" >				
+                            <div class="panel panel-default  panel--styled">
+                                <div class="panel-body">
+                                    <div class="col-md-12 panelTop" >	
+                                        <div class="col-md-4">	
+                                            <img class="img-responsive" src="upload/{{jobs.company_logo}}" alt="" style="width:120px;"/>
+                                        </div>
+                                        <div class="col-md-8" style="height:130px;">	
+                                            <span><h5 class="brief"><i>{{jobs.jobpost_title}}</i></h5> </span>
+                                            <span><strong> {{jobs.company_name}} </strong>| </span><br />
+                                            <span>{{jobs.job_post_date_only}} </span><br />
+    
+                                            <span>{{jobs.country_name}}, {{jobs.state_name}}, {{jobs.city_name}} </span>
+                                                    
+                                    </div>
+                                   <!-- <div hm-read-more hm-text="{{company.full_com_desc | filter: query | limitTo:850}}"></div>-->
+                                    <div class="col-md-12" style="min-height:180px;">	
+                                      <!-- <p hm-read-more
+                                        hm-text=" {{jobs.jobpost_description}} " 
+                                        hm-limit="250" 
+                                        hm-more-text=" more" 
+                                        hm-less-text=" less"
+                                        hm-dots-class="dots"
+                                        hm-link-class="links">
+                                      </p> -->
+                                      <div>{{jobs.jobpost_description | limitTo:250}}</div><span ng-if="jobs.jobpost_description != '' " style="color: #008cc9" ng-click="view_a_job_for_user( jobs.jobpost_id,'applied')">more</span>
+                                    </div>
+                                                                
+                                    <div class="col-xs-12 panelBottom">
+                                    
+                                        <div class="col-xs-6 text-center">
+                                            <button type="button" class="btn btn-success "  ng-click="view_a_job_for_user( jobs.jobpost_id,'applied')">
+                              View </button>					
+                                        </div> 
+                                        
+                                        
+                                        
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        
+                        
+                    </div>
+            
+        </div>  
+    </div>
+
+  </div>
+</div>
+  
+  
+  
+
+
+
+  
+  
+ </div>
+</section>
+
+
+
+<div class="bottom_space"></div>
+
+</div>
+
+<script>
+
+$(document).ready(function(){
+    activaTab('notviewed_tab');
+});
+
+function activaTab(tab){
+    $('.nav-tabs a[href="#' + tab + '"]').tab('show');
+};
+
+</script>

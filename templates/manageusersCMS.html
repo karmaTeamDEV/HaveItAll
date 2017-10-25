@@ -1,0 +1,34 @@
+<!-- About Section -->
+<section class="container content-section text-left">
+
+  <div class="row">
+   <div class="col-lg-3"></div>
+   <div class="col-lg-6">
+     <div>
+     <div class="alert alert-success" ng-show="displaySuccessMsg">
+      <strong>Success!</strong> {{updatestatusmsg}}
+     </div>
+     <div class="form-group" >            
+        <input type="text" class="form-control" placeholder="Search Users" ng-model="searchUsers" required />
+      </div>
+    </div>
+
+      <table width="100%">
+         <tr class="border_grey" ng-repeat="user in usersList | filter: searchUsers">
+           <td>{{user.users_firstname}} {{user.users_lastname}} ( {{user.users_username}} )</td>
+           <td align="right">
+             <div class="checkbox disabled">
+              <label>
+              <input type="checkbox" value={{user.users_id}} ng-click="toggleUsersStatus(user.users_id,user.users_status,user.users_firstname,user.users_lastname)" class="checkboxsize" ng-checked="user.users_status == 0">
+              </label>
+            </div>
+          </td>
+          <td align="right">{{user.users_status === '0' ? 'Active':'InActive'}}</td>
+        </tr>
+      </table>
+    </div> 
+  </div>
+</div>
+<div class="bottom_space"></div>
+</section>
+<!-- Footer -->

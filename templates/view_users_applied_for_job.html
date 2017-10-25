@@ -1,0 +1,131 @@
+<script src="public/carouselengine/amazingcarousel.js"></script>
+<link rel="stylesheet" type="text/css" href="public/carouselengine/initcarousel-1.css">
+<script src="public/carouselengine/initcarousel-1.js"></script>
+<style>
+  .backsection
+  {
+    margin-bottom:10px;background-color:#ffffff;border:none;padding-bottom:10px;padding-top:10px;
+  }
+</style>
+<!-- About Section -->
+<div style="background-color:#edebeb;"> 
+  <section class="container content-section text-left">
+    <div class="row"> </div>
+  </section>
+
+
+<section class="container">
+  <div class="row backsection">
+  
+  
+<div class="container">
+  <h2>{{ job_details.type_name }}</h2>
+  <ul class="nav nav-tabs">
+    <li id="applied_tab" class="active"><a data-toggle="tab" data-target="#applied">Applied</a></li>
+    <li id="viewed_tab"><a data-toggle="tab" data-target="#viewed"> Viewed </a></li>
+    
+  </ul>
+
+  <div class="tab-content">
+  	<br />
+
+    <div id="applied" class="tab-pane fade active in">
+    <div ng-if="all_applied_users_list.length < 1">
+      <p>Nothing to Show</p>
+    </div>  
+                <div id="following_company_id{{users.id}}" class="col-md-4 col-sm-12 col-xs-12 profile_details"  ng-repeat="users in all_applied_users_list" >
+                        <div class="well profile_view">
+                          <div class="col-sm-12">
+                            <h4 class="brief"><i>{{users.users_firstname}}  {{users.users_lastname}}</i></h4>
+                            <div class="left col-xs-7">
+                              <!--<h2>{{company.contact_person}}</h2>-->
+                              <p><strong>About: </strong> {{users.users_bio}} </p>
+                              <ul class="list-unstyled">
+                                <li><i class="fa fa-building"  aria-hidden="true"></i> Address: {{users.city_name}}, {{users.state_name}}, {{users.country_name}}</li>
+                                <li><i class="fa fa-phone"></i> Phone #: {{users.users_phone}} </li>
+                              </ul>
+                            </div>
+                            <div class="right col-xs-5 text-center">
+                              <img src="upload/{{users.users_profilepic}}" alt="" class="img-circle img-responsive">
+                            </div>
+                          </div>
+                          <div class="col-xs-12 bottom_button text-center">
+                            <div class="col-xs-12 col-sm-12 emphasis">
+                            <span ng-if="users.viewing_company_id == '' ||  users.viewing_company_id == NULL ">
+                              <button type="button" class="btn btn-success btn-xs"  ng-click="view_user_profile_details( users.user_id, job_details.jobpost_id )">
+                               <i class="fa fa-comments-o"></i> View Profile</button>
+                             </span>
+                            
+                              
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+      
+    </div>
+    
+    
+    <div id="viewed" class="tab-pane fade">
+    <div ng-if="viewed_company_for_user_list.length < 1 ">
+      <p>Nothing to Show</p>
+    </div>  
+                <div id="viewed{{ users.user_id }}" class="col-md-4 col-sm-12 col-xs-12 profile_details"  ng-repeat="users in viewed_user_for_company_list" >
+                        <div class="well profile_view">
+                          <div class="col-sm-12">
+                            <h4 class="brief"><i>{{users.users_firstname}} {{users.users_lastname}}</i></h4>
+                            <div class="left col-xs-7">
+                              <h2>{{users.jobfit_status}} {{users.employeefit_status}} {{users.location_status}} {{users.industry_status}} {{users.area_status}}</h2>
+                              <p><strong>About: </strong> {{users.users_bio}} </p>
+                              <ul class="list-unstyled">
+                                <li><i class="fa fa-building"  aria-hidden="true"></i> Address: {{users.city_name}}, {{users.state_name}}, {{users.country_name}}</li>
+                                <li><i class="fa fa-phone"></i> Phone #: {{users.users_phone}} </li>
+                              </ul>
+                            </div>
+                            <div class="right col-xs-5 text-center">
+                              <img src="upload/{{users.users_profilepic}}" alt="" class="img-circle img-responsive">
+                            </div>
+                          </div>
+                          <div class="col-xs-12 bottom_button text-center">
+                            <div class="col-xs-12 col-sm-12 emphasis">
+                              <button type="button" class="btn btn-success btn-xs"  ng-click="view_a_user_for_company( users.user_id )">
+                               <i class="fa fa-comments-o"></i> View </button>
+                              <button type="button" class="btn btn-primary " ng-click="follow_a_company_for_user( users.users_id )">
+                                <i class="fa fa-user"> </i> Follow </button>
+                           </div>
+                          </div>
+                        </div>
+                      </div>
+      
+      
+      
+    </div>
+
+  </div>
+</div>
+  
+  
+  
+
+
+  
+  
+ </div>
+</section>
+
+
+
+<div class="bottom_space"></div>
+
+</div>
+
+<script>
+
+$(document).ready(function(){
+    activaTab('applied_tab');
+});
+
+function activaTab(tab){
+    $('.nav-tabs a[href="#' + tab + '"]').tab('show');
+};
+
+</script>

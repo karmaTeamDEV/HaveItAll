@@ -1,0 +1,122 @@
+﻿(function () {
+    'use strict';
+    app.controller('EmployersController', function ($scope,$http,$state,employerService,$localStorage,$location,$document) { 
+    $scope.employerInfo = {};
+
+    var errorDetails = function (serviceResp) {
+		$scope.Error = "Something went wrong ??";
+	};
+
+    var regEmployer = function (data) {
+     	//alert(JSON.stringify(data.useremail));
+     	if(data.status == 1){
+     		$localStorage.ses_userdata = data.list[0];	
+     		$scope.form = [];
+			$scope.files = [];
+     		var element = document.getElementById('profile_image');
+			$scope.currentFile = element.files[0];	
+			//alert($scope.currentFile);	
+		 if($scope.currentFile != undefined){
+
+				$scope.files = element.files;
+			    var reader = new FileReader();
+				
+			    reader.onload = function(event) {
+			      $scope.image_source = event.target.result
+			      $scope.$apply(function($scope) {				  
+			        $scope.files = element.files;
+			      });
+			    }
+			     reader.readAsDataURL(element.files[0]);	  
+				 $scope.form.image = $scope.files[0];
+				  
+				 $http({
+				  method  : 'POST',
+				  url     : serviceurl+'API/file_upload',
+				  processData: false,
+				  transformRequest: function (data) {
+				      var formData = new FormData();
+				      formData.append("image", $scope.form.image);  
+				      formData.append("user_id", $localStorage.ses_userdata.users_id);  
+				      return formData;  
+				  },  
+				  data : $scope.form,
+				  headers: {
+				         'Content-Type': undefined
+				  }
+			   }).then(function(response){		   		
+			   		//alert(JSON.stringify(response.data.message));
+					$scope.ProfileInfo.users_profilepic = response.data.message;			 
+					$('#mydiv').hide();					
+			   }); 
+		  }
+		   $state.go("user.dashboard");
+		   //$state.go("user.appHome");
+     	}else{
+     		bootbox.alert(data.message);
+     	}
+    }; 
+
+    $scope.selectFile = function() {	    	    	 
+	 	 $("#profile_image").click();
+	};
+
+	 $scope.employerReg = function(ele){
+    	$('#mydiv').show();
+    	var fuData = document.getElementById('profile_image');
+        var FileUploadPath = fuData.value;
+        var Extension = FileUploadPath.substring(FileUploadPath.lastIndexOf('.') + 1).toLowerCase();
+   //if (Extension == "gif" || Extension == "png" || Extension == "bmp" || Extension == "jpeg" || Extension == "jpg") {
+		employerService.regEmployer($scope.employerInfo).then(regEmployer, errorDetails);		     
+   //}else{
+   		$('#mydiv').hide();
+   		//bootbox.alert("Photo only allows file types of GIF, PNG, JPG, JPEG.");
+  // }
+    	
+	};
+
+ //    $scope.employerReg = function(companyForm){
+ //    	$('#mydiv').show();
+ //    	var fuData = document.getElementById('profile_image');
+ //        var FileUploadPath = fuData.value;
+ //        var Extension = FileUploadPath.substring(FileUploadPath.lastIndexOf('.') + 1).toLowerCase();
+	// if (Extension == "gif" || Extension == "png" || Extension == "bmp" || Extension == "jpeg" || Extension == "jpg" || Extension == "JPG" || Extension == "JPEG" || Extension == "BMP" || Extension == "PNG" || Extension == "GIF") {
+
+	// 	     var f = document.getElementById('profile_image').files[0];  
+	// 	     var  r = new FileReader();
+	// 	    r.onloadend = function(e) {
+	// 	        var data = e.target.result;       
+	// 	        var fd = new FormData();
+		        	
+	// 	        fd.append('file', data);		       
+	// 	        fd.append('file_name', f.name);        
+	// 	        var Urlstatic = serviceurl+'API/image_upload';
+		        
+	// 	        $http.post(Urlstatic, fd, {
+	// 	            transformRequest: angular.identity,
+	// 	            headers: {'Content-Type': undefined
+	// 	        	}
+	// 	        }).then(
+	// 			function(response){						
+					
+	// 				$scope.employerInfo.profile_image = response.data.message;
+	// 				//alert(JSON.stringify($scope.employerInfo));
+	// 				employerService.regEmployer($scope.employerInfo).then(regEmployer, errorDetails);
+	// 				$('#mydiv').hide();	
+	// 			}, 
+	// 			function(response){
+	// 				$('#mydiv').hide();
+	// 				bootbox.alert(response.data.message);
+	// 			});
+		        
+	// 	    };
+	// 	    r.readAsDataURL(f);
+ //   }else{
+ //   		$('#mydiv').hide();
+ //   		bootbox.alert("Photo only allows file types of GIF, PNG, JPG, JPEG.");
+
+ //   }
+    	
+	// };
+})
+})();

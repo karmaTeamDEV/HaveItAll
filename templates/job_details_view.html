@@ -1,0 +1,159 @@
+<script src="public/carouselengine/amazingcarousel.js"></script>
+<link rel="stylesheet" type="text/css" href="public/carouselengine/initcarousel-1.css">
+<script src="public/carouselengine/initcarousel-1.js"></script>
+<style>
+  .backsection
+  {
+    margin-bottom:10px;background-color:#ffffff;border:none;padding-bottom:10px;padding-top:10px;
+  }
+  .left{
+	       margin-top: 10px !important; 
+  }
+  h1, h2, h3, h4, h5, h6{
+	       margin: 0 0 7px !important;	  
+  }
+  .well{
+	  margin-bottom:0px !important;
+	  padding: 5px !important ;
+  }
+</style>
+<!-- About Section -->
+<div  md-swipe-left="onSwipeLeft()" md-swipe-right="onSwipeRight()">
+<div style="background-color:#fff;">   
+
+  <section class="content-section text-left">
+
+    <div class="row">      
+
+      <div class="container" style="cursor: pointer;">
+      
+            <div class="row ">      
+                <div class="col-lg-12"> 
+                   <!-- Tab 3 Start /////////////////////////////////////////// -->
+                   <div ng-show="viewjobTab" >
+                       <span style="float: right;"> 
+                      <a href="#!/user/user-job" style="color:##008cc9;font-size: 12px;">Back</a>
+                    <a ng-click="fetch_next_job_user(posted_job_id,job_tab,'prev')"> <img src="public/images/back.png" width="32"> </a> | 
+                    <a ng-click="fetch_next_job_user(posted_job_id,job_tab,'next')"><img src="public/images/next.png" width="32"></a> 
+                      </span><br><br>
+                       <h4 align="center" >Job Details</h4>
+                      <div style="width: 80%; margin-left:12%;background-color: #F8F8F8; padding: 20px;" >
+                           <div style="width: 100%;">
+                              <div style="width: 20%; float: left;" ng-if="company_details.users_profilepic != ''  ">
+                              <img height="122" width="122" class="img-responsive" src="upload/{{company_details.users_profilepic}}">
+                              </div>
+                              <div style="width: 20%; float: left;" ng-if="company_details.users_profilepic == '' ">
+                              <img height="122" width="122" class="img-responsive" src="public/images/job-details.png">
+                              </div>
+        
+                              <div style="width: 80%; float: left; ">
+                                <div style="font-size: 18px;padding-bottom: 8px;">{{viewpostjob.title_name}}</div>
+                                <div style="font-size: 14px;padding-bottom: 8px;">{{viewpostjob.company_name}}</div>
+                                <div style="font-size: 14px;padding-bottom: 8px;">{{viewpostjob.countryname}}, {{viewpostjob.statename}}, {{viewpostjob.cityname}}</div>
+                                <!-- <div style="font-size: 12px;padding-bottom: 8px;word-break: break-all;">Company : {{viewpostjob.company_name}}</div> -->
+                                <div style="font-size: 12px;" ng-if="viewpostjob.jobpost_tilldata != '0000-00-00' ">Apply by : {{viewpostjob.jobpost_tilldata | date : 'MM/dd/yyyy'}}</div>
+                              </div>
+                              
+        					 <div align="center" > 
+                                <span ng-if="!company_details.following_id">
+                                    <span id="job_apply_button" ng-if="!job_applied_details.applied_id" ng-click="apply_for_job_user(viewpostjob.jobpost_id); follow_a_company_for_user( jobs.jobpost_companyid );"> <button type="button" class="btn btn-success">Apply & Follow </button> </span> 
+                                </span>
+                            <span ng-if="company_details.following_id">
+                                <span id="job_apply_button" ng-if="!job_applied_details.applied_id" ng-click="apply_for_job_user(viewpostjob.jobpost_id);"> <button type="button" class="btn btn-success">Apply</button> </span> 
+                            </span>   
+                               
+                             
+                    <span id="job_save_button" ng-if="!job_applied_details.saved_id" ng-click="save_a_job_for_user(viewpostjob.jobpost_id);">
+                    <span ng-if="job_tab != 'applied' ">
+                      <button type="button" class="btn btn-primary">Save</button> 
+                    </span>
+                    <span ng-if="job_tab == 'applied' ">
+                      <button type="button" class="btn" style="background-color: #bdbbbb !important; color: #666 !important; margin-right: 5px;" disabled="true">Save</button> 
+                      <img src="public/images/tick.png" width="32">
+                    </span>
+                     
+                     </span> </div>
+                    
+                  </div>
+                  <div style="clear: both;"></div> 
+                           </div>    
+                                                
+                      </div>
+        
+                      <div style="width: 80%;margin-left:12%;margin-top:2%;background-color: #F8F8F8; padding: 20px;" >
+                           <div style="width: 100%;">
+                              <div style="width: 63%; float: left;">
+                                    <div style="font-size: 18px;padding-bottom: 8px;">Job description</div>
+                                    <div hm-read-more hm-text="{{viewpostjob.jobpost_description}}"></div>
+                              </div>
+        
+                              <div style="width: 37%; float: left; ">
+                              <div style="font-size: 18px;padding-bottom: 8px;"> &nbsp;&nbsp;&nbsp;&nbsp;</div>
+                                <div style="font-size: 15px;font-weight: 600;line-height: 20px;">Seniority Level</div>
+                                <div>
+                                  <span ng-repeat="seniority in viewpostjob.seniority">
+                                    {{seniority.seniority_name}},
+                                 </span>
+                                </div>
+        
+                                <div style="font-size: 15px;font-weight: 600;line-height: 20px; margin-top: 5%;">Job Industry & Background</div>
+                                <div>
+                                   <span ng-repeat="industry in viewpostjob.arealist">
+                                    {{industry.industry_name}},
+                                   </span>
+                                </div>
+        
+                                <div style="font-size: 15px;font-weight: 600;line-height: 20px; margin-top: 5%;">Employment Type</div>
+                                <div>
+                                     <span ng-repeat="employment in viewpostjob.jobfit">
+                                      {{employment.type_name}},
+                                     </span>
+                                </div>
+        
+                               <!--  <div style="font-size: 15px;font-weight: 600;line-height: 20px; margin-top: 5%;">Job Functions</div>
+                                <div>
+                                     <span ng-repeat="employment in viewpostjob.jobfit">
+                                      {{employment.type_name}},
+                                     </span>
+                                </div> -->
+                                 
+                                 
+                              </div>
+                              
+                           </div>    
+                           <div style="clear: both;"></div>                      
+        
+        
+                      </div>
+                      
+                      
+                        <div class="col-lg-12" style="color:#008cc9"> 
+                            <strong> Matching Criteria:</strong> <span ng-repeat="matching_criteria in criteria_match_list" style="color:#333!important;">{{matching_criteria.type_name}} | </span>
+                        </div>
+                      
+                   </div>
+                   <!-- Tab 3 End /////////////////////////////////////////// -->
+                </div>   
+             </div>
+            
+        </div>
+            
+
+ </section>
+ 
+
+
+<div class="bottom_space"></div>
+</div>
+</div>
+<script>
+
+  $(document).ready(function(){
+    activaTab('notviewed_tab');
+  });
+
+  function activaTab(tab){
+    $('.nav-tabs a[href="#' + tab + '"]').tab('show');
+  };
+
+</script>

@@ -1,0 +1,88 @@
+<html>
+<head>
+<style type="text/css">
+  .chat
+{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.chat li
+{
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px dotted #B3A9A9;
+}
+
+.chat li.left .chat-body
+{
+    margin-left: 60px;
+}
+
+ 
+
+.chat li .chat-body p
+{
+    margin: 0;
+    color: #777777;
+}
+
+.panel .slidedown .glyphicon, .chat .glyphicon
+{
+    margin-right: 5px;
+}
+
+.panel-body
+{
+    overflow-y: scroll;
+    height: 250px;
+}
+
+
+
+</style>
+</head>
+<body>
+<div class="modal-header">
+<h3 class="modal-title">Notes<button class="pull-right" type="button" ng-click="close()">x</button></h3>
+
+</div>
+<div class="modal-body">
+	   <div class="form-group">
+         <div class="panel-body">
+                    <ul class="chat"> 
+                        <li class="left clearfix" style="width: 100% !important;" ng-repeat="notedata in allnote" ng-if="allnote.length != '0' " >
+                        <span class="chat-img pull-left">
+                            <img src="public/images/noteimage.png" alt="User Avatar" class="img-circle" />
+                        </span>
+                            <div class="chat-body clearfix">
+                                <div class="header">
+                                   
+                                   <small class="pull-right text-muted">
+                                       {{notedata.datetime}}
+                                    </small>
+                                </div>
+                                <p >
+                                    {{notedata.note_text}}
+                                </p>
+                            </div>
+                        </li> 
+                         <li class="left clearfix" style="width: 100% !important;" ng-if="allnote.length == '0' " >No conversation available.</li>
+                    </ul>
+                </div>                         
+     </div>
+     <div class="form-group">
+        
+         <div >
+             <input type="text" class="form-control" style="border: 1px solid #ccc;" ng-model="text">                  
+        </div>                    
+     </div>
+     <button class="btn btn-primary pull-right" type="button" ng-click="notePublish(text)" >Publish</button>
+     <div style="clear: both;;"></div>
+</div>
+<!-- <div class="modal-footer">
+<button class="btn btn-warning" type="button" ng-click="close()">Close</button>
+</div> -->
+</body>
+</html>

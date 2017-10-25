@@ -1,0 +1,58 @@
+<style type="text/css">
+.file {
+  visibility: hidden;
+  position: absolute;
+}  
+</style>
+<div class="login_back">    
+       <div class="col-md-6 col-md-offset-3 text-right logarea">
+       <div style="margin-bottom:20px;" align="center">
+       <a href="#!/home"><img src="public/images/logo3.png" class="img-responsive"> 
+       </a></div>
+        <form name="companyForm" ng-submit="employerReg(companyForm)" novalidate>
+             <div class="form-group" >            
+                <input type="text" class="form-control logbox" placeholder="Company name" name="name" ng-model="employerInfo.name" required />
+                <div ng-messages="companyForm.name.$err" ng-if="companyForm.name.$invalid && !companyForm.name.$pristine">
+                    <div ng-message="required" class="message_log" >Company name is required</div>
+                </div>
+            </div>
+
+            <div class="form-group" >           
+                <input type="text" class="form-control logbox" placeholder="Email" name="username" ng-model="employerInfo.username" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" required />
+                <div ng-messages="companyForm.username.$err" ng-if="companyForm.username.$invalid && !companyForm.username.$pristine">
+                    <div ng-message="pattern" class="message_log" >Enter a valid email! </div>			
+                </div>
+                
+            </div>
+            <div class="form-group" >            
+                <input type="password" class="form-control logbox" name="password" placeholder="Password" ng-minlength="6" ng-model="employerInfo.usrpasswrd" required />
+
+                <div ng-messages="companyForm.password.$err" ng-if="companyForm.password.$invalid && !companyForm.password.$pristine">
+                    <div ng-message="required" class="message_log" >Password is too short!</div>
+                </div>
+            </div>
+
+            
+            <div class="form-group" >            
+                <input type="file" class="form-control logbox" name="profile_image" ng-model="employerInfo.profile_image" id="profile_image" accept="image/*" >
+               <!--  <input type="text" class="form-control logbox" ng-click="selectFile()"  ng-model="employerInfo.profile_level" placeholder="UPLOAD LOGO" style="cursor: pointer;">  -->                
+            </div>
+            <!-- <div class="form-group" style="width: 90%;margin-left: 5%;">
+                <input type="file" class="file" accept="image/*"  name="profile_image" ng-model="employerInfo.profile_image" id="profile_image" onchange="angular.element(this).scope().employerReg(this);">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-picture"></i></span>
+                  <input type="text" class="form-control input-lg" disabled placeholder="Upload Image">
+                  <span class="input-group-btn">
+                    <button class="browse btn btn-primary input-lg" type="button" ng-click="selectFile()"><i class="glyphicon glyphicon-search"></i> Browse</button>
+                  </span>
+                </div>
+            </div> -->
+
+          <div class="form-group logbox">
+             <!-- <a class="btn btn-primary" style="float: left; text-transform: capitalize;" href="#!/login">Login</a> -->
+             <button [disabled]="loading" class="btn btn-primary"  ng-disabled="companyForm.$invalid">Register</button>  
+         </div>
+         
+       </form>
+   </div>
+</div>

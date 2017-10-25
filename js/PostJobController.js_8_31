@@ -1,0 +1,167 @@
+﻿(function () {
+  'use strict';
+  app.filter('reverse', function() {
+    return function(items) {
+      return items.slice().reverse();
+    };
+  });
+  app.controller('PostJobController', function ($scope,$window,$sce,$state,commonpostService,getMatercmsService,fetchrecordsCMSService,getfitService,checkjobService,$localStorage,$location,$document,$filter,$timeout) { 
+    $scope.postjobinfo ={}; 
+     //$location.path('user/postjobview');    
+
+    $scope.yearlistFrom = [25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0]; 
+    var toYearsList = [25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0];   
+    $scope.yearlistTo = [];
+            
+    $scope.resetToYears = function(selectedFromYear){
+        $scope.yearlistTo = toYearsList;
+        $scope.yearlistTo = $scope.yearlistTo.slice(0,toYearsList.indexOf(selectedFromYear));
+      } 
+
+    $scope.levelList=[];  
+    var fetch_seniority = function (data) {
+      $scope.levelList = data;
+      //alert(JSON.stringify($scope.levelList));
+    };  
+    fetchrecordsCMSService.fetchrecordsCMS('','getseniorityList','').then(fetch_seniority, errorDetails);
+
+
+    var get_success = function(data){ 
+      //$scope.jobpostForm.$setPristine();   		 
+       $window.location.href = '#!/user/postjobview';
+    }
+    var errorDetails = function (serviceResp) {
+      $scope.Error = "Something went wrong ??";
+    };
+
+    var fetch_area = function (data) {    
+      $scope.areaList =  data;
+      //alert(JSON.stringify($scope.areaList));      
+    };  
+
+    $scope.getArea =  function(id) {       
+      fetchrecordsCMSService.fetchrecordsCMS('','getAreaList',id).then(fetch_area, errorDetails); 
+    };
+
+    $scope.postjob = function(){        
+        $scope.postjobinfo.users_id = $localStorage.ses_userdata.users_id;
+         $scope.postjobinfo.users_companyid = $localStorage.ses_userdata.users_companyid;  
+        if($localStorage.jobpost_id){
+          $scope.postjobinfo.jobpost_id = $localStorage.jobpost_id;
+          $scope.postjobinfo.action = 'edit';
+        }else{
+          $scope.postjobinfo.action = 'insert';
+          $scope.postjobinfo.jobpost_id = '';
+        }       
+        alert(JSON.stringify($scope.postjobinfo));
+        var url = serviceurl + "API/addpostJob/";
+        commonpostService.cmnpost(url,$scope.postjobinfo).then(get_success, errorDetails);       
+      };
+
+    //   $scope.doFocus = function(){			
+    //     setTimeout(function(){
+    //      document.querySelector('#autoCompleteId').focus();
+    //    },0);			  
+    //   };
+
+    //   $scope.searchFromMaster = function(typedthings){		 
+    // 		$scope.searchResult = $filter('filter')($scope.all_master_title_data, typedthings);    		 
+    // 		if(typedthings.length === 0){
+    // 			$scope.showLoader = false;				  
+    // 		} 		
+	   // }
+      var fetch_jobFit = function (data) {     
+        $scope.jobFits = data;
+      };
+      getfitService.fetchfit('job_fit').then(fetch_jobFit, errorDetails);
+
+
+
+      // var fetch_employerFit = function (data) {     
+      //   $scope.employerFits = data;
+      // };
+      // getfitService.fetchfit('employer_fit').then(fetch_employerFit, errorDetails);
+
+
+      var get_type = function (data) {
+        $scope.all_master_title_data = data;
+        //alert(JSON.stringify(data));
+        // angular.forEach(data, function(value, key) {			
+        //   $scope.all_master_title_data.push(value.type_name);
+        // });	
+      };	
+      
+      getfitService.fetchfit('titles').then(get_type, errorDetails);
+
+
+      $scope.indastry_data = {};
+      var fetch_list = function (data) { 	
+        $scope.indastry_data = data;
+    		//alert(JSON.stringify($scope.indastry_data));
+    	};
+    	fetchrecordsCMSService.fetchrecordsCMS('','getIndustryList','').then(fetch_list, errorDetails);
+     
+    	
+    	var fetch_locationlist = function (data) { 	
+    		$scope.location_data = data;
+        //alert(JSON.stringify($scope.location_data));
+    	};
+    	fetchrecordsCMSService.fetchrecordsCMS('','getlocationsList','').then(fetch_locationlist, errorDetails);
+
+
+    	var fetch_skilllist = function (data) {	
+        $scope.skill_data = data;			 	
+    	}; 
+      fetchrecordsCMSService.fetchrecordsCMS('','getskillsList','').then(fetch_skilllist, errorDetails);
+
+      
+     //   if($localStorage.jobid){ 
+     //    alert($localStorage.jobid);
+     //    fetchrecordsCMSService.fetchrecordsCMS('','getjobitem',$localStorage.jobid).then(fetch_arraylist, errorDetails);
+
+     //    var fetch_arraylist = function(data){      
+     //      $scope.postjobinfo = data;
+     //      alert(JSON.stringify($scope.postjobinfo));
+     //    }         
+       
+
+     // }
+
+     $scope.employerFits = [];
+     var check_employerFit = function (data) {      
+        $scope.employerFits = data;
+        //alert(JSON.stringify($scope.employerFits));       
+     };
+
+     var list = {user_id:$localStorage.ses_userdata.users_id,type:'employer_fit'};
+     checkjobService.checkedjobfit(list).then(check_employerFit, errorDetails);
+
+      // City list 
+      $scope.cities =[];
+      var get_citylist = function (data) {      
+        $scope.cities =data;      
+      };
+      $scope.getStateCities = function(){         
+        getMatercmsService.getListinfo('city',$scope.postjobinfo.state_id).then(get_citylist, errorDetails);    
+      }   
+
+      //State List
+      $scope.states =[];
+      var get_statelist = function (data) {       
+        $scope.states =data;
+        $scope.cities =[];
+      };
+
+      $scope.getCountryStates = function(){            
+        getMatercmsService.getListinfo('state',$scope.postjobinfo.country_id).then(get_statelist, errorDetails);    
+       }     
+
+      // Country List
+      $scope.countries=[];
+      var get_countrylist = function (data) { 
+        $scope.countries =data;       
+      };
+      getMatercmsService.getListinfo('country','').then(get_countrylist, errorDetails); 
+
+})
+})();

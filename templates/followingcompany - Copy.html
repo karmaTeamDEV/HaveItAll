@@ -1,0 +1,85 @@
+<script src="public/carouselengine/amazingcarousel.js"></script>
+<link rel="stylesheet" type="text/css" href="public/carouselengine/initcarousel-1.css">
+<script src="public/carouselengine/initcarousel-1.js"></script>
+<style>
+  .backsection
+  {
+    margin-bottom:10px;background-color:#ffffff;border:none;padding-bottom:10px;padding-top:10px;
+  }
+</style>
+<!-- About Section -->
+<div style="background-color:#edebeb;"> 
+  <section class="container content-section text-left">
+    <div class="row"> </div>
+  </section>
+
+
+<section class="container">
+  <div class="row backsection">
+  
+  	<div class="col-md-4 col-sm-12 col-xs-12 profile_details"  ng-repeat="company in companyList" >
+                        <div class="well profile_view">
+                          <div class="col-sm-12">
+                            <h4 class="brief"><i>{{company.company_name}}</i></h4>
+                            <div class="left col-xs-7">
+                              <!--<h2>{{company.contact_person}}</h2>-->
+                              <p><strong>About: </strong> {{company.about}} </p>
+                              <ul class="list-unstyled">
+                                <li><i class="fa fa-building"  aria-hidden="true"></i> Address: Address 1, City, State, Country</li>
+                                <li><i class="fa fa-phone"></i> Phone #: (032)-145 6987 </li>
+                              </ul>
+                            </div>
+                            <div class="right col-xs-5 text-center">
+                              <img src="public/images/admin-no-image.png" alt="" class="img-circle img-responsive">
+                            </div>
+                          </div>
+                          <div class="col-xs-12 bottom_button text-center">
+                            <div class="col-xs-12 col-sm-12 emphasis">
+                              <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user">
+                                </i> <i class="fa fa-comments-o"></i> </button>
+                              <button type="button" class="btn btn-primary btn-xs">
+                                <i class="fa fa-user"> </i> View Profile
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+
+  
+  
+    <div class="col-lg-12">
+     <div style="height:auto;padding: 0px !important;">
+       <div class="blue" style="text-align:right; cursor: pointer;"><span ng-show="updatebio" ng-click="bioView()">
+         <img src="public/images/edit2.png"/>
+       </span></div>
+       <div ng-show="display_bio">
+         <div class="pull-left"><span class="blue" style="font-weight:bold;">Bio:</span>
+          <!--  {{ProfileInfo.users_bio | limitTo:100}} -->
+          <div ng-text-truncate="ProfileInfo.users_bio"  ng-tt-words-threshold="15" style="cursor: pointer;"></div>
+        </div> 
+         
+       </div>
+
+       <div ng-show="display_editBio">
+
+         <textarea placeholder="Bio" ng-model="ProfileInfo.users_bio" 
+         style="padding:5px;margin:0px;width:100%;border:none;height:auto;border-radius:10px;height:100px;">{{ProfileInfo.users_bio}} </textarea>
+
+
+         <div class="blue" style="text-align:right;cursor: pointer;" ng-click="editProfile()">save</div>
+       </div>
+
+     </div>
+
+   </div>
+ </div>
+</section>
+
+
+
+<div class="bottom_space"></div>
+
+</div>
+

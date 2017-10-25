@@ -1,0 +1,402 @@
+<script src="public/carouselengine/amazingcarousel.js"></script>
+    <link rel="stylesheet" type="text/css" href="public/carouselengine/initcarousel-1.css">
+    <script src="public/carouselengine/initcarousel-1.js"></script>
+<!-- About Section --> 
+<section class="container content-section text-left">
+
+  <div class="row">
+    <div class="col-lg-12" align="right">
+      <img src="public/images/emplus.png"><span class="blue">Follow</span>
+    </div>
+
+    <!-- <div class="col-lg-2"></div>
+    <div class="col-lg-8">
+
+      <div class="top_part1"> <div align="center"><img src="public/images/favourite.png"><span>Favourite</span></div>
+    </div>
+    <div class="top_part1">  <div align="center"><img src="public/images/message.png">Message<br/><hr/></div></div>
+    <div class="top_part1">  <div align="center"><img src="public/images/follow.png">Follow</div></div>
+  </div>
+  <div class="col-lg-2"></div> -->
+</div>
+
+<section class="container">
+  <div class="row" >
+    <div class="col-lg-3 col-md-3 col-ms-3 col-xs-3">
+
+      <div  ng-if="!ProfileInfo.users_profilepic && ProfileInfo.users_type== '1' " >       
+        <img ng-src="public/images/no-image.png" width="57%" ng-click="selectFile()" style="cursor: pointer;"/>        
+      </div>
+
+      <div ng-if="!ProfileInfo.users_profilepic && ProfileInfo.users_type== '2' " >       
+        <img ng-src="public/images/admin-no-image.jpg" width="57%" ng-click="selectFile()" style="cursor: pointer;"/>        
+      </div>
+
+      <div ng-if="ProfileInfo.users_profilepic" >  
+        <div ng-click="remove(ProfileInfo.users_profilepic);" style="position: absolute;font-size: 18px;padding: 0px 6px;color: red;cursor: pointer;">X</div>     
+        <img ng-src="upload/{{ProfileInfo.users_profilepic}}"  width="57%" ng-click="selectFile()"  style="cursor: pointer;">       
+      </div>
+
+
+      <div>
+
+      </div>
+      <input type="file" id="msds" ng-model="form.image" accept="image/*" name="msds" onchange="angular.element(this).scope().updateProfilePhoto(this);" >
+
+      <img src="public/images/linkedin.png"/>
+      <img src="public/images/twitter.png"/>
+      <img src="public/images/facebook.png"/>
+      <img src="public/images/camera.png"/>
+      <img src="public/images/www.png"/>
+
+    </div>
+    <div class="col-lg-9 col-md-9 col-ms-9 col-xs-9">
+     <div  id="p_id" ng-show="display_tab" style="font-size:24px;">
+       <div>{{ProfileInfo.users_firstname}} {{ProfileInfo.users_lastname}} - {{ProfileInfo.countryname}}, {{ProfileInfo.statename}} </div>
+       <div>Title</div>
+       <div style="margin-top:20px;margin-bottom:20px;">
+         <table id="p_tab">
+           <tr>
+             <td><button type="button" class="btn btn-danger" ng-click="profileView(ProfileInfo.users_type)" >Manage</button></td>
+             <td width="50"></td>
+             <td><button type="button" class="btn btn-info">Posts</button></td>
+           </tr>
+         </table> 
+       </div>
+     </div>
+   </div>
+
+
+   <div ng-show="display_tab1">
+    <div class="col-lg-9 col-md-9 col-ms-9 col-xs-9" ng-if="ProfileInfo.users_type == '1' ">
+      <div>
+        <div align="center">          
+          <input class="shadowbox_botton"  style="width:48%;margin-right:0px;" type="text" placeholder="First Name" ng-model="ProfileInfo.users_firstname" />         
+        </div>
+        <div align="center"> 
+          <input class="shadowbox_botton" style="width:48.5%;margin-right:0px;" type="text"  placeholder="Last Name" ng-model="ProfileInfo.users_lastname" />
+        </div>
+      </div>
+      <div style="margin-top:40px;">
+        <div>
+
+          <select ng-model="ProfileInfo.users_country" name="users_country" class="shadowbox_botton" style="width:32%;" ng-options="country.id as country.name for country in countries" ng-change="getCountryStates()" required>
+            <option value="">select country</option>
+          </select>
+        </div> 
+        <div >
+          <select ng-model="ProfileInfo.users_state" name="users_state" class="shadowbox_botton" style="width:32%;margin-left:.9%;" ng-options="state.id as state.name for state in states" ng-change="getStateCities()">           
+            <option value="">select state</option>
+          </select>
+        </div> 
+        <div >
+          <select ng-model="ProfileInfo.users_city" name="users_city" class="shadowbox_botton" style="width:31%;margin-left:.9%;" ng-options="city.id as city.name for city in cities" ng-change="getCities()">           
+            <option value="">select city</option>
+          </select>
+          <div class="clearfix"></div>      
+        </div>
+      </div>
+      <div style="margin-top:15px;">
+        <div style=" width:49%;float:left;">
+          <input class="shadowbox_botton" type="text" placeholder="Current Employer" ng-model="ProfileInfo.users_current_employer" style="width:97%;">  
+        </div> 
+        <div style=" width:49%;float:left;">
+          <input class="shadowbox_botton" type="text" placeholder="Current Title" ng-model="ProfileInfo.users_current_title" style="width:97%;" >
+        </div> 
+      </div>
+    </div>
+    <div class="col-lg-9 col-md-9 col-ms-9 col-xs-9" ng-if="ProfileInfo.users_type == '2' ">
+      <div>
+        <div align="center">                  
+          <input class="shadowbox_botton"  style="width:48%;margin-right:0px;" type="text" placeholder="Company Name" ng-model="ProfileInfo.company_name" />     
+
+          <input type="hidden" ng-model="ProfileInfo.users_companyid" />            
+        </div>
+        <div align="center"> 
+          <input class="shadowbox_botton" style="width:47.5%;margin-right:0px;margin-left:1%;" type="text"  placeholder="General Email" ng-model="ProfileInfo.users_username"  pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" required ng-disabled="true"/>
+        </div>
+      </div>
+      <div style="margin-top:40px;">
+
+        <div>
+          <div class="blue" style="width:32%;float:left;">
+            Head Office City
+          </div> 
+        </div> 
+        <div >
+         <select ng-model="ProfileInfo.users_country" class="shadowbox_botton" style="width:32%;" ng-options="country.id as country.name for country in countries" ng-change="getCountryStates()">
+          <option value="">select country</option>                  
+        </select>
+      </div> 
+      <div >
+        <select ng-model="ProfileInfo.users_state" class="shadowbox_botton" style="width:32%;margin-left:.9%;" ng-options="state.id as state.name for state in states" ng-change="getStateCities()">                      
+          <option value="">select state</option>
+        </select>
+        <div class="clearfix"></div>            
+      </div>
+    </div>
+    <div style="margin-top:15px;">
+      <div>
+        <div class="blue" style="width:32%;float:left;">
+          Other Hiring City
+        </div> 
+      </div> 
+      <div >
+       <select ng-model="ProfileInfo.users_city" class="shadowbox_botton" style="width:31%;margin-left:.9%;" ng-options="city.id as city.name for city in cities" ng-change="getCities()">                    
+        <option value="">select city</option>
+      </select>
+    </div> 
+    <div>
+      <div class="blue" style="width:32%;float:left;margin-left:.9%;">
+        add
+      </div> 
+    </div> 
+
+  </div>
+    </div>
+
+    <div style="margin-top: 10px;">
+     <div class="col-lg-3 col-md-3 col-ms-3 col-xs-3"></div>
+     <div class="col-lg-9 col-md-9 col-ms-9 col-xs-9">
+       <input type="text" class="shadowbox_botton" ng-model="ProfileInfo.users_linkedin_link" Placeholder="Add Link" style="float: left;width: 48%; margin-right: 1%;margin-top: 2%;" >         
+       <input type="text" class="shadowbox_botton" ng-model="ProfileInfo.users_twitter_link" Placeholder="Add Link" style="float: left;width: 48%;margin-top: 2%;" >         
+       <input type="text" class="shadowbox_botton" ng-model="ProfileInfo.users_facebook_link" Placeholder="Add Link" style="float: left;width: 48%; margin-right: 1%; margin-top: 15px;" >
+       <input type="text" class="shadowbox_botton" ng-model="ProfileInfo.users_istagram_link" Placeholder="Add Link" style="float: left;width: 48%;margin-top: 15px;" >
+
+     </div>   
+    </div>
+     <div style="clear:both;"></div>
+    <div class="text-right btn btn-primary" style=" margin-right: 40px;cursor: pointer; width: 200px;                float: right; padding: 10px;text-align: center;margin-top: 10px;" ng-click="editProfile();"> Verify &amp; Save Info
+    </div>
+
+   <!--  <div align="right" ng-show="display_tab1">
+      <div  class="bot2 text-center"  style="cursor: pointer;" ng-click="editProfile();" >Verify &amp; Save Info</div>
+    </div> -->
+
+</div>  
+
+
+</div>
+
+
+
+</section>
+
+ <section class="container">
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-lg-12">
+         <div class="shadowbox"  style="height:auto;border-radius:10px;padding: 0px !important;">
+           <div  style="padding: 5px;" ng-show="display_bio">
+           <div class="blue" style="text-align:right; cursor: pointer;"><span ng-click="bioView()">Edit Bio
+           </span></div>
+           <div style="margin-top:10px;"><span class="blue" style="font-weight:bold;">Bio:</span>
+          <!--  {{ProfileInfo.users_bio | limitTo:100}} -->
+           <p ng-text-truncate="ProfileInfo.users_bio"  ng-tt-words-threshold="15" style="cursor: pointer;"></p>
+           </div>
+         
+           </div>
+           <div ng-show="display_editBio">
+           <textarea ng-bind="ProfileInfo.users_bio | limitTo:10" placeholder="Bio" ng-model="ProfileInfo.users_bio" style="padding: 5px;margin: 0px;width:100%;border: none;height:77px;border-radius:10px;"> {{ProfileInfo.users_bio}}</textarea>
+          <div class="blue" style="text-align:right;cursor: pointer;" ng-click="editProfile()">save</div>
+          </div>
+         </div>
+         
+       </div>
+      
+     
+       </div>
+       <section class="container">
+    <div class="row">
+        <div class="col-lg-12">
+        <div id="amazingcarousel-container-1">
+    <div id="amazingcarousel-1" style="display:none;position:relative;width:100%;max-width:960px;margin:0px auto 0px;">
+        <div class="amazingcarousel-list-container">
+            <ul class="amazingcarousel-list">
+                <li class="amazingcarousel-item">
+                    <div class="amazingcarousel-item-container">
+<div class="amazingcarousel-image"><a href="public/images/1-lightbox.jpg" class="html5lightbox" data-group="amazingcarousel-1"><img src="public/images/1.jpg" /></a></div>
+<div class="amazingcarousel-title"></div>                    </div>
+                </li>
+                <li class="amazingcarousel-item">
+                    <div class="amazingcarousel-item-container">
+<div class="amazingcarousel-image"><a href="public/images/2-lightbox.jpg" class="html5lightbox" data-group="amazingcarousel-1"><img src="public/images/2.jpg" /></a></div>
+<div class="amazingcarousel-title"></div>                    </div>
+                </li>
+                <li class="amazingcarousel-item">
+                    <div class="amazingcarousel-item-container">
+<div class="amazingcarousel-image"><a href="public/images/3-lightbox.jpg" class="html5lightbox" data-group="amazingcarousel-1"><img src="public/images/3.jpg" /></a></div>
+<div class="amazingcarousel-title"></div>                    </div>
+                </li>
+                <li class="amazingcarousel-item">
+                    <div class="amazingcarousel-item-container">
+<div class="amazingcarousel-image"><a href="public/images/4-lightbox.jpg" class="html5lightbox" data-group="amazingcarousel-1"><img src="public/images/4.jpg" /></a></div>
+<div class="amazingcarousel-title"></div>                    </div>
+                </li>
+                <li class="amazingcarousel-item">
+                    <div class="amazingcarousel-item-container">
+<div class="amazingcarousel-image"><a href="public/images/5-lightbox.jpg" class="html5lightbox" data-group="amazingcarousel-1"><img src="public/images/5.jpg" /></a></div>
+<div class="amazingcarousel-title"></div>                    </div>
+                </li>
+                <li class="amazingcarousel-item">
+                    <div class="amazingcarousel-item-container">
+<div class="amazingcarousel-image"><a href="public/images/6-lightbox.jpg" class="html5lightbox" data-group="amazingcarousel-1"><img src="public/images/6.jpg" /></a></div>
+<div class="amazingcarousel-title"></div>                    </div>
+                </li>
+            </ul>
+            <div class="amazingcarousel-prev"></div>
+            <div class="amazingcarousel-next"></div>
+        </div>
+        <div class="amazingcarousel-nav"></div>
+        <div class="amazingcarousel-engine"><a href="http://amazingcarousel.com">jQuery Scroller</a></div>
+    </div>
+</div>
+
+        </div>
+        </div>
+        
+        </section>
+    <section class="container">
+    <div class="row" style="cursor: pointer;">
+      <div class="col-lg-8 col-lg-offset-2">
+      <div class="margin30">
+       <div style="width:100%;">
+       <div style="float:left;width:96%;">
+      <div class="botton_grey2" style="background-color: #a1cc8c;">
+      <div class="botton_grey2_text1" >Employers & Titles</div> 
+      <div class="botton_grey2_text2" ng-click="moreTitle(titlesList.length,titlelebel,'titles')">{{titlelebel}} 
+      <span ng-if="titlelebel != 'Less' ">
+        {{titlesList.length}}
+      </span>
+      </div>
+      <div style="clear:both;"></div>
+      </div>
+      </div>
+        <div style="float:left;width:4%;"><a href="#!/user/title-held"><img src="public/images/edit.png" /></a></div>
+      </div>
+      <div ng-if="titlesList.length > 0 " style="width:96%;">
+      <div ng-repeat="title in titlesList | filter: query | limitTo:titlesLimit" class="blue">
+        <div class="left">{{title.type_name}} </div>
+        <div class="right" style="text-align: left;">{{title.type_name}}</div>
+      <div style="clear:both;"></div>
+      </div>
+      </div>
+      <div ng-if="titlesList.length == 0 " style="width:96%;">N/A</div>
+
+      </div>
+      
+      <div class="margin30">
+      <div style="width:100%;">
+      <div style="float:left;width:96%;">
+      <div class="botton_grey2" style="background-color: #c7c7c7;">
+      <div class="botton_grey2_text1">Industry & Experience</div>
+          <div class="botton_grey2_text2" ng-click="moreTitle(industryList.length,industrylebel,'Industry')">{{industrylebel}}
+          <span ng-if="industrylebel != 'Less' ">
+            {{industryList.length}}
+          </span>
+        </div>
+      <div style="clear:both;"></div>
+      </div>
+      </div>
+      <div style="float:left;width:4%;"><a href="#!/user/industry"><img src="public/images/edit.png" /></a></div>
+      </div>
+      <div ng-if="industryList.length > 0 " style="width: 96%;">
+      <div ng-repeat="industry in industryList | filter: query | limitTo:industryLimit">
+        <div ng-if="industry.type_parent_id == '0' ">
+        <div class="blue" style="font-weight:bold; margin-top: 10px;"> 
+        {{industry.type_name}}
+         </div>
+        <span ng-repeat="subindustry in industryList | filter: query | limitTo:subindustryLimit">
+          <span class="blue" ng-if="subindustry.type_parent_id == industry.type_id">
+            {{subindustry.type_name}} |
+          </span>
+        </span>
+        </div>
+      </div>
+      </div>
+       <div ng-if="industryList.length == 0 " style="width: 96%;">N/A</div>
+
+      <div style="clear:both;"></div>
+      </div>
+      
+      <div class="margin30">
+      <div style="width:100%;">
+      <div style="float:left;width:96%;">
+      <div class="botton_grey2" style="background-color: #a6c3e6;">
+      <div class="botton_grey2_text1">Education</div>
+      <div class="botton_grey2_text2" ng-click="moreTitle(educationList.length,educationlebel,'education')">{{educationlebel}} 
+          <span ng-if="educationlebel != 'Less' ">
+            {{educationList.length}}
+          </span>
+       </div>
+      <div style="clear:both;"></div>
+      </div>
+      </div>
+      <div style="float:left;width:4%;"><a href="#!/user/education"><img src="public/images/edit.png" /></a></div>
+     </div>
+      <div ng-if="educationList.length > 0 " style="width: 96%;">
+        <span ng-repeat="education in educationList | filter: query | limitTo:educationLimit">
+            <span class="blue"  ng-if="education.type_parent_id == '0' ">
+            <span style="font-weight:bold;margin-top: 10px;">{{education.type_name}}</span> : 
+
+              <span  ng-repeat="sub in educationList | filter: query | limitTo:subeducationLimit">
+                <span class="blue" ng-if="sub.type_parent_id == education.type_id">
+                {{sub.type_name}} |</span>
+              </span>
+
+
+               <br>
+            </span>
+            
+        </span>
+      </div>
+       <div ng-if="educationList.length == 0 " style="width: 96%;">N/A</div>
+      
+      <div style="clear:both;"></div>
+      
+     
+
+      <div class="margin30">
+      <div style="width:100%;">
+      <div style="float:left;width:96%;">
+      <div class="botton_grey2" style="background-color: #9cadda;">
+      <div class="botton_grey2_text1">Job & Employer Fit</div>
+      <div class="botton_grey2_text2" ng-click="moreTitle(jobFitslist.length+employerfitslist.length,fitlebel,'job_fit')">{{fitlebel}} 
+          <span ng-if="fitlebel != 'Less' ">
+            {{jobFitslist.length+employerfitslist.length}}
+          </span>
+
+       </div>
+      <div style="clear:both;"></div>
+      </div>
+      </div>
+      <div style="float:left;width:4%;"><a href="#!/user/typeFit"><img src="public/images/edit.png" /></a></div>
+      </div>
+      <div ng-if="jobFitslist.length+employerfitslist.length > 0 " style="width: 96%;">
+      <div class="blue" style="font-weight:bold;margin-top: 10px;">Job Fit </div>
+      <div class="blue" >
+      <span ng-repeat="jobfits in jobFitslist | filter: query | limitTo:fitLimit">
+      {{jobfits.type_name}} <span class="blue">|</span> </span>
+      </div>
+
+      <div class="blue" style="font-weight:bold;margin-top: 10px;">Employer Fit </div>
+      <div class="blue">
+      <span ng-repeat="employerfits in employerfitslist | filter: query | limitTo:fitLimit">
+      {{employerfits.type_name}} <span class="blue">|</span> </span>
+      </div>
+      </div>
+
+      <div ng-if="jobFitslist.length+employerfitslist.length == 0 " style="width: 96%;">
+          N/A
+      </div>
+      
+      </div>
+      
+      </div>
+       </div>
+       </div>
+   
+       </section>
+       <div class="bottom_space"></div>
+       </section>
+
+

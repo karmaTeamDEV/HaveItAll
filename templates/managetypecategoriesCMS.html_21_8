@@ -1,0 +1,71 @@
+  <section id="typectgryfrmid" class="container content-section text-left">
+      <div class="row">
+         <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+         <div>
+
+       <form name="typecategorycmsForm" ng-submit="submitForm(typecategorycmsForm)" novalidate>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Name" name="name" ng-model="typecategory.name" required />
+            <div ng-messages="typecategorycmsForm.name.$err" ng-if="typecategorycmsForm.name.$invalid && !typecategorycmsForm.name.$pristine">
+            <div ng-message="required" style="color:red;font-size:14px;">Name is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+          <select class="form-control back_color"  name="typecategory" ng-model="typecategory.selectedtypecategory" ng-options="typecategory.category_code as typecategory.category_name for typecategory in typecategories" required>
+           <option value="">Select type</option>
+          </select>
+          <div ng-messages="typecategorycmsForm.name.$err" ng-if="typecategorycmsForm.typecategory.$dirty && typecategorycmsForm.typecategory.$invalid">
+            <div ng-message="required" style="color:red;font-size:14px;">Type Category not selected!</div>
+          </div>
+        </div>
+        <div class="form-group">
+         <select class="form-control back_color" name="status" ng-model="typecategory.selectedstatus">
+           <option value="">Select status</option>
+           <option value="0">Active</option>
+           <option value="1">Inactive</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+            <button class="btn btn-primary"  ng-disabled="typecategorycmsForm.$invalid">SUBMIT</button>            
+        </div>
+    </form>
+      </div> 
+      <div class="form-group" >            
+        <input type="text" class="form-control" placeholder="Search Type Categories" ng-model="searchTypeCategories" required />
+      </div>
+
+      <div class="row">
+       <table class="table">
+        <thead>
+            <tr>
+                <th align="left">Name</th>
+                <th align="right">Type</th>
+                <th align="right">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="type in typecategoriesList | filter:searchTypeCategories">
+                <td align="left">
+                  <a ng-click="editTypeCategory(type.type_id);" style="cursor:pointer;">{{type.type_name}}</a>
+                </td>
+                <td align="right">{{type.type_category}}</td>
+                  <td align="right">{{type.type_status === '0' ? 'Active':'InActive'}}</td>
+                <!-- <td><button type="button" class="btn btn-primary btn-sm" ng-click="editTypeCategory(type.type_id);">EDIT</button></td> -->
+            </tr>
+            
+        </tbody> 
+        </table>
+
+        </div>
+     </div>
+    </div>
+   <div class="bottom_space"></div>
+  </section>
+    <!-- Footer -->
+       
+
+
+
+

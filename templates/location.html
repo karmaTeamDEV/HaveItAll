@@ -1,0 +1,94 @@
+ 
+<section class="container content-section text-center">
+  <h3 align="center">Where do you want to work?  <span> <a href="#!/user/profile//" style="color:##008cc9;float: right;font-size: 12px;">Back</a></span></h3>
+  <div class="row">
+        <div class="col-sm-12">
+           <div class="panel panel-primary">
+           <div class="panel-heading">Please select the locations that are of interest.
+           </div>           
+            <div class="panel-body">  
+                     
+                 <ul class="list-group">
+                  <li class="list-group-item text-left" ng-repeat="locationdata in dataList">
+                  <span class="blue">{{locationdata.countryname}} :</span>
+                    <span ng-repeat="state in locationdata.state" style="font-weight: bold;">{{state.statename}} :
+                      [<span ng-repeat="citylist in state.city" style="font-weight: normal;">{{citylist.cityname}},</span>] 
+                    </span>    
+                    <span class="pull-right" style="cursor: pointer;" ng-click="removeRecord(locationdata.rel_country_id);" title="Remove">X</span>                
+                  </li>                                 
+                </ul>               
+            </div>             
+           </div>
+        </div>
+  </div>
+  <div class="row">     
+    
+        <div class="col-sm-4">
+           <div class="panel panel-default">
+           <div class="panel-heading"> 
+           <input type="text" class="form-control" placeholder="Search country..." ng-model="searchCountries">
+           </div>           
+            <div class="panel-body">  
+                     
+                 <ul class="list-group" style="overflow-y: scroll;height:380px;">
+                  <li class="list-group-item text-left" ng-repeat="country in countries  | filter:searchCountries" ng-if="countries.length != ''" ng-click="statelistlebel(country.id)"><span>{{country.name}}</span>           
+                    <span class="pull-right">                    
+                         
+                     <input type="checkbox" class="checkboxsize" ng-checked="locationInfo[0].rel_country_id.indexOf(country.id) > -1" value={{country.id}}  ng-init='checkStatus=false' ng-model='checkStatus' ng-click="getCountryStates(country.id,checkStatus)">
+
+                    </span>
+                  </li>
+                                 
+                </ul>               
+            </div>             
+           </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="panel panel-default">
+            <div class="panel-heading">
+            <input type="text" class="form-control" placeholder="Search state..." ng-model="searchState">
+            </div>
+              <div class="panel-body">
+              
+                <ul class="list-group" style="overflow-y: scroll;height:380px;">
+                  <li class="list-group-item text-left" ng-repeat="state in states | filter:searchState" ng-if="states.length != ''"  ng-click="citylistlebel(state.id)">
+                  <span>{{state.name}}</span>                 
+                    <span class="pull-right">
+                    
+                    <input type="checkbox" class="checkboxsize" ng-checked="locationInfo[0].state[0].state_id.indexOf(state.id) > -1" value={{state.id}} ng-click="getStateCities(state.id,checkStatus1)" ng-init='checkStatus1=false' ng-model='checkStatus1'>
+
+                    </span>
+                  </li>
+                                    
+                </ul> 
+              </div>             
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="panel panel-default">
+            <div class="panel-heading">
+            <input type="text" class="form-control" placeholder="Search city..." ng-model="searchcity">
+            </div>
+              <div class="panel-body">
+               
+                <ul class="list-group" style="overflow-y: scroll;height:380px;">
+                  <li class="list-group-item text-left" ng-repeat="city in cities | filter:searchcity" ng-if="cities.length != ''">   
+                    <span>{{city.name}}</span>                 
+                    <span class="pull-right">
+                    
+                     <input type="checkbox" class="checkboxsize" ng-checked="locationInfo[0].state[0].city[0].city_id.indexOf(city.id) > -1" value={{city.id}} ng-click="getCities(city.id,checkStatus2)" ng-init='checkStatus2=false' ng-model='checkStatus2'>
+
+                    </span>
+                  </li>
+                                  
+                </ul> 
+              </div>             
+            </div>
+        </div>
+
+  </div> 
+</section>
+ 
+

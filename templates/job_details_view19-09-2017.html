@@ -1,0 +1,230 @@
+<script src="public/carouselengine/amazingcarousel.js"></script>
+<link rel="stylesheet" type="text/css" href="public/carouselengine/initcarousel-1.css">
+<script src="public/carouselengine/initcarousel-1.js"></script>
+<style>
+  .backsection
+  {
+    margin-bottom:10px;background-color:#ffffff;border:none;padding-bottom:10px;padding-top:10px;
+  }
+  .left{
+	       margin-top: 10px !important; 
+  }
+  h1, h2, h3, h4, h5, h6{
+	       margin: 0 0 7px !important; 
+	  
+  }
+  .well{
+	  margin-bottom:0px !important;
+	  padding: 5px !important ;
+  }
+</style>
+<!-- About Section -->
+<div style="background-color:#fff;">   
+
+  <section class="content-section text-left">
+
+    <div class="row ">      
+
+      <div class="container" style="cursor: pointer;">
+       <div class="row well">      
+            <div class="panel panel-default ">
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-md-8"> 
+                  
+                        <div ng-if="!company_details.following_id">
+                            Follow
+                        </div>
+                        <div ng-if="company_details.following_id">
+                            Following
+                        </div>                  
+                  </div>
+                  <div class="col-md-4 text-right"><span> <a href="#!/user/user-job"> Back </a> </span> &nbsp;&nbsp;&nbsp; <span ng-click="fetch_next_job_user(editpostjob.jobpost_id);"> Next </span> </div>
+                </div>
+                
+                <div class="row">
+                
+                  <div class="col-md-3 text-center">
+                   		<div class="text-center">
+                              <img src="upload/{{company_details.users_profilepic}}" alt="" class=" img-responsive">
+                         </div>
+                        <br />
+                       <!--<h3>  {{company_details.following_id}}</h3>-->
+                 </div>
+                  
+                  <div class="col-md-6 text-center">
+                  	<div> <h4>{{ editpostjob.title_name }}</h4> 
+                    <h5>{{company_details.company_name}}</h5>
+                    
+                    </div>
+                    <div>Job Fit:   <span ng-repeat="job_fit in editpostjob.jobfit"> {{job_fit.type_name}} |  </span></div>
+                    <div> Job Location: <span ng-repeat="job_location in editpostjob.locations"> {{job_location.type_name}} |  </span></div>
+                    <br />
+
+                    <div> <span id="job_apply_button" ng-if="!job_applied_details.applied_id" ng-click="apply_for_job_user(editpostjob.jobpost_id);"> <button type="button" class="btn btn-success">Apply</button> </span> 
+                    <span id="job_save_button" ng-if="!job_applied_details.saved_id" ng-click="save_a_job_for_user(editpostjob.jobpost_id);"> <button type="button" class="btn btn-primary">Save</button> </span> </div>
+                    
+                  </div>
+                 
+                 <div class="col-md-3 "></div> 
+                  
+                </div>
+                
+                
+              </div>
+            </div>
+        </div>
+            
+       <div class="row well ">      
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-md-12"> <strong>Description: </strong>
+                  		<span hm-read-more
+                                hm-text=" {{editpostjob.jobpost_description_html_remove}} " 
+                                hm-limit="700" 
+                                hm-more-text=" more" 
+                                hm-less-text=" less"
+                                hm-dots-class="dots"
+                                hm-link-class="links">
+                            </span>
+                </div>
+                  
+                </div>
+                
+                
+                
+              </div>
+            </div>
+        </div>
+        
+        
+       <div class="row well ">      
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <div class="row">
+                <div class="col-md-1 "></div>
+                
+                <div class="col-md-10 ">
+                
+                    <div class="margin10">
+                      <div style="width:100%;">
+                        <div style="float:left;width:96%;">
+                          <div class="botton_grey2">
+                            <div class="botton_grey2_text1">Relevant Experience</div>
+                            <div class="botton_grey2_text2" ng-click="moreTitle(editpostjob.arealist.length, fitlebel, 'employer_fit')">{{fitlebel}} 
+                              <span ng-if="fitlebel != 'Less' && employerCnt != '-1' ">
+                               <!--  {{employerCnt}} -->
+                              </span>
+                
+                            </div>
+                            <div style="clear:both;"></div>
+                          </div>
+                        </div>
+                       <!-- <div style="float:left;width:4%;" ng-if="to_view_type != 'company' "><a href="#!/user/typeFit"><img src="public/images/edit1.png" /></a></div>-->
+                      </div>
+                      <div ng-if="employerfitslist.length >= 0 " style="width: 96%;">      
+                
+                          
+                          <div class="blue">
+                            <span ng-repeat="industry in editpostjob.arealist | filter: query | limitTo:fitLimit">
+                              {{industry.industry_name}}:
+                              
+                
+                               <span class="black">|</span> </span>
+                            </div>
+                          </div>
+                
+                          <div ng-if="editpostjob.arealist.length == 0 " style="width: 96%;">
+                            N/A
+                          </div>
+                
+                  </div>
+                  
+                    <div class="margin10">
+                      <div style="width:100%;">
+                        <div style="float:left;width:96%;">
+                          <div class="botton_grey2">
+                            <div class="botton_grey2_text1">Work Culture</div>
+                            <div class="botton_grey2_text2" ng-click="moreTitle(employerfitslist.length,fitlebel,'employer_fit')">{{fitlebel}} 
+                              <span ng-if="fitlebel != 'Less' && employerCnt != '-1' ">
+                               <!--  {{employerCnt}} -->
+                              </span>
+                
+                            </div>
+                            <div style="clear:both;"></div>
+                          </div>
+                        </div>
+                       <!-- <div style="float:left;width:4%;" ng-if="to_view_type != 'company' "><a href="#!/user/typeFit"><img src="public/images/edit1.png" /></a></div>-->
+                      </div>
+                      <div ng-if="employerfitslist.length >= 0 " style="width: 96%;">      
+                
+                          
+                          <div class="blue">
+                            <span ng-repeat="employerfits in employerfitslist | filter: query | limitTo:fitLimit">
+                              {{employerfits.type_name}}:
+                               <span ng-if="employerfits.description !='' ">
+                               <!-- <span hm-read-more hm-text="{{employerfits.description}}" hm-limit="1" hm-more-text="more" hm-less-text="Less" style="color: #666;"></span> -->
+                               <span ng-click="showAlert($event,employerfits.type_name,employerfits.description)" style="color: #666;">more</span>
+                               </span>
+                
+                               <span class="blue">|</span> </span>
+                            </div>
+                          </div>
+                
+                          <div ng-if="employerfitslist.length == 0 " style="width: 96%;">
+                            N/A
+                          </div>
+                
+                  </div>
+                
+                </div>
+                
+                <div class="col-md-1 "></div>
+                </div>
+                  
+                </div>
+                
+                
+              </div>
+            </div>
+            
+            
+       <div class="row  ">      
+                <div class="panel panel-default">
+                  <div class="panel-body">
+                    <div class="row">
+                      <div class="col-md-12"> 
+                           <strong class="blue"> Match Criteria: </strong><span ng-repeat="matched_criteria in criteria_match_list">  {{matched_criteria.type_name}} | </span>
+                    </div>
+                      
+                    </div>
+                    
+                    
+                    
+                  </div>
+                </div>
+            </div>
+            
+        </div>
+            
+     </div>
+   </div>
+ </section>
+
+
+
+<div class="bottom_space"></div>
+</div>
+
+<script>
+
+  $(document).ready(function(){
+    activaTab('notviewed_tab');
+  });
+
+  function activaTab(tab){
+    $('.nav-tabs a[href="#' + tab + '"]').tab('show');
+  };
+
+</script>

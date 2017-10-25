@@ -1,0 +1,109 @@
+<!-- Navigation -->
+<!--<div class="email_space">
+<table>
+<tr>
+<td style="padding:3px;">
+    
+<span ng-if="companyInfo.users_profilepic != '' && companyInfo.users_companyid != '0' ">
+   <img src="{{companyInfo.users_profilepic}}"  width="30" >
+</span>
+</td>
+<td style="line-height:30px;">{{userInfo_email}}</td>
+</tr>
+</table>
+</div>-->
+   <div class="top">
+   <section>
+        <div class="container">
+          <div class="row">
+          <div class="col-lg-12">
+             <div class="pull-left">
+              <div style="margin-left:-15px;" ng-if="userInfo_type == '1' ">
+              <a href="#!/user/appHome"><img src="public/images/logo2.png" ></a>
+              </div>
+              <div style="margin-left:-15px;" ng-if="userInfo_type == '2' ">
+              <a href="#!/user/companyHome"><img src="public/images/logo2.png"/ ></a>
+              </div>
+             </div>
+             <div class="pull-right">
+             <div style="margin-right:-30px;"> 
+             <div class="dropdown" style="float:right;color:#fff;">	
+	              <!--  <span ng-if="companyInfo.users_profilepic != '' && companyInfo.users_companyid != '0' ">
+	             	     <img src="{{companyInfo.users_profilepic}}" width="40">
+	               </span> -->
+	             <!-- {{userInfo_email}} -->
+				<button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">
+					<div><img src="public/images/burger.png"/ width="40"></div>
+				</button>
+				<ul class="pull-right dropdown-menu" style="cursor:pointer;">
+					<li><a ng-click="check_jobinfo('#!/user/profile//');">Profile</a></li>
+          <!-- href="#!/user/profile//" -->
+          <li ng-if="userInfo_type == '1' "><a href="#!/user/message">Message</a></li>
+          <li ng-if="userInfo_type == '2' "><a ng-click="check_jobinfo('#!/user/companyMessage');">Message</a></li>
+					<li ng-if="userInfo_type == '2' "><a ng-click="check_jobinfo('#!/user/addusers');">Add Users</a></li>
+					<li ng-if="userInfo_type == '2' "><a ng-click="manage_location()">Post a Job</a></li>
+          <li ng-if="userInfo_type == '1' && userInfo_companytype == '1' "><a ng-click="manage_location()">Post a Job</a></li>          
+          <li ng-if="userInfo_type == '1' "><a href="#!/user/user-job">View Jobs</a></li>
+          <li ng-if="userInfo_type == '2' "><a ng-click="check_jobinfo('#!/user/postjobview/');">View Jobs</a></li>
+          <li><a ng-click="check_jobinfo('#!/user/cng-psw');">Change Password</a></li>
+					<li><a ng-click="logout();">Logout</a></li>
+				</ul>
+			 </div>
+             </div>
+			 </div>
+		  </div>
+		 </div>
+		</div>
+        </section>
+</div>
+<ui-view name="menuContent"></ui-view>
+<!-- <div ng-include="'include/bottom.html'"></div> -->
+<section class="container">
+    <div class="bottom">
+        <div class="container text-center">
+         <div class="row">
+        
+         
+           <div class="col-lg-12">
+          
+           <table style="width:100%;">
+           <tr>
+           <td align="center" width="25%">
+            <span ng-if="userInfo_type == '1'"><a href="#!/user/followingcompany" style="color:#FFF;"><img src="public/images/network.png"/></a></span>
+             <span ng-if="userInfo_type == '2'"><a href="#!/user/followuser" style="color:#FFF;"><img src="public/images/network.png"/></a></span>
+            </td>
+           <td align="center" width="25%"><a href="#!/user/construction" style="color:#FFF;"><img src="public/images/feed.png"/></a></td>
+           <td align="center" width="25%">
+           
+            <span ng-if="userInfo_type == '1'">  <a href="#!/user/message" style="color:#FFF;"><img src="public/images/mail.png"/></a></span>
+           <span ng-if="userInfo_type == '2'">  <a href="#!/user/companyMessage" style="color:#FFF;"><img src="public/images/mail.png"/></a></span>
+           </td>
+           <td align="center" width="25%">
+         
+
+           <span ng-if="userInfo_type == '1'">  <a href="#!/user/user-job" style="color:#FFF;">  <img src="public/images/job.png"/></a></span>
+           <span ng-if="userInfo_type == '2'">  <a href="#!/user/postjobview/" style="color:#FFF;">  <img src="public/images/job.png"/></a></span>
+           </td>
+
+           </tr>
+           <tr >
+           <td align="center"><a href="#!/user/construction" style="color:#FFF;">Network</a></td>
+           <td align="center"><a href="#!/user/construction" style="color:#FFF;">Feed</a></td>
+
+           <td align="center">
+           <span ng-if="userInfo_type == '1'">  <a href="#!/user/message" style="color:#FFF;">Mail</a></span>
+           <span ng-if="userInfo_type == '2'">  <a href="#!/user/companyMessage" style="color:#FFF;">Mail</a></span>
+           </td>
+           <td align="center">
+           <span ng-if="userInfo_type == '1'">  <a href="#!/user/user-job" style="color:#FFF;">Job</a></span>
+           <span ng-if="userInfo_type == '2'">  <a href="#!/user/postjobview/" style="color:#FFF;">Job</a></span>
+           </td>
+           
+           </tr>
+           </table>
+           </div>
+         </div>
+          </div>
+        </div>
+ 
+    </section>

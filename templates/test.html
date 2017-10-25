@@ -1,0 +1,105 @@
+<style type="text/css">
+  .multiSelect > button {
+    text-align: left !important;    
+    padding: 1px 8px 1px 4px !important;
+    font-size: 12px !important;
+    border-radius: 0px !important;
+    width: 100% !important;
+  }
+</style>
+<section class="container content-section text-center">
+  <h3 align="center">Manage Education</h3>
+  <div class="row">
+    <div  class="voca" >
+     <form name="educationForm" ng-submit="addEducation(educationForm)" novalidate> 
+     <!-- <div class="col-md-3">
+       <multiselect ng-model="selection" options="options" selection-limit="2" id-prop="id" display-prop="name" show-search="true">
+       </multiselect>
+     </div> -->
+      <div class="col-md-3">
+
+       <select class="form-control" name="education_id" ng-model="educationinfo.education_id" ng-change="getsubeducation();" ng-options="education.type_id as education.type_name for education in educationdata" style="height:38px;" required>
+        <option value="">select education</option>
+      </select> 
+     <!--  <div>
+        <input type="text" class="form-control" ng-model="educationinfo.othercompany" placeholder="Other company">
+      </div>  -->
+      <div ng-messages="educationForm.education_id.$err" ng-if="educationForm.education_id.$invalid && !educationForm.education_id.$pristine">
+      <div ng-message="required" style="color:red;font-size:14px;text-align: left;">Education is required !</div>
+      </div> 
+    </div>
+
+    <div class="col-md-3">
+       <select class="form-control" name="subeducation_id" ng-model="educationinfo.subeducation_id"  ng-options="sub.type_id as sub.type_name for sub in subeducationlist" style="height:38px;" required>
+        <option value="">select sub-education</option>
+      </select>
+     <!--  <div>
+        <input type="text" class="form-control" ng-model="educationinfo.othercompany" placeholder="Other company">
+      </div>  -->
+      <div ng-messages="educationForm.subeducation_id.$err" ng-if="educationForm.subeducation_id.$invalid && !educationForm.subeducation_id.$pristine">
+      <div ng-message="required" style="color:red;font-size:14px;text-align: left;">Sub-education is required !</div>
+      </div> 
+    </div>
+    <div class="col-md-3">
+       <select class="form-control" name="institute_id" ng-model="educationinfo.institute_id"  ng-options="institute.institute_id as institute.institute_name for institute in instituteList" style="height:38px;" ng-required='!educationinfo.otherinstitute' >
+        <option value="">select institute</option>
+      </select> 
+      <div>
+        <input type="text" class="form-control" ng-model="educationinfo.otherinstitute" placeholder="Other institute" ng-required='!educationinfo.institute_id'>
+      </div> 
+      <div ng-messages="educationForm.institute_id.$err" ng-if="educationForm.institute_id.$invalid && !educationForm.institute_id.$pristine">
+      <div ng-message="required" style="color:red;font-size:14px;text-align: left;">Institute is required !</div>
+      </div> 
+    </div>
+    
+
+    <input type="hidden" ng-model="educationinfo.users_id">
+    <input type="hidden" ng-model="educationinfo.action">
+    
+   
+
+<div class="col-md-1">  
+ <button [disabled]="loading" class="btn btn-primary" ng-disabled="educationForm.$invalid">Submit</button>  
+</div>
+
+
+
+</form>
+
+</div>
+
+</div>
+<div class="row" style="margin-top: 20px; ">
+ <div class="col-md-1" > 
+
+ </div>
+
+</div>
+
+</section>
+<div class="container" align="center">
+
+  <table class="table table-bordered" style="width: 70%;">
+    <thead>
+      <tr>
+        <th>Education</th>
+        <th>Sub-Education</th>
+        <th>Institute</th>         
+        <th style="width: 13%;">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="educate in educationdatalist" ng-if="educationdatalist.length != ''">
+        <td>{{educate.type_name}}</td>         
+        <td>{{educate.sub_name}}</td>
+        <td>{{educate.institute_name}}</td>
+     <td style="cursor: pointer;"><a ng-click="editEducate(educate.id);">Edit</a> | <a ng-click="removeducate(educate.id);">Delete</a></td>
+   </tr>
+   <tr ng-if="!educationdatalist.length != ''">
+    <td colspan="5" align="center">No record available.</td>
+  </tr>
+
+</tbody>
+</table>
+</div>
+

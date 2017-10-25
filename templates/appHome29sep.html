@@ -1,0 +1,61 @@
+<!-- <div ng-include="'include/top.html'"></div> -->
+<!-- About Section -->
+<section class="container content-section text-center">
+    <h2> USER DASHBOARD</h2>
+    <div class="row">
+      
+     <div style="width:90%;margin-left:5%;" align="center">
+        <div class="box_space">
+         <div class="box_inner">
+           <div class="box1">
+            <div>You have <span class="big_text">5</span> New Followers!</div>
+            <div align="center"><img src="public/images/img1.png"/></div>
+        </div>
+    </div>
+</div>
+<div style="width:2%;float:left;"></div>
+<div class="box_space">
+ <div class="box_inner" ng-click="go_to_not_viewed_jobs('notviewed')">
+   <div class="box1" style="background-color:#5b9bd5;">
+    <div><span class="big_text">{{not_viewed_jobs_for_user_list.length}}</span> Unviewed Suggested Jobs.</div>
+    <div align="center" ><img src="public/images/image2.png"/></div>
+</div>
+</div>
+</div>
+
+
+</div>
+
+</div>
+
+
+<div class="row">
+   
+   <div style="width:90%;margin-left:5%;" align="center">
+    <div class="box_space">
+     <div class="box_inner"  ng-click="go_to_following('notviewed')" >
+       <div class="box1" style="background-color:#cc4da0;">
+        <div>You have <span class="big_text">{{not_viewed_company_for_user_list.length}}</span> Unviewed Suggested Employers!</div>
+        <div align="center"><img src="public/images/image3.png"/></div>
+    </div>
+</div>
+</div>
+<div style="width:2%;float:left;"></div>
+<div class="box_space">
+ <div class="box_inner">
+   <div class="box1" style="background-color:#ffc000;">
+    <div> <a href="#!/user/user-job"><span class="big_text">2</span> Active Watch List Jobs! </a>
+    </div>
+    <div align="center"><img src="public/images/image4.png"/></div>
+</div>
+</div>
+
+
+</div>
+
+</div>
+<div class="clear"></div>
+</div>
+<div class="bottom_space"></div>
+</section>
+<div ng-include="'include/bottom.html'"></div>

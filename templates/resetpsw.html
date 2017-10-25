@@ -1,0 +1,42 @@
+
+<div ng-include="'include/header_signup.html'"></div>
+<!-- Intro Header -->
+<header class="intro" id="terms">
+    <div class="intro-body" >
+    <div class="container">  
+    <h3 style="color: #fff;">Set Password</h3>          
+            <div class="row"  align="center">                
+                  <div  class="voca"  style="width: 50%;" >
+                    <form name="restForm"  novalidate> 
+ 
+                        <div class="form-group">
+                            <input type="password" class="form-control" name="newpassword" ng-model="datainfo.newpassword" placeholder="New password"  required>
+                        </div>      
+
+                        <div ng-messages="restForm.newpassword.$err" ng-if="restForm.newpassword.$invalid && !restForm.newpassword.$pristine">
+                              <div ng-message="required" style="color:red;font-size:14px;text-align: left;">New password is required !</div>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="password" class="form-control" name="confirmpassword" ng-model="datainfo.confirmpassword" placeholder="Confirm password"  required>
+                        </div>      
+
+                      <div ng-messages="restForm.confirmpassword.$err" ng-if="restForm.confirmpassword.$invalid && !restForm.confirmpassword.$pristine">
+                        <div ng-message="required" style="color:red;font-size:14px;text-align: left;">Confirm password is required !</div>
+                      </div> 
+
+                  <div align="right">  
+                  <button [disabled]="loading" class="btn btn-primary" ng-disabled="restForm.$invalid" ng-click="resetpsw()">Submit</button>  
+                  </div>
+           </form>
+
+     
+</div>
+
+</div>
+
+</div>
+</div>
+</header>
+
+<div ng-include="'include/footer.html'"></div>

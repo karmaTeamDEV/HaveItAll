@@ -1,0 +1,155 @@
+<style>
+td , th
+{
+	padding:0px 2px;
+}
+</style>
+<div style="background-color:#FFF;">
+<section class="container content-section text-center">
+<div class="row">
+
+<span> <a href="#!/user/profile//" style="color:##008cc9;float: right;font-size: 12px;">Back</a></span><br/>
+  <h3 align="center" style="margin:0px;">Manage Industry Experience </h3>
+    <div ng-if="userInfo_type == '1' " style="font-size: 16px;" align="center">
+    Target Talent - select titles or skills that you generally hire for.
+    </div>
+    <div ng-if="userInfo_type == '2' ">
+  <div align="center" style="font-size: 16px;">Increase your match quality - select titles or skills that reflect your experience.</div>
+  <div align="center" style="font-size: 12px;"><i>note – these don’t have to match actual titles held.</i>
+  </div>
+
+</div>
+  <div align="center"class="table-responsive">
+
+  <table class="table-bordered">
+    <thead>
+      <tr>
+      <th>Industry</th>
+        <th>Relevant Titles & Skills</th>
+        <!-- <th>Seniority</th> -->         
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="industry in industrydata" ng-if="industrydata.length != ''">
+        <td>{{industry.industry_name}}</td>
+        <td > <span ng-repeat="area_list in industry.area" ng-if="industry.area != '' ">
+          {{area_list.area_name}} |
+        </span>
+
+        <span  ng-if="industry.area == '' " class="blue" ng-click="editIndustry(industry.id);">
+           <i>add experience</i>
+        </span>
+         
+     </td>
+     <!-- <td><span ng-repeat="level in industry.level" ng-if="industry.level != '' ">
+          {{level.seniority_name}} |
+        </span></td> -->
+      
+     <td style="cursor: pointer;" width="15%"><a ng-click="editIndustry(industry.id);">Edit</a> | <a ng-click="removeindustry(industry.id);">Delete</a></td>
+   </tr>
+   <tr ng-if="!industrydata.length != ''">
+    <td colspan="3" align="center">No record available.</td>
+  </tr>
+
+</tbody>
+</table>
+</div>
+
+</div>
+  <div class="row" style="margin-top:10px;">
+  <div class="col-md-12">
+    <div  class="voca" >
+     <form name="industryForm" ng-submit="addIndustry(industryForm)" novalidate> 
+     <div class="col-md-1"></div>
+      <div class="col-md-3" ng-if="industryinfo.action == 'insert' ">
+       <select class="form-control" name="industry_id" ng-model="industryinfo.industry_id"  ng-options="industry.industry_id as industry.industry_name for industry in industrylist" style="height:38px;border: 1px solid #008cc9;" required  ng-change="getArea(industryinfo.industry_id)" >
+        <option value="">SELECT INDUSTRY</option>
+      </select> 
+ 
+      <div ng-messages="industryForm.industry_id.$err" ng-if="industryForm.industry_id.$invalid && !industryForm.industry_id.$pristine">
+      <div ng-message="required" style="color:red;font-size:14px;text-align: left;">Industry is required !</div>
+      </div> 
+    </div>
+
+    <div class="col-md-3" ng-if="industryinfo.action == 'update' ">
+
+      <select class="form-control" name="industry_id" ng-model="industryinfo.industry_id"  ng-options="industrydata.industry_id as industrydata.industry_name for industrydata in industrydatalist" style="height:38px;border: 1px solid #008cc9;" required  ng-change="getArea(industryinfo.industry_id)" >
+        <option value="">SELECT INDUSTRY</option>
+      </select> 
+ 
+      <div ng-messages="industryForm.industry_id.$err" ng-if="industryForm.industry_id.$invalid && !industryForm.industry_id.$pristine">
+      <div ng-message="required" style="color:red;font-size:14px;text-align: left;">Industry is required !</div>
+      </div> 
+    </div>
+    
+
+    <input type="hidden" ng-model="industryinfo.users_id">
+    <input type="hidden" ng-model="industryinfo.action">
+    <div class="col-md-5" style="text-align: left;">
+      
+         
+       <!--  <div style="height:100px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px;">-Select Relevant Titles-  
+          <div ng-repeat="area in areaList" ng-if="areaList != '' "> 
+
+             <input type="checkbox" value="{{area.area_id}}" ng-checked="selection.indexOf(area.area_id) > -1" ng-click="toggleSelection(area.area_id)"> {{area.area_name}}
+          </div>
+        </div> -->
+
+        <div class="panel panel-default">
+           <div class="panel-heading"> 
+           <input type="text" class="form-control" placeholder="Search Relevant Titles & Skills..." ng-model="searchCountries">
+           </div>           
+            <div class="panel-body">  
+                     
+                 <ul class="list-group" style="overflow-y: scroll;height:150px;">
+                  <li class="list-group-item text-left" ng-repeat="area in areaList  | filter:searchCountries" ng-if="areaList.length != ''"><span>{{area.area_name}}</span>           
+                    <span class="pull-right">
+                     <input type="checkbox" class="checkboxsize" ng-checked="selection.indexOf(area.area_id) > -1" value="{{area.area_id}}"  ng-click="toggleSelection(area.area_id)">
+                    </span>
+                  </li>
+                                 
+                </ul>               
+            </div>             
+           </div>
+<!-- 
+      <div ng-messages="industryForm.area.$err" ng-if="industryForm.area.$invalid && !industryForm.area.$pristine">
+      <div ng-message="required" style="color:red;font-size:14px;text-align: left;">Area is required !</div>
+      </div> -->
+
+     
+  </div>
+  <!-- <div class="col-md-3" style="text-align: left;">
+       
+        
+        <div style="height:200px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px;">-Select Your Seniority-  
+          <div ng-repeat="level in levelList" ng-if="levelList != '' "> 
+                        
+             <input type="checkbox" class="checkboxsize" style="height: 13px !important;" value="{{level.seniority_id}}" ng-checked="selectionLevel.indexOf(level.seniority_id) > -1" ng-click="toggleSelectionLevel(level.seniority_id)"> {{level.seniority_name}}
+          </div>
+        </div>
+
+        <div ng-messages="industryForm.level.$err" ng-if="industryForm.level.$invalid && !industryForm.level.$pristine">
+      <div ng-message="required" style="color:red;font-size:14px;text-align: left;">Level is required !</div>
+      </div>  
+    </div>
+    -->
+
+<div class="col-md-1">  
+ <button [disabled]="loading" class="btn btn-primary" ng-disabled="industryForm.$invalid">Submit</button>  
+</div>
+
+
+
+</form>
+
+</div>
+</div>
+</div>
+
+ <div class="bottom_space"></div>
+</section>
+ </div>        
+
+
+

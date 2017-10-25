@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title> HaveItAll </title>
+	<link rel="shortcut icon" type="images/jpg" href="public/images/icon.png"/>
+	<link href="public/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<link href="public/css/grayscale.css" rel="stylesheet" type="text/css">
+	<link href="public/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href="public/css/Lora.css" rel="stylesheet" type="text/css">	
+	<link href="public/css/Montserrat.css" rel="stylesheet" type="text/css">
+    <link href="public/css/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+	<link data-require="select2@3.4.5" data-semver="3.4.5" rel="stylesheet" href="public/css/select2.css" />
+	<link rel="stylesheet" href="public/css/angular-material.min.css">
+	<link rel="stylesheet" href="public/css/angular-datepicker.min.css">
+	<link rel="stylesheet" href="public/css/angucomplete.css">
+	<link rel="stylesheet" href="public/css/style.css">
+
+	<style type="text/css">
+		#mydiv {  
+			position:absolute;
+			top:0;
+			left:0;
+			width:100%;
+			height:100%;
+			z-index:1000;
+			background-color:grey;
+			opacity: .8;
+			display: none;
+		}
+
+		.ajax-loader {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			margin-left: -32px; /* -1 * image width / 2 */
+			margin-top: -32px;  /* -1 * image height / 2 */
+			display: block;     
+		}
+		.form-group.required .control-label:after { 
+		   content:"*";
+		   color:red;
+		}
+
+	</style>
+</head>
+<body ng-app="app">	
+	<!--  <div ng-view></div>	 -->
+	<ui-view></ui-view>
+	<div id="mydiv">
+		<img src="js/ajax-loader.gif" class="ajax-loader"/>
+	</div>
+</body>
+<!-- jQuery -->
+<script type="text/javascript" src="public/js/jquery.js"></script>
+<script data-require="select2@3.4.5" data-semver="3.4.5" src="public/js/select2.min.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script type="text/javascript" src="public/js/bootstrap.min.js"></script>
+<!-- Plugin JavaScript -->
+<script type="text/javascript" src="public/js/jquery.easing.min.js"></script> 
+<script type="text/javascript" src="public/js/bootbox.min.js"></script>
+<script type="text/javascript" src="public/js/tinymce.min.js"></script>
+<!-- library js -->
+<script type="text/javascript" src="lib/angular.js"></script>
+<script type="text/javascript" src="lib/angular-animate.js"></script>
+<script type="text/javascript" src="public/js/angular-aria.min.js"></script>
+<!-- <script src="lib/angular-route.js"></script> -->
+<script type="text/javascript" src="lib/angular-sanitize.js"></script>
+<script type="text/javascript" src="lib/angular-resource.js"></script>
+<script type="text/javascript" src="lib/angular-ui-router.min.js"></script>
+<!-- <script type="text/javascript" src="lib/ui-bootstrap-tpls-1.3.3.js"></script> -->
+<script type="text/javascript" src="lib/ui-bootstrap-tpls-0.14.3.js"></script>
+<script type="text/javascript" src="lib/ngStorage.min.js"></script>
+<script type="text/javascript" src="lib/angular-scroll.min.js"></script>
+<script type="text/javascript" src="lib/autocomplete.js"></script>
+<script type="text/javascript" src="public/js/angular-material.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script type="text/javascript" src="public/js/readmore.min.js"></script>
+<script data-semver="0.0.5" src="public/js/ui-select2.js"></script>
+<script type="text/javascript" src="public/js/tinymce.js"></script> 
+<script type="text/javascript" src="public/js/angular-datepicker.min.js"></script>
+<script type="text/javascript" src="public/js/angucomplete.js"></script> 
+<!-- <script type="text/javascript" src="public/js/ng-text-truncate.js"></script> -->
+<!-- <script type="text/javascript" src="public/js/angular-bootstrap-multiselect.min.js"></script> -->
+
+<script type="text/javascript" src="js/app.js"></script>
+ 
+<!-- controller start -->
+<script type="text/javascript" src="js/UserCtrl.js"></script>
+<script type="text/javascript" src="js/AdminCtrl.js"></script>
+<script type="text/javascript" src="js/AdminController.js"></script>
+<script type="text/javascript" src="js/HomeController.js"></script>
+<script type="text/javascript" src="js/LoginController.js"></script>
+<script type="text/javascript" src="js/AppHomeController.js"></script>
+<script type="text/javascript" src="js/ProfileController.js"></script>
+<script type="text/javascript" src="js/EditProfileController.js"></script>
+<script type="text/javascript" src="js/RegisterController.js"></script>
+<script type="text/javascript" src="js/ForgotpswController.js"></script>
+<script type="text/javascript" src="js/JobFitController.js"></script>
+<script type="text/javascript" src="js/EmployerFitController.js"></script>
+<script type="text/javascript" src="js/ManageUserCMSController.js"></script>
+<script type="text/javascript" src="js/ManagetypesCMSController.js"></script>
+<script type="text/javascript" src="js/TitleHeleController.js"></script>
+<script type="text/javascript" src="js/WorkedForController.js"></script>
+<script type="text/javascript" src="js/EmployersController.js"></script>
+<script type="text/javascript" src="js/AddUsersController.js"></script>
+<script type="text/javascript" src="js/EducationController.js"></script>
+<script type="text/javascript" src="js/PostJobController.js"></script>
+<script type="text/javascript" src="js/ManagecompanyCMSController.js"></script>
+<script type="text/javascript" src="js/ManageindustryCMSController.js"></script>
+<script type="text/javascript" src="js/categoryController.js"></script>
+<script type="text/javascript" src="js/industryController.js"></script>
+<script type="text/javascript" src="js/educateController.js"></script>
+<script type="text/javascript" src="js/testController.js"></script>
+<script type="text/javascript" src="js/galleryController.js"></script>
+<script type="text/javascript" src="js/changepswController.js"></script>
+<script type="text/javascript" src="js/FollowingcompanyController.js"></script>
+<script type="text/javascript" src="js/FollowuserController.js"></script>
+<script type="text/javascript" src="js/CompanyHomeController.js"></script>
+<script type="text/javascript" src="js/userJobMatchController.js"></script>
+<script type="text/javascript" src="js/postjobViewController.js"></script>
+<script type="text/javascript" src="js/messageController.js"></script>
+<script type="text/javascript" src="js/companyMessageController.js"></script>
+<script type="text/javascript" src="js/locationController.js"></script>
+<script type="text/javascript" src="js/resetPswController.js"></script>
+<script type="text/javascript" src="js/dashboardController.js"></script>
+<script type="text/javascript" src="js/usersAppliedJobController.js"></script>
+<!-- <script type="text/javascript" src="js/profileviewCompanyController.js"></script> -->
+<script type="text/javascript" src="js/jobDetailsController.js"></script>
+<script type="text/javascript" src="js/cultureFitController.js"></script>
+<script type="text/javascript" src="js/typeFitController.js"></script>
+<script type="text/javascript" src="js/PopupCont.js"></script>
+<script type="text/javascript" src="js/applieduserController.js"></script>
+<script type="text/javascript" src="js/viewuserController.js"></script>
+<!-- controller end -->
+
+<!-- services start -->
+<script src="services/services.js"></script>
+<script src="services/category.js"></script>
+<script src="services/admin.js"></script>	
+<script src="services/title_held.js"></script>	
+<!-- services end --> 
+
+
+</html>

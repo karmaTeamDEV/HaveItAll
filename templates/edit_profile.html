@@ -1,0 +1,242 @@
+    <!-- About Section -->
+    <section class="container content-section text-left">
+    	
+    	<div class="row">        
+    		 <table width="100%">
+           <tr>
+             <td align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td> 
+
+              <td align="center"><h3>
+                <span ng-if="Editprofile.users_type === '1' ">
+                    Manage User Profile
+                </span>
+                <span ng-if="Editprofile.users_type === '2' ">
+                    Manage Company Profile
+                </span>    
+              </h3></td>  
+             <td align="right"> </td>            
+           </tr>
+          </table>
+    	</div>
+    	<section class="container">
+    		
+    		<div class="row" style="margin-top:40px;">
+    			<div class="col-lg-3 col-md-3 col-ms-3 col-xs-3">
+
+    				<div align="center" ng-if="!Editprofile.users_profilepic" >				
+    					<img ng-src="public/images/no-image.png" class="profileImage" />				
+    				</div>
+
+    				<div align="center" ng-if="Editprofile.users_profilepic" >	
+                        <div ng-click="remove(Editprofile.users_profilepic);" style="position: absolute;font-size: 22px;padding: 0px 30px;right: 0;color: red;cursor: pointer;">X</div>			
+    					<img ng-src="upload/{{Editprofile.users_profilepic}}" class="profileImage">				
+    				</div>
+    				
+    			<form ng-submit="submit()" name="form" role="form">   
+    				<div align="center">
+    				<input type="file" id="msds" ng-model="form.image" accept="image/*" name="msds" onchange="angular.element(this).scope().updateProfilePhoto(this);" >
+
+    				<span ng-if="Editprofile.users_type === '1' ">	
+                        <button type="button" class="btn btn-primary" style="width:90%;" ng-click="selectFile()">Edit Photo</button>
+                    </span>
+                    <span ng-if="Editprofile.users_type === '2' ">  
+                        <button type="button" class="btn btn-primary" style="width:90%;" ng-click="selectFile()">Edit Logo</button>
+                    </span>
+    					<div style="color: red;">(You can only upload jpg, jpeg, png, extension only with image ratio 225X225  for proper view) </div>
+    					
+    				</div>
+                </form>
+
+
+
+    			</div>
+
+                <div ng-if="Editprofile.users_type == '1' ">
+    			<div class="col-lg-9 col-md-9 col-ms-9 col-xs-9">
+    				<div>
+    					<div align="center">				  
+    						<input class="shadowbox_botton"  style="width:48%;margin-right:0px;" type="text" placeholder="First Name" ng-model="Editprofile.users_firstname" />				  
+    					</div>
+    					<div align="center"> 
+    						<input class="shadowbox_botton" style="width:48.5%;margin-right:0px;" type="text"  placeholder="Last Name" ng-model="Editprofile.users_lastname" />
+    					</div>
+    				</div>
+    				<div style="margin-top:60px;">
+    					<div>
+
+    						<select ng-model="Editprofile.users_country" name="users_country" class="shadowbox_botton" style="width:32%;" ng-options="country.id as country.name for country in countries" ng-change="getCountryStates()" required>
+                                    	           <option value="">select country</option>
+    						</select>
+    					</div> 
+    					<div >
+    						<select ng-model="Editprofile.users_state" name="users_state" class="shadowbox_botton" style="width:32%;margin-left:.9%;" ng-options="state.id as state.name for state in states" ng-change="getStateCities()">					  
+    							<option value="">select state</option>
+    						</select>
+    					</div> 
+    					<div >
+    						<select ng-model="Editprofile.users_city" name="users_city" class="shadowbox_botton" style="width:31%;margin-left:.9%;" ng-options="city.id as city.name for city in cities" ng-change="getCities()">					  
+    							<option value="">select city</option>
+    						</select>
+    						<div class="clearfix"></div>			
+    					</div>
+    				</div>
+    				<div style="margin-top:30px;">
+    					<div style=" width:49%;float:left;">
+    						<input class="shadowbox_botton" type="text" placeholder="Current Employer" ng-model="Editprofile.users_current_employer" style="width:97%;">	
+    					</div> 
+    					<div style=" width:49%;float:left;">
+    						<input class="shadowbox_botton" type="text" placeholder="Current Title" ng-model="Editprofile.users_current_title" style="width:97%;" >
+    					</div> 
+    				</div>
+    			</div>
+                </div>
+
+                <div ng-if="Editprofile.users_type == '2' ">
+                <div class="col-lg-9 col-md-9 col-ms-9 col-xs-9">
+                    <div>
+                        <div align="center">                  
+                            <input class="shadowbox_botton"  style="width:48%;margin-right:0px;" type="text" placeholder="Company Name" ng-model="Editprofile.company_name" />     
+
+                              <input type="hidden" ng-model="Editprofile.users_companyid" />            
+                        </div>
+                        <div align="center"> 
+                            <input class="shadowbox_botton" style="width:47.5%;margin-right:0px;margin-left:1%;" type="text"  placeholder="General Email" ng-model="Editprofile.users_username"  pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" required ng-disabled="true"/>
+                        </div>
+                    </div>
+                    <div style="margin-top:60px;">
+                    
+                        <div>
+                            <div class="blue" style="width:32%;float:left;">
+                            Head Office City
+                        </div> 
+                        </div> 
+                        <div >
+                           <select ng-model="Editprofile.users_country" class="shadowbox_botton" style="width:32%;" ng-options="country.id as country.name for country in countries" ng-change="getCountryStates()">
+                              <option value="">select country</option>                  
+                            </select>
+                        </div> 
+                        <div >
+                            <select ng-model="Editprofile.users_state" class="shadowbox_botton" style="width:32%;margin-left:.9%;" ng-options="state.id as state.name for state in states" ng-change="getStateCities()">                      
+                                <option value="">select state</option>
+                            </select>
+                            <div class="clearfix"></div>            
+                        </div>
+                    </div>
+                    <div style="margin-top:30px;">
+                        <div>
+                            <div class="blue" style="width:32%;float:left;">
+                            Other Hiring City
+                        </div> 
+                        </div> 
+                        <div >
+                           <select ng-model="Editprofile.users_city" class="shadowbox_botton" style="width:31%;margin-left:.9%;" ng-options="city.id as city.name for city in cities" ng-change="getCities()">                    
+                                <option value="">select city</option>
+                            </select>
+                        </div> 
+                        <div>
+                            <div class="blue" style="width:32%;float:left;margin-left:.9%;">
+                            add
+                        </div> 
+                        </div> 
+
+                    </div>
+                </div>
+                    
+                </div>
+
+
+
+
+
+
+    		</div>
+    	</div>
+    	<div class="row" style="margin-top:20px;">
+    		<div class="col-lg-12 col-md-12 col-ms-12 col-xs-12">
+    			<table width="100%" style="margin-top:20px;">
+    				<tr> 
+    					<td width="25%">
+    						<div><img src="public/images/linkedin.jpg"/></div>
+    						<div><input type="text" ng-model="Editprofile.users_linkedin_link" Placeholder="Add Link" class="gap2" ></div>
+    					</td>
+    					<td width="25%">
+    						<div><img src="public/images/twitter.jpg"/></div>
+    						<div><input type="text" ng-model="Editprofile.users_twitter_link" Placeholder="Add Link" class="gap2" ></div>
+    					</td>
+    					<td width="25%">
+    						<div><img src="public/images/camera.jpg"/></div>
+    						<div><input type="text" ng-model="Editprofile.users_facebook_link" Placeholder="Add Link" class="gap2" ></div>
+    					</td>
+    					<td width="25%">
+    						<div><img src="public/images/www.jpg"/></div>
+    						<div><input type="text" ng-model="Editprofile.users_istagram_link" Placeholder="Add Link" class="gap2" ></div>
+    					</td>
+    				</tr>
+    			</table>        
+    		</div>
+    	</div>
+    </div>
+</section>
+
+<section class="container">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="shadowbox"  style="height:77px; padding: 0px !important;">
+				
+				<div>
+
+					<textarea placeholder="Bio" ng-model="Editprofile.users_bio" style="margin: 0px;width:100%;
+					border: none;height: 77px;">
+				</textarea>
+			</div>
+		</div>
+	</div>
+</div>
+<div align="center">
+	<div  class="bot2 text-center"  style="cursor: pointer;" ng-click="editProfile();" >Verify &amp; Save Info</div>
+</div>
+<div style="margin-top:30px;">       
+
+	<div class="bar"  ng-repeat="category in CategoryList" ng-if="Editprofile.users_type === '1' && category.category_code !=='jobs' ">
+		<div >
+
+			<div style="float:left;">{{category.category_name}}</div>
+			<div style="float:right; cursor:pointer;">
+				<a href="#!/user/{{category.category_url}}"><img src="public/images/arrow-icon.png"  width="20"/></a>
+			</div>
+
+		</div>
+       
+		<div class="clearfix"></div>
+	</div>
+
+
+    <div class="bar"  ng-repeat="category in CategoryList" ng-if="Editprofile.users_type === '2' && category.category_code !=='worked_for' ">
+        <div >
+
+           <div style="float:left;" ng-if="category.category_code == 'titles' ">
+            Title Offered
+            </div>
+             <div style="float:left;" ng-if="category.category_code !== 'titles' ">
+            {{category.category_name}}
+            </div>
+
+            <div style="float:right; cursor:pointer;">
+                <a href="#!/user/{{category.category_url}}"><img src="public/images/arrow-icon.png"  width="20"/></a>
+            </div>
+
+        </div>
+       
+        <div class="clearfix"></div>
+    </div>
+	
+	<div class="clearfix"></div>
+</div>
+
+<div style="margin-top:20px;">
+	<button type="button" class="btn btn-primary">Add Photos</button>
+	<button type="button" class="btn btn-default">Add a Visual Profile</button>
+</div>
+<div class="bottom_space"></div>
+</section> 
+

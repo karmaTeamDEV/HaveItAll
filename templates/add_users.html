@@ -1,0 +1,152 @@
+
+<!-- About Section -->
+<section class="container content-section text-left">
+
+  <div class="row">
+    <div class="col-lg-12" align="right">
+    <a href="#!/user/profile//" style="color:##008cc9" >Back</a>
+    </div>
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8">
+       <!--  
+        <div class="top_part1"> <div align="center"><img src="public/images/favourite.png"><span>Favourite</span></div>
+        </div>
+        <div class="top_part1">  <div align="center"><img src="public/images/message.png">Message<br/><hr/></div></div>
+        <div class="top_part1">  <div align="center"><img src="public/images/follow.png">Follow</div></div> -->
+      </div>
+      <div class="col-lg-2"></div>
+    </div>
+
+
+
+    <section class="container">
+    <h2 align="center">Add User</h2>
+      <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+          <form name="userregisterForm" ng-submit="registercompanyRuser(userregisterForm)" novalidate>
+            <table width="100%">
+
+             <tr>
+               <td> 
+               <input type="text" class="form-control" placeholder="First Name" style="width:100%;" name="first_name" placeholder="First Name" ng-model="userregisterInfo.first_name" required>
+
+                <input type="hidden" ng-model="userregisterInfo.users_companyid">  
+                <input type="hidden" ng-model="userregisterInfo.addUser"> 
+                <input type="hidden" ng-model="userregisterInfo.company_type">             
+
+               </td>
+             </tr>
+             <tr>
+               <td>
+                <div ng-messages="userregisterForm.first_name.$err" ng-if="userregisterForm.first_name.$invalid && !userregisterForm.first_name.$pristine">
+                  <div ng-message="required" style="color:red;font-size:14px;">First name is required !</div>     
+                </div>  
+              </td>
+            </tr>
+            <tr>
+
+             <td> <input type="text" class="form-control" name="last_name" placeholder="Last Name" ng-model="userregisterInfo.last_name" required style="width:100%"  ></td>
+           </tr>
+           <tr>
+             <tr>
+               <td>
+                 <div ng-messages="userregisterForm.last_name.$err" ng-if="userregisterForm.last_name.$invalid && !userregisterForm.last_name.$pristine">
+                  <div ng-message="required" style="color:red;font-size:14px;">Last name is required !</div>
+                </div> 
+              </td>
+            </tr>
+
+            <tr>
+             <td colspan="2"><input type="text" class="form-control" name="username" placeholder="Email" ng-model="userregisterInfo.username" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" required style="width:100%;color:#333;"></td>
+           </tr>
+           <tr>
+             <td>
+               <div ng-messages="userregisterForm.username.$err" ng-if="userregisterForm.username.$invalid && !userregisterForm.username.$pristine">
+                <div ng-message="pattern" style="color:red;font-size:14px;margin-top:5px;">Enter a valid email! </div>      
+              </div>  
+            </td>
+          </tr>
+         <!--  <tr>
+           <td colspan="2"><input type="password" class="form-control" name="password" ng-minlength="6"  ng-model="userregisterInfo.password" 
+             placeholder="Password (6 or more characters)" style="width:100%;color:#333;" required>
+           </td>
+         </tr>
+         <tr>           
+           <td>
+            <div ng-messages="userregisterForm.password.$err" ng-if="userregisterForm.password.$invalid && !userregisterForm.password.$pristine">                  
+              <div ng-message="required" style="color:red;font-size:14px;">Password is too short!</div>
+            </div>
+
+          </td>
+        </tr> -->
+         <!-- <tr>           
+           <td>
+           <div >
+             <select class="form-control" name="company_type" ng-model="userregisterInfo.company_type" required style="width: 100%;">
+               <option value="">select user type</option>
+               <option value="1">HR</option>
+               <option value="2">NON-HR</option>
+             </select>
+           </div>
+
+          </td>
+        </tr> -->
+         <tr>           
+           <td>
+            <div ng-messages="userregisterForm.company_type.$err" ng-if="userregisterForm.company_type.$invalid && !userregisterForm.company_type.$pristine">            
+              <div ng-message="required" style="color:red;font-size:14px;">Company type is required !</div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+         <td colspan="2">
+          <div class="text-center" style="padding:20px 0px; ">
+            <button [disabled]="loading" class="btn btn-primary" ng-disabled="userregisterForm.$invalid" style="width: 100%;">Add User</button>  
+          </div>
+        </td>
+      </tr>
+
+    </table>
+  </form>
+
+</span>
+</div>
+</div>
+
+</section> 
+
+<section class="container content-section text-left">
+
+  <div class="row">
+   <div class="col-lg-3"></div>
+   <div class="col-lg-6">
+     <div>
+     <div class="alert alert-success" ng-show="displaySuccessMsg">
+      <strong>Success!</strong> {{updatestatusmsg}}
+     </div>
+     <div class="form-group" >            
+        <input type="text" class="form-control" placeholder="Search Users" ng-model="searchUsers" required />
+      </div>
+    </div>
+
+      <table width="100%">
+         <tr class="border_grey" ng-repeat="user in usersList | filter: searchUsers">
+           <td><span style="text-transform: uppercase;">{{user.users_firstname}} {{user.users_lastname}} </span>({{user.users_username}})</td>
+           <td>{{user.company_type === '1' ? 'HR':''}}</td>
+           <td align="right">
+             <div class="checkbox disabled">
+              <label>
+              <input type="checkbox" value={{user.users_id}} ng-click="toggleUsersStatus(user.users_id,user.users_status,user.users_firstname,user.users_lastname)" class="checkboxsize" ng-checked="user.users_status == 0">
+              </label>
+            </div>
+          </td>
+          <td align="right">{{user.users_status === '0' ? 'Active':'InActive'}}</td>
+        </tr>
+      </table>
+    </div> 
+  </div>
+</div>
+<div class="bottom_space"></div>
+</section>
+

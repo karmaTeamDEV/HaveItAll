@@ -1,0 +1,60 @@
+app.controller('UserCtrl', function ($scope,$state,$localStorage,fetchrecordsCMSService) {
+    if(!$localStorage.ses_userdata){
+        $state.go("login"); 
+    }
+    
+    $scope.logout = function(){
+        $localStorage.$reset();            
+        $state.go("login", {}, { reload: true });
+    };
+    
+        $scope.userInfo_email = {};
+        $scope.userInfo_type = {};
+    if ($localStorage.ses_userdata !== '') {
+        //alert($localStorage.ses_userdata.users_profilepic);
+        $scope.userInfo_email = $localStorage.ses_userdata.users_username;
+        $scope.userInfo_type = $localStorage.ses_userdata.users_type;
+        $scope.userInfo_companytype = $localStorage.ses_userdata.company_type;
+        $scope.userInfo_usersid = $localStorage.ses_userdata.users_id;
+
+        var errorDetails = function (serviceResp) {
+            $scope.Error = "Something went wrong ??";
+        };
+       //alert(JSON.stringify($localStorage.ses_userdata.users_companyid));   
+        $scope.companyInfo ={};
+        var fetch_company = function (data) {            
+            $scope.companyInfo = data[0]; 
+            
+            if($scope.companyInfo.users_profilepic != '' && $scope.companyInfo.users_companyid != '0'){
+               //$scope.companyInfo.users_profilepic = 'upload/thumb/'+$scope.companyInfo.users_profilepic;
+               $scope.companyInfo.users_profilepic = 'upload/'+$scope.companyInfo.users_profilepic;
+            }else if($scope.companyInfo.users_profilepic == '' && $scope.companyInfo.users_companyid != '0'){
+                $scope.companyInfo.users_profilepic = 'public/images/header-no-image.jpg';
+            } 
+            //alert(JSON.stringify($scope.companyInfo.users_profilepic));                                 
+        };         
+
+        fetchrecordsCMSService.fetchrecordsCMS('','getCompanyprofilepic',$localStorage.ses_userdata.users_companyid).then(fetch_company,errorDetails);
+    }
+
+        var fetch_locationlist = function (data) {        
+            $localStorage.optionlist = data.map(function(item){         
+              return {
+                text: item.locations_name,            
+                id: item.locations_id
+              };
+            }); 
+             //alert(JSON.stringify($localStorage.optionlist));
+            $state.go("user.postJob", {}, {reload: true});          
+         }; 
+
+           
+          $scope.manage_location = function(){         
+             $localStorage.optionlist = [];
+             fetchrecordsCMSService.fetchrecordsCMS('','getlocationsList','').then(fetch_locationlist, errorDetails);           
+          } 
+
+
+
+
+});

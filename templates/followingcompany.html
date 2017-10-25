@@ -1,0 +1,385 @@
+
+<style> 
+  .backsection
+  {
+    margin-bottom:10px;background-color:#ffffff;border:none;padding-bottom:10px;padding-top:10px;
+  }
+  
+  /*----------------------
+COMPANY Card Styles 
+----------------------*/
+.panel.panel--styled {
+    background: #FFF;
+	/*background: #F4F2F3;*/
+}
+
+.panelTop {
+    padding: 3px;
+}
+
+.panelBottom {
+    /*border-top: 1px solid #e7e7e7;*/
+    padding-top: 20px;
+}
+.panel-body
+{
+	padding:5px;
+}
+.btn-add-to-cart {
+    background: #FD5A5B;
+    color: #fff;
+}
+.btn.btn-add-to-cart.focus, .btn.btn-add-to-cart:focus, .btn.btn-add-to-cart:hover  {
+	color: #fff;   
+    background: #FD7172;
+	outline: none;
+}
+.btn-add-to-cart:active {
+	background: #F9494B;
+	outline: none;
+}
+
+
+span.itemPrice {
+    font-size: 24px;
+    color: #FA5B58;
+}
+
+td
+{
+	padding:0px 2px;
+	text-align:center;
+}
+.line
+{
+	width:100%;padding-top:10px;
+}
+.btn 
+{
+	margin-top:5px;
+	padding:6px 9px;
+}
+</style>
+<!-- About Section -->
+<div style="background-color:#edebeb;"> 
+  <section class="container content-section text-left">
+    <div class="row"> </div>
+  </section>
+
+
+<section class="container">
+  <div class="row backsection">
+  
+  
+<div class="col-lg-12">
+  <!--<h2>Dynamic Tabs</h2>-->
+  <ul class="nav nav-tabs">
+    <li id="following_tab" ><a data-toggle="tab" data-target="#following">Following <span  ng-if="show_tab == 'following'"  ng-init="click_on_tab('following_tab', 'following')"></span> </a></li>
+    
+    <li id="following_me_tab" ><a data-toggle="tab" data-target="#following_me">Following Me <span  ng-if="show_tab == 'following_me'"  ng-init="click_on_tab('following_me_tab', 'following_me')"></span></a></li>
+   
+    <li id="notviewed_tab"  ><a data-toggle="tab" data-target="#notviewed"> New  <span  ng-if="show_tab == 'notviewed'"  ng-init="click_on_tab('notviewed_tab', 'notviewed')"></span> </a></li>
+    <li id="viewed_tab"    ><a data-toggle="tab" data-target="#viewed"> Viewed </a></li>
+    
+  </ul>
+
+  <div class="tab-content">
+  	<br />
+
+    <div id="following" class="tab-pane fade ">
+    <div ng-if="user_following_company_list.length < 1">
+      <p style="margin:0px;">Sorry - we’ll keep looking. 
+Your desired criteria does not pop up as often as others, so we don't currently have any new matches for you. We will keep you posted!</p>
+<p style="margin:0px;">Hint - <a href="#!/user/profile//">Customize your profile! Add employment locations and industry experience to increase matches.</a></p>
+    </div> 
+     
+        <div class="row">
+        
+                    <div id="following_company_id{{company.id}}" class="col-md-6" ng-repeat="company in user_following_company_list" >				
+                        <div class="panel panel-default  panel--styled">
+                            <div class="panel-body">
+                                <div class="col-md-12 panelTop" >	
+                                    <div class="col-md-4">	
+                                        <img class="img-responsive" src="upload/{{company.users_profilepic}}" alt="" style="width:120px;"/>
+                                    </div>
+                                    <div class="col-md-8" style="height: 130px;">	
+                                        <h3>{{company.company_name}}</h3>
+                                    <div  class="blue">
+                                    <span style="font-weight: bold;">{{company.localationlist[0].countryname}} </span>
+                                      <span ng-repeat="state in company.localationlist[0].state | filter: query | limitTo:1" style="color: #666;font-size:14px;">({{state.statename}}), 
+                                         <span ng-repeat="city in state.city | filter: query | limitTo:2" style="font-weight: normal;" >{{city.cityname}} | </span><span class="blue" ng-click="view_a_company_for_user( company.id, company.company_user_id,'following' );"><i>more...</i></span>
+                                      </span>
+                                    </div>
+                                        
+                                </div>
+                                
+                                <div class="col-md-12" style="min-height:180px;">	
+                                 <!--  <p hm-read-more
+                                    hm-text=" {{company.users_bio}} " 
+                                    hm-limit="250" 
+                                    hm-more-text="read more" 
+                                    hm-less-text="read less"
+                                    hm-dots-class="dots"
+                                    hm-link-class="links">
+                                  </p> -->
+                                   <div>{{company.users_bio | limitTo:250}}</div><span ng-if="company.users_bio != '' " style="color: #008cc9" ng-click="view_a_company_for_user( company.id, company.company_user_id,'following' );">more</span>
+                                </div>
+                                                            
+                                <div class="panelBottom">
+                                <table class="line">
+                                <tr>
+                                <td><button type="button" class="btn btn-success"  ng-click="view_a_company_for_user( company.id, company.company_user_id,'following' );">
+                                       <i class="fa fa-book"></i> Learn More </button>	
+                                       </td>
+                                       <td><button type="button" class="btn btn-primary " ng-click="delete_following_company_for_user( company.id )">
+                                <i class="fa fa-user"> </i> Unfollow
+                              </button></td>
+                                </tr>
+                                </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
+                </div>
+                
+                
+              
+            </div>
+      
+    </div>
+    <div id="following_me" class="tab-pane fade">
+    <div ng-if="company_following_user_list.length < 1">
+       <p style="margin:0px;">Follow companies! Gain exposure to their hiring team and give priority to their posts</p>
+<p style="margin:0px;">Hint - <a href="#!/user/profile//">Customize your profile to make a stronger first impression!</a></p>
+    </div>  
+        <div class="row">
+        
+                    <div  class="col-md-6" ng-repeat="company in company_following_user_list" >				
+                        <div class="panel panel-default  panel--styled">
+                            <div class="panel-body">
+                                <div class="col-md-12 panelTop" >	
+                                    <div class="col-md-4">	
+                                        <img class="img-responsive" src="upload/{{company.users_profilepic}}" alt="" style="width:120px;"/>
+                                    </div>
+                                    <div class="col-md-8" style="height: 130px;">	
+                                        <h3>{{company.company_name}}</h3>
+                                        <div  class="blue">
+                                        <span style="font-weight: bold;">{{company.localationlist[0].countryname}} </span>
+                                          <span ng-repeat="state in company.localationlist[0].state | filter: query | limitTo:1" style="color: #666;font-size:14px;">({{state.statename}}), 
+                                             <span ng-repeat="city in state.city | filter: query | limitTo:2" style="font-weight: normal;" >{{city.cityname}} | </span><span class="blue" ng-click="view_a_company_for_user( company.id, company.company_user_id,'following' );"><i>more...</i></span>
+                                          </span>
+                                    </div>
+                                        
+                                </div>
+                                
+                                <div class="col-md-12" style="min-height:180px;">	
+                                 <!--  <p hm-read-more
+                                    hm-text=" {{company.users_bio}} " 
+                                    hm-limit="250" 
+                                    hm-more-text="read more" 
+                                    hm-less-text="read less"
+                                    hm-dots-class="dots"
+                                    hm-link-class="links">
+                                  </p> -->
+
+                                  <div>{{company.users_bio | limitTo:250}}</div><span ng-if="company.users_bio != '' " style="color: #008cc9" ng-click="view_a_company_for_user( company.id, company.company_user_id,'followingme' );">more</span>
+                                </div>
+                                                            
+                                <div class="panelBottom">
+                                <table class="line">
+                                <tr>
+                                <td><button type="button" class="btn btn-success"  ng-click="view_a_company_for_user( company.id, company.company_user_id,'following_me' );">
+                                       <i class="fa fa-book"></i> Learn More </button></td>
+                                       <td>
+                                       <!-- <button type="button" class="btn btn-primary " ng-click="follow_a_company_for_user( company.id )">
+                                        <i class="fa fa-user"> </i> Follow </button> -->
+                                        </td> 
+                                </tr>
+                                </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
+                </div>
+                
+                
+              
+            </div>
+      
+    </div>
+    
+    
+    
+    <div id="notviewed" class="tab-pane fade">
+   
+    <div ng-if="not_viewed_company_for_user_list.length < 1 ">
+      <p style="margin:0px;">Once you follow a company they can follow you back</p>
+<p style="margin:0px;">Hint - <a href="#!/user/profile//">Customize your profile to make a stronger first impression! </a></p>
+    </div>  
+    
+        <div class="row">
+        
+                    <div id="notviewed{{company.company_id}}" class="col-md-6" ng-repeat="company in not_viewed_company_for_user_list" >				
+                        <div class="panel panel-default  panel--styled">
+                            <div class="panel-body">
+                                <div class="col-md-12 panelTop" >	
+                                    <div class="col-md-4">	
+                                        <img class="img-responsive" src="upload/{{company.users_profilepic}}" alt="" style="width:120px;"/>
+                                    </div>
+                                    <div class="col-md-8" style="height: 130px;">	
+                                        <h3>{{company.company_name}}</h3>
+                                         <div  class="blue">
+                                        <span style="font-weight: bold;">{{company.localationlist[0].countryname}} </span>
+                                          <span ng-repeat="state in company.localationlist[0].state | filter: query | limitTo:1" style="color: #666;font-size:14px;">({{state.statename}}), 
+                                             <span ng-repeat="city in state.city | filter: query | limitTo:2" style="font-weight: normal;" >{{city.cityname}} | </span><span class="blue" ng-click="view_a_company_for_user( company.company_id, company.company_user_id,'suggested' );"><i>more...</i></span>
+                                          </span>
+                                    </div>
+                                        
+                                            <!--<div ng-repeat="location1279 in company.location_list" class="blue" ng-if="company.location_list.length != '0' ">
+                                                <span style="font-weight: bold;">{{location1279.countryname}}: </span>
+                                                <span ng-repeat="state in location.state | filter: query | limitTo:1" style="color: #666;font-size:14px;">({{state.statename}}),
+                                                <span ng-repeat="city in state.city | filter: query | limitTo:4" style="font-weight: normal;">{{city.cityname}} | </span>
+                                                <span class="blue" ><i>more...</i></span>
+                                                </span>
+                                            </div>-->
+                                        
+                                </div>
+                               <!-- <div hm-read-more hm-text="{{company.full_com_desc | filter: query | limitTo:850}}"></div>-->
+                                <div class="col-md-12" style="min-height:180px;">	
+                                  <!-- <p hm-read-more
+                                    hm-text=" {{company.users_bio}} " 
+                                    hm-limit="250" 
+                                    hm-more-text="read more" 
+                                    hm-less-text="read less"
+                                    hm-dots-class="dots"
+                                    hm-link-class="links">
+                                  </p> -->
+                                  <div>{{company.users_bio | limitTo:250}}</div><span ng-if="company.users_bio != '' " style="color: #008cc9" ng-click="view_a_company_for_user( company.company_id, company.company_user_id,'suggested' );">more</span>
+                                </div>
+                                                            
+                                <div class="panelBottom">
+                                    
+                              <table class="line">
+                                    <tr>
+                                    <td><button type="button" class="btn btn-success"  ng-click="view_a_company_for_user( company.company_id, company.company_user_id,'notviewed' );">
+                                       <i class="fa fa-book"></i> Learn More </button>	</td>
+                                       <td><button type="button" class="btn btn-primary " ng-click="follow_a_company_for_user( company.company_id )">
+                                        <i class="fa fa-user"> </i> Follow </button></td>
+                                    </tr>
+                                    </table>
+                                    
+                              
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
+                </div>
+                
+                
+              
+            </div>
+            
+   </div> 
+    
+    <div id="viewed" class="tab-pane fade">
+    <div ng-if="viewed_company_for_user_list.length < 1 ">
+      <p>Nothing Viewed!</p>
+
+    </div>  
+        <div class="row">
+        
+                    <div id="viewed{{company.company_id}}" class="col-md-6" ng-repeat="company in viewed_company_for_user_list" >				 
+                        <div class="panel panel-default  panel--styled">
+                            <div class="panel-body">
+                                <div class="col-md-12 panelTop" >	
+                                    <div class="col-md-4">	
+                                        <img class="img-responsive" src="upload/{{company.users_profilepic}}" alt="" style="width:120px;"/>
+                                    </div>
+                                    <div class="col-md-8" style="height: 130px;">	
+                                        <h3>{{company.company_name}}</h3>
+                                         <div  class="blue">
+                                        <span style="font-weight: bold;">{{company.localationlist[0].countryname}} </span>
+                                          <span ng-repeat="state in company.localationlist[0].state | filter: query | limitTo:1" style="color: #666;font-size:14px;">({{state.statename}}), 
+                                             <span ng-repeat="city in state.city | filter: query | limitTo:2" style="font-weight: normal;" >{{city.cityname}} | </span><span class="blue" ng-click="view_a_company_for_user( company.company_id, company.company_user_id,'viewed' );"><i>more...</i></span>
+                                          </span>
+                                    </div>
+                                        
+                                </div>
+                                
+                                <div class="col-md-12" style="height:180px;">	
+                                  <!-- <p hm-read-more
+                                    hm-text=" {{company.users_bio}} " 
+                                    hm-limit="300" 
+                                    hm-more-text="read more" 
+                                    hm-less-text="read less"
+                                    hm-dots-class="dots"
+                                    hm-link-class="links">
+                                  </p> -->
+                                  <div>{{company.users_bio | limitTo:250}}</div><span ng-if="company.users_bio != '' " style="color: #008cc9" ng-click="view_a_company_for_user( company.company_id, company.company_user_id,'viewed' );">more</span>
+                                </div>
+                                                            
+                                <div class="panelBottom">
+                                 <table class="line">
+                                <tr>
+                                <td><button type="button" class="btn btn-success"  ng-click="view_a_company_for_user( company.company_id, company.company_user_id,'viewed' );">
+                                       <i class="fa fa-book"></i> Learn More </button>	</td>
+                                       <td>  <button type="button" class="btn btn-primary " ng-click="follow_a_company_for_user( company.company_id )">
+                                        <i class="fa fa-user"> </i> Follow </button></td>
+                                </tr>
+                                </table>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
+                </div>
+                
+                
+              
+            </div>
+      
+      
+      
+    </div>
+
+  </div>
+</div> 
+  
+  
+ </div>
+</section>
+
+
+
+<div class="bottom_space"></div>
+
+</div>
+
+<script>
+
+$(document).ready(function(){
+    activaTab('notviewed_tab');
+});
+
+function activaTab(tab){
+    $('.nav-tabs a[href="#' + tab + '"]').tab('show');
+};
+
+</script>

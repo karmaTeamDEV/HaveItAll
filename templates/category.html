@@ -1,0 +1,134 @@
+
+<div style="background-color:#FFF;">
+
+<section class="container content-section text-center">
+<span> <a href="#!/user/profile//" style="color:##008cc9;float: right;font-size: 12px;">Back</a></span> 
+<br/>
+  <h3 align="center">Manage Employment History </h3>
+
+  <div class="row">
+   <!-- <pre>{{singletitle.titles|json}}</pre> -->
+    <div  class="voca" >
+     <form name="titleForm" ng-submit="addDesignation(titleForm)" novalidate> 
+      <div class="col-md-3">
+      <!--  <select class="form-control" name="company_id" ng-model="singletitle.company_id"  ng-options="company.company_id as company.company_name for company in companylist" style="height:38px;border: 1px solid #008cc9;" ng-required='!singletitle.othercompany'  ng-disabled="singletitle.othercompany" ng-value="true">
+        <option value="">SELECT COMPANY</option>
+      </select> --> 
+
+      <autocomplete attr-inputclass="form-control" ng-model="singletitle.company_id" attr-placeholder="Select company" click-activation="true" data="companylist" on-type="searchFromMaster" style="text-align: left;">              
+      </autocomplete>
+
+
+      <div>
+        <input type="text" class="form-control" name="othercompany" ng-model="singletitle.othercompany" placeholder="Other company" ng-required='!singletitle.company_id'  ng-disabled="singletitle.company_id" ng-value="true">
+      </div>      
+
+      <div ng-messages="titleForm.company_id.$err" ng-if="titleForm.company_id.$invalid && !titleForm.company_id.$pristine">
+      <div ng-message="required" style="color:red;font-size:14px;text-align: left;">Company is required !</div>
+      </div>
+
+    </div>
+
+    <input type="hidden" ng-model="singletitle.users_id">
+    <input type="hidden" ng-model="singletitle.action">
+
+    <div class="col-md-3" style="text-align: left;">
+        <!-- <multiselect ng-model="singletitle.titles" placeholder="Select title" name="titles" options="titlesList" selection-limit="3" id-prop="type_id" display-prop="type_name" show-search="true"   show-unselect-all="true"  >
+        </multiselect> -->
+         
+        <select-multiple ng-model="singletitle.titles" transform-to-model="transformToModel" transform-to-view="transformToView" style="width: 100%;" placeholder="Select title" ng-required='!singletitle.other_title_text'>
+        </select-multiple>
+        
+     <div style="margin-top:5px;">
+      <input type="text" class="form-control" name="other_title_text" ng-model="singletitle.other_title_text" placeholder="Other title" ng-required='!singletitle.titles'>
+     </div>
+
+        <!-- show-select-all="true" -->
+      <!-- <div   isteven-multi-select
+      max-labels="1" 
+      input-model="titlesList" 
+      output-model="singletitle.titles" 
+      button-label="type_name" 
+      item-label="type_name" 
+      tick-property="ticked">          
+      </div> -->
+    
+     <!-- <div ng-messages="titleForm.titles.$err" ng-if="titleForm.titles.$invalid && !titleForm.titles.$pristine">
+    <div ng-message="required" style="color:red;font-size:14px;text-align: left;">Title is required !</div>
+      </div> -->
+   
+  </div>
+  
+
+  <div class="col-md-2">
+    <select ng-model="singletitle.start_year" name="start_year" class="form-control" ng-options="yearFrom  as yearFrom for yearFrom in yearlistFrom" style="height:38px;border: 1px solid #008cc9;" ng-change="resetToYears(singletitle.start_year);" required>
+    <option value="">SELECT YEAR</option>
+    </select>
+    <div ng-messages="titleForm.start_year.$err" ng-if="titleForm.start_year.$invalid && !titleForm.start_year.$pristine">
+      <div ng-message="required" style="color:red;font-size:14px;text-align: left;">Year is required !</div>
+      </div> 
+  </div>
+  <div class="col-md-2">
+   <select ng-model="singletitle.end_year" name="end_year"  class="form-control" ng-options="yearTo as yearTo for yearTo in yearlistTo" style="height:38px;border: 1px solid #008cc9;" required>
+    <option value="">SELECT YEAR</option>
+  </select>
+  <div ng-messages="titleForm.end_year.$err" ng-if="titleForm.end_year.$invalid && !titleForm.end_year.$pristine">
+      <div ng-message="required" style="color:red;font-size:14px;text-align: left;">Year is required !</div>
+      </div>
+</div>
+
+<div class="col-md-1">  
+ <button [disabled]="loading" class="btn btn-primary" ng-disabled="titleForm.$invalid">Submit</button>  
+</div>
+
+
+
+</form>
+
+</div>
+
+</div>
+<div class="row" style="margin-top: 20px; ">
+ <div class="col-md-1" > 
+
+ </div>
+
+</div>
+
+</section>
+<div class="container" align="center">
+
+  <table class="table-bordered" style="width: 70%;">
+    <thead>
+      <tr>
+        <th>Company</th>
+        <th>Titles</th>
+        <th>From</th>
+        <th>To</th>
+        <th style="width: 13%;">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="titlelebel in titleData" ng-if="titleData.length != ''">
+        <td>{{titlelebel.company_name}}</td>
+        <td > <span ng-repeat="title_list in titlelebel.titles" ng-if="titlelebel.titles != '' && titlelebel.other_title_text == NULL ">
+          {{title_list.type_name}} |
+        </span>
+        <span ng-if="titlelebel.other_title_text != '' ">
+         {{titlelebel.other_title_text}}
+       </span>
+     </td>
+     <td>{{titlelebel.start_year}}</td>
+     <td>{{titlelebel.end_year}}</td>
+     <td style="cursor: pointer;"><a ng-click="editTitle(titlelebel.id);">Edit</a> | <a ng-click="removetitle(titlelebel.id);">Delete</a></td>
+   </tr>
+   <tr ng-if="!titleData.length != ''">
+    <td colspan="5" align="center">No record available.</td>
+  </tr>
+
+</tbody>
+</table>
+</div>
+ <div class="bottom_space"></div>
+
+</div>

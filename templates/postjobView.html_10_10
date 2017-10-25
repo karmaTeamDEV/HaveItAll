@@ -1,0 +1,905 @@
+<style>
+  .backsection
+  {
+    margin-bottom:10px;background-color:#ffffff;border:none;padding-bottom:10px;padding-top:10px;
+  }
+  p{font-size: 12px !important; color: #666 !important;}
+ td
+ {
+padding:3px 0px;  
+ }
+</style>
+<!-- About Section -->
+<div style="background-color:#fff;">   
+
+  <section class=" container content-section text-left">
+<h2 align="center">{{jobtitle}}</h2>
+    <div class="row">      
+
+      <div style="cursor: pointer;">
+<div class="col-lg-12">      
+
+        <!-- Tab 1 Start/////////////////////////////////////////// -->
+        <div ng-show="listTab">
+          <ul class="nav nav-tabs">
+             <li ng-click="activeList(2)" id="published_tab" class="active"><a data-toggle="tab" data-target="#published"> Published  </a></li>
+            <li id="notviewed_tab" ng-click="activeList(1)"><a data-toggle="tab" data-target="#notviewed"> Pending  </a></li>
+           
+            <li ng-click="activeList(3)"><a data-toggle="tab" data-target="#incompleted"> Incompleted   </a></li>
+            <li id="viewed_tab" ng-click="activeList(4)"><a data-toggle="tab" data-target="#viewed"> Expired </a></li>
+             <li><a href="#!/user/postJob"> New Post </a></li>
+          </ul>
+
+          <div class="tab-content" style="padding:0px;"> 
+            <div id="notviewed">
+              <div ng-show="panelnav">
+               <div class="profile_details">
+                <div style="width:100%;">
+
+                  <div align="center" ng-if="jobpostlistpublish.length == '0' ">No Record Found</div>
+
+                  <!-- Box start -->
+
+                  <div class="box8_left" ng-repeat="publishlist in jobpostlistpublish" ng-if="jobpostlistpublish.length > '0' ">
+                    <div class="box8_back">
+                     <div style="width: 100%;">
+                       <table width="100%">
+                         <tr>
+                           <td width="50%">
+                             <div class="blue" align="left" style="margin-bottom: 5px;">{{publishlist.title_name}} <!-- ({{joblist.jobpost_jobtype}}) --></div>
+                           </td>
+                           <td width="50%">
+                             <div style="margin-bottom: 5px;" align="right">
+                               <!-- <span ng-repeat="seniority in joblist.seniority">{{seniority.seniority_name}} | </span> -->
+                               <span ng-if="publishlist.jobpost_tilldata != '0000-00-00' ">Date posted : {{publishlist.jobpost_tilldata | date : 'MM/dd/yyyy'}}</span>
+                             </div>
+                           </td>
+                         </tr>
+                       </table>
+                     </div>
+                     <table cellspacing="2" width="100%">                 
+                       <tr>
+                        <td width="100"  valign="top"><span style="margin-right:5px;"><img src="public/images/experience.png" /></span>
+                         <!--  {{joblist.jobpost_exp_minimum}}-{{joblist.jobpost_exp_maximum}} Years --></td>
+                         <td width="20">&nbsp;</td>
+                         <td><span style="margin-right:5px;"><img src="public/images/location.png" /></span>
+                          <!-- <span ng-repeat="loc in joblist.location"> {{loc.locations_name}} ,</span> -->
+                          <span class="blue">{{publishlist.countryname}},{{publishlist.statename}},{{publishlist.cityname}}</span>
+                        </td>
+                      </tr>
+                        <!-- <tr>
+                          <td valign="top">Location</td>
+                          <td width="20" valign="top">:</td>
+                          <td><span class="blue">{{joblist.countryname}},{{joblist.statename}},{{joblist.cityname}}</span></td>
+                        </tr> -->
+                        <tr>
+                          <td valign="top" width="100">Relevant Titles</td>
+                          <td width="20" valign="top">:</td>
+                          <td>
+                            <span ng-repeat="area in publishlist.arealist | filter: query | limitTo:1">{{area.industry_name | limitTo:50}}</span>
+                            <span ng-if="publishlist.arealist.length > 1" ng-click="view_job(publishlist.jobpost_id);">.....</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td valign="top" width="100">Seniority</td>
+                          <td width="20" valign="top">:</td>
+                          <td>
+                            <span ng-repeat="seniority in publishlist.seniority | filter: query | limitTo:3">{{seniority.seniority_name | limitTo:20}} | </span>
+                            <span ng-if="publishlist.seniority.length > 3" ng-click="view_job(publishlist.jobpost_id);">.....</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td valign="top" width="120">Job Fit<!--  & Cultural Fit --></td>
+                          <td width="20" valign="top">:</td>
+                          <td><span ng-repeat="job in publishlist.jobfit | filter: query | limitTo:2">{{job.type_name | limitTo:15}} | </span>
+                          <span ng-if="publishlist.jobfit.length > 2" ng-click="view_job(publishlist.jobpost_id);">.....</span>
+                           <!--  <span ng-repeat="employer in joblist.employerfit">{{employer.type_name}} |</span> --></td>
+                         </tr>
+                        <!--  <tr>
+                          <td valign="top" width="120" >Job Description</td>
+                          <td width="20" valign="top">:</td>
+                          <td valign="top">
+                            <div hm-read-more hm-text="{{joblist.jobpost_description | filter: query | limitTo:100}}  ...."></div>
+                            <span ng-if="joblist.jobpost_description.length > 100">...</span>
+                             
+                          </td>
+                          </tr> -->
+                          <tr>
+                            <td valign="top" width="80" >Job URL {{publishlist.jobpost_url.length}}</td>
+                            <td width="20" valign="top">:</td>
+                            <td valign="top" style="word-break:break-all;">{{publishlist.jobpost_url | limitTo:50}}
+                               <span ng-if="publishlist.jobpost_url.length > 50" ng-click="view_job(publishlist.jobpost_id);">.....</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td valign="top" width="80" ></td>
+                            <td width="20" valign="top"></td>
+                            <td align="right" valign="top" colspan="8">
+                              <span class="blue">Posted By :</span> {{publishlist.users_username}}</td>
+                            </tr>
+                          </table>
+                        </div>
+                        <div class="box9_back">
+                         <div class="pull-left">
+                           <span style="margin-right:10px;" ng-if="userInfo_usersid == publishlist.jobpost_userid  || userInfo_type== '2' ">
+                             <!-- {{userInfo_usersid}} {{userInfo_type}} -->
+                             <img src="public/images/editjob.png" width="26" title="Edit" ng-click="updatejob(publishlist.jobpost_id)"/>
+                           </span>                       
+                           <span ng-click="applyed_users(publishlist.jobpost_status);"> Applied: {{publishlist.applyed_users}}</span>
+                           <span ng-click="viewed_users(publishlist.jobpost_status);"> Viewed: {{publishlist.viewed_user}}</span>
+                           <!-- <span class="blue" style="text-decoration: underline;" ng-click="publish(joblist.jobpost_id);" ng-if="joblist.jobpost_publish != '1' ">Publish</span> -->
+                          <!--  <span class="blue" style="text-decoration: underline;" ng-click="publish(publishlist.jobpost_id);">Publish</span> -->
+                         <!--   <span class="blue" ng-if="joblist.jobpost_publish == '1' ">Published</span> -->
+                           <span ng-click="view_job(publishlist.jobpost_id);">View</span>  
+                           <!-- 5,00,000 - 15,00,000P.A --> </div>
+                           <div class="pull-right"><!-- Posted By  -->
+                             <span ng-if="userInfo_usersid == publishlist.jobpost_userid  || userInfo_type== '2' ">
+                               <img src="public/images/inactive.png" width="26" title="Expire" ng-click="inactivePostjob(publishlist.jobpost_id)" /></span>
+                               <!--  <span class="blue"> Sonali Sushmita,</span> 32 -->
+                             </div>
+                             <div style="clear:both;"></div>
+                           </div>
+                         </div>  
+                       </div>
+                       <!-- Box end -->
+
+                     </div>
+                 
+                </div>
+              </div>
+
+              <div id="published">
+              <div ng-show="panelnav2">
+               <div class="profile_details">
+                <div style="width:100%;">
+                 <div align="center" ng-if="jobpostlist.length == '0' ">No Record Found</div>
+
+                  <!-- Box start -->
+
+                  <div class="box8_left" ng-repeat="joblist in jobpostlist" ng-if="jobpostlist.length > '0' ">
+                    <div class="box8_back">
+                     <div style="width: 100%;">
+                       <table width="100%">
+                         <tr>
+                           <td width="50%">
+                             <div class="blue" align="left" style="margin-bottom: 5px;">{{joblist.title_name}} <!-- ({{joblist.jobpost_jobtype}}) --></div>
+                           </td>
+                           <td width="50%">
+                             <div style="margin-bottom: 5px;" align="right">
+                               <!-- <span ng-repeat="seniority in joblist.seniority">{{seniority.seniority_name}} | </span> -->
+                               <span ng-if="joblist.jobpost_tilldata != '0000-00-00' ">Date posted : {{joblist.jobpost_tilldata | date : 'MM/dd/yyyy'}}</span>
+                             </div>
+                           </td>
+                         </tr>
+                       </table>
+                     </div>
+                     <table cellspacing="2" width="100%">                 
+                       <tr>
+                        <td width="100"  valign="top"><span style="margin-right:5px;"><img src="public/images/experience.png" /></span>
+                         <!--  {{joblist.jobpost_exp_minimum}}-{{joblist.jobpost_exp_maximum}} Years --></td>
+                         <td width="20">&nbsp;</td>
+                         <td><span style="margin-right:5px;"><img src="public/images/location.png" /></span>
+                          <!-- <span ng-repeat="loc in joblist.location"> {{loc.locations_name}} ,</span> -->
+                          <span class="blue">{{joblist.countryname}},{{joblist.statename}},{{joblist.cityname}}</span>
+                        </td>
+                      </tr>
+                        <!-- <tr>
+                          <td valign="top">Location</td>
+                          <td width="20" valign="top">:</td>
+                          <td><span class="blue">{{joblist.countryname}},{{joblist.statename}},{{joblist.cityname}}</span></td>
+                        </tr> -->
+                        <tr>
+                          <td valign="top" width="100">Relevant Titles</td>
+                          <td width="20" valign="top">:</td>
+                          <td>
+                            <span ng-repeat="area in joblist.arealist | filter: query | limitTo:1">{{area.industry_name | limitTo:50}}</span>
+                            <span ng-if="joblist.arealist.length > 1" ng-click="view_job(joblist.jobpost_id);">.....</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td valign="top" width="100">Seniority</td>
+                          <td width="20" valign="top">:</td>
+                          <td>
+                            <span ng-repeat="seniority in joblist.seniority | filter: query | limitTo:3">{{seniority.seniority_name | limitTo:20}} | </span>
+                            <span ng-if="joblist.seniority.length > 3" ng-click="view_job(joblist.jobpost_id);">.....</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td valign="top" width="120">Job Fit<!--  & Cultural Fit --></td>
+                          <td width="20" valign="top">:</td>
+                          <td><span ng-repeat="job in joblist.jobfit | filter: query | limitTo:2">{{job.type_name | limitTo:15}} | </span>
+                          <span ng-if="joblist.jobfit.length > 2" ng-click="view_job(joblist.jobpost_id);">.....</span>
+                           <!--  <span ng-repeat="employer in joblist.employerfit">{{employer.type_name}} |</span> --></td>
+                         </tr>
+                        <!--  <tr>
+                          <td valign="top" width="120" >Job Description</td>
+                          <td width="20" valign="top">:</td>
+                          <td valign="top">
+                            <div hm-read-more hm-text="{{joblist.jobpost_description | filter: query | limitTo:100}}  ...."></div>
+                            <span ng-if="joblist.jobpost_description.length > 100">...</span>
+                             
+                          </td>
+                          </tr> -->
+                          <tr>
+                            <td valign="top" width="80" >Job URL {{joblist.jobpost_url.length}}</td>
+                            <td width="20" valign="top">:</td>
+                            <td valign="top" style="word-break:break-all;">{{joblist.jobpost_url | limitTo:50}}
+                               <span ng-if="joblist.jobpost_url.length > 50" ng-click="view_job(joblist.jobpost_id);">.....</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td valign="top" width="80" ></td>
+                            <td width="20" valign="top"></td>
+                            <td align="right" valign="top" colspan="8">
+                              <span class="blue">Posted By :</span> {{joblist.users_username}}</td>
+                            </tr>
+                          </table>
+                        </div>
+                        <div class="box9_back">
+                         <div class="pull-left">
+                           <span style="margin-right:10px;" ng-if="userInfo_usersid == joblist.jobpost_userid  || userInfo_type== '2' ">
+                             <!-- {{userInfo_usersid}} {{userInfo_type}} -->
+                             <img src="public/images/editjob.png" width="26" title="Edit" ng-click="updatejob(joblist.jobpost_id)"/>
+                           </span>                       
+                           <span> Applied: {{joblist.applyed_users}}</span>
+                           <span> Viewed: {{joblist.viewed_user}}</span>
+                           <!-- <span class="blue" style="text-decoration: underline;" ng-click="publish(joblist.jobpost_id);" ng-if="joblist.jobpost_publish != '1' ">Publish</span> -->
+                           <span class="blue" style="text-decoration: underline;" ng-click="open(joblist.jobpost_id);">Publish</span>
+                         <!--   <span class="blue" ng-if="joblist.jobpost_publish == '1' ">Published</span> -->
+                           <span ng-click="view_job(joblist.jobpost_id);">View</span>  
+                           <!-- 5,00,000 - 15,00,000P.A --> </div>
+                           <div class="pull-right"><!-- Posted By  -->
+                             <span ng-if="userInfo_usersid == joblist.jobpost_userid  || userInfo_type== '2' ">
+                               <img src="public/images/inactive.png" width="26" title="Expire" ng-click="inactivePostjob(joblist.jobpost_id)" /></span>
+                               <!--  <span class="blue"> Sonali Sushmita,</span> 32 -->
+                             </div>
+                             <div style="clear:both;"></div>
+                           </div>
+                         </div>  
+                       </div>
+                       <!-- Box end -->
+
+                     </div>
+                   </div>
+                 </div>
+
+              <div id="incompleted">
+              <div ng-show="panelnav3">
+               <div class="profile_details">
+                <div style="width:100%;">
+                  <div align="center" ng-if="jobpostincompletelist.length == '0' ">No Record Found</div>
+
+                  <!-- Box start -->
+
+                  <div class="box8_left" ng-repeat="incompletelist in jobpostincompletelist" ng-if="jobpostincompletelist.length > '0' ">
+                    <div class="box8_back" ng-click="updatejob(incompletelist.jobpost_id,1)">
+                     <div style="width: 100%;">
+                       <table width="100%">
+                         <tr>
+                           <td width="50%">
+                             <div class="blue" align="left" style="margin-bottom: 5px;">{{incompletelist.title_name}} <!-- ({{joblist.jobpost_jobtype}}) --></div>
+                           </td>
+                           <td width="50%">
+                             <div style="margin-bottom: 5px;" align="right">
+                               <!-- <span ng-repeat="seniority in joblist.seniority">{{seniority.seniority_name}} | </span> -->
+                               <span ng-if="incompletelist.jobpost_tilldata != '0000-00-00' ">Date posted : {{publishlist.jobpost_tilldata | date : 'MM/dd/yyyy'}}</span>
+                             </div>
+                           </td>
+                         </tr>
+                       </table>
+                     </div>
+                     <table cellspacing="2" width="100%">                 
+                       <tr>
+                        <td width="100"  valign="top"><span style="margin-right:5px;"><img src="public/images/experience.png" /></span>
+                         <!--  {{joblist.jobpost_exp_minimum}}-{{joblist.jobpost_exp_maximum}} Years --></td>
+                         <td width="20">&nbsp;</td>
+                         <td><span style="margin-right:5px;"><img src="public/images/location.png" /></span>
+                          <!-- <span ng-repeat="loc in joblist.location"> {{loc.locations_name}} ,</span> -->
+                          <span class="blue">{{incompletelist.countryname}},{{incompletelist.statename}},{{incompletelist.cityname}}</span>
+                        </td>
+                      </tr>
+                        <!-- <tr>
+                          <td valign="top">Location</td>
+                          <td width="20" valign="top">:</td>
+                          <td><span class="blue">{{joblist.countryname}},{{joblist.statename}},{{joblist.cityname}}</span></td>
+                        </tr> -->
+                        <tr>
+                          <td valign="top" width="100">Relevant Titles</td>
+                          <td width="20" valign="top">:</td>
+                          <td>
+                            <span ng-repeat="area in incompletelist.arealist | filter: query | limitTo:1">{{area.industry_name | limitTo:50}}</span>
+                            <span ng-if="incompletelist.arealist.length > 1" ng-click="view_job(incompletelist.jobpost_id);">.....</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td valign="top" width="100">Seniority</td>
+                          <td width="20" valign="top">:</td>
+                          <td>
+                            <span ng-repeat="seniority in incompletelist.seniority | filter: query | limitTo:3">{{seniority.seniority_name | limitTo:20}} | </span>
+                            <span ng-if="incompletelist.seniority.length > 3" ng-click="view_job(incompletelist.jobpost_id);">.....</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td valign="top" width="120">Job Fit<!--  & Cultural Fit --></td>
+                          <td width="20" valign="top">:</td>
+                          <td><span ng-repeat="job in incompletelist.jobfit | filter: query | limitTo:2">{{job.type_name | limitTo:15}} | </span>
+                          <span ng-if="incompletelist.jobfit.length > 2" ng-click="view_job(incompletelist.jobpost_id);">.....</span>
+                           <!--  <span ng-repeat="employer in joblist.employerfit">{{employer.type_name}} |</span> --></td>
+                         </tr>
+                        <!--  <tr>
+                          <td valign="top" width="120" >Job Description</td>
+                          <td width="20" valign="top">:</td>
+                          <td valign="top">
+                            <div hm-read-more hm-text="{{joblist.jobpost_description | filter: query | limitTo:100}}  ...."></div>
+                            <span ng-if="joblist.jobpost_description.length > 100">...</span>
+                             
+                          </td>
+                          </tr> -->
+                          <tr>
+                            <td valign="top" width="80" >Job URL {{incompletelist.jobpost_url.length}}</td>
+                            <td width="20" valign="top">:</td>
+                            <td valign="top" style="word-break:break-all;">{{incompletelist.jobpost_url | limitTo:50}}
+                               <span ng-if="incompletelist.jobpost_url.length > 50" ng-click="view_job(incompletelist.jobpost_id);">.....</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td valign="top" width="80" ></td>
+                            <td width="20" valign="top"></td>
+                            <td align="right" valign="top" colspan="8">
+                              <span class="blue">Posted By :</span> {{incompletelist.users_username}}</td>
+                            </tr>
+                          </table>
+                        </div>
+                        <div class="box9_back">
+                         <div class="pull-left">
+                           <span style="margin-right:10px;" ng-if="userInfo_usersid == incompletelist.jobpost_userid  || userInfo_type== '2' ">
+                             <!-- {{userInfo_usersid}} {{userInfo_type}} -->
+                             <img src="public/images/editjob.png" width="26" title="Edit" ng-click="updatejob(incompletelist.jobpost_id,1)"/>
+                           </span>                       
+                           <span> Applied: {{incompletelist.applyed_users}}</span>
+                           <span> Viewed: {{incompletelist.viewed_user}}</span>
+                           <!-- <span class="blue" style="text-decoration: underline;" ng-click="publish(joblist.jobpost_id);" ng-if="joblist.jobpost_publish != '1' ">Publish</span> -->
+                          <!--  <span class="blue" style="text-decoration: underline;" ng-click="publish(publishlist.jobpost_id);">Publish</span> -->
+                         <!--   <span class="blue" ng-if="joblist.jobpost_publish == '1' ">Published</span> -->
+                           <span ng-click="view_job(incompletelist.jobpost_id);">View</span>  
+                           <!-- 5,00,000 - 15,00,000P.A --> </div>
+                           <div class="pull-right"><!-- Posted By  -->
+                             <span ng-if="userInfo_usersid == incompletelist.jobpost_userid  || userInfo_type== '2' ">
+                               <img src="public/images/inactive.png" width="26" title="Expire" ng-click="inactivePostjob(incompletelist.jobpost_id)" /></span>
+                               <!--  <span class="blue"> Sonali Sushmita,</span> 32 -->
+                             </div>
+                             <div style="clear:both;"></div>
+                           </div>
+                         </div>  
+                       </div>
+                       <!-- Box end -->
+
+                     </div>
+                   </div>
+                 </div>
+
+                 <div id="viewed" class="tab-pane fade">
+                  <div ng-show="panelnav1">
+
+                    <div   class="profile_details">
+                      <div style="width:100%;">
+
+                        <div align="center" ng-if="jobpostlistinactive.length == '0' ">No Record Found</div>
+                        <!-- Box start -->
+
+                        <div class="box8_left" ng-repeat="joblist in jobpostlistinactive" ng-if="jobpostlistinactive.length > '0' ">
+                         <div class="box8_back">
+                           <div style="width: 100%;">
+                             <table width="100%">
+                               <tr>
+                                 <td width="50%">
+                                   <div class="blue" align="left" style="margin-bottom: 5px;">{{joblist.title_name}}</div>
+                                 </td>
+                                 <td width="50%">
+                                  <div style="margin-bottom: 5px;" align="right">
+                                   <!-- <span ng-repeat="seniority in joblist.seniority">{{seniority.seniority_name}} | </span> -->
+                                   <span ng-if="joblist.jobpost_tilldata != '0000-00-00' ">Date posted : {{joblist.jobpost_tilldata | date : 'MM/dd/yyyy'}}</span>
+                                 </div>
+                               </td>
+                             </tr>
+                           </table>
+                         </div>
+                         <table cellspacing="2" width="100%">                 
+                           <tr>
+                            <td width="100"><span style="margin-right:5px;"><img src="public/images/experience.png" /></span>
+                             <!--  {{joblist.jobpost_exp_minimum}}-{{joblist.jobpost_exp_maximum}} Years --></td>
+                             <td width="20">&nbsp;</td>
+                             <td><span style="margin-right:5px;"><img src="public/images/location.png" /></span>
+                              <!-- <span ng-repeat="loc in joblist.location"> {{loc.locations_name}} ,</span> -->
+                              <span class="blue">{{joblist.countryname}},{{joblist.statename}},{{joblist.cityname}}</span>
+                            </td>
+                          </tr>
+                            <!-- <tr>
+                              <td valign="top">Location</td>
+                              <td width="20" valign="top">:</td>
+                              <td><span class="blue">{{joblist.countryname}},{{joblist.statename}},{{joblist.cityname}}</span></td>
+                            </tr> -->
+                            <tr>
+                              <td valign="top" width="100">Relevant Titles</td>
+                              <td width="20" valign="top">:</td>
+                              <td valign="top">
+                              <span ng-repeat="area in joblist.arealist | filter: query | limitTo:1">{{area.industry_name | limitTo:50}}</span>
+                            <span ng-if="joblist.arealist.length > 1" ng-click="view_job(joblist.jobpost_id);">.....</span>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td valign="top" width="100">Seniority</td>
+                              <td width="20" valign="top">:</td>
+                              <td>
+                                <span ng-repeat="seniority in joblist.seniority | filter: query | limitTo:3">{{seniority.seniority_name | limitTo:20}} | </span>
+                                <span ng-if="joblist.seniority.length > 3" ng-click="view_job(joblist.jobpost_id);">.....</span>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td valign="top" width="120">Job Fit<!--  & Cultural Fit --></td>                       
+                               <td width="20" valign="top">:</td>
+                               <td valign="top"><span ng-repeat="job in joblist.jobfit | filter: query | limitTo:2">{{job.type_name | limitTo:15}} | </span>
+                          <span ng-if="joblist.jobfit.length > 2" ng-click="view_job(joblist.jobpost_id);">.....</span>
+                           <!--  <span ng-repeat="employer in joblist.employerfit">{{employer.type_name}} |</span> -->
+                           </td>
+                                 
+                              </tr>
+                             <!--  <tr>
+                                <td valign="top" width="120" >Job Description</td>
+                                <td width="20" valign="top">:</td>
+                                <td valign="top"> <div style="font-size: 12px !important;" hm-read-more hm-text="{{joblist.jobpost_description | filter: query | limitTo:100}}"></div>
+                                  <span ng-if="joblist.jobpost_description.length > 100">...</span>
+                                </td>
+                              </tr> -->
+                              <tr>
+                                <td valign="top" width="80" >Job URL</td>
+                                <td width="20" valign="top">:</td>
+                                <td valign="top" style="word-break:break-all;">{{joblist.jobpost_url | limitTo:50}}
+                                   <span ng-if="joblist.jobpost_url.length > 50" ng-click="view_job(joblist.jobpost_id);">.....</span>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td valign="top" width="80" ></td>
+                                <td width="20" valign="top"></td>
+                                <td align="right" valign="top" colspan="8"><span class="blue">Posted By :</span> {{joblist.users_username}}</td>
+                              </tr>
+                            </table>
+                          </div>
+                          <div class="box9_back">
+                           <div class="pull-left">
+                             <span style="margin-right:10px;"> </span>
+                           </div>
+                           <div class="pull-right">                        
+                             <span>
+                               <img src="public/images/delete.png" width="20" title="Delete" ng-click="remove(joblist.jobpost_id);">
+                             </span>                       
+                           </div>
+                           <div style="clear:both;"></div>
+                         </div>
+                       </div>  
+                     </div>
+                   </div>
+                 </div>
+               </div> 
+
+             </div>
+           </div>
+           <!-- Tab 1 End /////////////////////////////////////////// -->
+
+
+           <!-- Tab 3 Start /////////////////////////////////////////// -->
+           <div ng-show="viewjobTab">
+              <h4 align="center" >  <span> <a ng-click="back_postjobview();" style="color:##008cc9;float: right;font-size: 12px;">Back</a></span></h4>
+              <div style="width: 80%; margin-left:12%;background-color: #F8F8F8; padding: 20px;" >
+                   <div style="width: 100%;">
+                      <div style="width: 20%; float: left;" ng-if="companyInfo.users_profilepic != '' && companyInfo.users_companyid != '0' ">
+                      <img height="122" width="122" class="img-responsive" src="{{companyInfo.users_profilepic}}">
+                      </div>
+                      <div style="width: 20%; float: left;" ng-if="companyInfo.users_profilepic == '' ">
+                      <img height="122" width="122" class="img-responsive" src="public/images/job-details.png">
+                      </div>
+
+                      <div style="width: 80%; float: left; ">
+                        <div style="font-size: 18px;padding-bottom: 8px;">{{viewpostjob.title_name}}</div>
+                        <div style="font-size: 14px;padding-bottom: 8px;">{{viewpostjob.countryname}}, {{viewpostjob.statename}}, {{viewpostjob.cityname}}</div>
+                        <div style="font-size: 12px;padding-bottom: 8px;word-break: break-all;">URL : {{viewpostjob.jobpost_url}}</div>
+                        <div style="font-size: 12px;" ng-if="viewpostjob.jobpost_tilldata != '0000-00-00' ">Last apply date : {{viewpostjob.jobpost_tilldata | date : 'MM/dd/yyyy'}}</div>
+                      </div>
+
+                   </div>    
+                   <div style="clear: both;"></div>                      
+              </div>
+
+              <div style="width: 80%;margin-left:12%;margin-top:2%;background-color: #F8F8F8; padding: 20px;" >
+                   <div style="width: 100%;">
+                      <div style="width: 63%; float: left;">
+                            <div style="font-size: 18px;padding-bottom: 8px;">Job description</div>
+                            <div hm-read-more hm-text="{{viewpostjob.jobpost_description}}"></div>
+                      </div>
+
+                      <div style="width: 37%; float: left; ">
+                      <div style="font-size: 18px;padding-bottom: 8px;"> &nbsp;&nbsp;&nbsp;&nbsp;</div>
+                        <div style="font-size: 15px;font-weight: 600;line-height: 20px;">Seniority Level</div>
+                        <div>
+                          <span ng-repeat="seniority in viewpostjob.seniority">
+                            {{seniority.seniority_name}},
+                         </span>
+                        </div>
+
+                        <div style="font-size: 15px;font-weight: 600;line-height: 20px; margin-top: 5%;">Job Functions & Industries</div>
+                        <div>
+                           <span ng-repeat="industry in viewpostjob.arealist">
+                            {{industry.industry_name}},
+                           </span>
+                        </div>
+
+                        <div style="font-size: 15px;font-weight: 600;line-height: 20px; margin-top: 5%;">Employment Type</div>
+                        <div>
+                             <span ng-repeat="employment in viewpostjob.jobfit">
+                              {{employment.type_name}},
+                             </span>
+                        </div>
+
+                        <div style="font-size: 15px;font-weight: 600;line-height: 20px; margin-top: 5%;">Work Culture</div>
+                        <div>
+                             <span ng-repeat="employment in employerFits">
+                              {{employment.type_name}},
+                             </span>
+                        </div>
+                         
+                         
+                      </div>
+                      
+                   </div>    
+                   <div style="clear: both;"></div>                      
+              </div>
+           </div>
+           <!-- Tab 3 End /////////////////////////////////////////// -->
+
+           <!-- Tab 2 Start/////////////////////////////////////////// -->
+           <div ng-show="editjobTab"> 
+           <!--  <h4 class="text-center">Edit A Job</h4> -->
+            <form name="editjobpostForm" ng-submit="updatepostjobFrm(editjobpostForm)" novalidate>
+
+            <input type="hidden" ng-model="editpostjob.jobpost_status">
+              <div class="form-group">
+                <label for="exampleInputEmail1" class='control-label'>Job Title:</label>
+                <!--  <pre>{{editpostjob|json}}</pre> -->
+
+             <!-- <select ng-model="editpostjob.jobpost_title" name="title" ng-options="title.type_id  as title.type_name for title in all_master_title_data" required class="form-control">
+              <option value="">*- Job Title - </option>     
+            </select> -->
+
+            <autocomplete attr-inputclass="form-control" ng-model="editpostjob.jobpost_title" attr-placeholder="*- Enter Job Title -" click-activation="true" data="all_master_title_data" on-type="searchFromMaster">
+            </autocomplete>
+
+          </div>
+
+          <div ng-messages="editjobpostForm.title.$err" ng-if="editjobpostForm.title.$invalid && !editjobpostForm.title.$pristine">
+            <div ng-message="required" style="color:red;font-size:14px;">Job Title is required !</div>            
+          </div>
+          <!-- <div class="form-group">
+            <label for="exampleInputEmail1" class='control-label'>Seniority / Level:</label>           
+             <select ng-model="editpostjob.jobpost_seniority" name="jobpost_seniority" ng-options="level.seniority_id  as level.seniority_name for level in levelList" required class="form-control" multiple="multiple">
+              <option value="">*- Select Seniority / Level - </option>     
+            </select>
+          </div> -->
+
+          <div class="form-group">
+            <label for="exampleInputEmail1" class='control-label'>Job Seniority / Level:</label>
+            <div style="border: 1px solid #ccc; padding: 10px;"> 
+              <span ng-repeat="level in levelList" ng-if="levelList != '' ">                        
+               <input type="checkbox" value="{{level.seniority_id}}" ng-checked="selectionLevel.indexOf(level.seniority_id) > -1" ng-click="toggleSelectionLevel(level.seniority_id)"> {{level.seniority_name}}
+             </span>
+           </div>
+         </div>
+
+         <div ng-messages="jobpostForm.jobpost_seniority.$err" ng-if="jobpostForm.jobpost_seniority.$invalid && !jobpostForm.jobpost_seniority.$pristine">
+          <div ng-message="required" style="color:red;font-size:14px;">Seniority / Level is required !</div>            
+        </div>
+        <div class="form-group">
+          <label for="exampleTextarea" class='control-label'>Job Description:</label>
+          <!--  <textarea class="form-control" ng-model="editpostjob.jobpost_description" name="description"  rows="7"></textarea> -->
+          <textarea data-ui-tinymce data-ng-model="editpostjob.jobpost_description"></textarea> 
+        </div>
+
+        <div ng-messages="editjobpostForm.description.$err" ng-if="editjobpostForm.description.$invalid && !editjobpostForm.description.$pristine">
+          <div ng-message="required" style="color:red;font-size:14px;">Job description is required !</div>            
+        </div>
+         <!--  <div class="form-group required">
+            <label for="exampleTextarea" class='control-label'>Work Experience:</label>
+            <select name="jobpost_exp_minimum" style="width:100px;" ng-model="editpostjob.jobpost_exp_minimum" ng-options="yearFrom  as yearFrom for yearFrom in yearlistFrom|reverse"  ng-change="resetToYears(editpostjob.jobpost_exp_minimum);" required>
+              <option value="" selected>- Minimum - </option>     
+            </select>
+            <span ng-messages="editjobpostForm.jobpost_exp_minimum.$err" ng-if="editjobpostForm.jobpost_exp_minimum.$invalid && !editjobpostForm.jobpost_exp_minimum.$pristine">
+            <span ng-message="required" style="color:red;font-size:14px;">Year is required!</span>            
+            </span>
+            to
+            <select name="jobpost_exp_maximum" ng-model="editpostjob.jobpost_exp_maximum" style="width:110px; margin-left:8px;" ng-options="yearTo as yearTo for yearTo in yearlistTo|reverse" required>
+              <option value="" selected>- Maximum -</option>      
+            </select>
+            <span ng-messages="editjobpostForm.jobpost_exp_maximum.$err" ng-if="editjobpostForm.jobpost_exp_maximum.$invalid && !editjobpostForm.jobpost_exp_maximum.$pristine">
+            <span ng-message="required" style="color:red;font-size:14px;">Year is required!</span>          
+            </span>
+          </div> -->
+
+
+          <!-- <div class="form-group required">
+            <label for="exampleSelect1" class='control-label'>Location</label>
+            <select placeholder="Select..." ng-model="editpostjob.jobpost_locations" name="jobpost_locations" ng-options="location.locations_id as location.locations_name for location in location_data" multiple="multiple" required class="form-control" style="height: 130px;">          
+            </select>
+          </div>
+          <div ng-messages="editjobpostForm.jobpost_locations.$err" ng-if="editjobpostForm.location.$invalid && !editjobpostForm.location.$pristine">
+            <div ng-message="required" style="color:red;font-size:14px;">Location is required !</div>            
+          </div> -->
+
+          <div class="form-group">
+           <div class="col-md-4" style="margin-bottom: 10px;border: .5px solid #ccc; padding: 5px;">
+            <label for="exampleSelect1" class='control-label'>Country</label>          
+            <select ng-model="editpostjob.country_id" name="country_id" class=" form-control" 
+            ng-options="country.id as country.name for country in countries" ng-change="getCountryStates()" required >
+            <option value="">*- Select Country -</option>             
+          </select>
+          <div ng-messages="jobpostForm.country_id.$err" ng-if="jobpostForm.country_id.$invalid && !jobpostForm.country_id.$pristine">
+            <div ng-message="required" style="color:red;font-size:14px;">Country is required !</div>            
+          </div>
+        </div>
+        <div class="col-md-4" style=" border: .5px solid #ccc; padding: 5px;">
+
+         <label for="exampleSelect1" class='control-label'>Prov/State</label>          
+         <select ng-model="editpostjob.state_id" name="state_id" class="form-control"   ng-options="state.id as state.name for state in states" ng-change="getStateCities()" required>
+           <option value="">*- Select Prov/State -</option>  
+         </select>
+         <div ng-messages="jobpostForm.state_id.$err" ng-if="jobpostForm.state_id.$invalid && !jobpostForm.state_id.$pristine">
+          <div ng-message="required" style="color:red;font-size:14px;">State is required !</div>            
+        </div>          
+      </div>
+      <div class="col-md-4" style=" border: .5px solid #ccc; padding: 5px;">
+       <label for="exampleSelect1" class='control-label'>City</label>          
+       <select ng-model="editpostjob.city_id" name="city_id" class="form-control" ng-options="city.id as city.name for city in cities">
+         <option value="">*- Select City -</option>  
+       </select>
+       <div ng-messages="jobpostForm.city_id.$err" ng-if="jobpostForm.city_id.$invalid && !jobpostForm.city_id.$pristine">
+        <div ng-message="required" style="color:red;font-size:14px;">City is required !</div>            
+      </div>
+    </div>
+
+  </div>
+
+  <div style="clear: both;"></div>
+         <!--  <div class="form-group ">
+            <label for="exampleSelect1" class='control-label'>Location</label>            
+             <select-multiple ng-model="editpostjob.locations" name="locations" transform-to-model="transformToModel" transform-to-view="transformToView" placeholder="- Select location -" style="width: 100%;">
+            </select-multiple> 
+          </div> -->
+
+         <!--  <div class="form-group">
+            <label for="exampleSelect1" class='control-label'>Job Type</label>
+            <select class="form-control" ng-model="editpostjob.jobpost_jobtype" name="job_type" required>
+              <option value="">*- Select Job Type -</option>
+              <option value="FullTime">Full Time</option>
+              <option value="Contract">Contract</option>
+              <option value="PartTime">Part Time</option>      
+              <option value="Temporary">Temporary</option>
+            </select>
+          </div> -->
+
+          <!-- <div ng-messages="editjobpostForm.job_type.$err" ng-if="editjobpostForm.job_type.$invalid && !editjobpostForm.job_type.$pristine">
+            <div ng-message="required" style="color:red;font-size:14px;">Job Type is required !</div>    
+          </div> -->
+          <div class="panel panel-default">                   
+            <div class="panel-body">                     
+             <ul class="list-group">
+              <li class="list-group-item text-left" ng-repeat="locationdata in dataList">
+                <span class="blue">{{locationdata.industry_name}} :</span>
+                <span ng-repeat="area in locationdata.area">{{area.area_name}}, 
+                </span>
+                <span class="pull-right" style="cursor: pointer;">
+                  <span  ng-click="editIndustry(locationdata.relation_id);" title="Edit"><img src="public/images/edit1.png" width="25" /></span>
+                  <span ng-click="removeRecord(locationdata.jobpost_id,locationdata.type_id);" title="Remove">X</span>
+                </span>
+
+              </li>                                 
+            </ul>               
+          </div>
+          <div class="row">                      
+
+           <div class="col-md-1"></div>
+           <div class="col-md-3" ng-if="industryinfo.action == 'insert' ">
+           <select class="form-control" name="industry_id" ng-model="industryinfo.industry_id"  ng-options="industry.industry_id as industry.industry_name for industry in jobpostindustrylist" style="height:38px;border: 1px solid #008cc9;"  ng-change="getArea(industryinfo.industry_id)" >
+              <option value="">SELECT INDUSTRY</option>
+            </select>  
+
+          </div>
+
+          <div class="col-md-3" ng-if="industryinfo.action == 'update' ">
+            <select class="form-control" name="industry_id" ng-model="industryinfo.industry_id"  ng-options="industrydata.industry_id as industrydata.industry_name for industrydata in indastry_data" style="height:38px;border: 1px solid #008cc9;"  ng-change="getArea(industryinfo.industry_id)" >
+              <option value="-1">SELECT INDUSTRY</option>
+            </select>
+
+          </div> 
+
+          <div class="col-md-6" style="text-align: left;">
+            <div class="panel panel-default">
+             <div class="panel-heading"> 
+               <input type="text" class="form-control" placeholder="Search Relevant Titles..." ng-model="searchCountries">
+             </div>  
+             <!-- {{areaList|json}}          -->
+             <div class="panel-body">  
+
+               <ul class="list-group" style="overflow-y: scroll;height:150px;">
+                <li class="list-group-item text-left" ng-repeat="area in areaList  | filter:searchCountries" ng-if="areaList.length != ''"><span>{{area.area_name}}</span>           
+                  <span class="pull-right">
+                   <input type="checkbox" class="checkboxsize" ng-checked="selection.indexOf(area.area_id) > -1" value="{{area.area_id}}"  ng-click="toggleSelection(area.area_id)">
+                 </span>
+               </li>
+
+             </ul>               
+           </div>             
+         </div>                            
+       </div> 
+       <div class="col-md-1" >   
+         <a class="btn btn-primary"  ng-click="manageindustry();">Save</a>  
+       </div>
+
+
+     </div> 
+   </div>
+
+       <!--  <div class="form-group">
+         <div class="col-sm-5">
+        <label for="exampleSelect1" class='control-label'>Relevant Industry Experience</label>
+         <input type="text" class="form-control" placeholder="Search Relevant Industry Experience..." ng-model="searchCountries">
+         <ul class="list-group" style="overflow-y: scroll;height:200px;">
+          <li class="list-group-item text-left" ng-repeat="indastry in industryList  | filter:searchCountries" ng-if="industryList.length != ''" ng-click="indastryStatus(indastry.industry_id)">
+          <span>{{indastry.industry_name}}</span>           
+            <span class="pull-right">
+             <input type="checkbox" class="checkboxsize" value="{{indastry.industry_id}}" ng-checked="selectionIndastry.indexOf(indastry.industry_id) > -1" ng-click="toggleSelectionIndastry(indastry.industry_id,checkStatus)"  ng-init='checkStatus=true' ng-model='checkStatus'>
+            </span>
+          </li>                         
+        </ul> 
+        </div>
+        <div class="col-sm-7">
+           <label for="exampleSelect1" class='control-label'>Relevant Titles</label>
+            <input type="text" class="form-control" placeholder="Search Functional Area..." ng-model="searchCountries1">
+           <ul class="list-group" style="overflow-y: scroll;height:200px;">
+              <li class="list-group-item text-left" ng-repeat="area in areaList | filter:searchCountries1" ng-if="areaList.length != ''"><span>{{area.area_name}}</span>           
+                <span class="pull-right">
+                 <input type="checkbox" class="checkboxsize" value="{{area.area_id}}" ng-checked="selectionArea.indexOf(area.area_id) > -1" ng-click="toggleSelectionArea(area.area_id,checkStatus1)"  ng-init='checkStatus1=true' ng-model='checkStatus1'>
+                </span>
+              </li>                                         
+          </ul>
+
+        </div>
+      </div> -->
+      <div style="clear: both;"></div>
+
+         <!--  <div class="form-group required">
+            <label for="exampleSelect1" class='control-label'>Relevant Industry Experience</label>
+            <select name="jobpost_industry" ng-model="editpostjob.jobpost_industry" class="form-control" ng-options="indastry.industry_id as indastry.industry_name for indastry in indastry_data" required   multiple="multiple" style="height: 130px;">
+              <option value="">- Relevant Industry Experience- </option>      
+            </select>
+          </div> -->
+
+          
+          
+
+          <!-- <div class="form-group required">
+            <label for="exampleInputPassword1" class='control-label'>Functional Area</label>    
+
+            <select ng-model="editpostjob.jobpost_area" name="jobpost_area" ng-options="area.area_id as area.area_name for area in areaList" multiple="multiple" required class="form-control" style="height: 130px;">
+              <option value="">-select-</option>          
+            </select>
+
+
+          </div> -->
+
+         <!--  <div class="form-group required">
+            <label for="exampleInputPassword1" class='control-label'>KeySkills</label>
+
+            <select placeholder="Select Keyskills..." ng-model="editpostjob.jobpost_skills" name="jobpost_skills" ng-options="skill.skills_id as skill.skills_name for skill in skill_data" multiple="multiple" required class="form-control" style="height: 130px;">
+              <option value="">-select-</option>          
+            </select>
+          </div> -->
+
+          <div class="form-group">
+            <label for="exampleTextarea" class='control-label'>Edit Job Link/URL:</label>
+            <input type="text" name="url" class="form-control" ng-model="editpostjob.jobpost_url"  placeholder="- Edit Job Link/URL -">
+          </div>
+
+          <!-- <div ng-messages="editjobpostForm.name.$err" ng-if="editjobpostForm.url.$invalid && !editjobpostForm.url.$pristine">
+            <div ng-message="required" style="color:red;font-size:14px;">Job Link/URL is required !</div>            
+          </div> -->
+
+          <!-- <div class="form-group ">
+            <label for="exampleInputPassword1" class='control-label'>Job Fit</label>    
+
+            <select placeholder="Select jobfit..." ng-model="editpostjob.jobpost_jobfit" name="jobpost_jobfit" ng-options="job.type_id as job.type_name for job in jobFits" multiple="multiple" class="form-control" style="height: 130px;">
+             <option value="">-Select Job Fit-</option>          
+           </select>
+         </div> -->
+         <div class="form-group">
+          <label for="exampleInputPassword1" class='control-label'>Job Fit</label>                       
+          <div style="height:150px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px;">
+            -Select Job Fit -  
+            <div ng-repeat="job in jobFits" ng-if="jobFits != '' ">                        
+             <input type="checkbox" value="{{job.type_id}}" ng-checked="selectionJob.indexOf(job.type_id) > -1" ng-click="toggleSelectionJob(job.type_id)"> {{job.type_name}}
+           </div>
+         </div>
+       </div>
+
+        <!-- 
+        <div class="form-group">
+          <label for="exampleInputPassword1" class='control-label'>Employer Fit</label>
+
+          <select placeholder="Select employer fit..." ng-model="editpostjob.jobpost_employer" name="jobpost_employer" ng-options="employer.type_id as employer.type_name for employer in employerFits" multiple="multiple"  class="form-control" style="height: 130px;">
+           <option value="">-Select Employer Fit-</option>          
+         </select>
+       </div> -->
+       
+<!-- 
+       <div class="form-group">
+          <label for="exampleInputPassword1" class='control-label'>Employer Fit</label>           
+           <div style="height:150px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px;">
+          -Select Job Fit -  
+            <div ng-repeat="employer in employerFits" ng-if="employerFits != '' ">                        
+               <input type="checkbox" value="{{employer.type_id}}" ng-checked="selectionEmployer.indexOf(employer.type_id) > -1" ng-click="toggleSelectionEmployer(employer.type_id)"> {{employer.type_name}}
+            </div>
+          </div>
+        </div> -->
+
+        <!-- <div class="form-group" style="margin-bottom: 50px;">
+          <label for="exampleInputPassword1" class='control-label'>Post job on</label>
+          <datepicker date-format="yyyy-MM-dd" selector="form-control">
+            <div class="input-group">
+              <input class="form-control" placeholder="Choose a date" ng-model="editpostjob.jobpost_tilldata"/>
+              <span class="input-group-addon" style="cursor: pointer">
+                <i class="fa fa-lg fa-calendar"></i>
+              </span>
+            </div>
+          </datepicker>
+        </div> -->
+
+        <div class="form-group" style="margin-bottom: 50px;">
+              <label for="exampleInputPassword1" class='control-label'>Post job on</label> 
+              <div class="input-group">
+                <input type="text" uib-datepicker-popup="{{dateformat}}" min-date="mindate" is-open="showdp"   placeholder="Choose a date" max-date="maxdate" class="form-control" ng-model="editpostjob.jobpost_tilldata" ng-click="showcalendar($event)">
+                 <span class="input-group-addon" style="cursor: pointer">
+                        <i class="fa fa-lg fa-calendar"></i>
+                 </span>                       
+              </div>                    
+         </div>
+
+
+        <ul class="media-date text-uppercase reviews list-inline">
+          <li class="mm"><a class="btn btn-primary" ng-click="reset_url();">Cancel</a></li>
+          <li class="aaaa">    
+            <button [disabled]="loading" class="btn btn-success"  >Update</button>  
+            <!-- ng-disabled="editjobpostForm.$invalid" -->
+          </li>
+        </ul>
+      </form>
+    </div>
+</div>
+
+  </div>
+</div>
+</section>
+
+
+
+<div class="bottom_space"></div>
+<div class="bottom_space"></div>
+</div>
+
+<script>
+
+  $(document).ready(function(){
+    activaTab('published');
+  });
+
+  function activaTab(tab){
+    $('.nav-tabs a[href="#' + tab + '"]').tab('show');
+  };
+
+</script>

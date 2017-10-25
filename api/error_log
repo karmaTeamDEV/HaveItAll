@@ -1,0 +1,13 @@
+[12-Jul-2017 07:58:50 UTC] PHP Fatal error:  Call to undefined method API_model::fetch_countryID() in /home/primac/public_html/haveitall_new/api/application/controllers/LinkedinCallback.php on line 78
+[12-Jul-2017 08:03:27 UTC] PHP Fatal error:  Call to a member function row_array() on a non-object in /home/primac/public_html/haveitall_new/api/application/models/API_model.php on line 291
+[12-Jul-2017 08:04:38 UTC] PHP Fatal error:  Call to undefined method API_model::check_existingemail() in /home/primac/public_html/haveitall_new/api/application/controllers/LinkedinCallback.php on line 127
+[10-Aug-2017 13:44:06 UTC] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in /home/primac/public_html/haveitall/api/application/models/API_model.php on line 65
+[10-Aug-2017 13:44:06 UTC] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in /home/primac/public_html/haveitall/api/application/models/API_model.php on line 65
+[10-Aug-2017 13:44:06 UTC] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in /home/primac/public_html/haveitall/api/application/models/API_model.php on line 65
+[10-Aug-2017 13:44:06 UTC] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in /home/primac/public_html/haveitall/api/application/models/API_model.php on line 65
+[10-Aug-2017 13:44:06 UTC] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in /home/primac/public_html/haveitall/api/application/models/API_model.php on line 65
+[10-Aug-2017 13:44:06 UTC] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in /home/primac/public_html/haveitall/api/application/models/API_model.php on line 65
+[10-Aug-2017 13:44:06 UTC] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in /home/primac/public_html/haveitall/api/application/models/API_model.php on line 65
+[10-Aug-2017 13:44:06 UTC] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in /home/primac/public_html/haveitall/api/application/models/API_model.php on line 65
+[10-Aug-2017 13:44:06 UTC] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in /home/primac/public_html/haveitall/api/application/models/API_model.php on line 65
+[23-Aug-2017 09:05:45 UTC] PHP Fatal error:  Using $this when not in object context in /home/primac/public_html/haveitall/api/application/config/config.php on line 17

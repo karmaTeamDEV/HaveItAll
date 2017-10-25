@@ -1,0 +1,36 @@
+
+<section class="container content-section text-center">
+    
+<div class="row">
+<div ng-repeat="input in inputs">
+
+    <!-- <div ng-dropdown-multiselect="" options="example14data" selected-model="example14model"  checkboxes="true" extra-settings="example14settings"></div> -->
+
+     <select ng-model="input.company"  ng-options="company.company_id as company.company_name for company in companylist">
+        <option value="">select company</option>
+     </select>
+
+     <select  ng-model="input.category" multiple="true" ng-options="group.label for group in example14data">
+     <option value="">select title</option>
+     </select>
+    
+    <select ng-model="input.yearFrom"  ng-options="yearFrom  as yearFrom for yearFrom in yearlistFrom">
+        <option value="">select year</option>
+     </select>
+     <select ng-model="input.yearTo"  ng-options="yearTo as yearTo for yearTo in yearlistTo">
+        <option value="">select year</option>
+     </select>
+    <button ng-if="$index == inputs.length - 1" 
+            ng-click="addInput()">+</button>
+    <button ng-if="$index != inputs.length - 1"
+            ng-click="removeInput($index)">-</button>
+
+   <!--  <pre>{{input.category}}</pre>  -->
+</div>
+<input type="submit" name="submit" value="Submit" ng-click="addDesignation()">
+</div>
+
+
+<div class="bottom_space"></div>
+</section>
+

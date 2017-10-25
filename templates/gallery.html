@@ -1,0 +1,39 @@
+
+<section class="container content-section text-center">
+  <h3 align="center">Manage Gallery</h3>
+  <div class="row">
+    <div  class="voca">
+      <div align="center">
+          <div class="form-group"  style="width:40%; " >
+            <input type="file" class="form-control" id="galleryimage"  ng-model="gallery.value" accept="image/*" onchange="angular.element(this).scope().uploadImage(this);">
+
+          </div> 
+
+      </div>
+
+
+
+      <div align="center" style=" margin-top: 5%; ">
+        <div ng-repeat="input in inputs" ng-if="inputs.length != '0' " >
+           
+           <div style="width: 60%; float: left; margin-top: 5px;">
+           <span ng-if="input.gallery_image != null " >
+             <img src="upload/gallery/{{ses_usersid}}/{{input.gallery_image}}" width="50" >
+           </span>
+            
+          </div>
+          <div style="width: 10%; float: left;margin-top: 5px;">
+            
+            <button ng-if="$index != inputs.length"
+                    ng-click="removeInput($index,input.gallery_id)">Remove</button>
+          </div> 
+
+      </div>
+      </div>
+
+    
+    </div>
+</div>
+</section>
+ 
+

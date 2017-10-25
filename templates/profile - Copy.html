@@ -1,0 +1,90 @@
+
+  <!-- About Section --> 
+    <section class="container content-section text-left">
+    
+        <div class="row">
+        <div class="col-lg-12" align="right">
+        <img src="public/images/emplus.png">
+        </div>
+          <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+        
+        <div class="top_part1"> <div align="center"><img src="public/images/favourite.png"><span>Favourite</span></div>
+        </div>
+        <div class="top_part1">  <div align="center"><img src="public/images/message.png">Message<br/><hr/></div></div>
+       <div class="top_part1">  <div align="center"><img src="public/images/follow.png">Follow</div></div>
+                </div>
+       <div class="col-lg-2"></div>
+            </div>
+       
+        <section class="container">
+    <div class="row" style="margin-top:20px;">
+        <div class="col-lg-3 col-md-3 col-ms-3 col-xs-3">
+
+
+        <div >
+          <img src="{{ProfileInfo.users_profilepic}}" width="57%" />
+        </div>
+
+        <img src="public/images/linkedin.png"/>
+        <img src="public/images/twitter.png"/>
+        <img src="public/images/facebook.png"/>
+        <img src="public/images/camera.png"/>
+        <img src="public/images/www.png"/>
+   
+        </div>
+         <div class="col-lg-9 col-md-9 col-ms-9 col-xs-9">
+       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+       <div style="margin-top:20px;margin-bottom:20px;">
+       <table>
+       <tr>
+       <td><a href="#!/user/editprofile" style="color:#fff;"><button type="button" class="btn btn-danger">Manage</button></a></td>
+       <td width="50"></td>
+       <td><button type="button" class="btn btn-default">Posts</button></td>
+
+       </tr>
+       </table> 
+       </div>
+        </div>
+       </div>
+             
+
+       </section>
+        <section class="container">
+        <div class="row">
+        <div class="col-lg-12">
+       <span class="blue">Bio</span>
+        <hr/>
+      {{ProfileInfo.users_bio}} <br/><br/>
+        
+        
+        <span class="blue">Culture / Employer Fit</span>
+        <hr/>
+        <span  ng-repeat="employerfits in employerfitslist track by $index" >
+        {{employerfits.type_name}} <span class="blue">|</span> 
+        </span>
+        
+        <br/><br/>
+        
+       <!-- <span class="blue">Life Friendly:</span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam<BR/><BR/>-->
+        
+         <span class="blue">Job Fit</span>
+        <hr/>
+        <span ng-repeat="jobfits in jobFitslist track by $index">
+        {{jobfits.type_name}} <span class="blue">|</span> 
+        </span>
+        </div>
+       </div>
+       
+       </section> 
+       
+        <section class="container">
+              <div class="row">
+                  <div class="col-lg-12">
+                  <div style="margin:0px auto;"></div>
+                  </div>
+              </div>
+              <div class="bottom_space"></div>
+        </section>
+            
+
