@@ -301,7 +301,8 @@
             $localStorage.jobinfo = [];
             $localStorage.jobinfo.level = [];
             $localStorage.jobinfo.jobfit = [];
-            $localStorage.flag = '';     
+            $localStorage.flag = '';  
+            $localStorage.jobpost_id = '';   
          $window.location.href = '#!/user/postjobview/';
       } 
     
@@ -382,7 +383,8 @@
       };
       $scope.getStateCities = function(){ 
         $localStorage.flag = '1';
-        $localStorage.jobinfo.push({state:$scope.postjobinfo.state_id});        
+        $localStorage.jobinfo.push({state:$scope.postjobinfo.state_id});  
+       // alert($localStorage.jobinfo[0].state);
         getMatercmsService.getListinfo('city',$scope.postjobinfo.state_id).then(get_citylist, errorDetails);    
       }   
 
@@ -395,7 +397,8 @@
 
       $scope.getCountryStates = function(){ 
         $localStorage.flag = '1';
-        $localStorage.jobinfo.push({country:$scope.postjobinfo.country_id});       
+        $localStorage.jobinfo.push({country:$scope.postjobinfo.country_id}); 
+        //alert($localStorage.jobinfo[0].country);      
         //alert(JSON.stringify($localStorage.jobinfo));       
         getMatercmsService.getListinfo('state',$scope.postjobinfo.country_id).then(get_statelist, errorDetails);    
        }
@@ -403,7 +406,7 @@
        $scope.getcity = function(){  
         $localStorage.flag = '1';
         $localStorage.jobinfo.push({city:$scope.postjobinfo.city_id});           
-            
+        // alert($localStorage.jobinfo[0].city_id);      
        }
        $scope.getlink = function(){ 
         $localStorage.flag = '1'; 
