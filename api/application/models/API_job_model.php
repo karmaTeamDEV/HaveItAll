@@ -58,7 +58,7 @@ class API_job_model extends CI_Model {
 			return $query->result_array();
 		}
 		
-	}
+	} 
 
 	function user_saved_job_query($user_id='', $save_type='', $company_id="",$current_job_id = "",$level = "")
 	{
