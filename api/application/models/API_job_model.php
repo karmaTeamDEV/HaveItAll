@@ -63,7 +63,7 @@ class API_job_model extends CI_Model {
 	function user_saved_job_query($user_id='', $save_type='', $company_id="",$current_job_id = "",$level = "")
 	{
 		$sql = "SELECT JP.jobpost_id, JP.jobpost_companyid, fnStripTags(JP.jobpost_description) AS jobpost_description, TY.type_name AS jobpost_title,  JP.jobpost_jobtype, SJ.saved_date, COM.company_name, COM.company_name, UFC.id AS following_id,
-		IF(USC.users_profilepic IS NULL OR USC.users_profilepic = '', 'no-image.png', USC.users_profilepic) AS company_logo,
+		IF(USC.users_profilepic IS NULL OR USC.users_profilepic = '', 'no_company_logo.png', USC.users_profilepic) AS company_logo,
 		DATE_FORMAT( JP.jobpost_added_datetime,'%m/%d/%Y') job_post_date_only, DATE_FORMAT( JP.jobpost_added_datetime,'%H:%i %p') job_post_time_only,
 		hia_cities.name AS city_name, hia_states.name AS state_name, hia_countries.name AS country_name
 				
@@ -121,7 +121,7 @@ class API_job_model extends CI_Model {
 	function user_viewed_job_query($user_id='', $viewing_type='', $company_id="")
 	{
 		$sql = "SELECT JP.jobpost_id, JP.jobpost_companyid, fnStripTags(JP.jobpost_description) AS jobpost_description, TY.type_name AS jobpost_title,  JP.jobpost_jobtype, MAX(VJ.viewing_date) AS viewing_date, COM.company_name, UFC.id AS following_id,
-		IF(USC.users_profilepic IS NULL OR USC.users_profilepic = '', 'no-image.png', USC.users_profilepic) AS company_logo,
+		IF(USC.users_profilepic IS NULL OR USC.users_profilepic = '', 'no_company_logo.png', USC.users_profilepic) AS company_logo,
 		DATE_FORMAT( JP.jobpost_added_datetime,'%m/%d/%Y') job_post_date_only, DATE_FORMAT( JP.jobpost_added_datetime,'%H:%i %p') job_post_time_only,
 		hia_cities.name AS city_name, hia_states.name AS state_name, hia_countries.name AS country_name
 
