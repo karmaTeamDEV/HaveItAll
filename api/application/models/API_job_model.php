@@ -171,7 +171,7 @@ class API_job_model extends CI_Model {
 				SUM(JOB_MATCH.jobfit_status) AS jobfit_status,  SUM( JOB_MATCH.employeefit_status ) AS employeefit_status,  SUM( JOB_MATCH.skill_status ) AS skill_status,
 				SUM( JOB_MATCH.industry_status ) AS industry_status,  SUM( JOB_MATCH.area_status ) AS area_status,
 				 SUM( JOB_MATCH.location_status ) AS location_status ,
-				 IF(US.users_profilepic IS NULL OR US.users_profilepic = '', 'no-image.png', US.users_profilepic) AS company_logo,
+				 IF(US.users_profilepic IS NULL OR US.users_profilepic = '', 'no_company_logo.png', US.users_profilepic) AS company_logo,
 				 hia_cities.name AS city_name, hia_states.name AS state_name, hia_countries.name AS country_name
 
 				FROM
