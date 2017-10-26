@@ -119,7 +119,7 @@
          {{ProfileInfo.users_firstname}} {{ProfileInfo.users_lastname}}
          </div>
           <div class="text-left" ng-if="ProfileInfo.company_name != '' && to_view_userInfo_type== '2' ">
-         {{ProfileInfo.company_name}}
+          <a style="color: #666;" target="_blank" href="{{ProfileInfo.users_istagram_link ? ProfileInfo.users_istagram_link:'#!/user/profile//'}}">{{ProfileInfo.company_name}}</a> 
          </div>
           <div class="text-left blue" style="font-size:14px;" ng-if="ProfileInfo.users_type == '2' "><span style="font-weight: bold;">Industries:</span> 
            <span ng-repeat="industry in industryList"  style="color: #666;" ng-if="industryList.length != '0' ">
@@ -145,8 +145,9 @@
                 </span>
             </div>
              <div ng-if="localationlist.length== '0' ">Location : N/A</div>
-
+              <div ><b class="blue">Skill</b> : <span  ng-repeat="skillitem in skilldatalist">{{skillitem.skills_name}},</span> </div>
          </div>
+
          <div style="clear: both;"></div>
          <div style="margin-top: 5px;" class="text-left">
          <span  ng-if="to_view_type != 'view' " ><a href="#!/user/construction"><button type="button" class="btn btn-info" style="background-color: #5b9bd5;    text-transform: unset;">Feed</button> </a> </span>

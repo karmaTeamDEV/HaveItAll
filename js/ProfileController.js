@@ -161,7 +161,7 @@ app.controller('ProfileController', function ($scope,$uibModal,$window,$mdDialog
 		   if($scope.userInfo_type== '2'){
 		    // var x = document.getElementById("mydiv");        
       //   	x.style.display = "block";		  
-		  	$scope.go_to_next_user($scope.to_view_user_id,$scope.come_from_tab,'prev');
+		  	$scope.go_to_next_user($scope.to_view_user_id,$scope.come_from_tab,'prev'); 
 		   }
 		   if($scope.userInfo_type== '1'){
 		   	// var x = document.getElementById("mydiv");        
@@ -172,7 +172,7 @@ app.controller('ProfileController', function ($scope,$uibModal,$window,$mdDialog
 
 		var set_company_details = function(data){         
 	        $scope.company_details = data[0];
-	       // console.log(data[0]) ;
+	        //alert(JSON.stringfy(data[0]));
      	 }  
 
 
@@ -592,14 +592,14 @@ app.controller('ProfileController', function ($scope,$uibModal,$window,$mdDialog
 		  
 		 
 	};
-
+	 $scope.skilldatalist  = [];
 	var fetch_skilldatalist = function (data) {
-	 	 
+	 	  $scope.skilldatalist = data;		
 		 $scope.ProfileInfo.users_skills = [];
 		 angular.forEach(data, function(value, key) {		 	 	 
 		 		$scope.ProfileInfo.users_skills.push({code:parseInt(value.skills_id)});		  
 		 });
-       // alert(JSON.stringify($scope.ProfileInfo.users_skills));
+       //alert(JSON.stringify(data));
 	};
 
 
