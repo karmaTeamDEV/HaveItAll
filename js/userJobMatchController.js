@@ -138,7 +138,7 @@
 
 			var fetch_matching_jobs_for_user_unfollow = function (data) {
 				$scope.matching_jobs_for_user_unfollow_list = data;
-				//console.log($scope.companyList);	
+				console.log($scope.matching_jobs_for_user_unfollow_list);	
 			};
 
 			var set_user_saved_job = function (data) {
