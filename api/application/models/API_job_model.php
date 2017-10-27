@@ -8,7 +8,7 @@ class API_job_model extends CI_Model {
 	{
 		$sql = "SELECT JP.jobpost_id, JP.jobpost_companyid, fnStripTags(JP.jobpost_description) AS jobpost_description, TY.type_name AS jobpost_title,  JP.jobpost_jobtype, AJ.applied_date, COM.company_name,
 				DATE_FORMAT( AJ.applied_date,'%m/%d/%Y') applied_date_only, DATE_FORMAT( AJ.applied_date,'%H:%i %p') applied_time_only,
-				IF(USC.users_profilepic IS NULL OR USC.users_profilepic = '', 'no-image.png', USC.users_profilepic) AS company_logo,
+				IF(USC.users_profilepic IS NULL OR USC.users_profilepic = '', 'no_company_logo.png', USC.users_profilepic) AS company_logo,
 				hia_cities.name AS city_name, hia_states.name AS state_name, hia_countries.name AS country_name
 
 				FROM hia_user_applied_jobs AS AJ
