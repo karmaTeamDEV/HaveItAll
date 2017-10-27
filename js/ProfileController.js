@@ -629,8 +629,8 @@ app.controller('ProfileController', function ($scope,$uibModal,$window,$mdDialog
 		 	//alert(data[0].users_companyid); 
 
 				if($scope.userInfo_type == '2'){
-					//alert('hi');
-					$timeout(function() { fetch_company_details_from_job_post_id($scope.to_view_user_id, $localStorage.ses_userdata.users_id, 'company');  },  500);
+					//alert($localStorage.ses_userdata.users_companyid);
+					$timeout(function() { fetch_company_details_from_job_post_id($scope.to_view_user_id, $localStorage.ses_userdata.users_companyid, 'company');  },  500);
 				}else{
 					$timeout(function() { fetch_company_details_from_job_post_id($localStorage.ses_userdata.users_id, data[0].users_companyid, 'user');  },  500);
 				}
