@@ -1,7 +1,7 @@
-// var serviceurl = 'http://localhost/haveitall/api/index.php/';
-// var regular_url = 'http://localhost/haveitall/#!/';
-var regular_url = 'http://216.250.115.23/haveitall/#!/'; 
-var serviceurl = 'http://216.250.115.23/haveitall/api/index.php/';
+var serviceurl = 'http://localhost/haveitall/api/index.php/';
+var regular_url = 'http://localhost/haveitall/#!/';
+// var regular_url = 'http://216.250.115.23/haveitall/#!/'; 
+// var serviceurl = 'http://216.250.115.23/haveitall/api/index.php/';
 var app = angular.module('app', ['angucomplete','ngAnimate','ngMaterial','hm.readmore','ui.select2','ui.tinymce','ngResource','ui.router','ngStorage','duScroll','autocomplete', 'ui.bootstrap' ]).value('duScrollDuration', 2000);
 //'angularjs-dropdown-multiselect',
 //'btorfs.multiselect'

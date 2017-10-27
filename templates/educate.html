@@ -13,7 +13,7 @@ td , th
   <h3 align="center">Manage Education </h3>
   <div class="row">
     <div  class="voca" >
-     <form name="educationForm" ng-submit="addEducation(educationForm)" novalidate> 
+     <form name="educationForm" ng-submit="addEducation(educationForm)" novalidate>  
      <!-- <div class="col-md-3">
        <multiselect ng-model="selection" options="options" selection-limit="2" id-prop="id" display-prop="name" show-search="true">
        </multiselect>
@@ -48,7 +48,7 @@ td , th
         </div>
        
       <div style="margin-top:5px;">
-        <input type="text" class="form-control" ng-model="educationinfo.otherarea" placeholder="Other area" >
+        <input type="text" class="form-control" ng-model="educationinfo.otherarea" placeholder="Other area">
       </div> 
        
     </div>
@@ -58,10 +58,10 @@ td , th
       </select>       
 
        <div ng-if="educationinfo.action == 'insert'">
-        <input type="text" class="form-control" ng-model="educationinfo.otherinstitute" placeholder="Other institute"    ng-value="true" ng-disabled="educationinfo.institute_id">
+        <input type="text" class="form-control" ng-model="educationinfo.otherinstitute" placeholder="Other institute" ng-value="true" ng-disabled="educationinfo.institute_id">
       </div>
        <div ng-if="educationinfo.action == 'update'">
-        <input type="text" class="form-control" ng-model="educationinfo.otherinstitute" placeholder="Other institute"     ng-value="true" ng-disabled="educationinfo.institute_id != '0'">
+        <input type="text" class="form-control" ng-model="educationinfo.otherinstitute" placeholder="Other institute" ng-value="true" ng-disabled="educationinfo.institute_id != '0'">
       </div> 
 
       <div ng-messages="educationForm.institute_id.$err" ng-if="educationForm.institute_id.$invalid && !educationForm.institute_id.$pristine">

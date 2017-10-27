@@ -99,23 +99,27 @@ app.controller('UserCtrl', function ($scope,$window,$state,$localStorage,commonp
                       var url = serviceurl + "API/addpostJob/";
                       commonpostService.cmnpost(url,$scope.postjobinfo).then(result_set, errorDetails); 
                   }else{
-                    // $localStorage.jobinfo = [];
-                    // $localStorage.jobinfo.level = [];
-                    // $localStorage.jobinfo.jobfit = [];
-                    // $localStorage.flag = '';
-                    // $window.location.href = path;
-                     fetchrecordsCMSService.fetchrecordsCMS('','deletejobpost',$localStorage.jobpost_id).then(delete_jobrecord, errorDetails);
+                    fetchrecordsCMSService.fetchrecordsCMS('','deletejobpost',$localStorage.jobpost_id).then(delete_jobrecord, errorDetails);
+                    $localStorage.jobinfo = [];
+                    $localStorage.jobinfo.level = [];
+                    $localStorage.jobinfo.jobfit = [];
+                    $localStorage.flag = '';
+                    $window.location.href = path;
+
+                    
                   }
                 });
 
               }else{
                  
                 var delete_jobrecord = function (data) {
+                   
                      // alert(JSON.stringify(data));        
                       $localStorage.jobinfo = [];
                       $localStorage.jobinfo.level = [];
                       $localStorage.jobinfo.jobfit = [];
                       $localStorage.flag = '';
+                      $localStorage.jobpost_id = '';
                       $window.location.href = path;     
                 }; 
                 //alert($localStorage.jobpost_id);
@@ -124,6 +128,7 @@ app.controller('UserCtrl', function ($scope,$window,$state,$localStorage,commonp
                 $localStorage.jobinfo.level = [];
                 $localStorage.jobinfo.jobfit = [];
                 $localStorage.flag = '';
+                $localStorage.jobpost_id = '';
                 $window.location.href = path; 
               }
 

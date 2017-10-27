@@ -10,6 +10,7 @@
       $scope.postjobinfo = {};
       $scope.today = function () {
           $scope.postjobinfo.jobpost_tilldata = new Date();
+
       }; 
 
       $scope.mindate = new Date();
@@ -29,7 +30,7 @@
       var dd  = now.getDate().toString();
       var  next30daysDate = yyyy+"-"+mm+"-"+dd;
       $scope.maxdate = next30daysDate;
-
+      
      $localStorage.jobinfo = [];
      $scope.selectionJob =[];           
      $scope.industryinfo = {};
@@ -280,14 +281,32 @@
            bootbox.alert('Job apply date is required !');
            return false;
       } 
+
+        var now = new Date();        
+        var yyyy = now.getFullYear().toString();
+        var mm = (now.getMonth()+1).toString();
+        var dd  = now.getDate().toString();
+        var cur_data = yyyy+"-"+mm+"-"+dd;
+
+        var jobpost_tilldata = $scope.postjobinfo.jobpost_tilldata;        
+        var yyyy = jobpost_tilldata.getFullYear().toString();
+        var mm = (jobpost_tilldata.getMonth()+1).toString();
+        var dd  = jobpost_tilldata.getDate().toString();
+        var jobpost_tilldata = yyyy+"-"+mm+"-"+dd;
+        // alert(cur_data);
+        // alert(jobpost_tilldata);
+        if(jobpost_tilldata == cur_data){
+          $scope.postjobinfo.jobpost_status = '3'; 
+        }else{
+          $scope.postjobinfo.jobpost_status = '1'; 
+        }
        
-        // alert(JSON.stringify($scope.postjobinfo));
+        //alert(JSON.stringify($scope.postjobinfo.jobpost_status));
         $scope.postjobinfo.jobpost_employer = $scope.selectionEmployer;
         $scope.postjobinfo.jobpost_jobfit = $scope.selectionJob;
         $scope.postjobinfo.jobpost_seniority = $scope.selectionLevel;
         $scope.postjobinfo.users_id = $localStorage.ses_userdata.users_id;
-        $scope.postjobinfo.users_companyid = $localStorage.ses_userdata.users_companyid; 
-        $scope.postjobinfo.jobpost_status = '1'; 
+        $scope.postjobinfo.users_companyid = $localStorage.ses_userdata.users_companyid;        
         $scope.postjobinfo.action = 'edit';              
         //alert(JSON.stringify($scope.postjobinfo));
         var url = serviceurl + "API/addpostJob/";

@@ -94,11 +94,8 @@
    }
    .member_list ul {
    border: 1px solid #dddddd;
-   }
-   .chat-img img {
-     
-   width: 60px;
-   }
+   } 
+
    .member_list li {
    border-bottom: 1px solid #dddddd;
    padding: 6px;
@@ -160,6 +157,7 @@
 .chat_area li .chat-img1 img {
   
   width: 60px;
+
 }
 .chat_area .chat-body1 {
   margin-left: 50px;
@@ -251,9 +249,13 @@
             <div class="member_list">
                <ul class="list-unstyled">
                   <li class="left clearfix"  ng-repeat="users in chart_user_list" ng-click="click_on_company_for_messages(sess_company_id, users.users_id)">
-                     <span class="chat-img pull-left">
+                     <!-- <span class="chat-img pull-left">
                      <img src="upload/{{users.users_profilepic}} " alt="User Avatar" class="img-circle">
-                     </span>
+                     </span> -->
+                     <span class="chat-img pull-left" style="background-image:url(upload/{{users.users_profilepic}});width:40px;height:40px;border-radius:50%;background-position:center center;max-width:100%;-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;"></span>
                      <div class="chat-body clearfix" >
                         <div class="header_sec">
                            <strong class="primary-font">{{users.users_firstname}} {{users.users_lastname}}</strong> <strong class="pull-right">
