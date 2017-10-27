@@ -23,7 +23,7 @@ padding:3px 0px;
         <!-- Tab 1 Start/////////////////////////////////////////// -->
         <div ng-show="listTab">
           <ul class="nav nav-tabs">
-             <li ng-click="activeList(2)" id="published_tab"><a data-toggle="tab" data-target="#notviewed"> Published  <span  ng-if="come_from_tab == 'publish'"  ng-init="click_on_tab('published_tab', 'notviewed')"></span> </a></li>
+             <li ng-click="activeList(2)" id="published_tab" class="active" ><a  data-toggle="tab" data-target="#notviewed"> Published    </a></li>
 
             <li  ng-click="activeList(1)" id="notviewed_tab"><a data-toggle="tab" data-target="#published"> Pending <span  ng-if="come_from_tab == 'pending'"  ng-init="click_on_tab('notviewed_tab', 'published')"></span> </a></li>   
 
