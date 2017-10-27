@@ -260,33 +260,33 @@ class API_following_company_model extends CI_Model {
 				(
 					SELECT DISTINCT USR.*, 1 AS jobfit_status, 0 AS employeefit_status, 0 AS location_status, 0 AS industry_status, 0 AS area_status 
 					FROM hia_users AS USR
-					JOIN hia_type_user_rel AS TUR ON (USR.users_id = TUR.type_rel_userid AND TUR.type_rel_category IN('job_fit') AND USR.users_type = '1' AND USR.users_status != '1')
+					JOIN hia_type_user_rel AS TUR ON (USR.users_id = TUR.type_rel_userid AND TUR.type_rel_category IN('job_fit') AND USR.users_type = '1' AND USR.users_status != '1' AND USR.company_type != '1')
 					JOIN hia_users AS CUSER ON (  CUSER.users_id = '$user_id')
 					JOIN hia_type_user_rel AS TUR1 ON (CUSER.users_id = TUR1.type_rel_userid AND TUR1.type_rel_category IN('job_fit') AND TUR.type_id = TUR1.type_id)
 
 					UNION
 					SELECT DISTINCT USR.*,  0 AS jobfit_status, 1 AS employeefit_status, 0 AS location_status, 0 AS industry_status, 0 AS area_status
 					FROM hia_users AS USR
-					JOIN hia_type_user_rel AS TUR ON (USR.users_id = TUR.type_rel_userid AND TUR.type_rel_category IN('employer_fit') AND USR.users_type = '1' AND USR.users_status != '1')
+					JOIN hia_type_user_rel AS TUR ON (USR.users_id = TUR.type_rel_userid AND TUR.type_rel_category IN('employer_fit') AND USR.users_type = '1' AND USR.users_status != '1' AND USR.company_type != '1')
 					JOIN hia_users AS CUSER ON (  CUSER.users_id = '$user_id')
 					JOIN hia_type_user_rel AS TUR1 ON (CUSER.users_id = TUR1.type_rel_userid AND TUR1.type_rel_category IN('employer_fit') AND TUR.type_id = TUR1.type_id)
 
 					UNION
 					SELECT DISTINCT USR.*,  0 AS jobfit_status, 0 AS employeefit_status, 1 AS location_status, 0 AS industry_status, 0 AS area_status
 					FROM hia_users AS USR
-					JOIN hia_users AS CUSER ON (  CUSER.users_id = '$user_id' AND USR.users_city = CUSER.users_city AND USR.users_type = '1' AND USR.users_status != '1' )
+					JOIN hia_users AS CUSER ON (  CUSER.users_id = '$user_id' AND USR.users_city = CUSER.users_city AND USR.users_type = '1' AND USR.users_status != '1' AND USR.company_type != '1')
 
 					UNION
 					SELECT DISTINCT USR.*,  0 AS jobfit_status, 0 AS employeefit_status, 0 AS location_status, 1 AS industry_status, 0 AS area_status
 					FROM hia_users AS USR
-					JOIN hia_industry_user_relation AS IUR ON (USR.users_id = IUR.users_id  AND USR.users_type = '1' AND USR.users_status != '1' )
+					JOIN hia_industry_user_relation AS IUR ON (USR.users_id = IUR.users_id  AND USR.users_type = '1' AND USR.users_status != '1' AND USR.company_type != '1')
 					JOIN hia_users AS CUSER ON (  CUSER.users_id = '$user_id')
 					JOIN hia_industry_user_relation AS IUR1 ON (CUSER.users_id = IUR1.users_id  AND IUR.industry_id = IUR1.industry_id)
 
 					UNION
 					SELECT DISTINCT USR.*,  0 AS jobfit_status, 0 AS employeefit_status, 0 AS location_status, 0 AS industry_status, 1 AS area_status
 					FROM hia_users AS USR
-					JOIN hia_assign_industry AS IUR ON (USR.users_id = IUR.userid  AND USR.users_type = '1' AND USR.users_status != '1' )
+					JOIN hia_assign_industry AS IUR ON (USR.users_id = IUR.userid  AND USR.users_type = '1' AND USR.users_status != '1' AND USR.company_type != '1')
 					JOIN hia_users AS CUSER ON (  CUSER.users_id = '$user_id')
 					JOIN hia_assign_industry AS IUR1 ON (CUSER.users_id = IUR1.userid  AND IUR.area_id = IUR1.area_id)
 				)USER_MATCH
@@ -423,7 +423,8 @@ class API_following_company_model extends CI_Model {
 						
 					) UCV ON (U.users_id = UCV.user_id AND  UCV.company_id = '$company_id' )
 				WHERE U.users_type != '3'
-				AND U.users_status != '1' ";
+				AND U.users_status != '1'
+				AND U.company_type != '1' ";
 
 		if ($following_type != "") {
 			$sql.= " AND UFC.following_type = '$following_type' ";
