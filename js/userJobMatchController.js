@@ -5,7 +5,7 @@
 	//     return items.slice().reverse();
 	//   };
 	// });
-    app.controller('userJobMatchController', function ($scope,$http,$localStorage,$location, $timeout, $state, fetchrecordsCMSService,updateProfileService,removeImageService,getMatercmsService,getProfileService,commonpostService) { 
+    app.controller('userJobMatchController', function ($scope,$window,$http,$localStorage,$location, $timeout, $state, fetchrecordsCMSService,updateProfileService,removeImageService,getMatercmsService,getProfileService,commonpostService) { 
   		
     
 
@@ -70,17 +70,19 @@
 			};
 
 			/* APPLY FOR A JOB FUNCTION*/
-			 $scope.apply_for_job_user = function (job_id) {
+			 $scope.apply_for_job_user = function (job_id,job_url) {
 
 				//alert(job_id);
 
 				var url_path = serviceurl + "API_job/apply_job_by_user/" ;
-				var parameter = { job_id: job_id, user_id: $localStorage.ses_userdata.users_id, applied_type: 'user' };
+				var parameter = { job_id: job_id, user_id: $localStorage.ses_userdata.users_id, applied_type: 'user',url : job_url};
 				commonpostService.cmnpost( url_path, parameter).then(after_apply_for_job_user, errorDetails);
 				//console.log($scope.companyList);	
 			};
 
 			var after_apply_for_job_user = function (data) {
+				 
+				//alert(data.url);
 				//console.log(data.del_id);	
 				$("#matching"+data.job_id).remove();
 				$("#suggested"+data.job_id).remove();
@@ -88,6 +90,12 @@
 				$("#viewed"+data.job_id).remove();
 
 				fetch_user_applied_jobs();
+				if(data.url != ''){
+					$window.open(data.url, '_blank');
+				}else{
+					$window.open('#!/user/user-job', '_blank');
+				}
+				
 
 
 			};
@@ -125,7 +133,7 @@
 
 			var fetch_matching_jobs_for_user = function (data) {
 				$scope.matching_jobs_for_user_list = data;
-				//console.log($scope.companyList);	
+				//console.log($scope.matching_jobs_for_user_list);	
 			};
 
 			var fetch_matching_jobs_for_user_unfollow = function (data) {
@@ -135,7 +143,7 @@
 
 			var set_user_saved_job = function (data) {
 				$scope.saved_job_for_user_list = data;
-				//console.log($scope.companyList);	
+				//console.log($scope.saved_job_for_user_list);	
 
 			};
 

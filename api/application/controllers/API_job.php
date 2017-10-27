@@ -211,7 +211,7 @@ class API_job extends REST_Controller {
 		$data = array('user_id' => $user_id, 'job_post_id' => $job_id, 'applied_type' => $applied_type, );
 		$companyid = $this->API_model->insert_cmn_tbl('hia_user_applied_jobs', $data);
 
-			$return = array('job_id' => $job_id, 'user_id' => $user_id );
+			$return = array('job_id' => $job_id, 'user_id' => $user_id,'url'=>$post_data->url );
 			$this->response($return, 200);
 
 	}
