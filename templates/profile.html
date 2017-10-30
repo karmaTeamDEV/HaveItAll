@@ -153,13 +153,17 @@
 
          <div style="clear: both;"></div>
          <div style="margin-top: 5px;" class="text-left">
-         <span  ng-if="to_view_type != 'view' " ><a href="#!/user/construction"><button type="button" class="btn btn-info" style="background-color: #5b9bd5;    text-transform: unset;">Feed</button> </a> </span>
+         <span  ng-if="to_view_type != 'view' " ><a href="#!/user/posts"><button type="button" class="btn btn-info" style="background-color: #5b9bd5;    text-transform: unset;">Feed</button> </a> </span>
          <span  ng-if="userInfo_type == '1' && to_view_type == 'view' " ><a href="#!/user/message"><button type="button" class="btn btn-info" style="background-color: #5b9bd5;    text-transform: unset;">Message</button> </a> </span>
         <span  ng-if="userInfo_type == '2' && to_view_type == 'view' "><a href="#!/user/companyMessage" ><button type="button" class="btn btn-info" style="background-color: #5b9bd5;    text-transform: unset;">Message</button> </a> </span>
          &nbsp;&nbsp;
 
          <span  ng-if="to_view_type == 'view' ">
            <button type="button" class="btn btn-info" style="background-color: #5b9bd5;text-transform: unset;" ng-click="open_notes(to_view_user_id);">Notes</button>
+         </span>
+
+          <span  ng-if="to_view_type == 'view' && userInfo_type == '1' ">
+          <a href="#!/user/postsDetails/{{to_view_user_id}}"> <button type="button" class="btn btn-info" style="background-color: #5b9bd5;text-transform: unset; margin-left: 15px;"  >Posts</button></a>
          </span>
 
          </div>

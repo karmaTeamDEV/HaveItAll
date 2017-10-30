@@ -453,6 +453,28 @@ app.config(function($stateProvider, $urlRouterProvider) {
                 }
             }
         })
+         .state('user.posts', {
+            cache: false,
+            url: '/posts',
+            views: {
+                'menuContent': {
+                    templateUrl: 'templates/posts.html',
+                    controller: 'postsController'
+                }
+            }
+        })
+
+         .state('user.postsDetails', {
+            cache: false,
+            url: '/postsDetails/:id',
+            views: {
+                'menuContent': {
+                    templateUrl: 'templates/postsDetails.html',
+                    controller: 'postsDetailsController'
+                }
+            }
+        })
+
 
         ;
     });

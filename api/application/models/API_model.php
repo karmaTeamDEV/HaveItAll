@@ -744,7 +744,7 @@ public function delete_location($userid,$country_id) {
     $this->db->where('relation_user_id',$userid); 
     $this->db->where('rel_country_id',$country_id);   
     $this->db->delete($this->locationsrelationTable);
-    //echo $this->db->last_query(); exit;   
+      
     return $id;
 }
 public function delete_industry($jobpost_id,$industry_id) {
@@ -828,9 +828,18 @@ public function get_user_data($table, $field, $id) {
         $this->db->from('type_user_rel');                    
         $this->db->where('type_rel_userid', $users_id);
         $this->db->where('type_user_rel.type_id', $cutype_id);
-        $this->db->join('type','type.type_id = type_user_rel.type_id','left');       
+        $this->db->join('type','type.type_id = type_user_rel.type_id','left');    
         $result = $this->db->get();  
         //echo $this->db->last_query();exit;       
+        return $result->result_array();
+    }
+
+     public function get_all_feeds($id) {
+        $this->db->select("*");        
+        $this->db->where('post_userid', $id);         
+        $this->db->order_by('post_id', 'desc');
+        $result = $this->db->get('posts');  
+        //echo $this->db->last_query();exit;               
         return $result->result_array();
     }
     

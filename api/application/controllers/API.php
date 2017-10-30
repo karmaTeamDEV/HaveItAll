@@ -2817,4 +2817,87 @@ function  getgalleryList_get($id){
   		}
   	}
 
+  	function addPostsTxt_post(){  		
+  		$post_data = json_decode(file_get_contents("php://input"));
+  	 
+  		if(isset($post_data)){
+  			 
+  			$data = array(
+	  				'post_userid' =>$post_data->user_id,
+	  				'post_content' =>$post_data->text 
+	  				);
+  			$id = $this->API_model->insert_cmn_tbl('posts',$data); 
+
+  			if($id){
+  				$success = array('status'=> $id,'message' => 'success' );
+				$this->response($success, 200);
+  			}else{
+  				$Error = array('status'=> '0','message' => 'error' );
+				$this->response($Error, 200);
+  			}
+
+  		}else{
+  			$Error = array('status'=> '0','message' => 'error' );
+			$this->response($Error, 200);
+  		}
+  	}
+  	function addPosts_post(){  
+  		 
+  		$user_id = $_POST['user_id'];
+  	 
+  		if(isset($user_id)){
+  			 
+  			$data = array(
+	  				'post_userid' =>$user_id,
+	  				'post_content' =>$_POST['text'] 
+	  				);
+
+	  		if(!empty($_FILES['image'])){
+				$ext = pathinfo($_FILES['image']['name'],PATHINFO_EXTENSION);
+				$image = time().'.'.$ext;
+				$up =  move_uploaded_file($_FILES["image"]["tmp_name"], image_upload_path.'posts/'.$image);
+	  			if($up){
+	  				$data['post_type'] = 'image';
+	  				$data['post_filename'] = $image;
+	  			}
+	  		}
+
+  			$id = $this->API_model->insert_cmn_tbl('posts',$data); 
+
+  			if($id){
+  				$success = array('status'=> $id,'message' => 'success' );
+				$this->response($success, 200);
+  			}else{
+  				$Error = array('status'=> '0','message' => 'error' );
+				$this->response($Error, 200);
+  			}
+
+  		}else{
+  			$Error = array('status'=> '0','message' => 'error' );
+			$this->response($Error, 200);
+  		}
+  	}
+  	function getPostlist_get($postid){		
+			 	 
+			if($postid)
+			{	
+				$mydata = $this->API_model->get_all_feeds($postid);	
+
+				if($mydata){
+					//$success = array('status' => '1','message' => 'succes');				 				
+					$this->response($mydata, 200); // 200 being the HTTP response code
+				}else{
+					$Error = array('status' => '0','message' => 'error');		
+					$this->response($Error, 200);
+				}
+				
+			}
+			else
+			{
+				$Error = array('status' => '0','message' => 'error');		
+				$this->response($Error, 200);
+			}
+
+	}
+
 }
