@@ -32,11 +32,11 @@
     };
 }]);
 
-app.controller('postsController', function ($scope,$state,$http,fetchrecordsCMSService,$localStorage,commonpostService,$location,$document,getProfileService) { 
+app.controller('postsController', function ($scope,$state,$uibModal,$http,fetchrecordsCMSService,$localStorage,commonpostService,$location,$document,getProfileService) { 
      
-      $scope.files = [];
-
-      var errorDetails = function (serviceResp) {
+      
+    $scope.files = [];
+    var errorDetails = function (serviceResp) {
       $scope.Error = "Something went wrong ??";
     };
 
@@ -50,7 +50,8 @@ app.controller('postsController', function ($scope,$state,$http,fetchrecordsCMSS
 
       $scope.postdatainfo = {};
       $scope.uploadFiles = function(){
-
+      var x = document.getElementById("mydiv");        
+      x.style.display = "block";   
       $scope.form = [];
       $scope.files = [];
       var element = document.getElementById('imageFile');
@@ -110,6 +111,32 @@ if(Extension){
     
 
   }
+
+  $scope.timeSince = function(date) {
+      var seconds = Math.floor((new Date() - date) / 1000);
+      var interval = Math.floor(seconds / 31536000);
+
+      if (interval > 1) {
+        return interval + " years ago";
+      }
+      interval = Math.floor(seconds / 2592000);
+      if (interval > 1) {
+        return interval + " months ago";
+      }
+      interval = Math.floor(seconds / 86400);
+      if (interval > 1) {
+        return interval + " days ago";
+      }
+      interval = Math.floor(seconds / 3600);
+      if (interval > 1) {
+        return interval + " hours ago";
+      }
+      interval = Math.floor(seconds / 60);
+      if (interval > 1) {
+        return interval + " minutes ago";
+      }
+      return Math.floor(seconds) + " seconds ago";
+  }
  
     var addPosts = function (data) {
           
@@ -125,10 +152,14 @@ if(Extension){
       
 
      $scope.postdatalist = [];
-     var get_list = function (data) { 
-
-     $scope.postdatalist =data;     
-     //alert(JSON.stringify($scope.postdatalist));
+   
+     var get_list = function (data) {
+         $scope.postdatalist =data;     
+         //alert(JSON.stringify($scope.postdatalist));
+          angular.forEach($scope.postdatalist, function(value, key) {
+             $scope.postdatalist[key].lastactivity = $scope.timeSince(new Date(value.post_date));                    
+          });
+         // console.log(JSON.stringify($scope.postdatalist));     
        
      };
 
@@ -138,7 +169,34 @@ if(Extension){
      $scope.selImage = function(){       
       $('#imageFile').click();
      }
-     
+     var deletePost = function (data) {
+      fetchrecordsCMSService.fetchrecordsCMS('','getPostlist',$localStorage.ses_userdata.users_id).then(get_list,errorDetails); 
+     };
+
+     $scope.deletePost = function(id){
+         //alert(id);
+         bootbox.confirm("Do you want to delete this post ?", function(result){
+            if(result ==  true){
+                 var x = document.getElementById("mydiv");        
+                 x.style.display = "block";   
+                var url = serviceurl + "API/deletePost/";
+                var object = { user_id:$localStorage.ses_userdata.users_id, post_id:id};
+                commonpostService.cmnpost(url,object).then(deletePost, errorDetails);  
+            }
+
+         });
+     }
+
+      $scope.open_notes = function (post_id) {
+         $localStorage.post_id = post_id;        
+          var modalInstance = $uibModal.open({
+              controller: 'PopupCont',
+              templateUrl: 'templates/editpost.html',
+          });
+      } 
+
+    
+
 });
 
 

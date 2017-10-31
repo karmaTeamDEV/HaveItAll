@@ -110,6 +110,17 @@ body
 {
 	height:1px;background-color:#CCC;margin-top:10px;margin-bottom:10px;
 }
+.dropdown-menu {
+    right: 0!important;
+    float: right!important;
+    min-width: 80px!important;
+    margin: 20px 0 0!important;
+    cursor: pointer;
+}
+.dot
+{
+	font-weight:bold;font-size:24px;letter-spacing:2px; margin-top: -10px; cursor: pointer;
+}
 </style>
 </head>
 
@@ -149,7 +160,7 @@ Software Engineer at Karma Strategies -->
 </div>
 <div class="pull-right"><a ng-click="uploadFiles();"><span class="btn5">post</span></a></div>
 </div>
-</div>
+</div> 
 
 
 <div class="box_shadow1" ng-if="postdatalist.length == '' ">No Post Found.</div>
@@ -159,13 +170,21 @@ Software Engineer at Karma Strategies -->
 		<img ng-src="public/images/no_company_logo.png" width="50px"  style="cursor: pointer;float:left;"/> </span> 
 		<span ng-if="ProfileInfo.users_profilepic != '' ">
 		<img ng-src="upload/{{ProfileInfo.users_profilepic}}" width="50px"  style="cursor: pointer;float:left;"/> </span>
-
+		<div class="dropdown">
+		  <div class="dropdown-toggle pull-right dot"  data-toggle="dropdown" >...</div>
+		  <span style="float: right;margin-right: 30px;">{{datalist.lastactivity}}</span>    
+		  <ul class="dropdown-menu pull-right">
+		    <li><a ng-click="open_notes(datalist.post_id);">Edit</a></li>
+		    <li><a ng-click="deletePost(datalist.post_id);">Delete</a></li>			     
+		  </ul>
+		</div>
 		<div class="content-heading">
+			
 			<div class="left_margin">
 				<strong>{{ProfileInfo.company_name}}</strong>
-    <!--   <br/>
-    Software Engineer at Karma Strategies -->
-</div>
+				
+			</div>
+ 
 </div>
 </div>
 <div class="top20" ng-if="datalist.post_content != 'undefined' ">

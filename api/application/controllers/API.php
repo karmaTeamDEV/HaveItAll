@@ -2841,6 +2841,33 @@ function  getgalleryList_get($id){
 			$this->response($Error, 200);
   		}
   	}
+  	function editPosttxt_post(){  		
+  		$post_data = json_decode(file_get_contents("php://input"));
+  	 
+  		if(isset($post_data)){
+  			 
+  			$data = array(	  				 
+				'post_content' =>$post_data->post_content 
+			);
+
+  			if($post_data->post_filename == ''){
+  				$data['post_filename'] = '';
+  			}
+  			$id = $this->API_model->update_cmn_tbl('posts','post_id',$post_data->post_id,$data);
+
+  			if($id){
+  				$success = array('status'=> $id,'message' => 'success' );
+				$this->response($success, 200);
+  			}else{
+  				$Error = array('status'=> '0','message' => 'error' );
+				$this->response($Error, 200);
+  			}
+
+  		}else{
+  			$Error = array('status'=> '0','message' => 'error' );
+			$this->response($Error, 200);
+  		}
+  	}
   	function addPosts_post(){  
   		 
   		$user_id = $_POST['user_id'];
@@ -2877,6 +2904,40 @@ function  getgalleryList_get($id){
 			$this->response($Error, 200);
   		}
   	}
+  	function editPost_post(){  
+  		 
+  		$post_id = $_POST['post_id'];
+  	 
+  		if(isset($post_id)){
+  			 
+			$data = array(	  				 
+			'post_content' =>$_POST['post_content'] 
+			);
+
+	  		if(!empty($_FILES['image'])){
+				$ext = pathinfo($_FILES['image']['name'],PATHINFO_EXTENSION);
+				$image = time().'.'.$ext;
+				$up =  move_uploaded_file($_FILES["image"]["tmp_name"], image_upload_path.'posts/'.$image);
+	  			if($up){
+	  				$data['post_type'] = 'image';
+	  				$data['post_filename'] = $image;
+	  			}
+	  		} 
+  			 //echo "<pre>";print_r($data);exit;
+  			$id = $this->API_model->update_cmn_tbl('posts','post_id',$post_id,$data);
+  			if($id){
+  				$success = array('status'=> $id,'message' => 'success' );
+				$this->response($success, 200);
+  			}else{
+  				$Error = array('status'=> '0','message' => 'error' );
+				$this->response($Error, 200);
+  			}
+
+  		}else{
+  			$Error = array('status'=> '0','message' => 'error' );
+			$this->response($Error, 200);
+  		}
+  	}
   	function getPostlist_get($postid){		
 			 	 
 			if($postid)
@@ -2899,5 +2960,52 @@ function  getgalleryList_get($id){
 			}
 
 	}
+
+	function deletePost_post(){  		
+  		$post_data = json_decode(file_get_contents("php://input"));
+  	 
+  		if(isset($post_data)){  			 
+  			$myrow = $this->API_model->get_row_record('posts', 'post_id', $post_data->post_id);
+  			if(!empty($myrow)){
+  				//echo '<pre>';print_r($myrow);exit;
+  				unlink('../upload/posts/'.$myrow['post_filename']);
+  				$id = $this->API_model->commonDelete('posts','post_id',$post_data->post_id);
+  			}  			
+
+  			if($id){
+  				$success = array('status'=> $id,'message' => 'success' );
+				$this->response($success, 200);
+  			}else{
+  				$Error = array('status'=> '0','message' => 'error' );
+				$this->response($Error, 200);
+  			}
+
+  		}else{
+  			$Error = array('status'=> '0','message' => 'error' );
+			$this->response($Error, 200);
+  		}
+  	}
+  	function geteditpost_post(){  		
+  		$post_data = json_decode(file_get_contents("php://input"));
+  	 
+  		if(isset($post_data)){
+  			 
+  			 $myrow = $this->API_model->get_row_record('posts', 'post_id', $post_data->post_id);
+  			 //echo "<pre>";print_r($myrow);exit;
+  			if(!empty($myrow)){
+  				//$success = array('status'=> $id,'message' => 'success' );
+				$this->response($myrow, 200);
+  			}else{
+  				$Error = array('status'=> '0','message' => 'error' );
+				$this->response($Error, 200);
+  			}
+
+  		}else{
+  			$Error = array('status'=> '0','message' => 'error' );
+			$this->response($Error, 200);
+  		}
+  	}
+
+	
 
 }

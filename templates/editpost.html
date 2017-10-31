@@ -1,0 +1,72 @@
+<html>
+<head>
+<style type="text/css">
+  .chat
+{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.chat li
+{
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px dotted #B3A9A9;
+}
+
+.chat li.left .chat-body
+{
+    margin-left: 60px;
+}
+
+ 
+
+.chat li .chat-body p
+{
+    margin: 0;
+    color: #777777;
+}
+
+.panel .slidedown .glyphicon, .chat .glyphicon
+{
+    margin-right: 5px;
+}
+
+.panel-body
+{
+     
+    height: 250px;
+}
+
+
+
+</style>
+</head>
+<body>
+<div class="modal-header">
+<h3 class="modal-title">Edit Post<button class="pull-right" type="button" ng-click="close()">x</button></h3>
+
+</div>
+     
+<div class="modal-body">
+<div class="form-group">  
+           <input type="text" class="form-control" style="border: 1px solid #ccc;" ng-model="postdata.post_content"> 
+     </div>
+    
+	   <div class="form-group">
+         <div class="panel-body">
+                     <div id="cross" ng-click="remove_img();" style="position: absolute; left: 0; top: 30;color: #fff; font-size: 24px; margin-left: 210px;">X</div>
+                 <img src="upload/posts/{{postdata.post_filename}}" width="200" id="img"> 
+                 <input type="file" id="imageFileEdit"   accept="image/*" />
+         </div>                         
+     </div>
+    
+     <button class="btn btn-primary pull-right" type="button" ng-click="savePost()" >Save</button>
+     <div style="clear: both;"></div>
+</div>
+<!-- <div class="modal-footer">
+<button class="btn btn-warning" type="button" ng-click="close()">Close</button>
+</div> -->
+</body>
+</html>

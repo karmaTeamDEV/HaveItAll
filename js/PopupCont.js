@@ -1,8 +1,9 @@
-﻿app.controller('PopupCont', function ($scope, $window,$uibModalInstance,commonpostService,$localStorage) {
+﻿app.controller('PopupCont', function ($scope,$http, $window,$uibModalInstance,commonpostService,$localStorage) {
 
 	   $scope.close = function () {
             $scope.text = '';
             $localStorage.prouser_id = '';
+            $localStorage.post_id = '';
             $uibModalInstance.dismiss('cancel');
        };	
        $scope.publishlist = {};	
@@ -106,6 +107,101 @@
         var url = serviceurl + "API/update_culturefit/";
         commonpostService.cmnpost(url,$scope.culturefit).then(get_record, errorDetails);   
      }
+    
+    
+    $scope.postdata = {};
+    var geteditpost = function(data){
+         $scope.postdata = data;
+         //alert(JSON.stringify($scope.postdata));
+    }
+ 
+if($localStorage.post_id != undefined){
+    var url = serviceurl + "API/geteditpost/";  
+    var obj = {post_id:$localStorage.post_id,users_id:$localStorage.ses_userdata.users_id};          
+    commonpostService.cmnpost(url,obj).then(geteditpost, errorDetails); 
+}
+   $scope.remove_img = function(){      
+     // alert(JSON.stringify($scope.postdata));    
+      $scope.postdata.post_filename = '';
+      // alert(JSON.stringify($scope.postdata));    
+      $('#img').hide();
+      $('#cross').hide();
+     }
+
+     
+
+      $scope.savePost = function(){ 
+
+        alert(JSON.stringify($scope.postdata));    
+        var x = document.getElementById("mydiv");        
+        x.style.display = "block";   
+        $scope.form = [];
+        $scope.files = [];
+        var element = document.getElementById('imageFileEdit');
+        var FileUploadPath = element.value;
+        var Extension = FileUploadPath.substring(FileUploadPath.lastIndexOf('.') + 1).toLowerCase();
+
+  if(Extension){
+
+  if (Extension == "gif" || Extension == "png" || Extension == "bmp" || Extension == "jpeg" || Extension == "jpg") {
+
+      $scope.currentFile = element.files[0];  
+    
+        $scope.files = element.files;
+        var reader = new FileReader();
+        
+          reader.onload = function(event) {
+            $scope.image_source = event.target.result
+            $scope.$apply(function($scope) {          
+              $scope.files = element.files;
+            });
+          }
+           reader.readAsDataURL(element.files[0]);    
+         $scope.form.image = $scope.files[0];
+          
+         $http({
+          method  : 'POST',
+          url     : serviceurl+'API/editPost',
+          processData: false,
+          transformRequest: function (data) {
+              var formData = new FormData();
+              formData.append("image", $scope.form.image);  
+              formData.append("user_id", $localStorage.ses_userdata.users_id);
+              formData.append("post_content", $scope.postdata.post_content);  
+              formData.append("post_id", $scope.postdata.post_id); 
+              return formData;  
+          },  
+          data : $scope.form,
+          headers: {
+                 'Content-Type': undefined
+          }
+         }).then(function(response){                 
+                $uibModalInstance.dismiss('cancel');
+                $window.location.reload(); 
+         });  
+
+       }else{
+        
+        bootbox.alert("Photo only allows file types of GIF, PNG, JPG, JPEG.");
+
+     }  
+
+     }else{
+       //alert(JSON.stringify($scope.postdata));    
+          var editPosttxt = function(data){
+            $uibModalInstance.dismiss('cancel');
+            $window.location.reload(); 
+           }
+           
+          var url = serviceurl + "API/editPosttxt/";
+          $scope.postdata.user_id = $localStorage.ses_userdata.users_id;          
+          commonpostService.cmnpost(url,$scope.postdata).then(editPosttxt, errorDetails);   
+     }         
+          
+     }
+
+     
+      
 
 });
  
