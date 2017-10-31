@@ -132,7 +132,7 @@ if($localStorage.post_id != undefined){
 
       $scope.savePost = function(){ 
 
-        alert(JSON.stringify($scope.postdata));    
+       // alert(JSON.stringify($scope.postdata));    
         var x = document.getElementById("mydiv");        
         x.style.display = "block";   
         $scope.form = [];
