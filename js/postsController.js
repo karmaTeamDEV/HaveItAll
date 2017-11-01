@@ -32,9 +32,34 @@
     };
 }]);
 
+app.directive('parseUrl', function () {
+    var urlPattern = /(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/gi;
+    return {
+        restrict: 'A',
+        require: 'ngModel',
+        replace: true,
+        scope: {
+            props: '=parseUrl',
+            ngModel: '=ngModel'
+        },
+        link: function compile(scope, element, attrs, controller) {
+            scope.$watch('ngModel', function (value) {
+                var html = value.replace(urlPattern, '<a target="' + scope.props.target + '" href="$&">$&</a>');
+                element.html(html);
+            });
+        }
+    };
+});
+
+ 
+
 app.controller('postsController', function ($scope,$state,$uibModal,$http,fetchrecordsCMSService,$localStorage,commonpostService,$location,$document,getProfileService) { 
-     
-      
+    
+    
+    $scope.props = {
+        target: '_blank' 
+    }; 
+
     $scope.files = [];
     var errorDetails = function (serviceResp) {
       $scope.Error = "Something went wrong ??";
@@ -157,7 +182,8 @@ if(Extension){
          $scope.postdatalist =data;     
          //alert(JSON.stringify($scope.postdatalist));
           angular.forEach($scope.postdatalist, function(value, key) {
-             $scope.postdatalist[key].lastactivity = $scope.timeSince(new Date(value.post_date));                    
+             $scope.postdatalist[key].lastactivity = $scope.timeSince(new Date(value.post_date)); 
+             $scope.postdatalist[key].txtContent = $scope.postdatalist[key].post_content;                    
           });
          // console.log(JSON.stringify($scope.postdatalist));     
        
