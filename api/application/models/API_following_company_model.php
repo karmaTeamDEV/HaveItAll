@@ -54,7 +54,7 @@ class API_following_company_model extends CI_Model {
 		if ($lebel == '') {
 			$sql.= "  ORDER BY  UFC.company_id ASC";
 		}
-		//echo $sql;
+		//echo $sql;exit;
 
 		if ( ! $this->db->simple_query($sql))
 		{
@@ -710,10 +710,13 @@ function applied_users_for_company($company_id='', $status='',$short_type='',$ne
         $this->db->where('user_id', $user_id);
         $this->db->where('company_id', $company_id);
         $this->db->where('following_type', $following_type);
-        $result = $this->db->get('user_following_company');         
+        $result = $this->db->get('user_following_company'); 
+        //echo $this->db->last_query();exit;   
         return $result->result_array();
 		
 	}
+
+	 
 
 
 }

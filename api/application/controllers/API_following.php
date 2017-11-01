@@ -54,8 +54,10 @@ class API_following extends REST_Controller {
 
 	function user_following_company_post()
 	{
+
 		//echo $table;	
 		$post_data = json_decode(file_get_contents("php://input"));	
+		//echo "<pre>";print_r($post_data);exit;
 		$userid = $post_data->user_id; 
 		$following_type = $post_data->following_type; 
 		$company_id = $post_data->company_id;
@@ -66,6 +68,31 @@ class API_following extends REST_Controller {
 		{
 			//print_r($record);
 			$this->response($record, 200);
+		}
+		else{
+			$Error = array('message' => 'error' );
+			$this->response($Error, 200);
+		}
+
+
+	}
+
+	function following_user_post()
+	{
+
+		//echo $table;	
+		$post_data = json_decode(file_get_contents("php://input"));	
+		//echo "<pre>";print_r($post_data);exit;
+		$userid = $post_data->user_id; 
+		$following_type = $post_data->following_type; 
+		$company_id = $post_data->company_id;
+		 
+		$record = $this->API_following_company_model->get_following_company(      $company_id, $userid,$following_type);	
+		//echo "<pre>";print_r($record);exit;
+		if($record['0']['id'])
+		{
+			$success = array('message' => 'success','id' => $record['0']['id'] );
+			$this->response($success, 200);
 		}
 		else{
 			$Error = array('message' => 'error' );

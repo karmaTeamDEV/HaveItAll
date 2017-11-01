@@ -108,27 +108,41 @@ app.directive('httpPrefix', function() {
 });
  
 app.controller('ProfileController', function ($scope,$uibModal,$window,$mdDialog,commonpostService,$state,$timeout,$http,getfitService,$localStorage,$location,fetchrecordsCMSService,updateProfileService,removeImageService,getMatercmsService,getProfileService,checkjobService, $stateParams) { 
-  		    	 
-		
+  	 
+			 
 		$scope.to_view_user_id = $stateParams.user_id;
 		$scope.to_view_user_type = $stateParams.usertype;
 		$scope.come_from_tab = $localStorage.tab_to_view ;
 		$scope.c_type = $localStorage.tab_to_view;
 
 		// alert($localStorage.tab_to_view);
-		// alert($scope.c_type);
+		// alert($scope.to_view_user_id);
+		 $scope.following = '';
+		var fetch_user_follow_company_record = function(data){         
+	        
+	        //console.log(data);
+	        if(data.id){
+	        	$scope.following = data.id;
+	        }
+	        
+     	 } 
+ 
+	    var url_path = serviceurl + "API_following/following_user/" ;
+		var parameter = {company_id:$scope.to_view_user_id,user_id:$localStorage.ses_userdata.users_id, following_type:'user'};
+		commonpostService.cmnpost( url_path, parameter).then(fetch_user_follow_company_record, errorDetails);
+		
 
 		if ($stateParams.user_id) {
 
-			$scope.to_view_user_id = $stateParams.user_id ;
+			$scope.to_view_user_id = $stateParams.user_id;
 			$scope.to_view_userInfo_type = 1;
 			if ($scope.to_view_user_type == 'company') {$scope.to_view_userInfo_type = 2;} else {$scope.to_view_userInfo_type = 1;}
 			$scope.to_view_type = 'view';
 
 		} 
 		else {
-			$scope.to_view_user_id = $localStorage.ses_userdata.users_id ;
-			$scope.to_view_userInfo_type = $localStorage.ses_userdata.users_type ;
+			$scope.to_view_user_id = $localStorage.ses_userdata.users_id;
+			$scope.to_view_userInfo_type = $localStorage.ses_userdata.users_type;
 			$scope.to_view_type = 'user';
 		}
 
@@ -208,21 +222,21 @@ app.controller('ProfileController', function ($scope,$uibModal,$window,$mdDialog
 
       }	
 
-			 $scope.follow_a_company_for_user = function (company_id) {
+	 $scope.follow_a_company_for_user = function (company_id) {
 
-				//alert(company_id);
-				//alert($scope.to_view_user_id);
-				var url_path = serviceurl + "API_following/follow_company_by_user/" ;
-				if($scope.userInfo_type == '2'){
-					//alert('hi');
-					var parameter = { company_id: company_id, user_id: $scope.to_view_user_id, following_type: 'company' };
-				}else{
-					var parameter = { company_id: company_id, user_id: $localStorage.ses_userdata.users_id, following_type: 'user' };
-				}
-				
-				commonpostService.cmnpost( url_path, parameter).then(after_follow_company_for_user, errorDetails);
-				//console.log($scope.companyList);	
-			};
+		//alert(company_id);
+		//alert($scope.to_view_user_id);
+		var url_path = serviceurl + "API_following/follow_company_by_user/" ;
+		if($scope.userInfo_type == '2'){
+			//alert('hi');
+			var parameter = { company_id: company_id, user_id: $scope.to_view_user_id, following_type: 'company' };
+		}else{
+			var parameter = { company_id: company_id, user_id: $localStorage.ses_userdata.users_id, following_type: 'user' };
+		}
+		
+		commonpostService.cmnpost( url_path, parameter).then(after_follow_company_for_user, errorDetails);
+		//console.log($scope.companyList);	
+	};
 
 			var after_follow_company_for_user = function (data) {
 				//console.log(data.del_id);	
