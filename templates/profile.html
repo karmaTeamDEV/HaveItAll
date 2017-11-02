@@ -19,6 +19,12 @@
        overflow: hidden;
        height: 100px;
   } 
+  @media screen and (min-width: 768px){
+ 
+.carousel-control .glyphicon-chevron-right, .carousel-control .icon-next {
+    margin-right: 150px !important;
+  }
+};
   p{font-size: 14px !important; color: #666 !important; margin:0px; }
 </style>
 <!-- About Section -->
@@ -832,10 +838,12 @@
 
 </section>
 
+ 
+
 <section class="container">
   <div class="row backsection" >
     <div class="col-lg-12">
-      <div id="amazingcarousel-container-1">
+     <!--  <div id="amazingcarousel-container-1">
         <div id="amazingcarousel-1" style="display:none;position:relative;width:100%;max-width:960px;margin:0px auto 0px;">
           <div class="amazingcarousel-list-container">
             <ul class="amazingcarousel-list">
@@ -881,8 +889,13 @@
                       <div class="amazingcarousel-nav"></div>
                       <div class="amazingcarousel-engine"><a href="http://amazingcarousel.com">jQuery Scroller</a></div>
                     </div>
-                  </div>               
-
+                  </div>    -->            
+                    <carousel>
+                    <div ng-if="slides.length == '0' "  align="center">No Gallery Image Available.</div>
+                      <slide ng-if="slides.length != '0' " ng-repeat="slide in slides" active="slide.active">
+                        <img ng-src="{{slide.image}}" style="margin:auto; height: 350px;">                       
+                      </slide>
+                    </carousel>
 
                 </div>
               </div>

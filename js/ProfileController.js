@@ -114,6 +114,8 @@ app.controller('ProfileController', function ($scope,$uibModal,$window,$mdDialog
 		$scope.to_view_user_type = $stateParams.usertype;
 		$scope.come_from_tab = $localStorage.tab_to_view ;
 		$scope.c_type = $localStorage.tab_to_view;
+ 
+		  
 
 		// alert($localStorage.tab_to_view);
 		// alert($scope.to_view_user_id);
@@ -155,6 +157,18 @@ app.controller('ProfileController', function ($scope,$uibModal,$window,$mdDialog
 		// 	}
 			
 		// }
+
+			 
+		 $scope.slides = [];
+		 var fetch_gallerylist = function (data) {		 	 
+		 	angular.forEach(data, function(value, key) {		 		 
+		 	 	  $scope.slides.push({image:'upload/gallery/'+ value.gallery_userid +'/'+value.gallery_image});	 		 
+		 	 });		 	  	 	
+		 	//alert(JSON.stringify($scope.slides));		 
+		 };
+		 
+		 fetchrecordsCMSService.fetchrecordsCMS('','getgalleryData',$scope.to_view_user_id).then(fetch_gallerylist, errorDetails);
+		
 
 		$scope.onSwipeLeft = function(ev) {	
 		  if($scope.userInfo_type== '2'){
@@ -813,14 +827,9 @@ app.controller('ProfileController', function ($scope,$uibModal,$window,$mdDialog
 		 //var list = {user_id:$scope.to_view_user_id,type:'Industry'};
 		 fetchrecordsCMSService.fetchrecordsCMS('','getlistIndustry',$scope.to_view_user_id).then(check_industry, errorDetails);
 		 //checkjobService.checkedjobfit(list).then(check_industry, errorDetails); 
-		 // $scope.gallerylistitem = [];
-		 // var fetch_gallerylist = function (data) {		 	
-		 // 	$scope.gallerylistitem = data;		 	  	 	
-		 // 	//alert(JSON.stringify($scope.gallerylistitem));		 
-		 // };
+		//alert($localStorage.ses_userdata.users_id);
+
 		 
-		 // fetchrecordsCMSService.fetchrecordsCMS('','getgalleryData',$scope.to_view_user_id).then(fetch_gallerylist, errorDetails);
-		  
 		   
 		   $scope.transformToModel = function(viewItem){
 		       if(viewItem && viewItem.id){
@@ -860,6 +869,6 @@ app.controller('ProfileController', function ($scope,$uibModal,$window,$mdDialog
 	    	//alert($scope.to_view_user_id);
 	    fetchrecordsCMSService.fetchrecordsCMS('','getlocationdata',$scope.to_view_user_id).then(get_datalist, errorDetails); 
  
-		 
+		  
 });
  
