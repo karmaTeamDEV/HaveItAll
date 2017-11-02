@@ -162,7 +162,7 @@
            <button type="button" class="btn btn-info" style="background-color: #5b9bd5;text-transform: unset;" ng-click="open_notes(to_view_user_id);">Notes</button>
          </span>
 
-          <span  ng-if="to_view_type == 'view' && userInfo_type == '1' &&  following != '' ">
+          <span  ng-if="company_details.company_id && to_view_type == 'view'  && userInfo_type == '1'">
           <a href="#!/user/postsDetails/{{to_view_user_id}}"> <button type="button" class="btn btn-info" style="background-color: #5b9bd5;text-transform: unset; margin-left: 15px;"  >Posts</button></a>
          </span>
 

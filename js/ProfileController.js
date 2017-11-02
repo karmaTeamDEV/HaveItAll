@@ -117,19 +117,19 @@ app.controller('ProfileController', function ($scope,$uibModal,$window,$mdDialog
 
 		// alert($localStorage.tab_to_view);
 		// alert($scope.to_view_user_id);
-		 $scope.following = '';
-		var fetch_user_follow_company_record = function(data){         
+		//  $scope.following = '';
+		// var fetch_user_follow_company_record = function(data){         
 	        
-	        //console.log(data);
-	        if(data.id){
-	        	$scope.following = data.id;
-	        }
+	 //        //console.log(data);
+	 //        if(data.id){
+	 //        	$scope.following = data.id;
+	 //        }
 	        
-     	 } 
+  //    	 } 
  
-	    var url_path = serviceurl + "API_following/following_user/" ;
-		var parameter = {company_id:$scope.to_view_user_id,user_id:$localStorage.ses_userdata.users_id, following_type:'user'};
-		commonpostService.cmnpost( url_path, parameter).then(fetch_user_follow_company_record, errorDetails);
+	 //    var url_path = serviceurl + "API_following/following_user/" ;
+		// var parameter = {company_id:$scope.to_view_user_id,user_id:$localStorage.ses_userdata.users_id, following_type:'user'};
+		// commonpostService.cmnpost( url_path, parameter).then(fetch_user_follow_company_record, errorDetails);
 		
 
 		if ($stateParams.user_id) {
