@@ -37,7 +37,7 @@ $scope.uploadImage = function(element) {
 		$scope.files = [];
 
     	var x = document.getElementById("mydiv");        
-        	x.style.display = "block";
+        	x.style.display = "block"; 
 
     	var fuData = document.getElementById('galleryimage');
         var FileUploadPath = fuData.value;
