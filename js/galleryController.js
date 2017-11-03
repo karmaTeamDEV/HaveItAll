@@ -23,8 +23,12 @@ var delGallery = function (data) {
  };
 
 $scope.removeInput = function (index,gallery_id) {
-	fetchrecordsCMSService.fetchrecordsCMS('','deleteGallery',gallery_id).then(delGallery, errorDetails);
-    $scope.inputs.splice(index, 1);
+	 bootbox.confirm("Do you want to delete this image ?", function(result){      
+        if(result == true){ 
+			fetchrecordsCMSService.fetchrecordsCMS('','deleteGallery',gallery_id).then(delGallery, errorDetails);
+		    $scope.inputs.splice(index, 1);
+		}
+	  });
 }; 
 
 $scope.uploadImage = function(element) {
@@ -32,12 +36,13 @@ $scope.uploadImage = function(element) {
 		$scope.form = [];
 		$scope.files = [];
 
-    	//$('#mydiv').show();
+    	var x = document.getElementById("mydiv");        
+        	x.style.display = "block";
 
     	var fuData = document.getElementById('galleryimage');
         var FileUploadPath = fuData.value;
         var Extension = FileUploadPath.substring(FileUploadPath.lastIndexOf('.') + 1).toLowerCase();
-         
+        //alert(Extension);
 	if (Extension == "gif" || Extension == "png" || Extension == "bmp" || Extension == "jpeg" || Extension == "jpg") {
 		 
 		$scope.currentFile = element.files[0];
@@ -71,6 +76,7 @@ $scope.uploadImage = function(element) {
 			         'Content-Type': undefined
 			  }
 		   }).then(function(response){
+		   		$('#galleryimage').val('');
 		   	 	bootbox.alert('Image uploaded successfully.');
 		       // console.log(response.data.message);
 				//$scope.inputs.imagename = response.data.message;	

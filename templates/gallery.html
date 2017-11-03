@@ -1,4 +1,32 @@
-
+<style type="text/css">  
+.gallery { 
+  padding: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-flow: row wrap;
+      flex-flow: row wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+}
+ 
+.gallery figure {
+  -ms-flex-preferred-size: 33.333%;
+      flex-basis: 33.333%;
+  padding: 10px;
+  overflow: hidden;
+  border-radius: 10px; 
+}
+.gallery figure img {
+  width: 100%;
+  border-radius: 10px;
+  -webkit-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+} 
+</style>
 <section class="container content-section text-center">
   <h3 align="center">Manage Gallery</h3>
   <div class="row">
@@ -6,34 +34,38 @@
       <div align="center">
           <div class="form-group"  style="width:40%; " >
             <input type="file" class="form-control" id="galleryimage"  ng-model="gallery.value" accept="image/*" onchange="angular.element(this).scope().uploadImage(this);">
-
           </div> 
-
       </div>
 
-
-
-      <div align="center" style=" margin-top: 5%; ">
+      <!-- <div align="center" style=" margin-top: 5%; ">
         <div ng-repeat="input in inputs" ng-if="inputs.length != '0' " >
            
            <div style="width: 60%; float: left; margin-top: 5px;">
            <span ng-if="input.gallery_image != null " >
-             <img src="upload/gallery/{{ses_usersid}}/{{input.gallery_image}}" width="50" >
+             <img src="upload/gallery/{{ses_usersid}}/{{input.gallery_image}}" width="100" >
            </span>
             
           </div>
-          <div style="width: 10%; float: left;margin-top: 5px;">
-            
+          <div style="width: 10%; float: left;margin-top: 5px;">            
             <button ng-if="$index != inputs.length"
                     ng-click="removeInput($index,input.gallery_id)">Remove</button>
-          </div> 
-
+          </div>
       </div>
-      </div>
+      </div> -->
 
+      <div class="gallery">
+        <figure ng-repeat="input in inputs" ng-if="inputs.length != '0' ">
+        <span style="color: red; cursor: pointer;" ng-if="$index != inputs.length" ng-click="removeInput($index,input.gallery_id)">X</span>
+          <img src="upload/gallery/{{ses_usersid}}/{{input.gallery_image}}" alt="" height="180" />
+        </figure>  
+         
+      </div> 
     
     </div>
 </div>
 </section>
+
+ 
+<div class="bottom_space"></div>
  
 
