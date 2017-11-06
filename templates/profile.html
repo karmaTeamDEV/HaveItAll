@@ -566,20 +566,20 @@
     <div style="width:100%;">
       <div style="float:left;width:94%;">
         <div class="botton_grey2" style="background-color:#5b9bd5;">
-          <div class="botton_grey2_text1">Experience We Seek</div>
+          <div class="botton_grey2_text1">Experience We Seek</div> 
           <div class="botton_grey2_text2" ng-click="moreTitle(industryList.length,industrylebel,'Industry')">{{industrylebel}}
             <span ng-if="industrylebel != 'Less' && industryCnt != '-1' ">
-              {{industryCnt}}
+             <!--  {{industryCnt}} -->
             </span>
           </div>
           <div style="clear:both;"></div>
         </div>
       </div>
-      <div style="float:left;width:4%;"  ng-if="to_view_type != 'view' && industryList.length != '0'" >
+      <div style="float:left;width:4%;"  ng-if="to_view_type != 'view' && industryList[0].area.length != '0' ">
           <a href="#!/user/industry"><img src="public/images/edit1.png" /></a>
       </div>
 
-      <div style="float:left;width:4%;"  ng-if="to_view_type != 'view' && industryList.length == '0'" >
+      <div style="float:left;width:4%;"  ng-if="to_view_type != 'view' && industryList[0].area.length == '0' ">
           <a href="#!/user/industry"><img src="public/images/edit_orange.png" /></a>
       </div>
 
