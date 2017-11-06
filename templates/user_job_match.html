@@ -81,69 +81,7 @@ span.itemPrice {
    
       
       
-       <div class="blue"> <b>Suggested Jobs – Not Following </b></div> 
-      
-
-    <div class="row"> 
-    	
-        
-        
-        	 <div id="suggested{{jobs.jobpost_id}}" class="col-md-6" ng-repeat="jobs in matching_jobs_for_user_unfollow_list" >				
-                        <div class="panel panel-default  panel--styled">
-                            <div class="panel-body">
-                                <div class="col-md-12 panelTop" >	
-                                    <div class="col-md-4">	
-                                        <img class="img-responsive" src="upload/{{jobs.company_logo}}" alt="" style="width:120px;"/>
-                                    </div>
-                                    <div class="col-md-8" style="height:130px;">	
-                                        <span><h5 class="brief"><i>{{jobs.jobpost_title}}</i></h5> </span>
-                                        <span><strong> {{jobs.company_name}} </strong>| </span><br />
-                                        <span>{{jobs.job_post_date_only}} </span><br />
-
-                                        <span>{{jobs.country_name}}, {{jobs.state_name}}, {{jobs.city_name}} </span>
-                                                
-                                </div>
-                               <!-- <div hm-read-more hm-text="{{company.full_com_desc | filter: query | limitTo:850}}"></div>-->
-                                <div class="col-md-12" style="min-height:180px;">	
-                                  <!-- <p hm-read-more
-                                    hm-text=" {{jobs.jobpost_description}} " 
-                                    hm-limit="250" 
-                                    hm-more-text=" more" 
-                                    hm-less-text=" less"
-                                    hm-dots-class="dots"
-                                    hm-link-class="links">
-                                  </p> -->
-                                   <div>{{jobs.jobpost_description | limitTo:250}}</div><span ng-if="jobs.jobpost_description != '' " style="color: #008cc9" ng-click="view_a_job_for_user( jobs.jobpost_id)">more</span>
-                                </div>
-                                                            
-                                <div class="col-xs-12 panelBottom">
-                                
-                                    <div class="col-xs-4 text-center">
-                                        <button type="button" class="btn btn-success "  ng-click="view_a_job_for_user( jobs.jobpost_id, 'myjobs')"> View </button>					
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                    
-                                        <button type="button" class="btn btn-warning "  ng-click="save_a_job_for_user( jobs.jobpost_id )"> Save </button>
-                                                                
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                    
-                                        <button type="button" class="btn btn-primary " ng-click="apply_for_job_user( jobs.jobpost_id,jobs.jobpost_url); follow_a_company_for_user( jobs.jobpost_companyid );">
-                                <i class="fa fa-user"> </i> Apply & Follow </button>
-                                                                
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    
-                    
-                    
-                </div>
-      
-    </div>  
+       
 
      <div class="blue"><b> Suggested Jobs - Following </b></div><br>
     
@@ -212,6 +150,70 @@ Your desired criteria does not pop up as often as others, so we don't currently 
         
       
     </div>  
+
+     <div class="blue"> <b>Suggested Jobs – Not Following </b></div> 
+      
+
+    <div class="row"> 
+        
+        
+        
+             <div id="suggested{{jobs.jobpost_id}}" class="col-md-6" ng-repeat="jobs in matching_jobs_for_user_unfollow_list" >             
+                        <div class="panel panel-default  panel--styled">
+                            <div class="panel-body">
+                                <div class="col-md-12 panelTop" >   
+                                    <div class="col-md-4">  
+                                        <img class="img-responsive" src="upload/{{jobs.company_logo}}" alt="" style="width:120px;"/>
+                                    </div>
+                                    <div class="col-md-8" style="height:130px;">    
+                                        <span><h5 class="brief"><i>{{jobs.jobpost_title}}</i></h5> </span>
+                                        <span><strong> {{jobs.company_name}} </strong>| </span><br />
+                                        <span>{{jobs.job_post_date_only}} </span><br />
+
+                                        <span>{{jobs.country_name}}, {{jobs.state_name}}, {{jobs.city_name}} </span>
+                                                
+                                </div>
+                               <!-- <div hm-read-more hm-text="{{company.full_com_desc | filter: query | limitTo:850}}"></div>-->
+                                <div class="col-md-12" style="min-height:180px;">   
+                                  <!-- <p hm-read-more
+                                    hm-text=" {{jobs.jobpost_description}} " 
+                                    hm-limit="250" 
+                                    hm-more-text=" more" 
+                                    hm-less-text=" less"
+                                    hm-dots-class="dots"
+                                    hm-link-class="links">
+                                  </p> -->
+                                   <div>{{jobs.jobpost_description | limitTo:250}}</div><span ng-if="jobs.jobpost_description != '' " style="color: #008cc9" ng-click="view_a_job_for_user( jobs.jobpost_id)">more</span>
+                                </div>
+                                                            
+                                <div class="col-xs-12 panelBottom">
+                                
+                                    <div class="col-xs-4 text-center">
+                                        <button type="button" class="btn btn-success "  ng-click="view_a_job_for_user( jobs.jobpost_id, 'myjobs')"> View </button>                  
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                    
+                                        <button type="button" class="btn btn-warning "  ng-click="save_a_job_for_user( jobs.jobpost_id )"> Save </button>
+                                                                
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                    
+                                        <button type="button" class="btn btn-primary " ng-click="apply_for_job_user( jobs.jobpost_id,jobs.jobpost_url); follow_a_company_for_user( jobs.jobpost_companyid );">
+                                <i class="fa fa-user"> </i> Apply & Follow </button>
+                                                                
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
+                </div>
+      
+    </div> 
       
       
     </div> 
