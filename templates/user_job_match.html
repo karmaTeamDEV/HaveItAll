@@ -219,11 +219,11 @@ Your desired criteria does not pop up as often as others, so we don't currently 
     
     <div id="saved" class="tab-pane fade">
    
-    <div ng-if="not_viewed_company_for_user_list.length < 1 ">
-      <p>Nothing to Show</p>
+    <div ng-if="saved_job_for_user_list.length < 1 ">
+      <p>You do not have any saved jobs.</p>
     </div>  
       
-    <div class="row">  
+    <div class="row">   
     	
         <div id="saved{{jobs.jobpost_id}}" class="col-md-6" ng-repeat="jobs in saved_job_for_user_list" >				
                         <div class="panel panel-default  panel--styled">
