@@ -87,14 +87,11 @@ td
   	<br />
 
     <div id="following" class="tab-pane fade ">
-    <div ng-if="user_following_company_list.length < 1">
-      <p style="margin:0px;">Follow companies! Gain exposure to their hiring team and give priority to their posts.</p>
-<p style="margin:0px;">Hint - <a href="#!/user/profile//">Customize your profile to make a stronger first impression!</a></p>
-    </div> 
+  
      
         <div class="row">
         
-                    <div id="following_company_id{{company.id}}" class="col-md-6" ng-repeat="company in user_following_company_list" >				
+                    <div id="following_company_id{{company.id}}" class="col-md-6" ng-repeat="company in user_following_company_list">				
                         <div class="panel panel-default  panel--styled">
                             <div class="panel-body">
                                 <div class="col-md-12 panelTop" >	
@@ -148,13 +145,14 @@ td
                 
               
             </div>
+              <div>
+      <p style="margin:0px;">Follow companies! Gain exposure to their hiring team and give priority to their posts.</p>
+<p style="margin:0px;">Hint - <a href="#!/user/profile//">Customize your profile to make a stronger first impression!</a></p>
+    </div> 
       
     </div>
     <div id="following_me" class="tab-pane fade">
-    <div ng-if="company_following_user_list.length < 1">
-       <p style="margin:0px;">Once you follow a company they can follow you back.</p>
-<p style="margin:0px;">Hint - <a href="#!/user/profile//">Customize your profile to make a stronger first impression!</a></p>
-    </div>  
+     
         <div class="row">
         
                     <div  class="col-md-6" ng-repeat="company in company_following_user_list" >				
@@ -212,18 +210,16 @@ td
                 
               
             </div>
+             <div>
+       <p style="margin:0px;">Once you follow a company they can follow you back.</p>
+<p style="margin:0px;">Hint - <a href="#!/user/profile//">Customize your profile to make a stronger first impression!</a></p>
+    </div>
       
     </div>
     
     
     
-    <div id="notviewed" class="tab-pane fade">  
-   
-    <div ng-if="not_viewed_company_for_user_list.length < 1 ">
-      <p style="margin:0px;">Sorry - we’ll keep looking. Your desired criteria does not pop up as often as others, so we don't currently have any new matches for you. We will keep you posted!
-</p>
-<p style="margin:0px;">Hint - <a href="#!/user/profile//">Customize your profile! Add employment locations and industry experience to increase matches </a></p>
-    </div>  
+    <div id="notviewed" class="tab-pane fade">   
     
         <div class="row">
         
@@ -291,6 +287,12 @@ td
                 
               
             </div>
+
+            <div>
+      <p style="margin:0px;">Sorry - we’ll keep looking. Your desired criteria does not pop up as often as others, so we don't currently have any new matches for you. We will keep you posted!
+</p>
+<p style="margin:0px;">Hint - <a href="#!/user/profile//">Customize your profile! Add employment locations and industry experience to increase matches </a></p>
+    </div>  
             
    </div> 
     
