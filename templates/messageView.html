@@ -290,7 +290,7 @@
 		 </div><!--new_message_head-->
 		   
 		 <div class="chat_area"> 
-       <p ng-if="chart_msg_list.length == '0' ">You currently don’t have any messages from this employer. </p>
+       <p ng-if="chart_msg_list.length == '0' ">Sorry. This employer has not initiated a conversation yet.</p>
 		 <ul class="list-unstyled">
 		 <li  ng-class=" messages.sent_from == 'company' ? 'left clearfix' : 'left clearfix admin_chat' "  ng-repeat="messages in chart_msg_list">
                     
