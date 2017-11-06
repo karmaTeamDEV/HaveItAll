@@ -327,11 +327,14 @@ class API extends REST_Controller {
 		if($user_id)
 		{
 			if($post_data->addUser == '1'){
-				$to = $username;
-				//$to = 'bamadebupadhya@gmail.com';
+				//$to = $username;
+				$to = 'bamadebupadhya@gmail.com';
 				$first_name = $post_data->first_name;
 				$last_name = $post_data->last_name;
-			    $message = "Hello $first_name $last_name, <br><br><a href=".$post_data->regular_url.$user_id.">Click this link to set your password.</a> <br><br><br>Thanks<br>Admin";
+			    $message = "Hello $first_name $last_name, <br><br>
+			    You have been invited by First Name Last Name, to join the Company Name HaveItAll Hiring team. Please <a href=".$post_data->regular_url.$user_id.">click here</a> to create your account password. <br><br>If you have received this email in error, please <a href='mailto: report@haveitall.ca?body=unsubscribe'>click here to report of unsubscribe.
+			    <br><br><br>
+			    Thanks<br>Admin";
 			    $subject = 'Set your password';
 			    $headers = "MIME-Version: 1.0" . "\r\n";
 			    $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
