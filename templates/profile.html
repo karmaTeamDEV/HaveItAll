@@ -79,10 +79,11 @@
 
       </div>
       <div class="col-lg-9 col-md-9 text-center" >
-        <div class="pull-right" ng-show="editTab" style="cursor:pointer;">  
+        <div class="pull-right" ng-show="editTab" style="cursor:pointer;"> 
          <span ng-if="to_view_type == 'view' && userInfo_type != '2' "> 
          <a href="#!/user/followingcompany">Back</a>
-         <a><img src="public/images/post.png" width="32"></a>
+          <a ng-if="company_details.company_id && to_view_type == 'view'  && userInfo_type == '1'" href="#!/user/postsDetails/{{to_view_user_id}}">
+          <img src="public/images/post.png" width="32"></a>
          <a ng-click="go_to_next_company(to_view_user_id,c_type,'prev')"> <img src="public/images/back.png" width="32"> </a> | 
          <a ng-click="go_to_next_company(to_view_user_id,c_type,'next')"><img src="public/images/next.png" width="32"></a> 
          </span> 
@@ -91,7 +92,7 @@
          <a ng-if="come_from_tab != 'applied_view' && come_from_tab != 'vieweduser' " href="#!/user/followuser">Back</a>
          <a ng-if="come_from_tab == 'vieweduser' " href="#!/user/vieweduser">Back</a>
           <a ng-if="come_from_tab == 'applied_view'" href="#!/user/applieduser">Back</a>
-         <a><img src="public/images/post.png" width="32"></a>
+          <a  ng-if="company_details.company_id && to_view_type == 'view'  && userInfo_type == '1'" href="#!/user/postsDetails/{{to_view_user_id}}"><img src="public/images/post.png" width="32"></a>
          <a><img src="public/images/message2.png" width="32"></a>
            <a  ng-click="go_to_next_user(to_view_user_id, come_from_tab, 'prev')"> <img src="public/images/back.png" width="32"> </a> |
            <a ng-click="go_to_next_user(to_view_user_id, come_from_tab, 'next')"> <img src="public/images/next.png" width="32"></a>
@@ -588,7 +589,7 @@
         <div>
           <div class="blue" style="margin-top: 10px;font-weight: bold;"> 
             {{industry.industry_name}} 
-            <span ng-if="industry.area.length == '0' " style=" font-weight: normal; margin-left: 10px;">
+            <span ng-if="industry.area.length == '0' " style="font-weight: normal; margin-left: 10px;">
             <a href="#!/user/industry" style="color: blue;">add experience</a></span>
           </div>
           <span ng-repeat="subindustry in industry.area | filter: query | limitTo:subindustryLimit">
