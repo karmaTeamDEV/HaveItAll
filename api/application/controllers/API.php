@@ -2971,7 +2971,7 @@ function  getgalleryList_get($id){
 
 	function timeAgo($timestamp){
 		date_default_timezone_set('Asia/Calcutta'); 
-	    $datetime1=new DateTime("now");
+	    $datetime1=new DateTime();
 	    $datetime2=date_create($timestamp);
 	    $diff=date_diff($datetime1, $datetime2);
 	    $timemsg='';
