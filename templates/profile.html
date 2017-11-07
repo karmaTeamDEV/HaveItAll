@@ -19,7 +19,7 @@
        overflow: hidden;
        height: 100px;
   } 
-  @media screen and (min-width: 768px){
+  @media screen and (min-width: 768px){ 
  
 .carousel-control .glyphicon-chevron-right, .carousel-control .icon-next {
     margin-right: 150px !important;
@@ -117,8 +117,27 @@
           </span>
 
           </span>
-          <span ng-click="profileView(ProfileInfo.users_type)"  ng-if="to_view_type != 'view'" >
-          <img src="public/images/edit2.png"></span>
+          <span ng-if="to_view_type != 'view' && userInfo_type == '1'">
+          <span ng-click="profileView(ProfileInfo.users_type)"  ng-if="ProfileInfo.users_current_title != '' && ProfileInfo.users_current_employer != '' && localationlist.length != '0' && skilldatalist.length != '0'" >
+          <img src="public/images/edit2.png">           
+          </span>
+            
+           <span ng-click="profileView(ProfileInfo.users_type)"  ng-if="ProfileInfo.users_current_title == '' || ProfileInfo.users_current_employer == '' || localationlist.length == '0' || skilldatalist.length == '0' " >
+            <img src="public/images/edit_orange.png" />
+          </span>
+          </span>
+          <span ng-if="to_view_type != 'view' && userInfo_type == '2'">
+
+           <span ng-click="profileView(ProfileInfo.users_type)"  ng-if="localationlist.length != '0' && skilldatalist.length != '0' && industryList.length != '0' " >
+          <img src="public/images/edit2.png">           
+          </span>
+            
+           <span ng-click="profileView(ProfileInfo.users_type)"  ng-if="localationlist.length == '0' || skilldatalist.length == '0' || industryList.length == '0' " >
+            <img src="public/images/edit_orange.png" />
+          </span>
+            
+          </span>
+
         </div>
         <div style="clear: both;"></div>
         <div  id="p_id" ng-show="display_tab" style="font-size:24px;"  align="center">
@@ -446,9 +465,14 @@
   <div class="row backsection">
     <div class="col-lg-12">
      <div style="height:auto;padding: 0px !important;">
-       <div class="blue" style="text-align:right; cursor: pointer; position: absolute;right: 0;margin-right: 15px; " ng-if="to_view_type != 'view' "><span ng-show="updatebio" ng-click="bioView()"  ng-if="to_view_type != 'view'" >
+       <div class="blue" style="text-align:right; cursor: pointer; position: absolute;right: 0;margin-right: 15px; " ng-if="to_view_type != 'view' ">
+       <span ng-show="updatebio" ng-click="bioView()"  ng-if="to_view_type != 'view' && ProfileInfo.users_bio != '' " >
          <img src="public/images/edit2.png"/>
-       </span></div>
+       </span>
+        <span ng-show="updatebio" ng-click="bioView()"  ng-if="ProfileInfo.users_bio == '' " >
+         <img src="public/images/edit_orange.png"/>
+       </span>
+       </div>
        <div ng-show="display_bio">
             
          <div class="pull-left"><span class="blue" style="font-weight:bold;">Employer Profile:</span>        
@@ -575,11 +599,11 @@
           <div style="clear:both;"></div>
         </div>
       </div>
-      <div style="float:left;width:4%;"  ng-if="to_view_type != 'view' && industryList[0].area.length != '0' ">
+      <div style="float:left;width:4%;"  ng-if="to_view_type != 'view' && industryList[0].area.length != '0' && industryList.length != '0' ">
           <a href="#!/user/industry"><img src="public/images/edit1.png" /></a>
       </div>
 
-      <div style="float:left;width:4%;"  ng-if="to_view_type != 'view' && industryList[0].area.length == '0' ">
+      <div style="float:left;width:4%;"  ng-if="to_view_type != 'view' && (industryList[0].area.length == '0' || industryList.length == '0') ">
           <a href="#!/user/industry"><img src="public/images/edit_orange.png" /></a>
       </div>
 
