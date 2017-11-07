@@ -2946,10 +2946,15 @@ function  getgalleryList_get($id){
 			if($postid)
 			{	
 				$mydata = $this->API_model->get_all_feeds($postid);	
-
-				if($mydata){
+				//echo '<pre>';print_r($mydata); 
+				foreach ($mydata as $key => $value) {					 
+					 $value['lastactivity']= $this->timeAgo($value['post_date']);
+					 $myarray[] = $value;
+				}
+				//echo '<pre>';print_r($myarray);exit;
+				if($myarray){
 					//$success = array('status' => '1','message' => 'succes');				 				
-					$this->response($mydata, 200); // 200 being the HTTP response code
+					$this->response($myarray, 200); // 200 being the HTTP response code
 				}else{
 					$Error = array('status' => '0','message' => 'error');		
 					$this->response($Error, 200);
@@ -2962,6 +2967,36 @@ function  getgalleryList_get($id){
 				$this->response($Error, 200);
 			}
 
+	}
+
+	function timeAgo($timestamp){
+		date_default_timezone_set('Asia/Calcutta'); 
+	    $datetime1=new DateTime("now");
+	    $datetime2=date_create($timestamp);
+	    $diff=date_diff($datetime1, $datetime2);
+	    $timemsg='';
+	    if($diff->y > 0){
+	        $timemsg = $diff->y .' year'. ($diff->y > 1?"'s":'');
+
+	    }
+	    else if($diff->m > 0){
+	     $timemsg = $diff->m . ' month'. ($diff->m > 1?"'s":'');
+	    }
+	    else if($diff->d > 0){
+	     $timemsg = $diff->d .' day'. ($diff->d > 1?"'s":'');
+	    }
+	    else if($diff->h > 0){
+	     $timemsg = $diff->h .' hour'.($diff->h > 1 ? "'s":'');
+	    }
+	    else if($diff->i > 0){
+	     $timemsg = $diff->i .' minute'. ($diff->i > 1?"'s":'');
+	    }
+	    else if($diff->s > 0){
+	     $timemsg = $diff->s .' second'. ($diff->s > 1?"'s":'');
+	    }
+
+	$timemsg = $timemsg.' ago';
+	return $timemsg;
 	}
 
 	function deletePost_post(){  		
@@ -3008,6 +3043,29 @@ function  getgalleryList_get($id){
 			$this->response($Error, 200);
   		}
   	}
+
+  	function time_since($since) {
+	    $chunks = array(
+	        array(60 * 60 * 24 * 365 , 'year'),
+	        array(60 * 60 * 24 * 30 , 'month'),
+	        array(60 * 60 * 24 * 7, 'week'),
+	        array(60 * 60 * 24 , 'day'),
+	        array(60 * 60 , 'hour'),
+	        array(60 , 'minute'),
+	        array(1 , 'second')
+	    );
+
+	    for ($i = 0, $j = count($chunks); $i < $j; $i++) {
+	        $seconds = $chunks[$i][0];
+	        $name = $chunks[$i][1];
+	        if (($count = floor($since / $seconds)) != 0) {
+	            break;
+	        }
+	    }
+
+	    $print = ($count == 1) ? '1 '.$name : "$count {$name}s";
+	    return $print;
+	}
 
 	
 

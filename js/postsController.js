@@ -137,7 +137,8 @@ if(Extension){
 
   }
 
-  $scope.timeSince = function(date) {
+  $scope.timeSince = function(date) {  
+    
       var seconds = Math.floor((new Date() - date) / 1000);
       var interval = Math.floor(seconds / 31536000);
 
@@ -181,10 +182,10 @@ if(Extension){
      var get_list = function (data) {
          $scope.postdatalist =data;     
          //alert(JSON.stringify($scope.postdatalist));
-          angular.forEach($scope.postdatalist, function(value, key) {
-             $scope.postdatalist[key].lastactivity = $scope.timeSince(new Date(value.post_date)); 
-             $scope.postdatalist[key].txtContent = $scope.postdatalist[key].post_content;                    
-          });
+          // angular.forEach($scope.postdatalist, function(value, key) {
+          //    $scope.postdatalist[key].lastactivity = $scope.timeSince(new Date(value.post_date)); 
+          //    $scope.postdatalist[key].txtContent = $scope.postdatalist[key].post_content;                    
+          // });
          // console.log(JSON.stringify($scope.postdatalist));     
        
      };
