@@ -23,6 +23,10 @@
 				
 			};
 
+			$scope.goback = function(){
+				$window.history.back();
+			}
+
 
 			 $scope.send_message = function (msg_txt, msg_company_id, msg_company_user_id, msg_end_user_id, msg_sending_from) {
 

@@ -26,6 +26,10 @@
 				
 			};
 
+			$scope.goback = function(){
+				$window.history.back();
+			}
+
 
 
 
