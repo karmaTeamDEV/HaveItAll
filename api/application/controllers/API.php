@@ -299,7 +299,7 @@ class API extends REST_Controller {
 	function registration_post()
 	{
 		$post_data = json_decode(file_get_contents("php://input"));
-		//echo "<pre>";print_r($post_data->ses_seniorityList);exit;
+		//echo "<pre>";print_r($post_data);exit;
 		$username = preg_replace('/\s+/', '', $post_data->username);
 		$password = preg_replace('/\s+/', '', $post_data->password);		
 		$company_name = $post_data->company_name;
@@ -332,7 +332,8 @@ class API extends REST_Controller {
 				$first_name = $post_data->first_name;
 				$last_name = $post_data->last_name;
 			    $message = "Hello $first_name $last_name, <br><br>
-			    You have been invited by $first_name $last_name, to join the $company_name HaveItAll Hiring team. Please <a href=".$post_data->regular_url.$user_id.">click here</a> to create your account password. <br><br>Thank you,<br>The HaveItAll Admin Team.<br>www.haveitall.ca<br><br><br>If you have received this email in error, please <a href='mailto: report@haveitall.ca'>click here</a> to report of unsubscribe.";
+			    You have been invited by $first_name $last_name, to join the ".$company_name." HaveItAll Hiring team. Please <a href=".$post_data->regular_url.$user_id.">click here</a> to create your account password. <br><br>Thank you,<br>The HaveItAll Admin Team.<br>www.haveitall.ca<br><br><br>If you have received this email in error, please <a href='mailto:report@haveitall.ca'>click here</a> to report of unsubscribe.";
+			     
 			    $subject = 'Set your password';
 			    $headers = "MIME-Version: 1.0" . "\r\n";
 			    $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
