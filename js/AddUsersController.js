@@ -69,7 +69,9 @@
 	    };
 
     	$scope.registercompanyRuser = function(){	  
-		  //alert(JSON.stringify($scope.userregisterInfo));		  
+		  //alert(JSON.stringify($scope.userregisterInfo));
+		  //alert(JSON.stringify($localStorage.ses_userdata));	
+		  $scope.userregisterInfo.company_name = $localStorage.ses_userdata.company_name;	  
 		  registeruserService.registerCompanyUser($scope.userregisterInfo).then(registeruserSuccess, errorDetails);
 		};
 })

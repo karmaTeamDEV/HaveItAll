@@ -302,7 +302,7 @@ class API extends REST_Controller {
 		//echo "<pre>";print_r($post_data->ses_seniorityList);exit;
 		$username = preg_replace('/\s+/', '', $post_data->username);
 		$password = preg_replace('/\s+/', '', $post_data->password);		
-
+		$company_name = $post_data->company_name;
 		$user_data = array(			
 			'users_firstname'=>$post_data->first_name,
 			'users_lastname' =>$post_data->last_name,
@@ -327,14 +327,12 @@ class API extends REST_Controller {
 		if($user_id)
 		{
 			if($post_data->addUser == '1'){
-				$to = $username;
-				//$to = 'bamadebupadhya@gmail.com';
+				//$to = $username;
+				$to = 'bamadebupadhya@gmail.com';
 				$first_name = $post_data->first_name;
 				$last_name = $post_data->last_name;
 			    $message = "Hello $first_name $last_name, <br><br>
-			    You have been invited by First Name Last Name, to join the Company Name HaveItAll Hiring team. Please <a href=".$post_data->regular_url.$user_id.">click here</a> to create your account password. <br><br>If you have received this email in error, please <a href='mailto: report@haveitall.ca'>click here</a> to report of unsubscribe.
-			    <br><br><br>
-			    Thanks<br>Admin";
+			    You have been invited by $first_name $last_name, to join the $company_name HaveItAll Hiring team. Please <a href=".$post_data->regular_url.$user_id.">click here</a> to create your account password. <br><br>Thank you,<br>The HaveItAll Admin Team.<br>www.haveitall.ca<br><br><br>If you have received this email in error, please <a href='mailto: report@haveitall.ca'>click here</a> to report of unsubscribe.";
 			    $subject = 'Set your password';
 			    $headers = "MIME-Version: 1.0" . "\r\n";
 			    $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
@@ -2970,8 +2968,9 @@ function  getgalleryList_get($id){
 	}
 
 	function timeAgo($timestamp){
-		date_default_timezone_set('Asia/Calcutta'); 
-	    $datetime1=new DateTime();
+		//date_default_timezone_set('Asia/Calcutta'); 
+		//date_default_timezone_set('America/Chicago');		 
+	    $datetime1=new DateTime('now');
 	    $datetime2=date_create($timestamp);
 	    $diff=date_diff($datetime1, $datetime2);
 	    $timemsg='';
