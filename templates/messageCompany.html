@@ -211,7 +211,7 @@
 <div style="background-color:#fff;">   
 
   <section class="content-section text-left">
-<div align="right"> <a ng-click="goback();" style="color:##008cc9;  font-weight: bold; margin-right: 130px;">Back</a></div>
+<div align="right"> <a ng-click="goback();" style="color:##008cc9;  font-weight: bold; margin-right: 130px; cursor: pointer;">Back</a></div>
     <div class="row">      
 
       <div class="container" style="cursor: pointer;">
@@ -295,7 +295,7 @@
 		 <li  ng-class=" messages.sent_from == 'user' ? 'left clearfix' : 'left clearfix admin_chat' "  ng-repeat="messages in chart_msg_list">
          
                      <span  ng-class=" messages.sent_from == 'user' ? 'chat-img1 pull-left' : 'chat-img1 pull-right' " >
-                     <img src="upload/{{messages.company_hr_logo}} " alt="User Avatar" class="img-circle">
+                     <img src="upload/{{messages.USER_IMAGE}} " alt="User Avatar" class="img-circle">
                      </span>
                      <div class="chat-body1 clearfix">
                         <p>{{messages.message_sent}}</p>

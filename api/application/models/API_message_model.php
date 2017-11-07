@@ -36,7 +36,7 @@ class API_message_model extends CI_Model {
     function all_charts_of_a_company_for_user_query($user_id='', $company_id='')
     {
         $sql = "SELECT CUM.*, DATE_FORMAT( sent_time,'%m-%d-%Y') sent_date_only, DATE_FORMAT( sent_time,'%H:%i %p') sent_time_only, CHR.users_firstname AS hr_firstname, CHR.users_lastname AS hr_last_name, IF(CHR.users_profilepic IS NULL OR CHR.users_profilepic = '', 'admin-no-image.png', CHR.users_profilepic) AS company_hr_logo,
-                EUR.users_firstname, EUR.users_lastname
+                EUR.users_firstname, EUR.users_lastname,EUR.users_profilepic AS USER_IMAGE
                 FROM hia_company_user_messages AS CUM
                 JOIN hia_company AS CM ON (CUM.company_id = CM.company_id)
                 JOIN hia_users AS CHR ON( CUM.company_user_id = CHR.users_id )

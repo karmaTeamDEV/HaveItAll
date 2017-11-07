@@ -76,6 +76,7 @@
 		 
 		var set_all_users_for_chart_of_company = function (data) {
 			$scope.chart_user_list = data;
+			//alert(JSON.strkingfy(data));
 			$scope.first_user_id = data[0].users_id;
 
 			$scope.clicked_users_id = data[0].users_id;
@@ -99,13 +100,13 @@
 		var set_all_chart_for_user = function (data) {
 			$scope.chart_msg_list = data;
 
-			//console.log($scope.companyList);	
+			//console.log($scope.chart_msg_list);	
 		};
 
 		 function fetch_all_chart_for_user_by_company(company_id, user_id) {
 
-		 	//alert(company_id) ;
-		 	//alert(user_id) ;
+		 	// alert(company_id) ;
+		 	// alert(user_id) ;
 
 			var url_path = serviceurl + "API_message/all_charts_of_a_company_for_user/" ;
 			var parameter = { company_id: company_id, user_id: user_id  };
