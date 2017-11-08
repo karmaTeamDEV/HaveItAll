@@ -24,41 +24,41 @@ app.controller('postsDetailsController', function ($scope,$stateParams,$state,$h
      $scope.postdatalist =data;     
        
 
-      angular.forEach($scope.postdatalist, function(value, key) {
-             $scope.postdatalist[key].lastactivity = $scope.timeSince(new Date(value.post_date));                    
-             $scope.postdatalist[key].txtContent = $scope.postdatalist[key].post_content;
+      // angular.forEach($scope.postdatalist, function(value, key) {
+      //        $scope.postdatalist[key].lastactivity = $scope.timeSince(new Date(value.post_date));                    
+      //        $scope.postdatalist[key].txtContent = $scope.postdatalist[key].post_content;
               
-          });
+      //     });
         
      };
 
      fetchrecordsCMSService.fetchrecordsCMS('','getPostlist', $scope.post_id).then(get_list,errorDetails);     
    
-    $scope.timeSince = function(date) {
-      var seconds = Math.floor((new Date() - date) / 1000);
-      var interval = Math.floor(seconds / 31536000);
+  //   $scope.timeSince = function(date) {
+  //     var seconds = Math.floor((new Date() - date) / 1000);
+  //     var interval = Math.floor(seconds / 31536000);
 
-      if (interval > 1) {
-        return interval + " years ago";
-      }
-      interval = Math.floor(seconds / 2592000);
-      if (interval > 1) {
-        return interval + " months ago";
-      }
-      interval = Math.floor(seconds / 86400);
-      if (interval > 1) {
-        return interval + " days ago";
-      }
-      interval = Math.floor(seconds / 3600);
-      if (interval > 1) {
-        return interval + " hours ago";
-      }
-      interval = Math.floor(seconds / 60);
-      if (interval > 1) {
-        return interval + " minutes ago";
-      }
-      return Math.floor(seconds) + " seconds ago";
-  } 
+  //     if (interval > 1) {
+  //       return interval + " years ago";
+  //     }
+  //     interval = Math.floor(seconds / 2592000);
+  //     if (interval > 1) {
+  //       return interval + " months ago";
+  //     }
+  //     interval = Math.floor(seconds / 86400);
+  //     if (interval > 1) {
+  //       return interval + " days ago";
+  //     }
+  //     interval = Math.floor(seconds / 3600);
+  //     if (interval > 1) {
+  //       return interval + " hours ago";
+  //     }
+  //     interval = Math.floor(seconds / 60);
+  //     if (interval > 1) {
+  //       return interval + " minutes ago";
+  //     }
+  //     return Math.floor(seconds) + " seconds ago";
+  // } 
 });
 
 
