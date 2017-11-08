@@ -2996,6 +2996,34 @@ function  getgalleryList_get($id){
 
 	}
 
+	function user_following_feeds_get($id){		
+			 	 
+			if($id)
+			{	
+				$mydata = $this->API_model->get_user_following_feeds($id);	
+				//echo '<pre>';print_r($mydata); 
+				foreach ($mydata as $key => $value) {					 
+					 $value['lastactivity']= $this->get_time_difference_php($value['post_date']);
+					 $myarray[] = $value;
+				}
+				//echo '<pre>';print_r($myarray);exit;
+				if($myarray){
+					//$success = array('status' => '1','message' => 'succes');				 				
+					$this->response($myarray, 200); // 200 being the HTTP response code
+				}else{
+					$Error = array('status' => '0','message' => 'error');		
+					$this->response($Error, 200);
+				}
+				
+			}
+			else
+			{
+				$Error = array('status' => '0','message' => 'error');		
+				$this->response($Error, 200);
+			}
+
+	}
+
 	function get_time_difference_php($created_time)
  {
        
