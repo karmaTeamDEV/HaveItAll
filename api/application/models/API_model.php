@@ -842,6 +842,36 @@ public function get_user_data($table, $field, $id) {
         //echo $this->db->last_query();exit;               
         return $result->result_array();
     }
+
+     public function get_company_following_feeds($id) {
+      $sql = "SELECT p.*,us.users_profilepic,co.company_name from hia_posts as p
+             LEFT JOIN hia_users AS us ON( p.post_userid = us.users_id)
+             LEFT JOIN hia_company AS co ON(us.users_companyid = co.company_id)
+             where p.post_userid IN(SELECT CU.users_id AS company_user_id  
+             FROM hia_user_following_company AS UFC
+             JOIN hia_users AS U ON( UFC.user_id = U.users_id )
+             JOIN hia_company AS C ON (UFC.company_id = C.company_id)
+             JOIN hia_users AS CU ON( C.company_id = CU.users_companyid AND CU.users_type = '2' AND CU.users_status != '1')  
+             WHERE U.users_type != '3'
+             AND U.users_status != '1'  AND UFC.following_type = 'user'   
+             AND UFC.user_id = '$id')
+             AND p.post_status = '0' ORDER BY  p.post_date DESC";
+
+        //echo $sql; exit;       
+        if ( ! $this->db->simple_query($sql))
+        {
+            $error = $this->db->error();
+            //print_r($error);
+            //exit();
+            return $error;
+        }
+        else
+        {
+            $query = $this->db->query($sql);
+            
+            return $query->result_array();
+        }
+    }
     
 
 }

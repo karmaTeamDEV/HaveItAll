@@ -2968,12 +2968,40 @@ function  getgalleryList_get($id){
 
 	}
 
+	function company_following_feeds_get($postid){		
+			 	 
+			if($postid)
+			{	
+				$mydata = $this->API_model->get_company_following_feeds($postid);	
+				//echo '<pre>';print_r($mydata); 
+				foreach ($mydata as $key => $value) {					 
+					 $value['lastactivity']= $this->get_time_difference_php($value['post_date']);
+					 $myarray[] = $value;
+				}
+				//echo '<pre>';print_r($myarray);exit;
+				if($myarray){
+					//$success = array('status' => '1','message' => 'succes');				 				
+					$this->response($myarray, 200); // 200 being the HTTP response code
+				}else{
+					$Error = array('status' => '0','message' => 'error');		
+					$this->response($Error, 200);
+				}
+				
+			}
+			else
+			{
+				$Error = array('status' => '0','message' => 'error');		
+				$this->response($Error, 200);
+			}
+
+	}
+
 	function get_time_difference_php($created_time)
  {
        
-     	date_default_timezone_set('America/Los_Angeles');
+     	//date_default_timezone_set('America/Los_Angeles');
      // (UTC-08:00) Pacific Time (US/Canada);
- 		//date_default_timezone_set('US/Eastern');
+ 		date_default_timezone_set('US/Eastern');
         $str = strtotime($created_time);
         $today = strtotime(date('Y-m-d H:i:s'));
         // It returns the time difference in Seconds...
