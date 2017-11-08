@@ -2946,14 +2946,14 @@ function  getgalleryList_get($id){
 			{	
 				$mydata = $this->API_model->get_all_feeds($postid);	
 				//echo '<pre>';print_r($mydata); 
-				foreach ($mydata as $key => $value) {					 
-					 $value['lastactivity']= $this->timeAgo($value['post_date']);
-					 $myarray[] = $value;
-				}
+				// foreach ($mydata as $key => $value) {					 
+				// 	 $value['lastactivity']= $this->timeAgo($value['post_date']);
+				// 	 $myarray[] = $value;
+				// }
 				//echo '<pre>';print_r($myarray);exit;
-				if($myarray){
+				if($mydata){
 					//$success = array('status' => '1','message' => 'succes');				 				
-					$this->response($myarray, 200); // 200 being the HTTP response code
+					$this->response($mydata, 200); // 200 being the HTTP response code
 				}else{
 					$Error = array('status' => '0','message' => 'error');		
 					$this->response($Error, 200);

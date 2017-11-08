@@ -181,12 +181,12 @@ if(Extension){
    
      var get_list = function (data) {
          $scope.postdatalist =data;     
-         //alert(JSON.stringify($scope.postdatalist));
-          // angular.forEach($scope.postdatalist, function(value, key) {
-          //    $scope.postdatalist[key].lastactivity = $scope.timeSince(new Date(value.post_date)); 
-          //    $scope.postdatalist[key].txtContent = $scope.postdatalist[key].post_content;                    
-          // });
-         // console.log(JSON.stringify($scope.postdatalist));     
+          //alert(JSON.stringify($scope.postdatalist));
+          angular.forEach($scope.postdatalist, function(value, key) {
+             $scope.postdatalist[key].lastactivity = $scope.timeSince(new Date(value.post_date)); 
+            // $scope.postdatalist[key].txtContent = $scope.postdatalist[key].post_content;                    
+          });
+          // console.log(JSON.stringify($scope.postdatalist));     
        
      };
 
