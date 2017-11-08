@@ -11,7 +11,7 @@
 		$scope.singletitle.titles = {};
 		$scope.singletitle.action = 'insert';             
 	}	 
-
+   
 	$scope.companylist=[];	
 	$scope.singletitle = {};
 	$scope.singletitle.action='insert';

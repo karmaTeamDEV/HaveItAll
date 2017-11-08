@@ -2,7 +2,7 @@
 error_reporting(0);
 set_time_limit(300);
 defined('BASEPATH') OR exit('No direct script access allowed');
-require APPPATH . '/libraries/REST_Controller.php';
+require APPPATH . '/libraries/REST_Controller.php'; 
 
 
 class API extends REST_Controller {
