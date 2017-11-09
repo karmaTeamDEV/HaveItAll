@@ -82,6 +82,7 @@ app.controller('postsController', function ($scope,$state,$uibModal,$http,fetchr
       var element = document.getElementById('imageFile');
       var FileUploadPath = element.value;
       var Extension = FileUploadPath.substring(FileUploadPath.lastIndexOf('.') + 1).toLowerCase();
+     // alert(Extension);
 if(Extension){
 
   if (Extension == "gif" || Extension == "png" || Extension == "bmp" || Extension == "jpeg" || Extension == "jpg") {
@@ -124,6 +125,8 @@ if(Extension){
        }else{
         
         bootbox.alert("Photo only allows file types of GIF, PNG, JPG, JPEG.");
+         var x = document.getElementById("mydiv");        
+          x.style.display = "none";   
 
      }  
 
