@@ -28,7 +28,7 @@ class API_following_company_model extends CI_Model {
 						
 					) UCV ON (U.users_id = UCV.user_id AND C.company_id = UCV.company_id )
 				WHERE U.users_type != '3'
-				AND U.users_status != '1' ";
+				AND U.users_status != '1' AND u.company_type != '1' ";
 
 		if ($following_type != "") {
 			$sql.= " AND UFC.following_type = '$following_type' ";
@@ -154,7 +154,7 @@ class API_following_company_model extends CI_Model {
 				FROM(
 					SELECT DISTINCT COM.*,  1 AS jobfit_status, 0 AS employeefit_status, 0 AS location_status, 0 AS industry_status, 0 AS area_status
 					FROM hia_company AS COM
-					JOIN hia_users AS USR ON (COM.company_id = USR.users_companyid AND USR.users_type = '2')
+					JOIN hia_users AS USR ON (COM.company_id = USR.users_companyid AND USR.users_type = '2' AND USR.company_type != '1')
 					JOIN hia_type_user_rel AS TUR ON (USR.users_id = TUR.type_rel_userid AND TUR.type_rel_category IN('job_fit') )
 					JOIN hia_users AS USR1 ON (  USR1.users_id = '$user_id')
 					JOIN hia_type_user_rel AS TUR1 ON (USR1.users_id = TUR1.type_rel_userid AND TUR1.type_rel_category IN('job_fit') AND TUR.type_id = TUR1.type_id)
@@ -162,7 +162,7 @@ class API_following_company_model extends CI_Model {
 					UNION
 					SELECT DISTINCT COM.*,  0 AS jobfit_status, 1 AS employeefit_status, 0 AS location_status, 0 AS industry_status, 0 AS area_status
 					FROM hia_company AS COM
-					JOIN hia_users AS USR ON (COM.company_id = USR.users_companyid AND USR.users_type = '2')
+					JOIN hia_users AS USR ON (COM.company_id = USR.users_companyid AND USR.users_type = '2' AND USR.company_type != '1')
 					JOIN hia_type_user_rel AS TUR ON (USR.users_id = TUR.type_rel_userid AND TUR.type_rel_category IN('employer_fit') )
 					JOIN hia_users AS USR1 ON (  USR1.users_id = '$user_id')
 					JOIN hia_type_user_rel AS TUR1 ON (USR1.users_id = TUR1.type_rel_userid AND TUR1.type_rel_category IN('employer_fit') AND TUR.type_id = TUR1.type_id)
@@ -170,13 +170,13 @@ class API_following_company_model extends CI_Model {
 					UNION
 					SELECT DISTINCT COM.*,  0 AS jobfit_status, 0 AS employeefit_status, 1 AS location_status, 0 AS industry_status, 0 AS area_status
 					FROM hia_company AS COM
-					JOIN hia_users AS USR ON (COM.company_id = USR.users_companyid AND USR.users_type = '2')
+					JOIN hia_users AS USR ON (COM.company_id = USR.users_companyid AND USR.users_type = '2' AND USR.company_type != '1')
 					JOIN hia_users AS USR1 ON (  USR1.users_id = '$user_id' AND USR.users_city = USR1.users_city )
 					
 					UNION
 					SELECT DISTINCT COM.*,  0 AS jobfit_status, 0 AS employeefit_status, 0 AS location_status, 1 AS industry_status, 0 AS area_status
 					FROM hia_company AS COM
-					JOIN hia_users AS USR ON (COM.company_id = USR.users_companyid AND USR.users_type = '2')
+					JOIN hia_users AS USR ON (COM.company_id = USR.users_companyid AND USR.users_type = '2' AND USR.company_type != '1')
 					JOIN hia_industry_user_relation AS IUR ON (USR.users_id = IUR.users_id  )
 					JOIN hia_users AS USR1 ON (  USR1.users_id = '$user_id')
 					JOIN hia_industry_user_relation AS IUR1 ON (USR1.users_id = IUR1.users_id  AND IUR.industry_id = IUR1.industry_id)
@@ -184,14 +184,14 @@ class API_following_company_model extends CI_Model {
 					UNION
 					SELECT DISTINCT COM.*,  0 AS jobfit_status, 0 AS employeefit_status, 0 AS location_status, 0 AS industry_status, 1 AS area_status
 					FROM hia_company AS COM
-					JOIN hia_users AS USR ON (COM.company_id = USR.users_companyid AND USR.users_type = '2')
+					JOIN hia_users AS USR ON (COM.company_id = USR.users_companyid AND USR.users_type = '2' AND USR.company_type != '1')
 					JOIN hia_assign_industry AS IUR ON (USR.users_id = IUR.userid  )
 					JOIN hia_users AS USR1 ON (  USR1.users_id = '$user_id')
 					JOIN hia_assign_industry AS IUR1 ON (USR1.users_id = IUR1.userid  AND IUR.area_id = IUR1.area_id)
 					 
 					 
 					) COM_MATCH
-					JOIN hia_users AS CU ON( COM_MATCH.company_id = CU.users_companyid AND CU.users_type = '2' AND CU.users_status != '1')
+					JOIN hia_users AS CU ON( COM_MATCH.company_id = CU.users_companyid AND CU.users_type = '2' AND CU.users_status != '1' AND CU.company_type != '1')
 					LEFT JOIN hia_cities ON (CU.users_city = hia_cities.id)
 					LEFT JOIN hia_states  ON (CU.users_state = hia_states.id)
 					LEFT JOIN hia_countries ON (CU.users_country = hia_countries.id)
@@ -451,7 +451,7 @@ class API_following_company_model extends CI_Model {
 		else {
 			$sql.= " ORDER BY UFC.user_id ASC  ";
 		}
-		//echo $sql;
+		//echo $sql;exit;
 
 		if ( ! $this->db->simple_query($sql))
 		{
