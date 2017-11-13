@@ -327,8 +327,8 @@ class API extends REST_Controller {
 		if($user_id)
 		{
 			if($post_data->addUser == '1'){
-				//$to = $username;
-				$to = 'bamadebupadhya@gmail.com';
+				$to = $username;
+				//$to = 'bamadebupadhya@gmail.com';
 				$first_name = $post_data->first_name;
 				$last_name = $post_data->last_name;
 			    $message = "Hello $first_name $last_name, <br><br>
