@@ -170,11 +170,11 @@
                    <span ng-repeat="city in state.city | filter: query | limitTo:2" style="font-weight: normal;" >{{city.cityname}} | </span><span class="blue" ng-click="showAlertAll($event,location.rel_country_id,location.countryname)" ng-if="state.city.length > 2 "><i>more...</i></span>
                 </span>
             </div>
-             <div ng-if="localationlist.length== '0' ">Location : N/A</div>
+            <!--  <div ng-if="localationlist.length== '0' ">Location : N/A</div>
               <div ><b class="blue">Skill</b> : 
                <span ng-if="skilldatalist.length== '0' ">N/A</span>
               <span  ng-repeat="skillitem in skilldatalist" ng-if="skilldatalist.length != '0' ">{{skillitem.skills_name}} |</span>
-               </div>
+               </div> -->
          </div>
 
          <div style="clear: both;"></div>
@@ -306,8 +306,8 @@
    <!--  <select ng-model="ProfileInfo.users_skills" name="jobpost_skills" ng-options="skill.skills_id as skill.skills_name for skill in skilldata" multiple="multiple" class="form-control"  >
     <option value="">-Select Keyskills-</option>          
     </select> --> 
-     <select-multiple ng-model="ProfileInfo.users_skills" transform-to-model="transformToModel" transform-to-view="transformToView" style="width: 100%;" placeholder="Select Keyskills..." />
-    </select-multiple>
+     <!-- <select-multiple ng-model="ProfileInfo.users_skills" transform-to-model="transformToModel" transform-to-view="transformToView" style="width: 100%;" placeholder="Select Keyskills..." />
+    </select-multiple> -->
    <!--  <span class="blue" style="cursor: pointer;float: left;;"><a href="#!/user/location">Add Location</a> </span> -->
 </div>
 <div style="cursor: pointer;text-align:center;">
@@ -421,8 +421,8 @@
    <!--  <select ng-model="ProfileInfo.users_skills" name="jobpost_skills" ng-options="skill.skills_id as skill.skills_name for skill in skilldata" multiple="multiple" class="form-control"  >
     <option value="">-Select Keyskills-</option>          
     </select> --> 
-     <select-multiple ng-model="ProfileInfo.users_skills" transform-to-model="transformToModel" transform-to-view="transformToView" style="width: 100%;" placeholder="Select Keyskills..." />
-    </select-multiple>
+    <!--  <select-multiple ng-model="ProfileInfo.users_skills" transform-to-model="transformToModel" transform-to-view="transformToView" style="width: 100%;" placeholder="Select Keyskills..." />
+    </select-multiple> -->
     
 </div>
 <div style=" width:100%;margin-top:10px;margin-bottom:10px;" >   
