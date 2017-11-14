@@ -1,5 +1,4 @@
-
-<div ng-include="'include/header.html'"></div>
+<div ng-include="'include/header_home.html'"></div>
  <script type="text/javascript">
 $(window).scroll(function() {
 if ($(".navbar").offset().top > 50) {
@@ -40,8 +39,138 @@ input {
   top: -1px;
   overflow: hidden;
 }
+.white
+{
+  color:#fff;
+}
+.blue_space
+{
+  background-color:#0CF;padding:30px 0px;
+}
+td
+{
+  font-size:16px;
+  padding:5px;
+  vertical-align:top;
+}
+
+.navbar-custom
+{
+  background-color:#FFF;color:#000!important;
+}
+.navbar-custom .nav li a {
+    color: rgb(59, 77, 131)!important;
+}
+
+.navbar-custom .nav li a:hover {
+    color: rgb(59, 77, 131)!important;
+}
+.blue_botton
+{
+  border-color:#0CF!important;text-transform:none;color:#0CF!important;
+}
+.blue_botton:hover
+{
+  border-color:#0CF!important;text-transform:none;color:#fff!important;
+  
+}
+
  </style> 
-    <!-- About Section -->
+  <section>
+  <div class="row">
+ <div class="col-lg-12 text-center">
+ <div class="blue_space">
+ <h2 style="text-transform:none;" class="white">HaveItAll is like a dating app for employment.</h2>
+<p style="font-size:24px;" class="white">Follow companies that you'd like to work for. </p>
+<p style="font-size:24px;" class="white">We'll keep you connected to their relevant jobs, news and meet-ups.</p>
+ </div>
+ </div>
+ </div>
+  </section>
+ <section>
+ <div style="background-color:#FFF;">
+  <div class="row">
+ <div class="col-lg-12 text-center">
+    <div align="center"><img src="public/images/img7.jpg" class="img-responsive"></div>
+    <duv style="padding-bottom_30px;">
+    <div class="btn btn-default btn-lg blue_botton">Get connected - it's free</div>
+    <div style="color:#0CF">No Resume . No Spam . The Right Connections</div><br/><br/><br/>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </section>
+  <section>
+<div class="blue_space">
+ <div class="row">
+  <div class="container">
+ <div class="col-lg-5 col-lg-offset-1">
+ <div align="center"><h2 style="color:#FFF;">How it works</h2></div>
+ 
+<table class="white">
+<tr>
+<td>1.</td>
+<td>Answer a couple of questions.</td>
+</tr>
+<tr>
+<td>2.</td>
+<td> Review and follow companies that you'd like to work for.</td>
+</tr>
+<tr>
+<td>3.</td>
+<td> Gain one-point access to relevant jobs, news and events.</td>
+</tr>
+<tr>
+<td colspan="2" align="center">&nbsp;
+</td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+ <a href="#"><div class="btn btn-default btn-lg" style="text-transform:none;border-color:#fff; color:#fff;">
+ See Company Matches</div></a>
+</td>
+</tr>
+
+</table>
+ </div>
+ <div class="col-lg-5">
+ <div align="center">
+ <h2 class="white">
+WHAT WE DO</h2>
+</div>
+ 
+<table class="white">
+<tr>
+<td>1.</td>
+<td>Match you to employers using your criteria and experience.</td>
+</tr>
+<tr>
+<td>2.</td>
+<td> Promote you to hiring contacts within organizations you follow.</td>
+</tr>
+<tr>
+<td>3.</td>
+<td>  Post relevant opportunities to your personal job bulletin.</td>
+</tr>
+<tr>
+<td>4.</td>
+<td> Flip the model and put you in control - find the right next job!</td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+ <a href="#"><div class="btn btn-default btn-lg" style="text-transform:none;border-color:#fff; color:#fff;">
+ Learn more</div></a>
+</td>
+</tr>
+
+</table>
+ </div>
+ </div>
+ <div class="clearfix"></div>
+ </div>
+ </div>
+  </section>
     <section id="fit" class="container content-section text-left">
     
         <div class="row">
@@ -55,19 +184,20 @@ Think of HaveItAll like the dating app for employment. We match your criteria, v
          <div class="col-lg-4">&nbsp;</div>
             <div class="col-lg-4">
             <div  ng-repeat="jobFit in jobFits">
-      				<div style="float:left;">
-      					<label class="switch">
-      					<input type="checkbox" value={{jobFit.typeId}} ng-click="toggleJobfit(jobFit.typeId)">
-      					<div class="slider round"></div>
-      					</label>
-      				</div>					
-      				<div class="text2">{{jobFit.typeName}}</div>
-      				<div class="clearfix"></div>
-            </div>			
-          			
+              <div style="float:left;">
+                <label class="switch">
+                <input type="checkbox" value={{jobFit.typeId}} ng-click="toggleJobfit(jobFit.typeId)">
+                <div class="slider round"></div>
+                </label>
+              </div>          
+              <div class="text2">{{jobFit.typeName}}</div>
+              <div class="clearfix"></div>
+            </div>      
+                
             <div class="clearfix"></div>
            <hr>
             <button class="btn btn-default" type="button" ng-disabled="isEmplyrfitSelected" ng-click="showJobFitList();">NEXT</button>
+            <div class="bottom_space"></div>
             <div class="bottom_space"></div>
             </div>
          <div class="col-lg-4">&nbsp;</div>
@@ -79,27 +209,28 @@ Think of HaveItAll like the dating app for employment. We match your criteria, v
         <div class="col-lg-12"><h2 align="center">What do you seek in an employer?</h2></div>
          <div class="col-lg-4">&nbsp;</div>
             <div class="col-lg-4">
-			
+      
             <div ng-repeat="employerFit in employerFits">
-				<div style="float:left;">
-					<label class="switch">
-					<input type="checkbox"  value={{employerFit.typeId}} ng-click="toggleSelection(employerFit.typeId)" />
-					<div class="slider round">
-					</div>
-					</label>
-				</div>				
-				<div class="text2">{{employerFit.typeName}}</div>
-				<div class="clearfix"></div>
+        <div style="float:left;">
+          <label class="switch">
+          <input type="checkbox"  value={{employerFit.typeId}} ng-click="toggleSelection(employerFit.typeId)" />
+          <div class="slider round">
+          </div>
+          </label>
+        </div>        
+        <div class="text2">{{employerFit.typeName}}</div>
+        <div class="clearfix"></div>
             </div>
 
-			<div class="clearfix"></div>
+      <div class="clearfix"></div>
            <hr>
-		   <!--
+       <!--
             <a href="/login"><button class="btn btn-default" type="button" ng-click="navlogin();">Employer near you</button></a>
-			-->
-			<button class="btn btn-default" type="button" ng-click="navIndustry();" ng-disabled="isJobfitSelected">   
+      -->
+      <button class="btn btn-default" type="button" ng-click="navIndustry();" ng-disabled="isJobfitSelected">   
                NEXT
             </button>
+            <div class="bottom_space"></div>
         </div>
          <div class="col-lg-4">&nbsp;</div>
         </div>
@@ -129,6 +260,7 @@ Think of HaveItAll like the dating app for employment. We match your criteria, v
             <button class="btn btn-default" type="button" ng-click="navSeniority();" ng-disabled="isIndustrySelected">  
                NEXT
             </button>
+            <div class="bottom_space"></div>
         </div>
          <div class="col-lg-4">&nbsp;</div>
         </div>
@@ -143,6 +275,7 @@ Think of HaveItAll like the dating app for employment. We match your criteria, v
                 <table width="100%">
                     <tr>
                         <td width="40%" class="blue"><b>{{seniority.name}}</b></td>
+
                         <td ng-repeat="level in levelList">
                            <label><input type="checkbox" class="checkboxsize" value="level.seniority_id" ng-click="toggleSeniority(seniority.industry_id,level.seniority_id)"> {{level.seniority_name}}</label>
                         </td>                                                
@@ -157,11 +290,13 @@ Think of HaveItAll like the dating app for employment. We match your criteria, v
             <button class="btn btn-default" type="button" ng-click="navRegister();" ng-disabled="isSenioritySelected">  
                Find Employers
             </button>
+             <div class="bottom_space"></div>
         </div>
          <div class="col-lg-4">&nbsp;</div>
-        </div>
-        </section>
 
+        </div> 
+               
+        </section>
           
- <div ng-include="'include/footer.html'"></div>
+ <div ng-include="'include/footer_home.html'"></div>
    

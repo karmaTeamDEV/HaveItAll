@@ -17,8 +17,8 @@
 		$localStorage.email ='';
 
 	//$('#mydiv').show();
-	var someElement = angular.element(document.getElementById('fit'));
-	$document.scrollToElementAnimated(someElement);
+	// var someElement = angular.element(document.getElementById('fit'));
+	// $document.scrollToElementAnimated(someElement);
 
 	$scope.showJobFitList = function(){
 		var someElement = angular.element(document.getElementById('jobfit'));
