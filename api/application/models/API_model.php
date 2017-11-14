@@ -743,9 +743,8 @@ $this->db->join('skills_master','skills_master.skills_id = users_skills_relation
 public function delete_location($userid,$country_id) {
     $this->db->where('relation_user_id',$userid); 
     $this->db->where('rel_country_id',$country_id);   
-    $this->db->delete($this->locationsrelationTable);
-      
-    return $id;
+    $this->db->delete($this->locationsrelationTable);      
+    return $this->db->affected_rows();
 }
 public function delete_industry($jobpost_id,$industry_id) {
     $this->db->where('jobpost_id',$jobpost_id);  

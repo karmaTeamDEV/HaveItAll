@@ -1063,7 +1063,7 @@ correlating field of study selections that you have made.", 200); // 200 being t
 		}
 		else
 		{
-			$Error = array('message' => 'error' );
+			$Error = array();
 			$this->response($Error, 200);
 		}
 	}
