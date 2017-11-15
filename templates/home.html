@@ -196,22 +196,43 @@ WHAT WE DO</h2>
 Think of HaveItAll like the dating app for employment. We match your criteria, vales, expertise & lifestyle with organizations. We'll even track the jobs you want within specific companies, notify you when they become vacant and privately promote you to decision makers.​<br/><br/><br/>
 </div>
         <div id="aboutimp" class="col-lg-12"><h2 align="center">What types of jobs are of interest? </h2></div>
-         <div class="col-lg-4">&nbsp;</div>
+
+         <div class="col-lg-4">          
+       <!--   <div class="progress">
+              <div class="progress-bar" style="width:25%; text-transform: uppercase; background-color: #ffc107!important;">
+                1 out of 4 
+              </div>             
+          </div> 
+ -->
+            <div class="progress">
+              <div class="progress-bar" style="width:25%; text-transform: uppercase;">
+                1 out of 4 
+              </div>             
+          </div>
+         </div> 
+
             <div class="col-lg-4">
-            <div  ng-repeat="jobFit in jobFits">
-              <div style="float:left;">
-                <label class="switch">
+
+            <div  ng-repeat="jobFit in jobFits">               
+              <table>
+                <tr>
+                  <td>
+                     <label class="switch">
                 <input type="checkbox" value={{jobFit.typeId}} ng-click="toggleJobfit(jobFit.typeId)">
                 <div class="slider round"></div>
                 </label>
-              </div>          
-              <div class="text2">{{jobFit.typeName}}</div>
+                  </td>
+                  <td>
+                     <div class="text2">{{jobFit.typeName}}</div>
+                  </td>
+                </tr>
+              </table>              
               <div class="clearfix"></div>
             </div>      
                 
             <div class="clearfix"></div>
            <hr>
-            <button class="btn btn-default" type="button" ng-disabled="isEmplyrfitSelected" ng-click="showJobFitList();">NEXT</button>
+            <button class="btn btn-default" type="button" ng-disabled="isEmplyrfitSelected" ng-click="showJobFitList();">Step 2</button>
             <div class="bottom_space"></div>
             <div class="bottom_space"></div>
             </div>
@@ -222,18 +243,35 @@ Think of HaveItAll like the dating app for employment. We match your criteria, v
         <div class="row" style="padding-bottom:100px;" id="jobfit" ng-show="showjobfits">
         
         <div class="col-lg-12"><h2 align="center">What do you seek in an employer?</h2></div>
-         <div class="col-lg-4">&nbsp;</div>
+         <div class="col-lg-4">
+            <div class="progress">
+              <div class="progress-bar" style="width:50%; text-transform: uppercase;">
+                2 out of 4
+              </div>             
+            </div>
+         </div>
             <div class="col-lg-4">
       
             <div ng-repeat="employerFit in employerFits">
-        <div style="float:left;">
-          <label class="switch">
-          <input type="checkbox"  value={{employerFit.typeId}} ng-click="toggleSelection(employerFit.typeId)" />
-          <div class="slider round">
-          </div>
-          </label>
-        </div>        
-        <div class="text2">{{employerFit.typeName}}</div>
+        
+             <table>
+              <tr>
+                <td>
+                 <label class="switch">
+                  <input type="checkbox"  value={{employerFit.typeId}} ng-click="toggleSelection(employerFit.typeId)" />
+                  <div class="slider round">
+                  </div>
+                </label>
+              </td>
+              <td>
+               <div class="text2">{{employerFit.typeName}}</div>
+             </td>
+           </tr>
+         </table> 
+
+         
+       
+       
         <div class="clearfix"></div>
             </div>
 
@@ -243,29 +281,45 @@ Think of HaveItAll like the dating app for employment. We match your criteria, v
             <a href="/login"><button class="btn btn-default" type="button" ng-click="navlogin();">Employer near you</button></a>
       -->
       <button class="btn btn-default" type="button" ng-click="navIndustry();" ng-disabled="isJobfitSelected">   
-               NEXT
+               Step 3
             </button>
             <div class="bottom_space"></div>
         </div>
-         <div class="col-lg-4">&nbsp;</div>
+         <div class="col-lg-4">
+           &nbsp;
+         </div>
         </div>
         <div class="botto_space"></div>
          <div class="row" style="padding-bottom:100px;" id="industry" ng-show="showIndustry">
         
         <div class="col-lg-12"><h2 align="center" style="margin-bottom: 8px;">Your Industry(s) </h2></div>
         <div class="col-lg-12"><h2 align="center">What industries do you have experience in?</h2></div>
-         <div class="col-lg-4">&nbsp;</div>
+         <div class="col-lg-4">
+              <div class="progress">
+              <div class="progress-bar" style="width:75%; text-transform: uppercase;">
+                3 out of 4
+              </div>             
+            </div>
+         </div>
             <div class="col-lg-4">
             
             <div ng-repeat="industry in industrylist">
-                <div style="float:left;">
+                
+                 <table>
+                <tr>
+                  <td>
                     <label class="switch">
                     <input type="checkbox" value={{industry.industry_id}} ng-click="toggleIndustry(industry.industry_id,industry.industry_name)">
                     <div class="slider round">
                     </div>
                     </label>
-                </div>              
-                <div class="text2">{{industry.industry_name}}</div>
+                  </td>
+                  <td>
+                      <div class="text2">{{industry.industry_name}}</div>
+                  </td>
+                </tr>
+              </table>
+               
                 <div class="clearfix"></div>
             </div>
                        
@@ -273,17 +327,25 @@ Think of HaveItAll like the dating app for employment. We match your criteria, v
            <hr>
             
             <button class="btn btn-default" type="button" ng-click="navSeniority();" ng-disabled="isIndustrySelected">  
-               NEXT
+               Step 4
             </button>
             <div class="bottom_space"></div>
         </div>
-         <div class="col-lg-4">&nbsp;</div>
+         <div class="col-lg-4">&nbsp;
+            
+         </div>
         </div>
         <div class="row" style="padding-bottom:100px;" id="seniority" ng-show="showSeniority">
         
         <div class="col-lg-12"><h2 align="center" style="margin-bottom: 8px;">Experience Level</h2></div>
         <div class="col-lg-12"><h2 align="center">Select your experience level by industry</h2></div>
-         <div class="col-lg-3">&nbsp;</div>
+         <div class="col-lg-3">
+            <div class="progress">
+              <div class="progress-bar" style="width:100%; text-transform: uppercase;">
+                4 out of 4
+              </div>             
+            </div>
+         </div>
             <div class="col-lg-7">
            
             <div ng-repeat="seniority in selectionIndustryname">
@@ -318,7 +380,7 @@ Think of HaveItAll like the dating app for employment. We match your criteria, v
            <hr>
             
             <button class="btn btn-default" type="button" ng-click="navRegister();" ng-disabled="isSenioritySelected">  
-               Find Employers
+               Sign me up
             </button>
              <div class="bottom_space"></div>
         </div>
