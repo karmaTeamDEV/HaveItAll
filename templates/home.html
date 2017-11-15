@@ -25,6 +25,11 @@ $('.navbar-collapse ul li a').click(function() {
 });
 </script>
 <style type="text/css">
+.level_name
+{
+  vertical-align:middle;float:left;
+  padding:3px 8px 0px 3px;
+}
 .navbar-toggle {
     padding: 0px 10px !important;
     margin-top: 0px !important;
@@ -282,7 +287,7 @@ Think of HaveItAll like the dating app for employment. We match your criteria, v
             <div class="col-lg-7">
            
             <div ng-repeat="seniority in selectionIndustryname">
-                <table width="100%">
+                <!-- <table width="100%">
                     <tr>
                         <td width="40%" class="blue"><b>{{seniority.name}}</b></td>
 
@@ -290,7 +295,22 @@ Think of HaveItAll like the dating app for employment. We match your criteria, v
                            <label><input type="checkbox" class="checkboxsize" value="level.seniority_id" ng-click="toggleSeniority(seniority.industry_id,level.seniority_id)"> {{level.seniority_name}}</label>
                         </td>                                                
                     </tr>
-                </table>                 
+                </table>   -->  
+                <table width="100%">
+                    <tr>
+                        <td class="blue" width="30%"><b>{{seniority.name}}</b></td>
+
+                        <td>
+                        <div ng-repeat="level in levelList" style="display:inline-block;">
+                          <div style="vertical-align:middle;float:left;"> 
+                          <label><input type="checkbox" class="checkboxsize" value="level.seniority_id" ng-click="toggleSeniority(seniority.industry_id,level.seniority_id)"></label>
+                          </div>
+              <div class="level_name"> 
+                          {{level.seniority_name}}</div>
+                           </div>
+                        </td>                                                
+                    </tr>
+                </table>             
                 <div class="clearfix"></div>
             </div>
                        
