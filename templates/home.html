@@ -30,11 +30,6 @@ $('.navbar-collapse ul li a').click(function() {
   vertical-align:middle;float:left;
   padding:3px 8px 0px 3px;
 }
-.navbar-toggle {
-    padding: 0px 10px !important;
-    margin-top: 0px !important;
-    margin-bottom: 0px !important;
-}
 label {
   display: block;
   padding-left: 15px;
@@ -67,6 +62,7 @@ td
 .navbar-custom
 {
   background-color:#FFF;color:#000!important;
+  padding:0px!important;
 }
 .navbar-custom .nav li a {
     color: rgb(59, 77, 131)!important;
@@ -77,12 +73,55 @@ td
 }
 .blue_botton
 {
-  border-color:#0CF!important;text-transform:none;color:#0CF!important;
+  border-color:#0CF!important;text-transform:none;color:#0CF!important;border-radius:10px;
 }
 .blue_botton:hover
 {
   border-color:#0CF!important;text-transform:none;color:#fff!important;
   
+}
+.logo_space
+{
+margin-left:50px;
+margin-top:-5px;
+	
+}
+.menu_space
+{
+	cursor:pointer;margin-right:50px;
+	font-size:18px!important;
+    color: rgb(59, 77, 131)!important;
+    padding-bottom: 20px;
+    border-color: rgba(255, 255, 255, 0.670588);
+    letter-spacing: 0.05em;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-top: 20px;
+    font-family: Abel;
+    background-color: rgba(255, 255, 255, 0);
+}
+.pro_bar
+{
+	width:25%;background-color: #ccc!important;text-align:center;color:#fff;
+	border-right:1px solid #fff;
+}
+h1, h2
+{
+font-family: Abel!important;
+
+}
+.white_bot
+{
+	text-transform:none;border-color:#fff; color:#fff;border-radius:10px;
+}
+
+@media only screen and (min-device-width:320px) and (max-device-width:767px)
+{	
+.logo_space
+{
+margin-left:0px!important;
+}
+	
 }
 
  </style> 
@@ -92,9 +131,10 @@ td
     <div class="container">
      <div class="col-lg-12 text-center">
 
-       <h1 style="text-transform:none;" class="white">HaveItAll is like a dating app for employment.</h1>
-       <p style="font-size:24px;" class="white">Follow companies that you'd like to work for. </p>
-       <p style="font-size:24px;" class="white">We'll keep you connected to their relevant jobs, news and meet-ups.</p>
+<div style="text-transform:none;font-size:30px;font-family: Abel!important;padding-bottom:20px;" class="white">
+HaveItAll is like a dating app for employment.</div>
+       <div style="font-size:20px;" class="white">Follow companies that you'd like to work for. </div>
+       <div style="font-size:20px;" class="white">We'll keep you connected to their relevant jobs, news and meet-ups.</div>
      </div>
    </div>
 </div>
@@ -120,7 +160,7 @@ td
 <div class="blue_space">
  <div class="row">
   <div class="container">
- <div class="col-lg-5 col-lg-offset-1">
+ <div class="col-lg-6">
  <div align="center"><h2 style="color:#FFF;">How it works</h2></div>
  
 <table class="white">
@@ -142,14 +182,14 @@ td
 </tr>
 <tr>
 <td colspan="2" align="center">
- <a href="javascript:void(0);"><div class="btn btn-default btn-lg" style="text-transform:none;border-color:#fff; color:#fff;">
+ <a href="javascript:void(0);"><div class="btn btn-default btn-lg white_bot">
  See Company Matches</div></a>
 </td>
 </tr>
 
 </table>
  </div>
- <div class="col-lg-5">
+ <div class="col-lg-6">
  <div align="center">
  <h2 class="white">
 WHAT WE DO</h2>
@@ -174,7 +214,7 @@ WHAT WE DO</h2>
 </tr>
 <tr>
 <td colspan="2" align="center">
- <a href="javascript:void(0);"><div class="btn btn-default btn-lg" style="text-transform:none;border-color:#fff; color:#fff;">
+ <a href="javascript:void(0);"><div class="btn btn-default btn-lg white_bot">
  Learn more</div></a>
 </td>
 </tr>
@@ -193,24 +233,24 @@ WHAT WE DO</h2>
  <div class="col-lg-12 text-center">
 <h2>Get Started!</h2>  
 
-Think of HaveItAll like the dating app for employment. We match your criteria, vales, expertise & lifestyle with organizations. We'll even track the jobs you want within specific companies, notify you when they become vacant and privately promote you to decision makers.​<br/><br/><br/>
+<!--Think of HaveItAll like the dating app for employment. We match your criteria, vales, expertise & lifestyle with organizations. We'll even track the jobs you want within specific companies, notify you when they become vacant and privately promote you to decision makers.​<br/><br/><br/>
+-->
 </div>
-        <div id="aboutimp" class="col-lg-12"><h2 align="center">What types of jobs are of interest? </h2></div>
+        <div id="aboutimp" class="col-lg-12"><h2 align="center" style="text-transform:none;">What types of jobs are of interest? </h2></div>
 
          <div class="col-lg-12">          
        
             <div class="progress">
               <div class="progress-bar" style="width:25%;">Step 1 of 4</div>   
-              <div class="progress-bar" style="width:25%;background-color: #28a745!important;"></div>
-              <div class="progress-bar" style="width:25%;background-color: #ffc107!important;"></div>
-              <div class="progress-bar" style="width:25%;background-color: #dc3545!important;"></div>
+              <div class="progress-bar pro_bar">2</div>
+              <div class="progress-bar pro_bar" >3</div>
+              <div class="progress-bar pro_bar" style="width:25%;background-color: #ccc!important;">4</div>
             </div>
 
 
          </div> 
 
-            <div class="col-lg-4">
-
+<div class="col-lg-8 col-lg-offset-4">
             <div  ng-repeat="jobFit in jobFits">               
               <table>
                 <tr>
@@ -231,28 +271,24 @@ Think of HaveItAll like the dating app for employment. We match your criteria, v
             <div class="clearfix"></div>
            <hr>
             <button class="btn btn-default" type="button" ng-disabled="isEmplyrfitSelected" ng-click="showJobFitList();">Step 2</button>
-            <div class="bottom_space"></div>
-            <div class="bottom_space"></div>
+            <div class="bottom_space" id="jobfit"></div>
             </div>
-         <div class="col-lg-4">&nbsp;</div>
          
         </div>
-      
-        <div class="row" style="padding-bottom:100px;" id="jobfit" ng-show="showjobfits">
+        <div class="row" style="padding-bottom:100px;"  ng-show="showjobfits">
         
-        <div class="col-lg-12"><h2 align="center">What do you seek in an employer?</h2></div>
+        <div class="col-lg-12"><h2 align="center" style="text-transform:none;">What do you seek in an employer?</h2></div>
          <div class="col-lg-12">
             <div class="progress">
-              <div class="progress-bar" style="width:25%;"><img src="public/images/hometike.png" height="20"></div>   
+              <div class="progress-bar" style="width:25%;">Step 1 of 4</div>   
               <div class="progress-bar" style="width:25%;background-color: #28a745!important;">Step 2 of 4</div>
-              <div class="progress-bar" style="width:25%;background-color: #ffc107!important;"></div>
-              <div class="progress-bar" style="width:25%;background-color: #dc3545!important;"></div>
+              <div class="progress-bar pro_bar">3</div>
+              <div class="progress-bar pro_bar">4</div>
             </div>
 
 
          </div>
-            <div class="col-lg-4">
-      
+<div class="col-lg-8 col-lg-offset-4">      
             <div ng-repeat="employerFit in employerFits">
         
              <table>
@@ -284,27 +320,27 @@ Think of HaveItAll like the dating app for employment. We match your criteria, v
       <button class="btn btn-default" type="button" ng-click="navIndustry();" ng-disabled="isJobfitSelected">   
                Step 3
             </button>
-            <div class="bottom_space"></div>
+            <div class="bottom_space" id="industry"></div>
         </div>
-         <div class="col-lg-4">
-           &nbsp;
-         </div>
+         
         </div>
-        <div class="botto_space"></div>
          <div class="row" style="padding-bottom:100px;" id="industry" ng-show="showIndustry">
         
         <div class="col-lg-12"><h2 align="center" style="margin-bottom: 8px;">Your Industry(s) </h2></div>
-        <div class="col-lg-12"><h2 align="center">What industries do you have experience in?</h2></div>
+        <div class="col-lg-12"><h2 align="center" style="text-transform:none;">What industries do you have experience in?</h2></div>
          <div class="col-lg-12">
             <div class="progress">
-              <div class="progress-bar" style="width:25%;"><img src="public/images/hometike.png" height="20"></div>   
-              <div class="progress-bar" style="width:25%;background-color: #28a745!important;"><img src="public/images/hometike.png" height="20"></div>
+              <div class="progress-bar" style="width:25%;">
+              Step 1 of 4
+              </div>   
+              <div class="progress-bar" style="width:25%;background-color: #28a745!important;">
+              Step 2 of 4</div>
               <div class="progress-bar" style="width:25%;background-color: #ffc107!important;">Step 3 of 4</div>
-              <div class="progress-bar" style="width:25%;background-color: #dc3545!important;"></div>
+              <div class="progress-bar pro_bar">4</div>
             </div>
 
          </div>
-            <div class="col-lg-4">
+            <div class="col-lg-8 col-lg-offset-4">
             
             <div ng-repeat="industry in industrylist">
                 
@@ -332,26 +368,31 @@ Think of HaveItAll like the dating app for employment. We match your criteria, v
             <button class="btn btn-default" type="button" ng-click="navSeniority();" ng-disabled="isIndustrySelected">  
                Step 4
             </button>
-            <div class="bottom_space"></div>
+            <div class="bottom_space" id="jobfit"></div>
         </div>
-         <div class="col-lg-4">&nbsp;
             
          </div>
         </div>
         <div class="row" style="padding-bottom:100px;" id="seniority" ng-show="showSeniority">
         
-        <div class="col-lg-12"><h2 align="center" style="margin-bottom: 8px;">Experience Level</h2></div>
-        <div class="col-lg-12"><h2 align="center">Select your experience level by industry</h2></div>
+  <div class="col-lg-12"><h2 align="center" style="margin-bottom: 8px;">Experience Level</h2></div>
+        <div class="col-lg-12"><h2 align="center" style="text-transform:none;">Select your experience level by industry</h2></div>
          <div class="col-lg-12">
             <div class="progress">
-              <div class="progress-bar" style="width:25%;"><img src="public/images/hometike.png" height="20"></div>   
-              <div class="progress-bar" style="width:25%;background-color: #28a745!important;"><img src="public/images/hometike.png" height="20"></div>
-              <div class="progress-bar" style="width:25%;background-color: #ffc107!important;"><img src="public/images/hometike.png" height="20"></div>
-              <div class="progress-bar" style="width:25%;background-color: #dc3545!important;">Step 4 of 4</div>
+              <div class="progress-bar" style="width:25%;">Step 1 of 4</div>   
+              <div class="progress-bar" style="width:25%;background-color: #28a745!important;">
+              Step 2 of 4
+              </div>
+              <div class="progress-bar" style="width:25%;background-color: #ffc107!important;">
+              Step 3 of 4
+              </div>
+              <div class="progress-bar" style="width:25%;background-color: #dc3545!important;">
+              Step 4 of 4
+              </div>
             </div>
 
          </div>
-            <div class="col-lg-7">
+            <div class="col-lg-12">
            
             <div ng-repeat="seniority in selectionIndustryname">
                 <!-- <table width="100%">
