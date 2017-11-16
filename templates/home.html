@@ -4,7 +4,7 @@ $(window).scroll(function() {
 if ($(".navbar").offset().top > 50) {
     $(".navbar-fixed-top").addClass("top-nav-collapse");
 } else {
-    $(".navbar-fixed-top").removeClass("top-nav-collapse");
+    $(".navbar-fixed-top").removeClass("top-nav-collapse"); 
 }
 });
 
@@ -114,14 +114,25 @@ font-family: Abel!important;
 {
 	text-transform:none;border-color:#fff; color:#fff;border-radius:10px;
 }
+.table_space
+{
+	min-height:200px;
+}
+@media only screen and (min-device-width:768px) and (max-device-width:1024px) and
+(orientation:landscape) {	
+.table_space
+{
+	min-height:250px!important;
+}
+	
+}
+
 
 @media only screen and (min-device-width:320px) and (max-device-width:767px)
 {	
 .logo_space
 {
 margin-left:0px!important;
-}
-	
 }
 
  </style> 
@@ -161,8 +172,8 @@ HaveItAll is like a dating app for employment.</div>
  <div class="row">
   <div class="container">
  <div class="col-md-6">
- <div align="center"><h2 style="color:#FFF;">How it works</h2></div>
- 
+ <div align="center"><h2 style="color:#FFF;margin-top:20px;">How it works</h2></div>
+ <div class="table_space">
 <table class="white">
 <tr>
 <td>1.</td>
@@ -182,19 +193,19 @@ HaveItAll is like a dating app for employment.</div>
 </tr>
 <tr>
 <td colspan="2" align="center">
- <a href="javascript:void(0);"><div class="btn btn-default btn-lg white_bot">
- See Company Matches</div></a>
 </td>
 </tr>
 
 </table>
+</div>
+<div align="center" style="margin-bottom:20px;">
+ <a href="javascript:void(0);"><div class="btn btn-default btn-lg white_bot">
+ See Company Matches</div></a>
+</div>
  </div>
  <div class="col-md-6">
- <div align="center">
- <h2 class="white">
-WHAT WE DO</h2>
-</div>
- 
+ <div align="center"><h2 style="color:#FFF;margin-top:20px;">What we do</h2></div>
+ <div class="table_space">
 <table class="white">
 <tr>
 <td>1.</td>
@@ -214,12 +225,15 @@ WHAT WE DO</h2>
 </tr>
 <tr>
 <td colspan="2" align="center">
- <a href="javascript:void(0);"><div class="btn btn-default btn-lg white_bot">
- Learn more</div></a>
 </td>
 </tr>
 
 </table>
+</div>
+<div align="center" style="margin-bottom:20px;">
+<a href="javascript:void(0);"><div class="btn btn-default btn-lg white_bot">
+ Learn more</div></a></div>
+
  </div>
  </div>
  <div class="clearfix"></div>
