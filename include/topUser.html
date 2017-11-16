@@ -95,7 +95,14 @@
 
            </tr>
            <tr >
-           <td align="center"><a ng-click="check_jobinfo('#!/user/construction');" style="color:#FFF;cursor: pointer;">Network</a></td>
+           <td align="center">
+           <span ng-if="userInfo_type == '1'">
+           <a ng-click="check_jobinfo('#!/user/followingcompany');" style="color:#FFF;cursor: pointer;">Network</a>
+           </span>
+           <span ng-if="userInfo_type == '2'">
+           <a ng-click="check_jobinfo('#!/user/followuser');" style="color:#FFF;cursor: pointer;">Network</a>
+           </span>
+           </td>
            <td align="center"> <span ng-if="userInfo_type == '1'"><a ng-click="check_jobinfo('#!/user/feedDetails');" style="color:#FFF;cursor: pointer;">Feed</a></span>
 
            <span ng-if="userInfo_type == '2'"><a ng-click="check_jobinfo('#!/user/feeduserDetails');" style="color:#FFF;cursor: pointer;">Feed</a></span>
@@ -118,4 +125,4 @@
           </div>
         </div>
  
-    </section>
+ </section>
