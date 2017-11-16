@@ -1,4 +1,11 @@
 <?php
+
+/* ==========================================================================
+Author: BISWAJIT PANDA
+Create date:  05/29/2017
+Description:  Message api controller
+============================================================================= */
+
 error_reporting(0);
 set_time_limit(300);
 defined('BASEPATH') OR exit('No direct script access allowed');
@@ -34,6 +41,11 @@ class API_message extends REST_Controller {
 			
 	}*/
 
+/* ==========================================================================
+Author: PADMA LOCHAN PRADHAN
+Create date:  06/30/2017
+Description: all company of chart for user
+============================================================================= */
 
 
 	function all_company_of_chart_fro_user_post()
@@ -74,7 +86,11 @@ class API_message extends REST_Controller {
 		}
 
 	}
-
+/* ==========================================================================
+Author: BISWAJIT PANDA
+Create date:  06/25/2017
+Description: latest message of a company for user
+============================================================================= */
 	function latest_msg_of_a_company_for_user_post()
 	{
 		$post_data = json_decode(file_get_contents("php://input"));	
@@ -158,6 +174,12 @@ class API_message extends REST_Controller {
 		}
 
 	}
+
+/* ==========================================================================
+Author: PADMA LOCHAN PRADHAN
+Create date:  07/25/2017
+Description: block a user for company
+============================================================================= */
 
 	function block_a_user_for_company_post()
 	{

@@ -1,4 +1,10 @@
 <?php
+/* ==========================================================================
+Author: BISWAJIT PANDA
+Create date:  05/29/2017
+Description:  Title api controller
+============================================================================= */
+
 error_reporting(0);
 defined('BASEPATH') OR exit('No direct script access allowed');
 require APPPATH . '/libraries/REST_Controller.php';
@@ -38,7 +44,11 @@ class API_title extends REST_Controller {
 		
 		
 	}
-	
+/* ==========================================================================
+Author: BISWAJIT PANDA
+Create date:  05/15/2017
+Description: delete one title for user
+============================================================================= */
 	function delete_one_title_for_user_post()
 	{
 		$data = json_decode(file_get_contents("php://input"));	
@@ -81,7 +91,11 @@ class API_title extends REST_Controller {
 		
 	}
 	
-	
+/* ==========================================================================
+Author: PADMA LOCHAN PRADHAN
+Create date:  05/19/2017
+Description: insert one title for user
+============================================================================= */	
 
 	function insert_one_title_for_user_post()
 	{

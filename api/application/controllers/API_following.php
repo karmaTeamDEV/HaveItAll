@@ -1,4 +1,11 @@
 <?php
+
+/* ==========================================================================
+Author: BISWAJIT PANDA
+Create date:  05/29/2017
+Description:  Following api controller
+============================================================================= */
+
 error_reporting(0);
 set_time_limit(300);
 defined('BASEPATH') OR exit('No direct script access allowed');
@@ -33,7 +40,11 @@ class API_following extends REST_Controller {
 			
 	}*/
 
-
+/* ==========================================================================
+Author: BISWAJIT PANDA
+Create date:  06/15/2017
+Description:  get common data
+============================================================================= */
 
 	function getAllDataofTable_get($table)
 	{
@@ -102,6 +113,12 @@ class API_following extends REST_Controller {
 
 	}
 
+/* ==========================================================================
+Author: BISWAJIT PANDA
+Create date:  06/20/2017
+Description:  user viewing company
+============================================================================= */
+
 	function user_viewing_company_post()
 	{
 		//echo $table;	
@@ -125,7 +142,11 @@ class API_following extends REST_Controller {
 
 
 	}
-
+/* ==========================================================================
+Author: BISWAJIT PANDA
+Create date:  06/22/2017
+Description:  suggeted company for user
+============================================================================= */
 	function suggeted_company_for_user_post()
 	{
 		//echo $table;	
@@ -337,6 +358,11 @@ class API_following extends REST_Controller {
 
 
 	}
+/* ==========================================================================
+Author: BISWAJIT PANDA
+Create date:  06/27/2017
+Description:  no of new followers of company
+============================================================================= */
 
 	function no_of_new_followers_of_company_post()
 	{
@@ -359,6 +385,12 @@ class API_following extends REST_Controller {
 
 
 	}
+
+ /* ==========================================================================
+Author: BISWAJIT PANDA
+Create date:  06/27/2017
+Description:  no of new applicants of company
+============================================================================= */
 
 	function no_of_new_applicants_of_company_post()
 	{
@@ -425,7 +457,11 @@ class API_following extends REST_Controller {
 			$this->response($Error, 200);
 		}
 	}
-
+/* ==========================================================================
+Author: BISWAJIT PANDA
+Create date:  06/27/2017
+Description: viewed users for company
+============================================================================= */
 	function viewed_users_for_company_post()
 	{
 		//echo $table;	

@@ -1,7 +1,18 @@
 <?php
+/* ==========================================================================
+Author: BISWAJIT PANDA
+Create date:  05/29/2017
+Description:  Message api model
+============================================================================= */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class API_message_model extends CI_Model {
+
+/* ==========================================================================
+Author: PADMA LOCHAN PRADHAN
+update date:  10/25/2017
+Description: job applied details user LIST
+============================================================================= */
 
     function company_of_chart_for_user_query($user_id='')
     {
@@ -32,7 +43,11 @@ class API_message_model extends CI_Model {
         
     }
 
-
+/* ==========================================================================
+Author: PADMA LOCHAN PRADHAN
+update date:  10/11/2017
+Description: all charts of a company for user list
+============================================================================= */
     function all_charts_of_a_company_for_user_query($user_id='', $company_id='')
     {
         $sql = "SELECT CUM.*, DATE_FORMAT( sent_time,'%m-%d-%Y') sent_date_only, DATE_FORMAT( sent_time,'%H:%i %p') sent_time_only, CHR.users_firstname AS hr_firstname, CHR.users_lastname AS hr_last_name, IF(CHR.users_profilepic IS NULL OR CHR.users_profilepic = '', 'admin-no-image.png', CHR.users_profilepic) AS company_hr_logo,
@@ -94,6 +109,12 @@ class API_message_model extends CI_Model {
 
 
     /* COMPANY */
+
+/* ==========================================================================
+Author: PADMA LOCHAN PRADHAN
+update date:  10/11/2017
+Description: users list for company chart 
+============================================================================= */
 
     function users_list_for_company_chart_query($company_id='')
     {

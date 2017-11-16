@@ -155,12 +155,13 @@
   text-align: center;
   color: #fff;
   background: url(../images/back1.jpg) no-repeat top center scroll;
-  background-color:#09F;
+  background-color:#000;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
   -o-background-size: cover;
-  font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  background-size: 101%;
+    background-position: 42.685% 16.8599%;
   }
   .login_back {
   display: block;

@@ -1,4 +1,11 @@
-﻿(function () {
+﻿/* ==========================================================================
+Author: BAMADEB UPADHYAYA
+Create date:  05/10/2017
+Description:  Login js page
+=============================================================================  */
+
+
+(function () {
 	'use strict';
 	app.controller('LoginController', function ($scope,loginService,$localStorage,$location,$document,$state,$stateParams,fetchuserPasswordService) { 
 		 // if(!$localStorage.ses_userdata){

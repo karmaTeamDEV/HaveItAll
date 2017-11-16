@@ -1,4 +1,10 @@
 <?php
+/* ==========================================================================
+Author: PADMA LOCHAN PRADHAN
+Create date:  05/29/2017
+Description:  Industry api model
+============================================================================= */
+
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class IndustryAPI_model extends CI_Model {
@@ -10,6 +16,12 @@ class IndustryAPI_model extends CI_Model {
     public function __construct() {
         parent::__construct();
     }
+
+ /* ==========================================================================
+Author: PADMA LOCHAN PRADHAN
+update date:  6/11/2017
+Description: get industry list
+============================================================================= */
 
     public function getindustries() {
         $this->db->select('*');
@@ -46,7 +58,11 @@ class IndustryAPI_model extends CI_Model {
         $result = $this->db->get($this->areaTable);
         return $result->result_array();
     }
-
+ /* ==========================================================================
+Author: PADMA LOCHAN PRADHAN
+update date:  6/15/2017
+Description: check duplicate industry
+============================================================================= */
     public function check_duplicateIndustry($industryName,$activeStatus){
         $this->db->select('*');
         $this->db->where('industry_name', $industryName);
@@ -103,6 +119,11 @@ public function insert_cmn_tbl($table,$data){
         }       
         
     } 
+/* ==========================================================================
+Author: PADMA LOCHAN PRADHAN
+update date:  6/19/2017
+Description: get all company
+============================================================================= */
 
 public function getcompanies() {
     $this->db->select('*');

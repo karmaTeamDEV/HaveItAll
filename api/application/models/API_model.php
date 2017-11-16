@@ -1,4 +1,10 @@
 <?php
+/* ==========================================================================
+Author: BAMADEB UPADHYAYA
+Create date:  05/29/2017
+Description:  Profile api model
+============================================================================= */
+
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class API_model extends CI_Model {
@@ -51,6 +57,12 @@ class API_model extends CI_Model {
         //echo $this->db->last_query();       
         return $result->row_array();
     }
+
+/* ==========================================================================
+Author: BAMADEB UPADHYAYA
+update date:  6/10/2017
+Description: get all Title details
+============================================================================= */
     public function get_title_master($title) {
         $this->db->select('type_id,type_name');
         $this->db->where(TRIM('type_name'), $title);            
@@ -98,7 +110,11 @@ class API_model extends CI_Model {
           
     //     return $result->result_array();
     // }
-
+/* ==========================================================================
+Author: BAMADEB UPADHYAYA
+update date:  7/06/2017
+Description: get list of jobs
+============================================================================= */
     public function get_list_job($id, $status,$current_job_id="",$short_type="") {
         $sql ="SELECT `hia_jobpost`.*, `hia_type`.`type_name` as `title_name`, `hia_countries`.`name` as `countryname`, `hia_states`.`name` as `statename`, `hia_cities`.`name` as `cityname`, COUNT(DISTINCT(hia_user_applied_jobs.user_id)) AS applyed_users, COUNT(DISTINCT(hia_user_view_jobs.user_id)) AS viewed_user, `hia_users`.`users_username`
             FROM `hia_jobpost`
@@ -227,7 +243,11 @@ class API_model extends CI_Model {
         //echo $this->db->last_query();exit;      
         return $result->result_array();
     }  
-
+/* ==========================================================================
+Author: BAMADEB UPADHYAYA
+update date:  7/29/2017
+Description: get user location
+============================================================================= */
      public function fetchuserLocation($cid,$uid) {
         $this->db->select("users_locations_relation_id");
         $this->db->from('users_locations_relation');
@@ -245,9 +265,13 @@ class API_model extends CI_Model {
         $result = $this->db->get();    
         //echo $this->db->last_query();exit;      
         return $result->result_array();
-    }  
+    } 
 
-       
+/* ==========================================================================
+Author: BAMADEB UPADHYAYA
+update date:  7/30/2017
+Description: get postjob list
+============================================================================= */   
 
     public function getpostjobList($jobpost_id,$type) {
         if($type == 'location'){
@@ -333,6 +357,12 @@ class API_model extends CI_Model {
 
 }
 
+/* ==========================================================================
+Author: BAMADEB UPADHYAYA
+update date:  8/11/2017
+Description: get company user list
+============================================================================= */   
+
 public function get_company_user($id) {
         $this->db->select('users_firstname,users_lastname,users_companyid,users_id,company_type,users_username,users_status');
         //if ($id) {
@@ -378,7 +408,11 @@ function convery_code_to_jpg($data){
         imagedestroy($source_img);
     }
 
-
+/* ==========================================================================
+Author: BAMADEB UPADHYAYA
+update date:  8/17/2017
+Description: Validate user login
+============================================================================= */  
 public function validateUserLogin($username = '', $password = '') {
     $this->db->select('users_id, users_username, users_companyid,users_type,company_type,CONCAT(users_firstname," ",users_lastname) as name,company.company_name,users_profilepic');
     $this->db->where('users_username', $username);
@@ -440,6 +474,12 @@ public function update_profile_tbl($data,$id) {
   return $this->db->affected_rows();
 
 }
+
+/* ==========================================================================
+Author: BAMADEB UPADHYAYA
+update date:  8/25/2017
+Description: get user profile
+============================================================================= */
 public function get_profile_info($id) {
     $this->db->select('users_firstname,users_lastname,users_username,users_current_title,users_current_employer,users_bio,users_linkedin_link,users_twitter_link,users_facebook_link,users_istagram_link,users_country,users_state,users_city,users_profilepic,users_type,company.company_name,users_companyid,countries.name as countryname,states.name as statename,cities.name as cityname,company.company_url');
     if ($id) {
@@ -511,6 +551,11 @@ public function edit_typecategory($typeID,$data){
     }    
 
 }
+/* ==========================================================================
+Author: BAMADEB UPADHYAYA
+update date:  7/25/2017
+Description: get all user
+============================================================================= */
 
 public function getallusers(){
     $this->db->select('users_id,users_firstname,users_companyid,users_lastname,users_username,users_status');
@@ -555,7 +600,11 @@ public function fetch_inactiveTypeCategories($typeCategoryName,$typeCategory){
            // echo $this->db->last_query();
      return $result->result_array(); 
 }
-
+/* ==========================================================================
+Author: BAMADEB UPADHYAYA
+update date:  7/07/2017
+Description: get all education list
+============================================================================= */
 public function getalleducations(){
     $this->db->select('*');
     $this->db->where('type_parent_id ', 0);
@@ -590,7 +639,11 @@ public function deletecategory($userid,$id,$type){
       $this->db->delete($this->type_user_relTable);
       return $this->db->affected_rows();
 }
-
+/* ==========================================================================
+Author: BAMADEB UPADHYAYA
+update date:  5/07/2017
+Description: common delete record
+============================================================================= */
 public function commonDelete($table,$field,$id){      
       $this->db->where($field,$id); 
       $this->db->delete($table);
@@ -639,6 +692,12 @@ public function add_linkedinuserinfo($data){
 /*---------------------parsu end---------------------*/
 
 // start  26/7/2017 =====================================
+
+/* ==========================================================================
+Author: BAMADEB UPADHYAYA
+update date:  8/07/2017
+Description: get industry userwise
+============================================================================= */
 
 public function get_industry_user_relation($id) {
         $this->db->select("industry_user_relation.*,industry.industry_name");
@@ -715,7 +774,11 @@ public function get_industry_user_relation($id) {
         $result = $this->db->get($this->userTable);             
         return $result->result_array();
 }
-
+/* ==========================================================================
+Author: BAMADEB UPADHYAYA
+update date:  9/13/2017
+Description: get location details userwise
+============================================================================= */
 public function get_location_details($id){
     $this->db->select("locations.*");
     $this->db->from('users_locations_relation');
@@ -810,7 +873,11 @@ public function get_user_data($table, $field, $id) {
         //echo $this->db->last_query();       
         return $result->result_array();
     }
-
+/* ==========================================================================
+Author: BAMADEB UPADHYAYA
+update date:  9/19/2017
+Description: get all notes
+============================================================================= */
     public function get_all_notes($note_by,$note_to) {
         $this->db->select('*');                    
         $this->db->where('note_by', $note_by);
@@ -841,6 +908,12 @@ public function get_user_data($table, $field, $id) {
         //echo $this->db->last_query();exit;               
         return $result->result_array();
     }
+
+/* ==========================================================================
+Author: BAMADEB UPADHYAYA
+update date:  8/19/2017
+Description: company following feeds
+============================================================================= */
 
      public function get_company_following_feeds($id) {
       $sql = "SELECT p.*,us.users_profilepic,co.company_name from hia_posts as p

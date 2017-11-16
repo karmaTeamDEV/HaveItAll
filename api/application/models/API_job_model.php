@@ -1,9 +1,19 @@
 <?php
+/* ==========================================================================
+Author: BISWAJIT PANDA
+Create date:  05/29/2017
+Description:  Job api model
+============================================================================= */
+
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class API_job_model extends CI_Model {
 
-
+/* ==========================================================================
+Author: BISWAJIT PANDA
+update date:  10/20/2017
+Description: user applied for job
+============================================================================= */
 	function user_applied_for_job_query($user_id='', $applied_type='', $company_id="",$current_job_id="",$level = "")
 	{
 		$sql = "SELECT JP.jobpost_id, JP.jobpost_companyid, fnStripTags(JP.jobpost_description) AS jobpost_description, TY.type_name AS jobpost_title,  JP.jobpost_jobtype, AJ.applied_date, COM.company_name,
@@ -117,7 +127,11 @@ class API_job_model extends CI_Model {
 		}
 		
 	}
-
+/* ==========================================================================
+Author: BISWAJIT PANDA
+update date:  10/25/2017
+Description: user viewed job
+============================================================================= */
 	function user_viewed_job_query($user_id='', $viewing_type='', $company_id="")
 	{
 		$sql = "SELECT JP.jobpost_id, JP.jobpost_companyid, fnStripTags(JP.jobpost_description) AS jobpost_description, TY.type_name AS jobpost_title,  JP.jobpost_jobtype, MAX(VJ.viewing_date) AS viewing_date, COM.company_name, UFC.id AS following_id,
@@ -162,7 +176,11 @@ class API_job_model extends CI_Model {
 		}
 		
 	}
-
+/* ==========================================================================
+Author: BISWAJIT PANDA
+update date:  11/05/2017
+Description: matched job for user
+============================================================================= */
 	function matched_job_for_user_query($user_id='',  $view_status = '',  $following_status = 'YES', $next_job='',$level = "")
 	{
 		$sql = "SELECT JOB_MATCH.jobpost_id, JOB_MATCH.jobpost_companyid, TY.type_name AS jobpost_title, fnStripTags(JOB_MATCH.jobpost_description) AS jobpost_description , JOB_MATCH.jobpost_exp_minimum, 
@@ -324,6 +342,12 @@ class API_job_model extends CI_Model {
 		
 	}
 
+/* ==========================================================================
+Author: BISWAJIT PANDA
+update date:  10/15/2017
+Description: job details
+============================================================================= */
+
 	function job_details_query( $job_id='' )
 	{
 		$sql = "SELECT *
@@ -418,7 +442,11 @@ class API_job_model extends CI_Model {
 		
 	}
 
-
+/* ==========================================================================
+Author: PADMA LOCHAN PRADHAN
+update date:  10/25/2017
+Description: job applied details user LIST
+============================================================================= */
 	function job_applied_details_user_query( $job_id='', $user_id='' )
 	{
 		$sql = "SELECT JP.jobpost_id, UAJ.id AS applied_id, UAJ.applied_date, MAX(UVJ.viewing_date) AS viewing_date, USJ.id AS saved_id, USJ.saved_date AS saved_date

@@ -1,4 +1,10 @@
-﻿(function () {
+﻿/* ==========================================================================
+Author: BAMADEB UPADHYAYA
+Create date:  05/10/2017
+Description:  Gallery js page
+=============================================================================  */
+
+(function () {
 'use strict';
 app.controller('galleryController', function ($scope,$http,$state,$localStorage,fetchrecordsCMSService) {   
  

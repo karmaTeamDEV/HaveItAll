@@ -1,4 +1,10 @@
 <?php
+/* ==========================================================================
+Author: BISWAJIT PANDA
+Create date:  05/29/2017
+Description:  Profile api model
+============================================================================= */
+
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class API_following_company_model extends CI_Model {
@@ -72,6 +78,12 @@ class API_following_company_model extends CI_Model {
 		
 	}
 
+/* ==========================================================================
+Author: BISWAJIT PANDA
+Create date:  06/10/2017
+Description:  user viewed company list
+============================================================================= */
+
 	function user_viewed_company_query($user_id='', $viewing_type='', $company_id="",$lebel="")
 	{
 		$sql = "SELECT MAX(UVC.viewing_date) AS viewing_date,
@@ -139,6 +151,12 @@ class API_following_company_model extends CI_Model {
 		}
 		
 	}
+
+/* ==========================================================================
+Author: PADMA LOCHAN PRADHAN
+Create date:  06/5/2017
+Description:  suggeted company for user list
+============================================================================= */
 
 	function suggeted_company_for_user_query($user_id='', $view_status = '', $follow_status='', $next_company='',$lebel ='')
 	{
@@ -229,7 +247,7 @@ class API_following_company_model extends CI_Model {
 		}
 
 
-		//echo $sql;		
+		//echo $sql;exit;		
 		if ( ! $this->db->simple_query($sql))
 		{
 			$error = $this->db->error();
@@ -401,6 +419,12 @@ class API_following_company_model extends CI_Model {
 
 /**** COMPANY  */
 
+/* ==========================================================================
+Author: BISWAJIT PANDA
+Create date:  06/5/2017
+Description:  company following user list
+============================================================================= */
+
 	function company_following_user_query( $company_id="", $following_type='', $user_id, $current_user_id="", $short_type='' )
 	{
 		//echo $current_user_id."<br>";
@@ -469,7 +493,11 @@ class API_following_company_model extends CI_Model {
 		
 	}
 
-
+/* ==========================================================================
+Author: BISWAJIT PANDA
+Create date:  06/25/2017
+Description:  user viewed by company  list
+============================================================================= */
 	function user_viewed_by_company_query($company_id='', $viewing_type='', $user_id="", $current_user_id="", $short_type='')
 	{
 		$sql = "SELECT MAX(UVC.viewing_date) AS viewing_date, UVC.user_id AS next_user_id,
@@ -537,7 +565,11 @@ class API_following_company_model extends CI_Model {
 		}
 		
 	}
-
+/* ==========================================================================
+Author: PADMA LOCHAN PRADHAN
+update date:  07/12/2017
+Description:  new followers count
+============================================================================= */
 	function new_followers_count_query($company_id='')
 	{
 		$sql = "SELECT COUNT(FC.user_id) AS no_of_users
@@ -588,6 +620,12 @@ class API_following_company_model extends CI_Model {
 		}
 		
 	}
+
+/* ==========================================================================
+Author: BISWAJIT PANDA
+update date:  10/20/2017
+Description: user company matching criteria
+============================================================================= */
 
 	function user_company_matching_criteria_query($company_id='', $user_id='')
 	{

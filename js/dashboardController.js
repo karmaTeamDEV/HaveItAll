@@ -1,4 +1,9 @@
-﻿(function () {
+﻿/* ==========================================================================
+Author: BAMADEB UPADHYAYA
+Create date:  05/10/2017
+Description:  dashboard js page
+=============================================================================  */
+(function () {
   'use strict';
   app.controller('dashboardController', function ($scope,$http,$window,$sce,$state,commonpostService,getemployerfitService,fetchrecordsCMSService,getfitService,checkjobService,$localStorage,$location,$document,$filter,$timeout) { 
     $scope.company_bio = '';

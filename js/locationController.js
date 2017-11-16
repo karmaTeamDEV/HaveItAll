@@ -136,10 +136,12 @@
 	    };
 	    fetchrecordsCMSService.fetchrecordsCMS('','getlocationdata',$scope.locationInfo.users_id).then(get_datalist, errorDetails); 
 	     var deleteRecord = function (data) {
+	     	//alert(JSON.stringify(data));	
 	     	fetchrecordsCMSService.fetchrecordsCMS('','getlocationdata',$scope.locationInfo.users_id).then(get_datalist, errorDetails); 
 	     };
 
 	     $scope.removeRecord = function(id){
+	     	 
 	     	var urlpath = serviceurl + "API/deleteCountry/";
 	     	$scope.locationInfo.country_id = id;
 	     	//alert(JSON.stringify($scope.locationInfo));

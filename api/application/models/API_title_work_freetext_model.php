@@ -1,4 +1,10 @@
 <?php
+/* ==========================================================================
+Author: BISWAJIT PANDA
+Create date:  05/29/2017
+Description:  Title api model
+============================================================================= */
+
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class API_title_work_freetext_model extends CI_Model {
@@ -12,7 +18,11 @@ class API_title_work_freetext_model extends CI_Model {
         parent::__construct();
     }
 
-    // Common function list start ------------
+/* ==========================================================================
+Author: PADMA LOCHAN PRADHAN
+update date:  5/11/2017
+Description: common insert table 
+============================================================================= */
     public function insert_cmn_tbl($table,$data){
         if($this->db->insert($table, $data)){
 			//echo $this->db->last_query();
@@ -69,6 +79,13 @@ class API_title_work_freetext_model extends CI_Model {
 		}
 		
 	}
+
+
+/* ==========================================================================
+Author: PADMA LOCHAN PRADHAN
+update date:  6/11/2017
+Description: common insert table 
+============================================================================= */
 
 	function check_master_data_query( $title_name, $catagory_type_id )
 	{

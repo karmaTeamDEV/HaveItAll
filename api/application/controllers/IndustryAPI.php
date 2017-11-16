@@ -1,4 +1,9 @@
 <?php
+/* ==========================================================================
+Author: BISWAJIT PANDA
+Create date:  05/29/2017
+Description:  Industry api controller
+============================================================================= */
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 require APPPATH . '/libraries/REST_Controller.php';
@@ -13,6 +18,12 @@ class IndustryAPI extends REST_Controller {
 		$this->load->database();
 		$this->load->model('IndustryAPI_model');
 	}
+
+/* ==========================================================================
+Author:  BISWAJIT PANDA
+Create date:  05/29/2017
+Description: get all industry
+============================================================================= */
 
 	function getindustries_get()
 	{
@@ -57,6 +68,11 @@ class IndustryAPI extends REST_Controller {
 			$this->response($Error, 404);
 		}
 	}
+/* ==========================================================================
+Author: PADMA LOCHAN PRADHAN
+Create date:  06/09/2017
+Description: get functinal area of industry
+============================================================================= */
 	function getfunctionalarea_get($id)
 	{
 		//echo 'type='.$type;
@@ -193,7 +209,11 @@ class IndustryAPI extends REST_Controller {
 		}
 	}
 
-
+/* ==========================================================================
+Author: PADMA LOCHAN PRADHAN
+Create date:  07/19/2017
+Description: Add and edit company
+============================================================================= */
     function addEdit_company_post()
 	{
 		$post_data = json_decode(file_get_contents("php://input"));

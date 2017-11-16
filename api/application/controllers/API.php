@@ -1,4 +1,15 @@
 <?php
+
+/* ==========================================================================
+Author: BAMADEB UPADHYAYA
+Create date:  05/29/2017
+Description:  Profile Api controller
+============================================================================= */
+
+
+
+
+
 error_reporting(0);
 set_time_limit(300);
 defined('BASEPATH') OR exit('No direct script access allowed');
@@ -90,10 +101,7 @@ class API extends REST_Controller {
 		}else{
 			$Error = array('status' => '0','message' => 'Company already exists.' );
 			$this->response($Error, 200);
-		}	
-
-
-
+		}	 
 		
 		 
 	}
@@ -192,7 +200,11 @@ class API extends REST_Controller {
 		/* create the physical thumbnail image to its destination */
 		imagejpeg($virtual_image, $dest);
 	}
-
+/* ==========================================================================
+Author: BAMADEB UPADHYAYA
+Create date:  05/29/2017
+Description:  Get all category List
+============================================================================= */
 	function getCategoryList_get()
 	{
 			
@@ -258,7 +270,11 @@ class API extends REST_Controller {
 			$this->response($Error, 200);
 		}
 	}
-
+/* ==========================================================================
+Author: BAMADEB UPADHYAYA
+Create date:  05/29/2017
+Description:  Authenticate User
+============================================================================= */
 	function authenticate_post()
 	{
 		$data = json_decode(file_get_contents("php://input"));	
@@ -491,6 +507,12 @@ class API extends REST_Controller {
 			$this->response($Error, 200);
 		}
 	}
+
+/* ==========================================================================
+Author: BAMADEB UPADHYAYA
+Create date:  05/29/2017
+Description:  Update profile data
+============================================================================= */
 	function update_profile_post()
 	{
 		$post_data = json_decode(file_get_contents("php://input"));		
@@ -787,7 +809,11 @@ class API extends REST_Controller {
 			}
 		}
 	}
-
+/* ==========================================================================
+Author: BAMADEB UPADHYAYA
+Create date:  05/29/2017
+Description:  Get all user
+============================================================================= */
 	function getallusers_get()
 	{
 		// 	//echo '<pre>';print_r($myrow);
@@ -933,6 +959,11 @@ correlating field of study selections that you have made.", 200); // 200 being t
 			$this->response($Error, 200);
 		}
 	}
+/* ==========================================================================
+Author: BAMADEB UPADHYAYA
+Create date:  05/29/2017
+Description:  Get Industy data
+============================================================================= */
 	function getIndustrydata_get($user_id)
 	{			
 		$myarray = array();
@@ -1143,7 +1174,11 @@ correlating field of study selections that you have made.", 200); // 200 being t
 			$this->response($Error, 200);
 		}
 	}
-
+/* ==========================================================================
+Author: BAMADEB UPADHYAYA
+Create date:  05/29/2017
+Description:  Add post job
+============================================================================= */
 	function addpostJob_post()
 	{
 		$post_data = json_decode(file_get_contents("php://input"));	
@@ -1479,6 +1514,12 @@ correlating field of study selections that you have made.", 200); // 200 being t
 	}
 
 	// start  26/7/2017 =====================================
+
+/* ==========================================================================
+Author: BAMADEB UPADHYAYA
+Create date:  05/29/2017
+Description:  Add Industry
+============================================================================= */
 
 	function addIndustry_post()
 	{
@@ -2028,6 +2069,11 @@ correlating field of study selections that you have made.", 200); // 200 being t
 			$this->response($Error, 200);
 		}
 	}
+/* ==========================================================================
+Author: BAMADEB UPADHYAYA
+Create date:  05/29/2017
+Description:  Get jobpost list
+============================================================================= */
 	function getpostjobList_post()
 	{		 
 		$post_data = json_decode(file_get_contents("php://input"));
@@ -2365,6 +2411,12 @@ correlating field of study selections that you have made.", 200); // 200 being t
 				$this->response($Error, 200);
 			}
 	}
+
+/* ==========================================================================
+Author: BAMADEB UPADHYAYA
+Create date:  05/29/2017
+Description:  Get gallery list
+============================================================================= */
 	
 function  getgalleryList_get($id){
 		$myrow = $this->API_model->get_master_record('gallery','gallery_userid',$id,'gallery_id');
@@ -2454,7 +2506,11 @@ function  getgalleryList_get($id){
 			$this->response($Error, 200);
 		}
 	}
-
+/* ==========================================================================
+Author: BAMADEB UPADHYAYA
+Create date:  05/29/2017
+Description:  Change password
+============================================================================= */
 	function changepsw_post(){
 		$post_data = json_decode(file_get_contents("php://input"));	
 		//echo '<pre>';print_r($post_data);exit;
@@ -2675,7 +2731,11 @@ function  getgalleryList_get($id){
 			 
 		}		
   	}
-
+/* ==========================================================================
+Author: BAMADEB UPADHYAYA
+Create date:  7/29/2017
+Description:  Update job status
+============================================================================= */
   	function updatepublish_post(){  		
   		$post_data = json_decode(file_get_contents("php://input"));
   	 
@@ -2794,7 +2854,11 @@ function  getgalleryList_get($id){
 			$this->response($Error, 200);
   		}
   	}
-
+/* ==========================================================================
+Author: BAMADEB UPADHYAYA
+Create date:  7/29/2017
+Description:  Update cultural fit
+============================================================================= */
   	function update_culturefit_post(){  		
   		$post_data = json_decode(file_get_contents("php://input"));
   	 
@@ -3177,6 +3241,11 @@ function  getgalleryList_get($id){
 			$this->response($Error, 200);
   		}
   	}
+/* ==========================================================================
+Author: BAMADEB UPADHYAYA
+Create date:  8/20/2017
+Description:  Get single job post
+============================================================================= */
   	function geteditpost_post(){  		
   		$post_data = json_decode(file_get_contents("php://input"));
   	 

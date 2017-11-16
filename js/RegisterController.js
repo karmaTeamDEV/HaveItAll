@@ -1,4 +1,10 @@
-﻿(function () {
+﻿/* ==========================================================================
+Author: BAMADEB UPADHYAYA
+Create date:  05/10/2017
+Description:  Register js page
+=============================================================================  */
+
+(function () {
 	'use strict';
 	app.controller('RegisterController', function ($scope,$state,$location,$localStorage,registeruserService, commonpostService) { 
 		

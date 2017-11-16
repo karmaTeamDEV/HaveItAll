@@ -1,4 +1,10 @@
-﻿(function () {
+﻿/* ==========================================================================
+Author: BAMADEB UPADHYAYA
+Create date:  05/10/2017
+Description:  home js page
+=============================================================================  */
+
+(function () {
     'use strict';
     app.controller('AppHomeController', function ($scope,$state,loginService,$localStorage,$location,$document, commonpostService) { 
    

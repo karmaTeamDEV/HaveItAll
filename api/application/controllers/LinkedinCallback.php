@@ -1,4 +1,10 @@
 <?php
+/* ==========================================================================
+Author: PARSURAM SAMAL
+Create date:  05/29/2017
+Description:  LinkedIn api controller
+============================================================================= */
+
 defined('BASEPATH') OR exit('No direct script access allowed');
 require APPPATH . '/libraries/REST_Controller.php';
 
@@ -28,6 +34,11 @@ class LinkedinCallback extends REST_Controller {
 		$result = curl_exec($ch);
 		return $result;
 	} 
+/* ==========================================================================
+Author: PARSURAM SAMAL
+Create date:  08/05/2017
+Description:  fetch linkedin profile
+============================================================================= */
 
 	public function fetchlinkedinprofile_get()
 	{
@@ -68,7 +79,11 @@ class LinkedinCallback extends REST_Controller {
 
 		}
 	}
-
+/* ==========================================================================
+Author: PARSURAM SAMAL
+Create date:  08/07/2017
+Description:  insert linkedin user profile
+============================================================================= */
 	function insertlinkedinuserInfo($linkedinuserProfile){
 		//echo "aaaaa44555<pre>";print_r($linkedinuserProfile);exit;
 		$responseMsg = "";
@@ -149,6 +164,12 @@ class LinkedinCallback extends REST_Controller {
 		return $responseMsg;
 
 	}
+
+/* ==========================================================================
+Author: PARSURAM SAMAL
+Create date:  08/10/2017
+Description:  fetch password
+============================================================================= */
 
 	public function fetchpassword_post(){
 	  $post_data = json_decode(file_get_contents("php://input"));		

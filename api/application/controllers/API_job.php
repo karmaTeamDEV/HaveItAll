@@ -1,4 +1,11 @@
 <?php
+
+/* ==========================================================================
+Author: BISWAJIT PANDA
+Create date:  05/29/2017
+Description:  Job api controller
+============================================================================= */
+
 error_reporting(0);
 set_time_limit(300);
 defined('BASEPATH') OR exit('No direct script access allowed');
@@ -86,7 +93,11 @@ class API_job extends REST_Controller {
 
 
 	}
-
+/* ==========================================================================
+Author: BISWAJIT PANDA
+Create date:  06/27/2017
+Description: user saved jobs
+============================================================================= */
 
 	function user_saved_jobs_post()
 	{
@@ -122,6 +133,12 @@ class API_job extends REST_Controller {
 
 
 	}
+
+/* ==========================================================================
+Author: PADMA LOCHAN PRADHAN
+Create date:  06/20/2017
+Description: user applied jobs
+============================================================================= */
 
 	function user_applied_jobs_post()
 	{
@@ -196,7 +213,11 @@ class API_job extends REST_Controller {
 
 	}
 
-
+/* ==========================================================================
+Author: PADMA LOCHAN PRADHAN
+Create date:  05/20/2017
+Description: apply job by user
+============================================================================= */
 
 
 	function apply_job_by_user_post()
@@ -284,6 +305,11 @@ class API_job extends REST_Controller {
 
 /************* COMPANY */ 
 
+/* ==========================================================================
+Author: PADMA LOCHAN PRADHAN
+Create date:  05/20/2017
+Description: applied users for job
+============================================================================= */
 
 	function applied_users_for_job_post()
 	{
@@ -430,6 +456,12 @@ class API_job extends REST_Controller {
 
 
 	}
+
+/* ==========================================================================
+Author: BISWAJIT PANDA
+Create date:  05/30/2017
+Description: get no of active jobs
+============================================================================= */
 
 	function get_no_of_active_jobs_post()
 	{

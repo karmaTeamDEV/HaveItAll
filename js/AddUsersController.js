@@ -1,4 +1,10 @@
-﻿(function () {
+﻿/* ==========================================================================
+Author: BAMADEB UPADHYAYA
+Create date:  05/10/2017
+Description:  Add user js page
+=============================================================================  */
+
+(function () {
     'use strict';
     app.controller('AddUsersController', function ($scope,$state,registeruserService,$localStorage,$location,getCMSService,$document,fetchrecordsCMSService,addeditrecordCMSService,$timeout) { 
     	 

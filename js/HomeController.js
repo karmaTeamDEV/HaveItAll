@@ -1,4 +1,10 @@
-﻿(function () {
+﻿/* ==========================================================================
+Author: BAMADEB UPADHYAYA
+Create date:  05/10/2017
+Description:  Home js page
+=============================================================================  */
+
+(function () {
 	'use strict';
 	app.controller('HomeController', function ($scope,$state,fetchrecordsCMSService,getemployerfitService,$localStorage,$location,$document) { 
 		$scope.employerFits = [];
@@ -16,7 +22,7 @@
 		$scope.isSenioritySelected = true;	 
 		$localStorage.email ='';
 
-	//$('#mydiv').show();
+	//$('#mydiv').show();	
 	// var someElement = angular.element(document.getElementById('fit'));
 	// $document.scrollToElementAnimated(someElement);
 

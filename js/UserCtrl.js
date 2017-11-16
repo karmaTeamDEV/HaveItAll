@@ -1,3 +1,9 @@
+/* ==========================================================================
+Author: BAMADEB UPADHYAYA
+Create date:  05/10/2017
+Description:  Header common js page
+=============================================================================  */
+
 app.controller('UserCtrl', function ($scope,$window,$state,$localStorage,commonpostService,fetchrecordsCMSService) {
     if(!$localStorage.ses_userdata){
         $state.go("login"); 
@@ -69,6 +75,7 @@ app.controller('UserCtrl', function ($scope,$window,$state,$localStorage,commonp
         $localStorage.jobinfo.jobfit = [];
         $localStorage.flag = '';
         $scope.check_jobinfo = function(path){
+          
               // alert(JSON.stringify($localStorage.jobinfo.length));
               // alert(JSON.stringify($localStorage.jobinfo.level.length)); 
               // alert(JSON.stringify($localStorage.jobinfo.jobfit.length));
@@ -104,9 +111,7 @@ app.controller('UserCtrl', function ($scope,$window,$state,$localStorage,commonp
                     $localStorage.jobinfo.level = [];
                     $localStorage.jobinfo.jobfit = [];
                     $localStorage.flag = '';
-                    $window.location.href = path;
-
-                    
+                    $window.location.href = path;                    
                   }
                 });
 
