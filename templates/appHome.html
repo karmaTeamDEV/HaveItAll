@@ -13,21 +13,21 @@
      <div class="box_size" align="center">
         <div class="box_space">
          <div class="box_inner" ng-click="go_to_following('following_me')">
-           <div class="box1">
+            <div class="box1" style="border:4px solid #ef3f61;color:#ef3f61;text-align:center;">
             <div><span class="big_text">{{company_following_user_list.length}}</span> New Followers!</div>
         
-           <div align="center" style="margin-top:30px;"><img src="public/images/img1.png" class="icon_size"></div>
+           <div align="center" style="margin-top:30px;"><img src="public/images/newfollower.png" class="icon_size"></div>
         </div>
     </div>
 </div>
 <div style="width:2%;float:left;"></div>
 <div class="box_space">
  <div class="box_inner" ng-click="go_to_not_viewed_jobs('myjobs')">
-   <div class="box1" style="background-color:#5b9bd5;">
+   <div class="box1" style="border:4px solid #ffc900;text-align:center;color:#ffc900;">
 <!--    <div><span class="big_text">{{not_viewed_jobs_for_user_list.length}}</span> Unviewed Suggested Jobs.</div>-->  
 <div><span class="big_text">{{matching_jobs_for_user_unfollow_list.length}}</span> New Job Matches!</div>
 
- <div align="center" style="margin-top:30px;"><img src="public/images/image2.png" class="icon_size"></div>
+ <div align="center" style="margin-top:30px;"><img src="public/images/talentmatch.png" class="icon_size"></div>
 </div>
 </div>
 </div>
@@ -43,21 +43,21 @@
      <div class="box_size" align="center">
     <div class="box_space">
      <div class="box_inner"  ng-click="go_to_following('notviewed')" >
-       <div class="box1" style="background-color:#cc4da0;">
+       <div class="box1"  style="border:4px solid #00b5f8;text-align:center;color:#00b5f8;">
 <!--        <div>You have <span class="big_text">{{not_viewed_company_for_user_list.length}}</span> Unviewed Suggested Employers!</div>-->         
 <div><span class="big_text"> {{not_viewed_company_for_user_list.length}} </span> New Employer Matches!</div>
 
-        <div align="center"><img src="public/images/image3.png" class="icon_size"></div>
+        <div align="center"><img src="public/images/newapplicant.png" class="icon_size"></div>
     </div>
 </div>
 </div>
 <div style="width:2%;float:left;"></div>
 <div class="box_space">
  <div class="box_inner"  ng-click="go_to_not_viewed_jobs('myjobs')">
-   <div class="box1" style="background-color:#ffc000;">
-    <div> <a href="#!/user/user-job"><span class="big_text">{{matching_jobs_for_user_list.length}}</span> Active Watch List Jobs! </a>
+   <div class="box1" style="border:4px solid #7cf4dd;color:#00dbec;text-align:center;">
+    <div> <a href="#!/user/user-job" style="color:#00ffff!important;"><span class="big_text">{{matching_jobs_for_user_list.length}}</span> Active Watch List Jobs! </a>
     </div>
-    <div align="center" class="img_position"><img src="public/images/image4.png" class="icon_size"></div>
+    <div align="center" class="img_position"><img src="public/images/activejob.png" class="icon_size"></div>
 </div>
 </div>
 

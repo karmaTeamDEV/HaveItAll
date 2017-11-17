@@ -1,9 +1,3 @@
-<!--  ==========================================================================
-Author: BAMADEB UPADHYAYA
-Create date:  05/11/2017
-Description:  Company home page
-=============================================================================  -->
-
 <!-- <div ng-include="'include/top.html'"></div> -->
 <!-- About Section -->
 <section class="container content-section text-center">
@@ -13,9 +7,9 @@ Description:  Company home page
     <div class="box_size" align="center">
         <div class="box_space">
          <div class="box_inner"  ng-click="go_to_new_folower('following_me')">
-           <div class="box1" style="background-color:#cc4da0;">
+           <div class="box1" style="border:4px solid #ef3f61;color:#ef3f61;text-align:center;">
             <div> <span class="big_text">{{company_following_user_list.length}}</span> New Followers!</div>
-            <div align="center"><img src="public/images/image3.png" class="icon_size"></div>
+            <div align="center"><img src="public/images/newfollower.png" class="icon_size"></div>
           <!--  <div> <span style="font-size:10px;"> Add more industries and skills to increase your presence.</span> </div>-->
            
         </div>
@@ -24,9 +18,9 @@ Description:  Company home page
 <div style="width:2%;float:left;"></div>
 <div class="box_space">
  <div class="box_inner"  ng-click="go_to_new_folower('suggested')">
-   <div class="box1" style="background-color:#ffc000;text-align:center;">
+   <div class="box1" style="border:4px solid #ffc900;text-align:center;color:#ffc900;">
    <div> <span class="big_text" >{{suggeted_user_for_company_list.length}}</span> Talent Matches</div>
-    <div align="center" class="img_position"><img src="public/images/image4.png" class="icon_size"></div>
+    <div align="center" ><img src="public/images/talentmatch.png" class="icon_size"></div>
 <!--    <div> <span style="font-size:10px;"> Coming soon.</span> </div>
 -->    
 </div>
@@ -47,9 +41,9 @@ Description:  Company home page
    
 <div class="box_space">
          <div class="box_inner"  >
-           <div class="box1">
+           <div class="box1" style="border:4px solid #00b5f8;text-align:center;color:#00b5f8;">
             <div><span class="big_text">{{no_of_new_applicant.no_of_users}}</span> New Applicants</div>
-          <div align="center" style="margin-top:10px;"><img src="public/images/img1.png" class="icon_size"></div>
+          <div align="center" ><img src="public/images/newapplicant.png" class="icon_size"></div>
         </div>
     </div>
 </div>
@@ -57,9 +51,9 @@ Description:  Company home page
 <div style="width:2%;float:left;"></div>
 <div class="box_space">
  <div class="box_inner" ng-click="go_to_active_jobs()">
-   <div class="box1" style="background-color:#5b9bd5;">
+   <div class="box1" style="border:4px solid #7cf4dd;color:#00ffff;text-align:center;">
     <div> <span class="big_text">{{jobpostlist.no_of_published_jobs}}</span> Active Jobs! </div>
-     <div align="center" style="margin-top:30px;"><img src="public/images/image2.png" class="icon_size"></div>
+     <div align="center" class="img_position"><img src="public/images/activejob.png" class="icon_size"></div>
 </div>
 </div>
 </div>
