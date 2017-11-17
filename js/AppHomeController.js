@@ -2,11 +2,10 @@
 Author: BAMADEB UPADHYAYA
 Create date:  05/10/2017
 Description:  home js page
-=============================================================================  */
-
+============================================================================= */
 (function () {
     'use strict';
-    app.controller('AppHomeController', function ($scope,$state,loginService,$localStorage,$location,$document, commonpostService) { 
+    app.controller('AppHomeController', function ($scope,$window,$uibModal,$state,loginService,$localStorage,$location,$document, commonpostService) { 
    
     //alert($scope.userInfo);
     	var errorDetails = function (serviceResp) {
@@ -14,8 +13,48 @@ Description:  home js page
 		 };
 
 
-			 $scope.go_to_following = function (tab_to_view) {
+		  // var modalInstance = $uibModal.open({
+    //           controller: 'PopupCont',
+    //           templateUrl: 'templates/profilemodal.html',
+    //       });
 
+     $scope.percentage ='';
+         var fetch_profile_percentage = function (data) {    
+          if(data != 100){
+            bootbox.confirm({
+                size: 'small',
+                message: '<p class="text-center" style="color:blue;"><b>'+data+'%</b> profile has been completed</p>',
+                buttons: {
+                    confirm: {
+                        label: 'Skip',
+                        className: "btn-primary pull-right"
+                         
+                    },
+                    cancel: {
+                        label: 'Yes',
+                        className: "btn-danger pull-left"
+                         
+                    }
+                },
+                callback: function (result) {
+                    //alert(result);
+                    if(result == false){                        
+                      $window.location.href = "#!/user/profile//";
+                    }
+                },
+                closeButton: false
+            });
+          }  
+         };
+
+   var url = serviceurl + "API/get_profile_percentage/";
+   var object = {user_id:$localStorage.ses_userdata.users_id}
+   commonpostService.cmnpost(url,object).then(fetch_profile_percentage, errorDetails);   
+
+
+
+			 $scope.go_to_following = function (tab_to_view) {
+ 
 			 	$localStorage.tab_to_view = tab_to_view;
 			 	$state.go("user.followingcompany"); 
 

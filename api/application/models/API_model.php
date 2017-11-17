@@ -951,7 +951,7 @@ Description: company following feeds
              LEFT JOIN hia_users AS us ON( p.post_userid = us.users_id)             
              where p.post_userid IN(SELECT  UFC.user_id
              FROM hia_user_following_company AS UFC
-             JOIN hia_users AS U ON( UFC.user_id = U.users_id )              
+             JOIN hia_users AS U ON( UFC.user_id = U.users_id)              
              WHERE U.users_type != '3'
              AND U.users_status != '1'
              AND U.company_type != '1'  AND UFC.following_type = 'user' 
@@ -973,6 +973,39 @@ Description: company following feeds
             return $query->result_array();
         }
     }
+
+/* ==========================================================================
+Author: BAMADEB UPADHYAYA
+update date:  11/17/2017
+Description: get user profile prrcentage count
+============================================================================= */
+public function get_profile_percentage($id) {
+      
+   $sql = "SELECT u.users_profilepic ,u.users_current_title,u.users_current_employer,u.users_bio,
+        (select count(relation_user_id) from hia_users_locations_relation where relation_user_id ='$id') as location_count,
+        (select count(userid) from hia_assign_titles where userid ='$id') as title_count,
+        (select count(userid) from hia_assign_industry where userid ='$id') as industry_count,
+        (select count(userid) from hia_assign_education where userid ='$id') as education_count,
+        (select count(gallery_userid) from hia_gallery where gallery_userid ='$id') as gallery_count,
+        (select count(type_rel_userid) from hia_type_user_rel where type_rel_userid ='$id' and 
+        (type_rel_category='job_fit' or type_rel_category='employer_fit')) as fit_count
+        FROM hia_users as u                                     
+        where u.users_id = '$id' 
+        AND u.users_status != '1'";
+
+       //echo $sql; exit;       
+        if ( ! $this->db->simple_query($sql))
+        {
+            $error = $this->db->error();             
+            return $error;
+        }
+        else
+        {
+            $query = $this->db->query($sql);            
+            return $query->result_array();
+        }
+}
+
     
 
 }

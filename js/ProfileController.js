@@ -127,7 +127,7 @@ app.controller('ProfileController', function ($scope,$uibModal,$window,$mdDialog
 	 //        	$scope.following = data.id;
 	 //        }
 	        
-  //    	 } 
+     //  	 } 
  
 	 //    var url_path = serviceurl + "API_following/following_user/" ;
 		// var parameter = {company_id:$scope.to_view_user_id,user_id:$localStorage.ses_userdata.users_id, following_type:'user'};
@@ -157,6 +157,16 @@ app.controller('ProfileController', function ($scope,$uibModal,$window,$mdDialog
 		// 	}
 			
 		// }
+
+		  $scope.percentage ='';
+		 var fetch_profile_percentage = function (data) {			   	 		 	  	 	
+		 	//alert(data);	
+		 	$scope.percentage = data;	 
+		 }; 
+		 
+		  var url = serviceurl + "API/get_profile_percentage/";
+          var object = {user_id:$scope.to_view_user_id}
+          commonpostService.cmnpost(url,object).then(fetch_profile_percentage, errorDetails);   
 
 			 
 		 $scope.slides = [];
@@ -549,7 +559,11 @@ app.controller('ProfileController', function ($scope,$uibModal,$window,$mdDialog
 			  }
 		   }).then(function(response){
 		       // console.log(response.data.message);
-				$scope.ProfileInfo.users_profilepic = response.data.message;	
+				$scope.ProfileInfo.users_profilepic = response.data.message;
+				 var url = serviceurl + "API/get_profile_percentage/";
+          		var object = {user_id:$scope.to_view_user_id}
+          		commonpostService.cmnpost(url,object).then(fetch_profile_percentage, errorDetails);   
+	
 				$('#mydiv').hide();
 		   });	
 		    
@@ -580,6 +594,10 @@ app.controller('ProfileController', function ($scope,$uibModal,$window,$mdDialog
 			//$state.go("user.profile"); 
 			//bootbox.alert('profile updated successfully.');			 
 			getProfileService.getProfileinfo($scope.to_view_user_id).then(fetch_profile, errorDetails);
+			var url = serviceurl + "API/get_profile_percentage/";
+          	var object = {user_id:$scope.to_view_user_id}
+          	commonpostService.cmnpost(url,object).then(fetch_profile_percentage, errorDetails);   
+
 			$scope.display_tab = true;
 		 	$scope.display_tab1 = false;
 		 	
@@ -679,6 +697,10 @@ app.controller('ProfileController', function ($scope,$uibModal,$window,$mdDialog
 				if(data != 'error'){
 					//bootbox.alert('Profile Image remove successfully.');
 		 	  		$scope.ProfileInfo.users_profilepic='';	
+		 	  		var url = serviceurl + "API/get_profile_percentage/";
+          			var object = {user_id:$scope.to_view_user_id}
+          			commonpostService.cmnpost(url,object).then(fetch_profile_percentage, errorDetails);   
+
 				}else{
 					bootbox.alert('Error in remove image.');
 				}     	  	

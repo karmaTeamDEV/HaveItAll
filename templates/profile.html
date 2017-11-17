@@ -34,9 +34,15 @@ Description:  Profile page
   p{font-size: 14px !important; color: #666 !important; margin:0px; }
 </style>
 <!-- About Section -->
+
 <div style="background-color:#edebeb; font-size: 14px;"> 
   <section class="container content-section text-left">
-    <div class="row"> </div>
+    <div class="row">
+      <div class="alert alert-danger alert-dismissable text-center" ng-if="ProfileInfo.users_type == '1' && to_view_type != 'view' && percentage != '100' " >
+    <a class="close" data-dismiss="alert" aria-label="close">×</a>
+    <strong>Warning!</strong> You have completed <strong><i>{{percentage}}%</i></strong> of your profile  
+  </div>
+    </div>
   </section>
 <div  md-swipe-left="onSwipeLeft()" md-swipe-right="onSwipeRight()">
   <section class="container">

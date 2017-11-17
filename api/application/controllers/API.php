@@ -4,10 +4,7 @@
 Author: BAMADEB UPADHYAYA
 Create date:  05/29/2017
 Description:  Profile Api controller
-============================================================================= */
-
-
-
+============================================================================= */ 
 
 
 error_reporting(0);
@@ -3290,6 +3287,51 @@ Description:  Get single job post
 	    return $print;
 	}
 
-	
+	function get_profile_percentage_post(){
+		$post_data = json_decode(file_get_contents("php://input"));
+
+		if($post_data){
+		   $myrow = $this->API_model->get_profile_percentage($post_data->user_id);
+			$percentage = 0;
+			$total = 100; 
+			//echo "<pre>";print_r($myrow);exit;
+			if($myrow[0]['users_profilepic'] == ''){
+				$percentage = 20;
+			}
+			if($myrow[0]['users_current_title'] == '' || $myrow[0]['users_current_employer'] == '' ){
+				$percentage = ($percentage+10);
+			}
+			if($myrow[0]['users_bio'] == ''){
+				$percentage = ($percentage+10);
+			}
+			if($myrow[0]['location_count'] == 0){
+				$percentage = ($percentage+10);
+			}
+			if($myrow[0]['title_count'] == 0){
+				$percentage = ($percentage+10);
+			} 
+			if($myrow[0]['industry_count'] == 0){
+				$percentage = ($percentage+10);
+			} 
+			if($myrow[0]['education_count'] == 0){
+				$percentage = ($percentage+10);
+			} 
+			if($myrow[0]['gallery_count'] == 0){
+				$percentage = ($percentage+10);
+			} 
+			if($myrow[0]['fit_count'] == 0){
+				$percentage = ($percentage+10);
+			} 
+
+
+			//echo $percentage;exit;
+			$percentage = ($total-$percentage);
+			$this->response($percentage, 200);
+		}else{
+			$Error = array('status'=> '0','message' => 'error' );
+			$this->response($Error, 200);
+		}		 
+		
+	}	
 
 }
