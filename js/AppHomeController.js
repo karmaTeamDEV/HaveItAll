@@ -35,7 +35,7 @@ Description:  home js page
                         className: "btn-danger pull-left"
                          
                     }
-                },
+                }, 
                 callback: function (result) {
                     //alert(result);
                     if(result == false){                        
