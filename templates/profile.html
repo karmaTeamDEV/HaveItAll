@@ -143,21 +143,21 @@ Description:  Profile page
 
           </span>
           <span ng-if="to_view_type != 'view' && userInfo_type == '1'">
-          <span ng-click="profileView(ProfileInfo.users_type)"  ng-if="ProfileInfo.users_current_title != '' && ProfileInfo.users_current_employer != '' && localationlist.length != '0' && skilldatalist.length != '0'" >
+          <span ng-click="profileView(ProfileInfo.users_type)"  ng-if="ProfileInfo.users_current_title != '' && ProfileInfo.users_current_employer != '' && localationlist.length != '0'" >
           <img src="public/images/edit2.png">           
           </span>
             
-           <span ng-click="profileView(ProfileInfo.users_type)"  ng-if="ProfileInfo.users_current_title == '' || ProfileInfo.users_current_employer == '' || localationlist.length == '0' || skilldatalist.length == '0' " >
+           <span ng-click="profileView(ProfileInfo.users_type)"  ng-if="ProfileInfo.users_current_title == '' || ProfileInfo.users_current_employer == '' || localationlist.length == '0'" >
             <img src="public/images/edit_orange.png" />
           </span>
           </span>
           <span ng-if="to_view_type != 'view' && userInfo_type == '2'">
 
-           <span ng-click="profileView(ProfileInfo.users_type)"  ng-if="localationlist.length != '0' && skilldatalist.length != '0' && industryList.length != '0' " >
+           <span ng-click="profileView(ProfileInfo.users_type)"  ng-if="localationlist.length != '0' && industryList.length != '0' " >
           <img src="public/images/edit2.png">           
           </span>
             
-           <span ng-click="profileView(ProfileInfo.users_type)"  ng-if="localationlist.length == '0' || skilldatalist.length == '0' || industryList.length == '0' " >
+           <span ng-click="profileView(ProfileInfo.users_type)"  ng-if="localationlist.length == '0' || industryList.length == '0' " >
             <img src="public/images/edit_orange.png" />
           </span>
             
