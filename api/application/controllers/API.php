@@ -3294,39 +3294,50 @@ Description:  Get single job post
 		   $myrow = $this->API_model->get_profile_percentage($post_data->user_id);
 			$percentage = 0;
 			$total = 100; 
+			$data = array();
 			//echo "<pre>";print_r($myrow);exit;
 			if($myrow[0]['users_profilepic'] == ''){
 				$percentage = 20;
+				$data['profilepic'] = 'Profile picture required!';
 			}
 			if($myrow[0]['users_current_title'] == '' || $myrow[0]['users_current_employer'] == '' ){
 				$percentage = ($percentage+10);
+				$data['current_title'] ='Current title & current employer required!';
 			}
 			if($myrow[0]['users_bio'] == ''){
 				$percentage = ($percentage+10);
+				$data['bio'] = 'User bio required!';
 			}
 			if($myrow[0]['location_count'] == 0){
 				$percentage = ($percentage+10);
+				$data['location'] = 'Location required!'; 
 			}
 			if($myrow[0]['title_count'] == 0){
 				$percentage = ($percentage+10);
+				$data['employment'] = 'Employment required!';
 			} 
 			if($myrow[0]['industry_count'] == 0){
 				$percentage = ($percentage+10);
+				$data['industry'] = 'Industry Experience required!';
 			} 
 			if($myrow[0]['education_count'] == 0){
 				$percentage = ($percentage+10);
+				$data['education'] = 'Education required!';
 			} 
 			if($myrow[0]['gallery_count'] == 0){
 				$percentage = ($percentage+10);
+				$data['gallery'] = 'Gallery required!';
 			} 
 			if($myrow[0]['fit_count'] == 0){
 				$percentage = ($percentage+10);
+				$data['fits'] = 'Jobfit & Culturefit required!';
 			} 
 
 
 			//echo $percentage;exit;
 			$percentage = ($total-$percentage);
-			$this->response($percentage, 200);
+			$success = array('datalist'=> $data,'percentage' => $percentage );
+			$this->response($success, 200);
 		}else{
 			$Error = array('status'=> '0','message' => 'error' );
 			$this->response($Error, 200);

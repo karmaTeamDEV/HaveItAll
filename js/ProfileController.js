@@ -159,9 +159,11 @@ app.controller('ProfileController', function ($scope,$uibModal,$window,$mdDialog
 		// }
 
 		  $scope.percentage ='';
+		  $scope.warn_message = [];
 		 var fetch_profile_percentage = function (data) {			   	 		 	  	 	
-		 	//alert(data);	
-		 	$scope.percentage = data;	 
+		 	//alert(JSON.stringify(data));		 
+		 	$scope.percentage = data.percentage;	 
+		 	$scope.warn_message = data.datalist
 		 }; 
 		 
 		  var url = serviceurl + "API/get_profile_percentage/";

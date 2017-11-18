@@ -18,12 +18,12 @@ Description:  home js page
     //           templateUrl: 'templates/profilemodal.html',
     //       });
 
-     $scope.percentage ='';
+    
          var fetch_profile_percentage = function (data) {    
-          if(data != 100){
+          if(data.percentage != 100){
             bootbox.confirm({
                 size: 'small',
-                message: '<p class="text-center" style="color:blue;"><b>'+data+'%</b> profile has been completed</p>',
+                message: '<p class="text-center" style="color:blue;"><b>'+data.percentage+'%</b> profile has been completed</p>',
                 buttons: {
                     confirm: {
                         label: 'Skip',
