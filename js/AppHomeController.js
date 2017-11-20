@@ -23,7 +23,7 @@ Description:  home js page
           if(data.percentage != 100){
             bootbox.confirm({
                 size: 'small',
-                message: '<p class="text-center" style="color:blue;"><b>'+data.percentage+'%</b> profile has been completed</p>',
+                message: '<p class="text-center" style="color:blue;"><b>'+data.percentage+'%</b> of your profile has been completed. Fill in your details to get more appropriate jobs.</p>',
                 buttons: {
                     confirm: {
                         label: 'Skip',

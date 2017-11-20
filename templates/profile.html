@@ -8,6 +8,11 @@ Description:  Profile page
 <link rel="stylesheet" type="text/css" href="public/carouselengine/initcarousel-1.css">
 <script src="public/carouselengine/initcarousel-1.js"></script>
 <style>
+.pro_bar
+{
+  width:25%;background-color: #ccc!important;text-align:center;color:#fff;
+  border-right:1px solid #fff;
+}
   .backsection
   {
     margin-bottom:10px;background-color:#ffffff;border:none;padding-bottom:10px;padding-top:10px;
@@ -37,11 +42,23 @@ Description:  Profile page
 
 <div style="background-color:#edebeb; font-size: 14px;"> 
   <section class="container content-section text-left">
-    <div class="row">
-      <div class="alert alert-danger alert-dismissable" ng-if="ProfileInfo.users_type == '1' && to_view_type != 'view' && percentage != '100' " >
+     <div class="row">
+ 
+             <div class="progress" ng-if="ProfileInfo.users_type == '1' && to_view_type != 'view' && percentage != '100' ">
+              <div class="progress-bar pro_bar" style="width:10%;background-color: #008cc9!important;" ng-repeat="n in bar">{{n}}0%</div>  
+              <div class="progress-bar pro_bar" style="width:10%;background-color: #ccc!important;" ng-repeat="i in bar1"></div>
+
+
+              <!-- <div class="progress-bar pro_bar" style="width:10%;background-color: #ccc!important;"></div>
+              <div class="progress-bar pro_bar" style="width:10%;background-color: #ccc!important;" ></div>
+              <div class="progress-bar pro_bar" style="width:10%;background-color: #ccc!important;"></div>
+              <div class="progress-bar pro_bar" style="width:10%;background-color: #ccc!important;"></div> -->
+            </div>
+     <!-- <div class="alert alert-danger alert-dismissable" ng-if="ProfileInfo.users_type == '1' && to_view_type != 'view' && percentage != '100' " >
         <a class="close" data-dismiss="alert" aria-label="close">X</a>
-        <div class="col-md-6 col-md-offset-3" >
-          <strong>Warning!</strong> You have completed <strong><i>{{percentage}}%</i></strong> of your profile 
+        <div class="col-md-7 col-md-offset-3" >
+       <b> {{percentage}}</b>
+          You are almost there fill in the below details to get your desired matching jobs.
 
           <div>{{warn_message.profilepic}}</div> 
           <div>{{warn_message.current_title}}</div> 
@@ -54,8 +71,8 @@ Description:  Profile page
           <div>{{warn_message.fits}}</div> 
         </div>
         <div style="clear: both;"></div>
-      </div>
-    </div>
+      </div>-->
+    </div> 
   </section>
 <div  md-swipe-left="onSwipeLeft()" md-swipe-right="onSwipeRight()">
   <section class="container">
@@ -148,16 +165,16 @@ Description:  Profile page
           </span>
             
            <span ng-click="profileView(ProfileInfo.users_type)"  ng-if="ProfileInfo.users_current_title == '' || ProfileInfo.users_current_employer == '' || localationlist.length == '0'" >
-            <img src="public/images/edit_orange.png" />
+            <img src="public/images/edit_orange.png">
           </span>
           </span>
           <span ng-if="to_view_type != 'view' && userInfo_type == '2'">
 
-           <span ng-click="profileView(ProfileInfo.users_type)"  ng-if="localationlist.length != '0' && industryList.length != '0' " >
+           <span ng-click="profileView(ProfileInfo.users_type)"  ng-if="localationlist.length != '0' && industryList.length != '0'" >
           <img src="public/images/edit2.png">           
           </span>
             
-           <span ng-click="profileView(ProfileInfo.users_type)"  ng-if="localationlist.length == '0' || industryList.length == '0' " >
+           <span ng-click="profileView(ProfileInfo.users_type)"  ng-if="localationlist.length == '0' || industryList.length == '0'" >
             <img src="public/images/edit_orange.png" />
           </span>
             
@@ -292,7 +309,7 @@ Description:  Profile page
           <span class="input-group-addon">
             <img src="public/images/linkedin1.png" width="20">
           </span>
-          <input type="text" class="form-control" ng-model="ProfileInfo.users_linkedin_link" Placeholder="Add Link" ng-keyup="isValidUrl(ProfileInfo.users_linkedin_link);" http-prefix>                                        
+          <input type="text" class="form-control" ng-model="ProfileInfo.users_linkedin_link" Placeholder="Add Link" ng-keyup="isValidUrl(ProfileInfo.users_linkedin_link);" http-prefix>                               
         </div>  
       </div>
       <div style="width:49%;" class="pull-right">

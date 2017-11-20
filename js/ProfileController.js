@@ -160,8 +160,20 @@ app.controller('ProfileController', function ($scope,$uibModal,$window,$mdDialog
 
 		  $scope.percentage ='';
 		  $scope.warn_message = [];
+		 
 		 var fetch_profile_percentage = function (data) {			   	 		 	  	 	
-		 	//alert(JSON.stringify(data));		 
+		 	//alert(JSON.stringify(data.count));
+		 	 $scope.bar = [];
+		     $scope.bar1 = [];
+		 	var tot_count = (10-data.count);
+	        for (var i=1; i<=tot_count; i++){
+	            $scope.bar.push(i);	     
+	        }
+	        for (var i=0; i<data.count; i++){
+	            $scope.bar1.push(i);	     
+	        }	  		
+	         //alert(JSON.stringify($scope.bar));
+	         //alert(JSON.stringify($scope.bar1));
 		 	$scope.percentage = data.percentage;	 
 		 	$scope.warn_message = data.datalist
 		 }; 
