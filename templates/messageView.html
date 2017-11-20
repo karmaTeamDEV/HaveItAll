@@ -96,8 +96,13 @@
    border: 1px solid #dddddd;
    }
    .chat-img img {
-   height: 34px;
-   width: 34px;
+   width:40px;height:40px;border-radius:50%;
+	  background-position:center center;
+	  max-width:100%;
+	  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
    }
    .member_list li {
    border-bottom: 1px solid #dddddd;
@@ -158,8 +163,8 @@
   padding: 14px 14px 0;
 }
 .chat_area li .chat-img1 img {
-  height: 40px;
-  width: 40px;
+ width:40px;height:40px;
+  
 }
 .chat_area .chat-body1 {
   margin-left: 50px;
@@ -207,7 +212,16 @@
 .left{
 	width:99% !important;
 }
-  
+td
+{
+	padding:10px;
+	vertical-align:top;
+	
+}
+  .circle_img
+  {
+	  width:40px;height:40px;
+  }
 </style>
 <!-- About Section -->
 <div style="background-color:#fff;">   
@@ -255,15 +269,29 @@
                <ul class="list-unstyled">
                   <li class="left clearfix"  ng-repeat="company in chart_company_list" ng-click="click_on_company_for_messages(company.company_id, sess_user_id)">
                      <span class="chat-img pull-left">
-                     <img src="upload/{{company.company_logo}} " alt="User Avatar" class="img-circle">
+                     <div  alt="User Avatar" 
+                     style="background-image:url(upload/{{company.company_logo}});
+                     width:40px;height:40px;border-radius:50%!important;
+                   	  background-position:center center;
+	  max-width:100%;
+	  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;">
+  </div>
                      </span>
                      <div class="chat-body clearfix" >
                         <div class="header_sec">
-                           <strong class="primary-font">{{company.company_name}}</strong> <strong class="pull-right">
-                           {{company.sent_time_only}} </strong>
+      <div style="width:50%;float:left;"><strong class="primary-font">{{company.company_name}}</strong> </div>
+      <div style="width:50%;float:left;"><strong class="pull-right">
+                           {{company.sent_time_only}} </strong></div>
                         </div>
-                        <div class="contact_sec">
-                           <strong class="primary-font">(123) 123-456</strong> <span class="badge pull-right" id="no_of_msg_{{company.company_id}}">{{company.no_of_msg}}</span>
+                        
+                     </div>
+                     <div style="padding-left:45px;">
+                     <div class="contact_sec">
+                           <strong class="primary-font">(123) 123-456</strong> 
+ <span class="badge pull-right" id="no_of_msg_{{company.company_id}}">{{company.no_of_msg}}</span>
                         </div>
                      </div>
                   </li>
@@ -293,23 +321,49 @@
 		 </div><!--new_message_head-->
 		   
 		 <div class="chat_area"> 
-       <p ng-if="chart_msg_list.length == '0' ">Sorry. This employer has not initiated a conversation yet.</p>
-		 <ul class="list-unstyled">
-		 <li  ng-class=" messages.sent_from == 'company' ? 'left clearfix' : 'left clearfix admin_chat' "  ng-repeat="messages in chart_msg_list">
-                    
-                     <span  ng-class=" messages.sent_from == 'company' ? 'chat-img1 pull-left' : 'chat-img1 pull-right' " >
-                     <img src="upload/{{messages.company_hr_logo}} " alt="User Avatar" class="img-circle">
-                     </span>
-                     <div class="chat-body1 clearfix">
-                        <p>{{messages.message_sent}}</p>
-						<div ng-class=" messages.sent_from == 'company' ? 'chat_time pull-right' : 'chat_time pull-left' " >{{messages.sent_date_only}} {{messages.sent_time_only}}</div>
+       <p ng-if="chart_msg_list.length == '0' ">Sorry. This employer has not initiated a conversation yet.
+       <div style="clear:both;"></div>
+       </p>
+		 <div class="list-unstyled">
+		 <li  ng-class=" messages.sent_from == 'company' ? "  ng-repeat="messages in chart_msg_list">
+         <div style="width:100%">
+                       <div style="float:left;">
+                     <div  ng-class=" messages.sent_from == 'company' ? 'chat-img1' : 'chat-img1' " >
+                     <!--<img src="upload/{{messages.company_hr_logo}} " alt="User Avatar" class="circle_img">-->
+                     <div  alt="User Avatar" 
+                     style="background-image:url(upload/{{messages.company_hr_logo}});
+                     width:40px;height:40px;border-radius:50%!important;
+                   	  background-position:center center;
+	  max-width:100%;
+	  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;border:1px solid #f1f1f1;"></div>
                      </div>
+                     </div>
+                       <span>
+                     <div class="chat-body1">
+                     
+                     <table width="100%">
+                     <tr>
+                     <td bgcolor="#f5f3f3" align="left" width="70%" style="text-align:justify;">{{messages.message_sent}}</td>
+                     <td bgcolor="#f5f3f3" align="right" width="30%"><div ng-class=" messages.sent_from == 'company' ? 'chat_time' " >{{messages.sent_date_only}} {{messages.sent_time_only}}</div>
+                     
+                     </td>
+                     </tr>
+                     <tr>
+                     </tr>
+                     </table>
+                        </div>
+                        </span>
+						
+                        </div>
           </li>
 				  
 				
 		 
 		 
-		 </ul>
+		 </div>
 		 </div><!--chat_area-->
          
           <div class="message_write" ng-if="latest_msg_details.company_block_status != 1">
