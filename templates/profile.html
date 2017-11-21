@@ -46,9 +46,9 @@ Description:  Profile page
   position: fixed;
   box-shadow: 0 0 12px 0 #333;
   z-index:999999;  
-   border-radius: 0 15px 15px 0; 
+  border-radius: 0 15px 15px 0; 
   border: 2px solid #008cc9; 
-  border-left: none; 
+  border-left: none;   
 }
 
 #contact-button { 
@@ -62,8 +62,8 @@ Description:  Profile page
     position: absolute;
     background-color: #008cc9;
     border-radius: 0 15px 15px 0; 
-  border: 2px solid #008cc9; 
-  border-left: none;
+    border: 2px solid #008cc9; 
+    border-left: none;
 }
 
 #contactform {
@@ -107,9 +107,9 @@ Description:  Profile page
 </style>
 <!-- About Section -->
 
-<div id="contactform" >
+<div id="contactform" ng-show="panelnav">
   <div id="contact-button">   
-    <div class="rotated-text"  >Improved Matching</div>
+    <div class="rotated-text">Improved Matching</div>
   </div>
     <div style="padding: 20px;">
       <div><b>Complete following profile section(s) to find jobs that match your requirements</b></div><br>
@@ -180,31 +180,9 @@ Description:  Profile page
               <div class="progress-bar pro_bar" style="width:10%;background-color: #008cc9!important;" ng-repeat="n in bar">{{n}}0%</div>  
               <div class="progress-bar pro_bar" style="width:10%;background-color: #ccc!important;" ng-repeat="i in bar1"></div>
 
-              <!-- <div class="progress-bar pro_bar" style="width:10%;background-color: #ccc!important;"></div>
-              <div class="progress-bar pro_bar" style="width:10%;background-color: #ccc!important;" ></div>
-              <div class="progress-bar pro_bar" style="width:10%;background-color: #ccc!important;"></div>
-              <div class="progress-bar pro_bar" style="width:10%;background-color: #ccc!important;"></div> -->
             </div>
 
 
-     <!-- <div class="alert alert-danger alert-dismissable" ng-if="ProfileInfo.users_type == '1' && to_view_type != 'view' && percentage != '100' " >
-        <a class="close" data-dismiss="alert" aria-label="close">X</a>
-        <div class="col-md-7 col-md-offset-3" >
-       <b> {{percentage}}</b>
-          You are almost there fill in the below details to get your desired matching jobs.
-
-          <div>{{warn_message.profilepic}}</div> 
-          <div>{{warn_message.current_title}}</div> 
-          <div>{{warn_message.bio}}</div> 
-          <div>{{warn_message.location}}</div> 
-          <div>{{warn_message.employment}}</div> 
-          <div>{{warn_message.industry}}</div> 
-          <div>{{warn_message.education}}</div> 
-          <div>{{warn_message.gallery}}</div>
-          <div>{{warn_message.fits}}</div> 
-        </div>
-        <div style="clear: both;"></div>
-      </div>-->
     </div> 
   </section>
 <div  md-swipe-left="onSwipeLeft()" md-swipe-right="onSwipeRight()">
