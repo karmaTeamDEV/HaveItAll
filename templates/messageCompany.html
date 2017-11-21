@@ -159,18 +159,18 @@
   width: 60px;
 
 }
-.chat_area .chat-body1 {
+/*.chat_area .chat-body1 {
   margin-left: 50px;
 }
-.chat-body1 p {
+*/.chat-body1 p {
   background: #fbf9fa none repeat scroll 0 0;
   padding: 10px;
   margin-bottom:10px !important;
 }
 .chat_area .admin_chat .chat-body1 {
   margin-left: 0;
-  margin-right: 50px;
-}
+/*  margin-right: 50px;
+*/}
 .chat_area li:last-child {
   padding-bottom: 10px;
 }
@@ -205,7 +205,17 @@
 .left{
 	width:99% !important;
 }
-  
+  td
+{
+	padding:10px;
+	vertical-align:top;
+	
+}
+  .circle_img
+  {
+	  width:40px;height:40px;
+  }
+
 </style>
 <!-- About Section -->
 <div style="background-color:#fff;">   
@@ -259,16 +269,22 @@
 </span>
                      <div class="chat-body clearfix" >
                         <div class="header_sec">
-                           <strong class="primary-font">{{users.users_firstname}} {{users.users_lastname}}</strong> <strong class="pull-right">
-                           {{users.sent_time_only}} </strong>
+                          <div style="width:60%;float:left;"> <strong class="primary-font">{{users.users_firstname}} {{users.users_lastname}}</strong></div>
+                           <div style="width:40%;float:left;"><strong class="pull-right">
+                           {{users.sent_time_only}} </strong></div>
                         </div>
+                        </div>
+                         <div style="padding-left:45px;">
                         <div class="contact_sec">
-                           <strong class="primary-font">{{users.users_phone}} </strong> <span class="badge pull-right" id="no_of_msg_{{users.users_id}}">{{users.no_of_msg}}</span>
+                           <strong class="primary-font">{{users.users_phone}} </strong> 
+                           <span class="badge pull-right" id="no_of_msg_{{users.users_id}}">{{users.no_of_msg}}</span>
                         </div>
-                     </div>
+                        </div>
+                    
                   </li>
                </ul>
-            </div></div>
+            </div>
+            </div>
          </div>
          <!--chat_sidebar-->
 		 
@@ -290,26 +306,58 @@
 </div>
 </div>
 		 </div><!--new_message_head-->
-		  <div ng-if="chart_msg_list.length == '0'">You currently don’t have any messages from this user. </div>
-		 <div class="chat_area">
-		 <ul class="list-unstyled">
-		 <li  ng-class=" messages.sent_from == 'user' ? 'left clearfix' : 'left clearfix admin_chat' "  ng-repeat="messages in chart_msg_list">
-         
-                     <span  ng-class=" messages.sent_from == 'user' ? 'chat-img1 pull-left' : 'chat-img1 pull-right' " >
-                     <img src="upload/{{messages.USER_IMAGE}} " alt="User Avatar" class="img-circle">
-                     </span>
-                     <div class="chat-body1 clearfix">
-                        <p>{{messages.message_sent}}</p>
-						<div ng-class=" messages.sent_from == 'user' ? 'chat_time pull-right' : 'chat_time pull-left' " >{{messages.sent_date_only}} {{messages.sent_time_only}}</div>
+		  
+		 <!--chat_area-->
+        <div class="chat_area">
+          <p ng-if="chart_msg_list.length == '0' ">You currently don't have any messages from this user.
+       </p>
+		 <div class="list-unstyled">
+		 <li  ng-class=" messages.sent_from == 'user' ? 'left clearfix' : 'admin_chat' "  ng-repeat="messages in chart_msg_list">
+         <div style="width:100%">
+                     <div class="chat-body1">
+                     
+                     <table width="100%">
+                     <tr>
+                     <td width="3%" bgcolor="#FFFFFF" style="padding:0px 10px 0px 0px;">
+                     <div style="float:left;">
+            <div  ng-class=" messages.sent_from == 'user' ? 'chat-img1' : 'chat-img1' " >
+                    
+                   <div  alt="User Avatar" 
+                     style="background-image:url(upload/{{messages.USER_IMAGE}});
+                     width:40px;height:40px;border-radius:50%!important;
+                   	  background-position:center center;
+	  max-width:100%;
+	  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;border:1px solid #f1f1f1;"></div>
+                     
                      </div>
+                     </div></td>
+                     <td bgcolor="#f5f3f3" align="left" width="62%" style="text-align:justify;">
+                     
+                    {{messages.message_sent}}</span>
+                     <td bgcolor="#f5f3f3" align="right" width="35%"><div ng-class=" messages.sent_from == 'user' ? 'chat_time' " >{{messages.sent_date_only}} {{messages.sent_time_only}}</div>
+                 
+                     
+                     </td>
+                     </tr>
+                     <tr>
+                     </tr>
+                     </table>
+                     </div>
+                     
+                 
+                     
+                    </div>
+                     
           </li>
 				  
 				
 		 
 		 
-		 </ul>
-		 </div><!--chat_area-->
-         
+		 </div>
+		 </div> 
           <div class="message_write" >
     	 <textarea class="form-control" placeholder="type a message" id="msg_text1" ng-model="msg_text" name="msg_txt1"></textarea>
          <input name="msg_company_id"  id="msg_company_id" type="hidden" value="" ng-model="msg_company_id" /> 
