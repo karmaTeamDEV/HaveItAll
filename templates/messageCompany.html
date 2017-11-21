@@ -318,8 +318,8 @@
                      
                      <table width="100%">
                      <tr>
-                     <td width="3%" bgcolor="#FFFFFF" style="padding:0px 10px 0px 0px;">
-                     <div style="float:left;">
+                     <td width="3%" bgcolor="#FFFFFF">
+                    
             <div  ng-class=" messages.sent_from == 'user' ? 'chat-img1' : 'chat-img1' " >
                     
                    <div  alt="User Avatar" 
@@ -333,14 +333,15 @@
   background-size: cover;border:1px solid #f1f1f1;"></div>
                      
                      </div>
-                     </div></td>
-                     <td bgcolor="#f5f3f3" align="left" width="62%" style="text-align:justify;">
-                     
-                    {{messages.message_sent}}</span>
-                     <td bgcolor="#f5f3f3" align="right" width="35%"><div ng-class=" messages.sent_from == 'user' ? 'chat_time' " >{{messages.sent_date_only}} {{messages.sent_time_only}}</div>
-                 
-                     
                      </td>
+                     <td bgcolor="#f5f3f3" align="left" width="62%" style="text-align:justify;">
+                    {{messages.message_sent}}</td>
+                    
+                     <td bgcolor="#f5f3f3" align="right" width="35%">
+                     <div ng-class=" messages.sent_from == 'user' ? 'chat_time' " >{{messages.sent_date_only}} {{messages.sent_time_only}}
+                     </div>
+                     </td>
+                     
                      </tr>
                      <tr>
                      </tr>

@@ -57,13 +57,14 @@ Description:  Profile page
     font-size: 22px;
     color: white;
     position: absolute;
-}
-
-#contactform, #contact-button {
-  background-color: #fff;
-  border-radius: 0 15px 15px 0; 
+    background-color: #008cc9;
+    border-radius: 0 15px 15px 0; 
   border: 2px solid #008cc9; 
   border-left: none;
+}
+
+#contactform {
+  background-color: #fff;  
   color: #008cc9;
 }
 
@@ -108,60 +109,61 @@ Description:  Profile page
     <div class="rotated-text"  >Improved Matching</div>
   </div>
     <div style="padding: 20px;">
+      <div><b>Complete following profile section(s) to find jobs that match your requirements</b></div><br>
           <div ng-if="warn_message.profilepic != ' ' ">
                <div class="mesbox"><img ng-src="public/images/cross-msg.png" width="20"> {{warn_message.profilepic}}</div>  
           </div>
-          <div ng-if="warn_message.profilepic == ' ' ">
+         <!--  <div ng-if="warn_message.profilepic == ' ' ">
                <div class="mesbox"><img ng-src="public/images/tick-msg.png" width="20"> Profile picture completed.</div>  
-          </div>
+          </div> -->
           <div ng-if="warn_message.current_title != ' ' ">
                 <div class="mesbox"><img ng-src="public/images/cross-msg.png" width="20"> {{warn_message.current_title}}</div> 
           </div>
-          <div ng-if="warn_message.current_title == ' ' ">
+        <!--   <div ng-if="warn_message.current_title == ' ' ">
                 <div class="mesbox"> <img ng-src="public/images/tick-msg.png" width="20"> Title & employer completed.</div> 
-          </div>
+          </div> -->
           <div ng-if="warn_message.bio != ' ' ">
                 <div class="mesbox" ><img ng-src="public/images/cross-msg.png" width="20"> {{warn_message.bio}}</div> 
           </div>
-          <div ng-if="warn_message.bio == ' ' ">
+        <!--   <div ng-if="warn_message.bio == ' ' ">
                 <div class="mesbox" > <img ng-src="public/images/tick-msg.png" width="20"> User bio completed.</div> 
-          </div>
+          </div> -->
           <div ng-if="warn_message.location != ' ' ">
                 <div class="mesbox" ><img ng-src="public/images/cross-msg.png" width="20"> {{warn_message.location}}</div>
           </div> 
-          <div ng-if="warn_message.location == '' ">
+         <!--  <div ng-if="warn_message.location == '' ">
                 <div class="mesbox" > <img ng-src="public/images/tick-msg.png" width="20"> Location completed.</div>
-          </div> 
+          </div>  -->
           <div ng-if="warn_message.employment != ' ' ">
                 <div class="mesbox" ><img ng-src="public/images/cross-msg.png" width="20"> {{warn_message.employment}}</div> 
           </div>
-           <div ng-if="warn_message.employment == ' ' ">
+         <!--   <div ng-if="warn_message.employment == ' ' ">
                 <div class="mesbox" > <img ng-src="public/images/tick-msg.png" width="20"> Employment completed.</div> 
-          </div>
+          </div> -->
           <div ng-if="warn_message.industry != ' ' ">
                 <div class="mesbox" ><img ng-src="public/images/cross-msg.png" width="20"> {{warn_message.industry}}</div> 
           </div>
-          <div ng-if="warn_message.industry == ' ' ">
+         <!--  <div ng-if="warn_message.industry == ' ' ">
                 <div class="mesbox" ><img ng-src="public/images/tick-msg.png" width="20"> Industry Experience completed.</div> 
-          </div>
+          </div> -->
           <div ng-if="warn_message.education != ' ' ">
                 <div class="mesbox" ><img ng-src="public/images/cross-msg.png" width="20"> {{warn_message.education}}</div> 
           </div>
-           <div ng-if="warn_message.education == ' ' ">
+          <!--  <div ng-if="warn_message.education == ' ' ">
                 <div class="mesbox" ><img ng-src="public/images/tick-msg.png" width="20"> Education completed.</div> 
-          </div>
+          </div> -->
           <div ng-if="warn_message.gallery != ' ' ">
                 <div class="mesbox" ><img ng-src="public/images/cross-msg.png" width="20"> {{warn_message.gallery}}</div>
           </div>
-          <div ng-if="warn_message.gallery == ' ' ">
+          <!-- <div ng-if="warn_message.gallery == ' ' ">
                 <div class="mesbox" ><img ng-src="public/images/tick-msg.png" width="20"> Gallery completed.</div>
-          </div>
+          </div> -->
           <div ng-if="warn_message.fits != ' ' ">
                <div class="mesbox" ><img ng-src="public/images/cross-msg.png" width="20"> {{warn_message.fits}}</div> 
           </div>
-           <div ng-if="warn_message.fits == ' ' ">
+          <!--  <div ng-if="warn_message.fits == ' ' ">
                <div class="mesbox" ><img ng-src="public/images/tick-msg.png" width="20"> Jobfit & Culturefit completed.</div> 
-          </div>
+          </div> -->
           </div>
 
   
