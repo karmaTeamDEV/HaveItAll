@@ -310,9 +310,10 @@
 		 <!--chat_area-->
         <div class="chat_area">
           <p ng-if="chart_msg_list.length == '0' ">You currently don't have any messages from this user.
+       <div style="clear:both;"></div>
        </p>
 		 <div class="list-unstyled">
-		 <li  ng-class=" messages.sent_from == 'user' ? 'left clearfix' : 'admin_chat' "  ng-repeat="messages in chart_msg_list">
+		 <li  ng-class=" messages.sent_from == 'user' ?"  ng-repeat="messages in chart_msg_list">
          <div style="width:100%">
                      <div class="chat-body1">
                      
@@ -347,9 +348,6 @@
                      </tr>
                      </table>
                      </div>
-                     
-                 
-                     
                     </div>
                      
           </li>
