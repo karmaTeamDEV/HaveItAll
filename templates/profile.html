@@ -37,8 +37,135 @@ Description:  Profile page
   }
 };
   p{font-size: 14px !important; color: #666 !important; margin:0px; }
+
+  #contactform {  
+  width: 300px;
+  left: -300px;
+  height: 270px;
+  margin: 150px 0;
+  position: fixed;
+  box-shadow: 0 0 12px 0 #333;
+  z-index:999999;   
+}
+
+#contact-button { 
+    width: 8%;
+    padding: 3% 8% 3% 3%;
+    cursor: pointer;
+    margin-left: 300px;
+    margin-top: 10px;
+    font-size: 22px;
+    color: white;
+    position: absolute;
+}
+
+#contactform, #contact-button {
+  background-color: #fff;
+  border-radius: 0 15px 15px 0; 
+  border: 2px solid #008cc9; 
+  border-left: none;
+  color: #008cc9;
+}
+
+.rotated-text {
+    display: inline-block;
+    white-space: nowrap;
+    /* this is for shity "non IE" browsers
+       that dosn't support writing-mode */
+    -webkit-transform: translate(1.1em,0) rotate(90deg);
+       -moz-transform: translate(1.1em,0) rotate(90deg);
+         -o-transform: translate(1.1em,0) rotate(90deg);
+            transform: translate(1.1em,0) rotate(90deg);
+    -webkit-transform-origin: 0 0;
+       -moz-transform-origin: 0 0;
+         -o-transform-origin: 0 0;
+            transform-origin: 0 0;*/
+   /* IE9+ */
+   -ms-transform: none;
+   -ms-transform-origin: none;
+   /* IE8+ */
+   -ms-writing-mode: tb-rl;
+   /* IE7 and below */
+   *writing-mode: tb-rl;
+}
+
+.rotated-text:before {
+    content: "";
+    float: left;
+    margin-top: 100%;
+    
+}
+
+ 
+.mesbox {
+  color: #008cc9; margin-bottom: 5px;
+}
 </style>
 <!-- About Section -->
+
+<div id="contactform" >
+  <div id="contact-button">   
+    <div class="rotated-text"  >Improved Matching</div>
+  </div>
+    <div style="padding: 20px;">
+          <div ng-if="warn_message.profilepic != ' ' ">
+               <div class="mesbox"><img ng-src="public/images/cross-msg.png" width="20"> {{warn_message.profilepic}}</div>  
+          </div>
+          <div ng-if="warn_message.profilepic == ' ' ">
+               <div class="mesbox"><img ng-src="public/images/tick-msg.png" width="20"> Profile picture completed.</div>  
+          </div>
+          <div ng-if="warn_message.current_title != ' ' ">
+                <div class="mesbox"><img ng-src="public/images/cross-msg.png" width="20"> {{warn_message.current_title}}</div> 
+          </div>
+          <div ng-if="warn_message.current_title == ' ' ">
+                <div class="mesbox"> <img ng-src="public/images/tick-msg.png" width="20"> Title & employer completed.</div> 
+          </div>
+          <div ng-if="warn_message.bio != ' ' ">
+                <div class="mesbox" ><img ng-src="public/images/cross-msg.png" width="20"> {{warn_message.bio}}</div> 
+          </div>
+          <div ng-if="warn_message.bio == ' ' ">
+                <div class="mesbox" > <img ng-src="public/images/tick-msg.png" width="20"> User bio completed.</div> 
+          </div>
+          <div ng-if="warn_message.location != ' ' ">
+                <div class="mesbox" ><img ng-src="public/images/cross-msg.png" width="20"> {{warn_message.location}}</div>
+          </div> 
+          <div ng-if="warn_message.location == '' ">
+                <div class="mesbox" > <img ng-src="public/images/tick-msg.png" width="20"> Location completed.</div>
+          </div> 
+          <div ng-if="warn_message.employment != ' ' ">
+                <div class="mesbox" ><img ng-src="public/images/cross-msg.png" width="20"> {{warn_message.employment}}</div> 
+          </div>
+           <div ng-if="warn_message.employment == ' ' ">
+                <div class="mesbox" > <img ng-src="public/images/tick-msg.png" width="20"> Employment completed.</div> 
+          </div>
+          <div ng-if="warn_message.industry != ' ' ">
+                <div class="mesbox" ><img ng-src="public/images/cross-msg.png" width="20"> {{warn_message.industry}}</div> 
+          </div>
+          <div ng-if="warn_message.industry == ' ' ">
+                <div class="mesbox" ><img ng-src="public/images/tick-msg.png" width="20"> Industry Experience completed.</div> 
+          </div>
+          <div ng-if="warn_message.education != ' ' ">
+                <div class="mesbox" ><img ng-src="public/images/cross-msg.png" width="20"> {{warn_message.education}}</div> 
+          </div>
+           <div ng-if="warn_message.education == ' ' ">
+                <div class="mesbox" ><img ng-src="public/images/tick-msg.png" width="20"> Education completed.</div> 
+          </div>
+          <div ng-if="warn_message.gallery != ' ' ">
+                <div class="mesbox" ><img ng-src="public/images/cross-msg.png" width="20"> {{warn_message.gallery}}</div>
+          </div>
+          <div ng-if="warn_message.gallery == ' ' ">
+                <div class="mesbox" ><img ng-src="public/images/tick-msg.png" width="20"> Gallery completed.</div>
+          </div>
+          <div ng-if="warn_message.fits != ' ' ">
+               <div class="mesbox" ><img ng-src="public/images/cross-msg.png" width="20"> {{warn_message.fits}}</div> 
+          </div>
+           <div ng-if="warn_message.fits == ' ' ">
+               <div class="mesbox" ><img ng-src="public/images/tick-msg.png" width="20"> Jobfit & Culturefit completed.</div> 
+          </div>
+          </div>
+
+  
+</div>
 
 <div style="background-color:#edebeb; font-size: 14px;"> 
   <section class="container content-section text-left">
@@ -48,12 +175,13 @@ Description:  Profile page
               <div class="progress-bar pro_bar" style="width:10%;background-color: #008cc9!important;" ng-repeat="n in bar">{{n}}0%</div>  
               <div class="progress-bar pro_bar" style="width:10%;background-color: #ccc!important;" ng-repeat="i in bar1"></div>
 
-
               <!-- <div class="progress-bar pro_bar" style="width:10%;background-color: #ccc!important;"></div>
               <div class="progress-bar pro_bar" style="width:10%;background-color: #ccc!important;" ></div>
               <div class="progress-bar pro_bar" style="width:10%;background-color: #ccc!important;"></div>
               <div class="progress-bar pro_bar" style="width:10%;background-color: #ccc!important;"></div> -->
             </div>
+
+
      <!-- <div class="alert alert-danger alert-dismissable" ng-if="ProfileInfo.users_type == '1' && to_view_type != 'view' && percentage != '100' " >
         <a class="close" data-dismiss="alert" aria-label="close">X</a>
         <div class="col-md-7 col-md-offset-3" >

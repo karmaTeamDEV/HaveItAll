@@ -3301,46 +3301,64 @@ Description:  Get single job post
 				$percentage = 20;
 				$data['profilepic'] = 'Profile picture required!';
 				$count =2;
+			}else{
+				$data['profilepic'] = ' ';
 			}
 			if($myrow[0]['users_current_title'] == '' || $myrow[0]['users_current_employer'] == '' ){
 				$percentage = ($percentage+10);
 				$data['current_title'] ='Current title & current employer required!';
 				$count =($count+1);
+			}else{
+				$data['current_title'] = ' ';
 			}
 			if($myrow[0]['users_bio'] == ''){
 				$percentage = ($percentage+10);
 				$data['bio'] = 'User bio required!';
 				$count =($count+1);
+			}else{
+				$data['bio'] = ' ';
 			}
 			if($myrow[0]['location_count'] == 0){
 				$percentage = ($percentage+10);
 				$data['location'] = 'Location required!';
 				$count =($count+1); 
+			}else{
+				$data['location'] = ' ';
 			}
 			if($myrow[0]['title_count'] == 0){
 				$percentage = ($percentage+10);
 				$data['employment'] = 'Employment required!';
 				$count =($count+1);
+			}else{
+				$data['employment'] = ' ';
 			} 
 			if($myrow[0]['industry_count'] == 0){
 				$percentage = ($percentage+10);
 				$data['industry'] = 'Industry Experience required!';
 				$count =($count+1);
-			} 
+			}else{
+				$data['industry'] = ' ';
+			}  
 			if($myrow[0]['education_count'] == 0){
 				$percentage = ($percentage+10);
 				$data['education'] = 'Education required!';
 				$count =($count+1);
-			} 
+			}else{
+				$data['education'] = ' ';
+			}  
 			if($myrow[0]['gallery_count'] == 0){
 				$percentage = ($percentage+10);
 				$data['gallery'] = 'Gallery required!';
 				$count =($count+1);
-			} 
+			}else{
+				$data['gallery'] = ' ';
+			}  
 			if($myrow[0]['fit_count'] == 0){
 				$percentage = ($percentage+10);
 				$data['fits'] = 'Jobfit & Culturefit required!';
 				$count =($count+1);
+			}else{
+				$data['fits'] = ' ';
 			} 
 
 
