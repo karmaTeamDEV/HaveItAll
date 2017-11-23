@@ -198,10 +198,14 @@ Description:  Profile page
   <section class="container content-section text-left">
      <div class="row">
  
-             <div class="progress" ng-if="ProfileInfo.users_type == '1' && to_view_type != 'view' && percentage != '100' ">
+            <!--  <div class="progress" ng-if="ProfileInfo.users_type == '1' && to_view_type != 'view' && percentage != '100' ">
               <div class="progress-bar pro_bar" style="width:10%;background-color: #008cc9!important;" ng-repeat="n in bar">{{n}}0%</div>  
               <div class="progress-bar pro_bar" style="width:10%;background-color: #ccc!important;" ng-repeat="i in bar1"></div>
+            </div> -->
 
+             <div class="progress" ng-if="ProfileInfo.users_type == '1' && to_view_type != 'view' && percentage != '100' ">
+              <div class="progress-bar" style="width:{{percentage}}%;background-color: #008cc9!important;" >{{percentage}}%</div>  
+              <div class="progress-bar pro_bar" style="width:{{100-percentage}}%;background-color: #ccc!important;"><b>{{100-percentage}}%</b></div>
             </div>
 
 
