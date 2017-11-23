@@ -116,9 +116,7 @@ app.controller('ProfileController', function ($scope,$uibModal,$window,$mdDialog
 		$scope.c_type = $localStorage.tab_to_view;
  
 		  
-		/* easing functions from: https://github.com/gdsmith/jquery.easing/blob/master/jquery.easing.js
-*/
-
+ 
 var easeOutBounce = function (x, t, b, c, d) {
 		if ((t/=d) < (1/2.75)) {
 			return c*(7.5625*t*t) + b;
@@ -191,18 +189,8 @@ document.getElementById('contact-button').onclick = function() {
 			$scope.to_view_type = 'user';
 		}
 
-		// $scope.openTab = function(url){
-		// 	alert(url);
-		// 	if(url){
-		// 		$window.open(url, '_blank');
-		// 	}else{
-		// 		$window.open('#!/user/profile//', '_blank');
-		// 	}
-			
-		// }
-
-		  $scope.percentage ='';
-		  
+		
+		 $scope.percentage ='';		  
 		 var fetch_profile_percentage = function (data) {			   	 		 	  	 	
 		 	//alert(JSON.stringify(data.count));
 		 	 $scope.bar = [];
@@ -214,15 +202,25 @@ document.getElementById('contact-button').onclick = function() {
 	        for (var i=0; i<data.count; i++){
 	            $scope.bar1.push(i);	     
 	        }	  		
-	         //alert(JSON.stringify($scope.bar));
-	         //alert(JSON.stringify($scope.bar1));
-		 	$scope.percentage = data.percentage;	 
+	         
+		 	$scope.percentage = data.percentage;
+		 	if($scope.percentage == 100){		 		  
+		 		 //document.getElementById("contactform").style.display = 'none';		 
+		 		 $scope.panelnav =false;		 
+		 	}else{
+		 		$scope.panelnav =true;
+		 	}
 		 	$scope.warn_message = data.datalist
 		 }; 
 		 
 		  var url = serviceurl + "API/get_profile_percentage/";
           var object = {user_id:$scope.to_view_user_id}
-          commonpostService.cmnpost(url,object).then(fetch_profile_percentage, errorDetails);   
+          commonpostService.cmnpost(url,object).then(fetch_profile_percentage, errorDetails);  
+
+
+
+		 
+ 
 
 			 
 		 $scope.slides = [];
