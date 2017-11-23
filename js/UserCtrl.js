@@ -75,7 +75,12 @@ app.controller('UserCtrl', function ($scope,$window,$state,$localStorage,commonp
         $localStorage.jobinfo.jobfit = [];
         $localStorage.flag = '';
         $scope.check_jobinfo = function(path){
-          
+              if(path == '#!/user/user-job' || path == '#!/user/postjobview/'){
+                  $localStorage.tab_to_view = 'myjobs';
+              }
+               if(path == '#!/user/followingcompany' || path == '#!/user/followuser'){
+                  $localStorage.tab_to_view = 'following_me';
+              }
               // alert(JSON.stringify($localStorage.jobinfo.length));
               // alert(JSON.stringify($localStorage.jobinfo.level.length)); 
               // alert(JSON.stringify($localStorage.jobinfo.jobfit.length));
@@ -139,8 +144,7 @@ app.controller('UserCtrl', function ($scope,$window,$state,$localStorage,commonp
 
                 
         } 
-
-
+ 
 
 
 });
