@@ -63,7 +63,7 @@ Description:  Profile page
   #contactform {  
   width: 300px;
   left: -300px;
-  height: 340px;
+  height: 500px;
   margin: 150px 0;
   position: fixed;
   box-shadow: 0 0 12px 0 #333;
@@ -189,20 +189,83 @@ Description:  Profile page
           <!--  <div ng-if="warn_message.fits == ' ' ">
                <div class="mesbox" ><img ng-src="public/images/tick-msg.png" width="20"> Jobfit & Culturefit completed.</div> 
           </div> -->
+
+           <div class="col-md-3 col-sm-2">
+            <div class="progress blue">
+                <span class="progress-left">
+                    <span class="progress-bar"></span>
+                </span>
+                <span class="progress-right">
+                    <span class="progress-bar"></span>
+                </span>
+                <div class="progress-value">{{percentage}}%</div>
+            </div>
+        </div>
+
           </div>
 
   
 </div>
 
 <div style="background-color:#edebeb; font-size: 14px;"> 
-  <section class="container content-section text-left">
-     <div class="row">
- 
-            <!--  <div class="progress" ng-if="ProfileInfo.users_type == '1' && to_view_type != 'view' && percentage != '100' ">
-              <div class="progress-bar pro_bar" style="width:10%;background-color: #008cc9!important;" ng-repeat="n in bar">{{n}}0%</div>  
-              <div class="progress-bar pro_bar" style="width:10%;background-color: #ccc!important;" ng-repeat="i in bar1"></div>
-            </div> -->
+<section class="container content-section" >
+  <!--  <div class="row backsection">
+      <div class="col-lg-4 col-md-4" >
+         <div style="float: left;   " class="col-md-2 col-sm-4">
+            <div class="progress blue">
+                <span class="progress-left">
+                    <span class="progress-bar"></span>
+                </span>
+                <span class="progress-right">
+                    <span class="progress-bar"></span>
+                </span>
+                <div class="progress-value">{{percentage}}% </div>
+            </div> 
+        </div> 
+<div style="float: left; margin-left: 120px;"><b>PROFILE INSIGHTS</b>
+<br>Update your profile to <br>increase your score.
+</div>
+      </div>
 
+     <div class="col-lg-4 col-md-4" >
+         <div style="float: left;  " class="col-md-2 col-sm-4">
+            <div class="progress blue">
+                <span class="progress-left">
+                    <span class="progress-bar"></span>
+                </span>
+                <span class="progress-right">
+                    <span class="progress-bar"></span>
+                </span>
+                <div class="progress-value">20% </div>
+            </div> 
+        </div> 
+<div style="float: left; margin-left:120px;"><b>RECRUITER VIEWED</b>
+<br>Update your profile to <br>increase your score.
+</div>
+      </div>
+
+       <div class="col-lg-4 col-md-4" >
+         <div style="float: left; margin-left: 20px;" class="col-md-2 col-sm-4">
+            <div class="progress blue">
+                <span class="progress-left">
+                    <span class="progress-bar"></span>
+                </span>
+                <span class="progress-right">
+                    <span class="progress-bar"></span>
+                </span>
+                <div class="progress-value">10% </div>
+            </div> 
+        </div> 
+<div style="float: left; margin-left:120px;"><b>JOBS APPLIED</b>
+<br>Update your profile to <br>increase your score.
+</div>
+      </div>
+       
+        </div>-->
+ 
+  </section> 
+<!--   <section class="container content-section text-left">
+     <div class="row">
              <div class="progress" ng-if="ProfileInfo.users_type == '1' && to_view_type != 'view' && percentage != '100' ">
               <div class="progress-bar" style="width:{{percentage}}%;background-color: #008cc9!important;" >{{percentage}}%</div>  
               <div class="progress-bar pro_bar" style="width:{{100-percentage}}%;background-color: #ccc!important;"><b>{{100-percentage}}%</b></div>
@@ -210,7 +273,7 @@ Description:  Profile page
 
 
     </div> 
-  </section>
+  </section> -->
 <div  md-swipe-left="onSwipeLeft()" md-swipe-right="onSwipeRight()">
   <section class="container">
     <div class="row backsection">
@@ -257,8 +320,9 @@ Description:  Profile page
 
 
       </div>
-      <div class="col-lg-9 col-md-9 text-center" >
-        <div class="pull-right" ng-show="editTab" style="cursor:pointer;"> 
+      <div ng-show="editTab">
+      <div class="col-lg-6 col-md-6 text-center" >
+        <div class="pull-right" style="cursor:pointer;"> 
          <span ng-if="to_view_type == 'view' && userInfo_type != '2' "> 
          <a href="#!/user/followingcompany">Back</a>
           <a href="#!/user/postsDetails/{{to_view_user_id}}">
@@ -296,7 +360,7 @@ Description:  Profile page
           </span>
 
           </span>
-          <span ng-if="to_view_type != 'view' && userInfo_type == '1'">
+        <!--   <span ng-if="to_view_type != 'view' && userInfo_type == '1'">
           <span ng-click="profileView(ProfileInfo.users_type)"  ng-if="ProfileInfo.users_current_title != '' && ProfileInfo.users_current_employer != '' && localationlist.length != '0'" >
           <img src="public/images/edit2.png">           
           </span>
@@ -315,7 +379,7 @@ Description:  Profile page
             <img src="public/images/edit_orange.png" />
           </span>
             
-          </span>
+          </span> -->
 
         </div>
         <div style="clear: both;"></div>
@@ -371,6 +435,8 @@ Description:  Profile page
           <a href="#!/user/postsDetails/{{to_view_user_id}}"> <button type="button" class="btn btn-info" style="background-color: #5b9bd5;text-transform: unset; margin-left: 15px;"  >Posts</button></a>
          </span>
 
+
+
          </div>
         <!--  <div style="margin-top:10px;margin-bottom:20px;">
           
@@ -390,8 +456,53 @@ Description:  Profile page
            </div> 
           </div>
         </div> -->
-      </div>
 
+      </div> 
+
+    </div>
+    <div class="col-lg-3 col-md-3" >
+    
+    <div align="right">
+          <span ng-if="to_view_type != 'view' && userInfo_type == '1'">
+            <span ng-click="profileView(ProfileInfo.users_type)"  ng-if="ProfileInfo.users_current_title != '' && ProfileInfo.users_current_employer != '' && localationlist.length != '0'" >
+            <img src="public/images/edit2.png">           
+            </span>
+              
+             <span ng-click="profileView(ProfileInfo.users_type)"  ng-if="ProfileInfo.users_current_title == '' || ProfileInfo.users_current_employer == '' || localationlist.length == '0'" >
+              <img src="public/images/edit_orange.png">
+            </span>
+            </span>
+            <span ng-if="to_view_type != 'view' && userInfo_type == '2'">
+
+             <span ng-click="profileView(ProfileInfo.users_type)"  ng-if="localationlist.length != '0' && industryList.length != '0'" >
+            <img src="public/images/edit2.png">           
+            </span>
+              
+             <span ng-click="profileView(ProfileInfo.users_type)"  ng-if="localationlist.length == '0' || industryList.length == '0'" >
+              <img src="public/images/edit_orange.png" />
+            </span>
+              
+            </span>
+    </div>
+    
+         <div align="left">
+          
+            <div class="progress blue">
+                <span class="progress-left">
+                    <span class="progress-bar"></span>
+                </span>
+                <span class="progress-right">
+                    <span class="progress-bar"></span>
+                </span>
+                 <div class="progress-value">{{percentage}}% </div>
+            </div> 
+        
+<div class="text-center"><b>PROFILE COMPLETE</b>
+<br>Update your profile to <br>increase your score.
+</div>
+      </div>
+      
+    </div>
     </div>
     <!--========================================================================-->
     <div ng-show="display_tab1">

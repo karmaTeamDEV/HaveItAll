@@ -204,9 +204,8 @@ document.getElementById('contact-button').onclick = function() {
 	        }	  		
 	         
 		 	$scope.percentage = data.percentage;
-		 	if($scope.percentage == 100){		 		  
-		 		 //document.getElementById("contactform").style.display = 'none';		 
-		 		 $scope.panelnav =false;		 
+		 	if($scope.percentage == 100){
+		 		$scope.panelnav =false;		 
 		 	}else{
 		 		$scope.panelnav =true;
 		 	}
@@ -216,12 +215,7 @@ document.getElementById('contact-button').onclick = function() {
 		  var url = serviceurl + "API/get_profile_percentage/";
           var object = {user_id:$scope.to_view_user_id}
           commonpostService.cmnpost(url,object).then(fetch_profile_percentage, errorDetails);  
-
-
-
-		 
  
-
 			 
 		 $scope.slides = [];
 		 var fetch_gallerylist = function (data) {		 	 

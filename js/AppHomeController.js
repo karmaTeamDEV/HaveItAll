@@ -18,12 +18,13 @@ Description:  home js page
     //           templateUrl: 'templates/profilemodal.html',
     //       });
 
-    
+    	 $scope.percentage = '';
          var fetch_profile_percentage = function (data) {    
+         	$scope.percentage = data.percentage;
           if(data.percentage != 100){
             bootbox.confirm({
                 size: 'small',
-                message: '<p class="text-center" style="color:blue;"><b>'+data.percentage+'%</b> of your profile has been completed. Fill in your details to get more appropriate jobs.</p>',
+                message: '<p class="text-center" style="color:blue;"><b>'+data.percentage+'%</b> completed, update your skills to get relevant job alerts.</p>',
                 buttons: {
                     confirm: {
                         label: 'Skip',
