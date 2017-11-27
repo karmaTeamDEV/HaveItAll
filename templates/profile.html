@@ -485,9 +485,9 @@ Description:  Profile page
             </span>
     </div>
     
-         <div align="left">
+         <div align="left" ng-if="ProfileInfo.users_type == '1' && to_view_type != 'view' && percentage != '100' ">
           
-            <div class="progress blue" ng-if="ProfileInfo.users_type == '1' && to_view_type != 'view' && percentage != '100' ">
+            <div class="progress blue" >
                 <span class="progress-left">
                     <span class="progress-bar"></span>
                 </span>
