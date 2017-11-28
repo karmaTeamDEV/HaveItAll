@@ -485,5 +485,51 @@ Description: viewed users for company
 		}
 	}
 
+	function viewed_usercount_post()
+	{
+		//echo $table;	
+		$post_data = json_decode(file_get_contents("php://input"));	
+		 
+		$userid = $post_data->user_id;	 
+		$record = $this->API_following_company_model->viewed_count( $userid);	
+		$myrow = $this->API_following_company_model->total_viewed_count();
+		//echo "<pre>";print_r($record);exit;
+		$totalView = round(($record[0][cnt]/$myrow[0][total_view_count])*100);
+		if($totalView)
+		{
+			//echo round($totalView);exit;
+			$success = array('count' => $totalView,'totalView' => $myrow[0][total_view_count] );
+			$this->response($success, 200);
+		}
+		else{
+			$Error = array('message' => 'error' );
+			$this->response($Error, 200);
+		}
+
+	}
+
+	function applied_usercount_post()
+	{
+		//echo $table;	
+		$post_data = json_decode(file_get_contents("php://input"));	
+		  
+		$userid = $post_data->user_id;	 
+		$record = $this->API_following_company_model->user_applied_count( $userid);	
+		$myrow = $this->API_following_company_model->total_jobs_count();
+		//echo "<pre>";print_r($record);exit;
+		$totalView = round(($record[0][applied_jobs]/$myrow[0][total_jobs])*100);
+		if($totalView)
+		{
+			//echo round($totalView);exit;
+			$success = array('count' => $totalView,'totalJob' => $myrow[0][total_jobs],'applied_jobs' => $record[0][applied_jobs] );
+			$this->response($success, 200);
+		}
+		else{
+			$Error = array('message' => 'error' );
+			$this->response($Error, 200);
+		}
+
+	}
+
 
   }

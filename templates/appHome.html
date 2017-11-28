@@ -222,7 +222,7 @@
         <span class="progress-right">
           <span class="progress-bar"></span>
         </span>
-        <div class="progress-value">20% </div>
+        <div class="progress-value">{{viewed_user_count}}% </div>
       </div> 
     </div> 
     <div style=" margin-bottom: 8px;"><b>VIEWED BY RECRUITER</b>
@@ -239,7 +239,7 @@
       <span class="progress-right">
         <span class="progress-bar"></span>
       </span>
-      <div class="progress-value">10% </div>
+      <div class="progress-value">{{applied_percentage}}% </div>
     </div> 
   </div> 
   <div><b>JOBS APPLIED</b>
@@ -352,7 +352,7 @@
            </td>
             <td></td>
            <td align="center" width="40%" valign="top">
-             <div class="jobboard-txt"> 120 </div> 
+             <div class="jobboard-txt"> {{applied_jobs}} </div> 
               <div><b>APPLIED </b></div>
            </td>
          </tr>
@@ -368,14 +368,14 @@
           <div class="arrow-right1" ></div>
         </td>
         <td align="center" width="40%" valign="top">
-         <div class="jobboard-txt"> 3870 </div> 
+         <div class="jobboard-txt"> {{total_jobs}} </div> 
          <div><b>JOBS </b></div>
        </td>
      </tr>
      <tr><td colspan="3" height="20">&nbsp;</td></tr>
       <tr>            
      <td align="center" valign="top">
-       <div class="jobboard-txt"> 78955 </div> 
+       <div class="jobboard-txt"> {{totalView}} </div> 
         <div><b>EMPLOYERS </b></div>
      </td>             
           

@@ -754,6 +754,83 @@ function applied_users_for_company($company_id='', $status='',$short_type='',$ne
 		
 	}
 
+	function viewed_count($user_id)
+	{	
+		$sql = "SELECT count(id) as cnt FROM `hia_user_following_company` WHERE `user_id` = '$user_id'"; 
+		 
+		//echo $sql;exit;
+
+		if ( ! $this->db->simple_query($sql))
+		{
+			$error = $this->db->error();			
+			return $error;
+		}
+		else
+		{
+			$query = $this->db->query($sql);			
+			return $query->result_array();
+		}
+		
+	}
+
+	function total_viewed_count()
+	{	
+		$sql = "SELECT count(users_id) as total_view_count FROM `hia_users` WHERE `users_type` = '2' AND `users_status` = '0' "; 
+		  
+		//echo $sql;exit;
+
+		if ( ! $this->db->simple_query($sql))
+		{
+			$error = $this->db->error();			
+			return $error;
+		}
+		else
+		{
+			$query = $this->db->query($sql);			
+			return $query->result_array();
+		}
+		
+	}
+
+
+	function total_jobs_count()
+	{	
+		$sql = "SELECT count(jobpost_id) as total_jobs FROM `hia_jobpost` where jobpost_status='3'"; 
+		 
+		//echo $sql;exit;
+
+		if ( ! $this->db->simple_query($sql))
+		{
+			$error = $this->db->error();			
+			return $error;
+		}
+		else
+		{
+			$query = $this->db->query($sql);			
+			return $query->result_array();
+		}
+		
+	}
+
+	function user_applied_count($user_id)
+	{	
+		$sql = "SELECT count(id) as applied_jobs  FROM `hia_user_applied_jobs` WHERE `user_id` = '$user_id' "; 
+		  
+		//echo $sql;exit;
+
+		if ( ! $this->db->simple_query($sql))
+		{
+			$error = $this->db->error();			
+			return $error;
+		}
+		else
+		{
+			$query = $this->db->query($sql);			
+			return $query->result_array();
+		}
+		
+	}
+
 	 
 
 

@@ -51,7 +51,27 @@ Description:  home js page
    var url = serviceurl + "API/get_profile_percentage/";
    var object = {user_id:$localStorage.ses_userdata.users_id}
    commonpostService.cmnpost(url,object).then(fetch_profile_percentage, errorDetails);   
+     
+     $scope.viewed_user_count = '';
+     var get_viewed_user_count = function (data) {    
+     	//alert(data);
+     	$scope.viewed_user_count = data.count;
+     	$scope.totalView = data.totalView;
+     };
+   var url = serviceurl + "API_following/viewed_usercount/";
+   var object = {user_id:$localStorage.ses_userdata.users_id}
+   commonpostService.cmnpost(url,object).then(get_viewed_user_count, errorDetails);
 
+    $scope.applied_percentage = '';
+     var get_applied_user_count = function (data) {    
+     	//alert(data.count);
+     	$scope.applied_percentage = data.count;
+     	$scope.total_jobs = data.totalJob;
+     	$scope.applied_jobs = data.applied_jobs;
+     };
+   var url = serviceurl + "API_following/applied_usercount/";
+   var object = {user_id:$localStorage.ses_userdata.users_id}
+   commonpostService.cmnpost(url,object).then(get_applied_user_count, errorDetails);    
 
 
 			 $scope.go_to_following = function (tab_to_view) {
