@@ -491,14 +491,16 @@ Description: viewed users for company
 		$post_data = json_decode(file_get_contents("php://input"));	
 		 
 		$userid = $post_data->user_id;	 
-		$record = $this->API_following_company_model->viewed_count( $userid);	
+		$record = $this->API_following_company_model->viewed_count( $userid);
+		$user_jobviewed = $this->API_following_company_model->user_jobviewed_count( $userid);
+		$user_save = $this->API_following_company_model->user_saved_count( $userid);	
 		$myrow = $this->API_following_company_model->total_viewed_count();
 		//echo "<pre>";print_r($record);exit;
 		$totalView = round(($record[0][cnt]/$myrow[0][total_view_count])*100);
 		if($totalView)
 		{
 			//echo round($totalView);exit;
-			$success = array('count' => $totalView,'totalView' => $myrow[0][total_view_count] );
+			$success = array('count' => $totalView,'totalView' => $myrow[0][total_view_count] ,'USER_VIEW_CNT' => $user_jobviewed[0][USER_VIEW_CNT],'USER_SAVE_CNT' => $user_save[0][USER_SAVE_CNT] );
 			$this->response($success, 200);
 		}
 		else{

@@ -831,6 +831,48 @@ function applied_users_for_company($company_id='', $status='',$short_type='',$ne
 		
 	}
 
+	function user_jobviewed_count($user_id)
+	{	
+		$sql = "SELECT  count(distinct(job_post_id)) as USER_VIEW_CNT
+				FROM `hia_user_view_jobs`
+				WHERE user_id= '$user_id' "; 
+		  
+		//echo $sql;exit;
+
+		if ( ! $this->db->simple_query($sql))
+		{
+			$error = $this->db->error();			
+			return $error;
+		}
+		else
+		{
+			$query = $this->db->query($sql);			
+			return $query->result_array();
+		}
+		
+	}
+
+	function user_saved_count($user_id)
+	{	
+		$sql = "SELECT count(id) as USER_SAVE_CNT
+				FROM `hia_user_saved_jobs`
+				WHERE user_id= '$user_id' "; 
+		  
+		//echo $sql;exit;
+
+		if ( ! $this->db->simple_query($sql))
+		{
+			$error = $this->db->error();			
+			return $error;
+		}
+		else
+		{
+			$query = $this->db->query($sql);			
+			return $query->result_array();
+		}
+		
+	}
+
 	 
 
 

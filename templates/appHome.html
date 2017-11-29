@@ -106,7 +106,7 @@
     top: 5%;
     left: 5%;
 }
-.progress.blue .progress-bar{
+/*.progress.blue .progress-bar{
     border-color: #049dff;
 }
 .progress.blue .progress-left .progress-bar{
@@ -129,7 +129,7 @@
 }
 .progress.green .progress-left .progress-bar{
     animation: loading-5 1.2s linear forwards 1.8s;
-}
+}*/
 @keyframes loading-1{
     0%{
         -webkit-transform: rotate(0deg);
@@ -339,7 +339,7 @@
           <div class="arrow-right"></div>
         </td>
         <td align="center" width="40%" valign="top">
-         <div class="jobboard-txt"> 1233</div> 
+         <div class="jobboard-txt"> {{USER_VIEW_CNT}}</div> 
          <div><b>VIEWED </b></div>
        </td>
      </tr>
@@ -347,7 +347,7 @@
       <tr>
             
            <td align="center" valign="top">
-             <div class="jobboard-txt"> 45 </div> 
+             <div class="jobboard-txt"> {{USER_SAVE_CNT}} </div> 
               <div><b>SHORTLISTED </b></div>
            </td>
             <td></td>

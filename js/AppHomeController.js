@@ -21,6 +21,7 @@ Description:  home js page
     	 $scope.percentage = '';
          var fetch_profile_percentage = function (data) {    
          	$scope.percentage = data.percentage;
+         	//alert($scope.percentage);
           if(data.percentage != 100){
             bootbox.confirm({
                 size: 'small',
@@ -57,6 +58,9 @@ Description:  home js page
      	//alert(data);
      	$scope.viewed_user_count = data.count;
      	$scope.totalView = data.totalView;
+     	
+     	$scope.USER_VIEW_CNT = data.USER_VIEW_CNT;
+     	$scope.USER_SAVE_CNT = data.USER_SAVE_CNT;
      };
    var url = serviceurl + "API_following/viewed_usercount/";
    var object = {user_id:$localStorage.ses_userdata.users_id}
