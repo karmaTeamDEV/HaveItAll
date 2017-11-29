@@ -204,7 +204,8 @@
           <span class="progress-right">
             <span class="progress-bar"></span>
           </span>
-          <div class="progress-value">{{percentage}}% </div>
+          <div class="progress-value" ng-if="percentage != '' ">{{percentage}}% </div>
+          <div class="progress-value" ng-if="percentage == '' ">0% </div>
         </div> 
       </div>   
        <div style="margin-bottom: 8px;"><b>PROFILE COMPLETE</b>
@@ -222,7 +223,9 @@
         <span class="progress-right">
           <span class="progress-bar"></span>
         </span>
-        <div class="progress-value">{{viewed_user_count}}% </div>
+        <div class="progress-value" ng-if="viewed_user_count != '' ">{{viewed_user_count}}% </div>
+
+        <div class="progress-value" ng-if="viewed_user_count == '' ">0% </div>
       </div> 
     </div> 
     <div style=" margin-bottom: 8px;"><b>VIEWED BY RECRUITER</b>
@@ -239,7 +242,9 @@
       <span class="progress-right">
         <span class="progress-bar"></span>
       </span>
-      <div class="progress-value">{{applied_percentage}}% </div>
+      <div class="progress-value" ng-if="applied_percentage != '' ">{{applied_percentage}}% </div>
+
+       <div class="progress-value" ng-if="applied_percentage == '' ">0% </div>
     </div> 
   </div> 
   <div><b>JOBS APPLIED</b>
@@ -339,7 +344,8 @@
           <div class="arrow-right"></div>
         </td>
         <td align="center" width="40%" valign="top">
-         <div class="jobboard-txt"> {{USER_VIEW_CNT}}</div> 
+         <div class="jobboard-txt" ng-if="USER_VIEW_CNT != '' "> {{USER_VIEW_CNT}}</div><div class="jobboard-txt" ng-if="USER_VIEW_CNT == '' "> 0%</div>
+
          <div><b>VIEWED </b></div>
        </td>
      </tr>
@@ -347,12 +353,14 @@
       <tr>
             
            <td align="center" valign="top">
-             <div class="jobboard-txt"> {{USER_SAVE_CNT}} </div> 
+             <div class="jobboard-txt" ng-if="USER_SAVE_CNT != '' "> {{USER_SAVE_CNT}} </div>
+             <div class="jobboard-txt" ng-if="USER_SAVE_CNT == '' "> 0%</div> 
               <div><b>SHORTLISTED </b></div>
            </td>
             <td></td>
            <td align="center" width="40%" valign="top">
-             <div class="jobboard-txt"> {{applied_jobs}} </div> 
+             <div class="jobboard-txt" ng-if="applied_jobs != '' "> {{applied_jobs}} </div>
+              <div class="jobboard-txt" ng-if="applied_jobs == '' "> 0%</div> 
               <div><b>APPLIED </b></div>
            </td>
          </tr>
@@ -368,14 +376,16 @@
           <div class="arrow-right1" ></div>
         </td>
         <td align="center" width="40%" valign="top">
-         <div class="jobboard-txt"> {{total_jobs}} </div> 
+         <div class="jobboard-txt" ng-if="total_jobs != '' "> {{total_jobs}} </div>
+          <div class="jobboard-txt" ng-if="total_jobs == '' "> 0% </div> 
          <div><b>JOBS </b></div>
        </td>
      </tr>
      <tr><td colspan="3" height="20">&nbsp;</td></tr>
       <tr>            
      <td align="center" valign="top">
-       <div class="jobboard-txt"> {{totalView}} </div> 
+       <div class="jobboard-txt" ng-if="totalView != '' "> {{totalView}} </div> 
+        <div class="jobboard-txt" ng-if="totalView == '' "> 0% </div>
         <div><b>EMPLOYERS </b></div>
      </td>             
           
