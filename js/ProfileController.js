@@ -190,7 +190,7 @@ document.getElementById('contact-button').onclick = function() {
 		}
 
 		
-		 $scope.percentage ='';		  
+		 $scope.percentage ='';	 	  
 		 var fetch_profile_percentage = function (data) {			   	 		 	  	 	
 		 	//alert(JSON.stringify(data.count));
 		 	 $scope.bar = [];
@@ -204,7 +204,8 @@ document.getElementById('contact-button').onclick = function() {
 	        }	  		
 	         
 		 	$scope.percentage = data.percentage;
-		 	if($scope.percentage == 100){
+		 	//alert($localStorage.ses_userdata.users_type);
+		 	if($scope.percentage == 100 || $localStorage.ses_userdata.users_type =='2'){
 		 		$scope.panelnav =false;		 
 		 	}else{
 		 		$scope.panelnav =true;
