@@ -1093,7 +1093,12 @@
   content: "100%";
 }
 
-
+.circlebox{
+  width:70px;height: 70px; background-color: #333; border-radius: 50%;color: #fff; font-size: 24px; line-height: 70px;
+}
+.topBar{
+  background-color:#c7cbea;padding: 2px; color: #333;margin-bottom: 2px;
+}
 </style>
 <!-- About Section -->
  
@@ -1104,7 +1109,7 @@
 
 
 
-<div class="col-lg-3 col-md-3 text-center"  >
+<div class="col-lg-3 col-md-3 text-center">
   
   <div class="panel panel-primary" style="margin-bottom: 0px !important;">
     <div class="panel-heading"  style="background-color: #008cc9 !important; padding: 0px !important;">PROFILE INSIGHTS</div>
@@ -1141,57 +1146,53 @@
 
 </div>
 <div class="col-lg-6 col-md-6 text-center" >
-<div>
-  <div class="row">
+ 
+ 
 
    <div class="box_size" align="center">
     <div class="box_space">
      <div class="box_inner" ng-click="go_to_following('following_me')">
-      <div class="box1" style="border:4px solid #ef3f61;color:#ef3f61;text-align:center;">
+      <div class="box1" style="border:2px solid #008cc9;color:#5d6771;text-align:center;">
         <div><span class="big_text">{{company_following_user_list.length}}</span> New Followers!</div>
         
-        <div align="center" style="margin-top:30px;"><img src="public/images/newfollower.png" class="icon_size"></div>
+        <div align="center" style="margin-top:30px;"><img src="public/images/newfollower1.png" class="icon_size"></div>
       </div>
     </div>
   </div>
   <div style="width:2%;float:left;"></div>
   <div class="box_space">
    <div class="box_inner" ng-click="go_to_not_viewed_jobs('myjobs')">
-     <div class="box1" style="border:4px solid #ffc900;text-align:center;color:#ffc900;">
+     <div class="box1" style="border:2px solid #008cc9;text-align:center;color:#5d6771;">
       <!--    <div><span class="big_text">{{not_viewed_jobs_for_user_list.length}}</span> Unviewed Suggested Jobs.</div>-->  
       <div><span class="big_text">{{matching_jobs_for_user_unfollow_list.length}}</span> New Job Matches!</div>
 
-      <div align="center" style="margin-top:30px;"><img src="public/images/talentmatch.png" class="icon_size"></div>
+      <div align="center" style="margin-top:30px;"><img src="public/images/talentmatch1.png" class="icon_size"></div>
     </div>
   </div>
 </div>
 
 
 </div>
-
-</div>
-
-
-<div class="row">
+ 
 
  <div class="box_size" align="center">
   <div class="box_space">
    <div class="box_inner"  ng-click="go_to_following('notviewed')" >
-     <div class="box1"  style="border:4px solid #00b5f8;text-align:center;color:#00b5f8;">
+     <div class="box1"  style="border:2px solid #008cc9;text-align:center;color:#5d6771;">
       <!--        <div>You have <span class="big_text">{{not_viewed_company_for_user_list.length}}</span> Unviewed Suggested Employers!</div>-->         
       <div><span class="big_text"> {{not_viewed_company_for_user_list.length}} </span> New Employer Matches!</div>
 
-      <div align="center"><img src="public/images/newapplicant.png" class="icon_size"></div>
+      <div align="center"><img src="public/images/newapplicant1.png" class="icon_size"></div>
     </div>
   </div>
 </div>
 <div style="width:2%;float:left;"></div>
 <div class="box_space">
  <div class="box_inner"  ng-click="go_to_not_viewed_jobs('myjobs')">
-   <div class="box1" style="border:4px solid #7cf4dd;color:#00dbec;text-align:center;">
-    <div> <a href="#!/user/user-job" style="color:#00ffff!important;"><span class="big_text">{{matching_jobs_for_user_list.length}}</span> Active Watch List Jobs! </a>
+   <div class="box1" style="border:2px solid #008cc9;color:#00dbec;text-align:center;">
+    <div> <a href="#!/user/user-job" style="color:#5d6771!important;"><span class="big_text">{{matching_jobs_for_user_list.length}}</span> Active Watch List Jobs! </a>
     </div>
-    <div align="center" class="img_position"><img src="public/images/activejob.png" class="icon_size"></div>
+    <div align="center" class="img_position"><img src="public/images/activejob1.png" class="icon_size"></div>
   </div>
 </div>
 
@@ -1204,8 +1205,8 @@
 
 <div class="bottom_space"></div>
 
-</div>
-</div>
+ 
+ 
 </div>
 <div class="col-lg-3 col-md-3 text-center" style="padding-top: 5px;">
   
@@ -1213,64 +1214,43 @@
   <div class="panel panel-primary" style="margin-bottom: 0px !important;">
     <div class="panel-heading text-center"  style="background-color: #008cc9 !important;padding: 0px !important;">MY JOB BOARD</div>
     <div class="panel-body"  style="padding: 0px !important;">
-    <div style="background-color: #efefef; padding: 24px 5px;">
-      <div class="text-center">
-       <table align="center" width="100%">
-         <tr>
-           <td width="55%">
-            <div class="jobboard-box" style="background-color:#c7cbea;">
-             <img src="public/images/img10.jpg"><br>
-             ACTIVITIES
-           </div> 
-         </td>
-         <td valign="center" width="5%">
-          <div class="arrow-right"></div>
-        </td>
-        <td align="center" width="40%" valign="top">
-         <div class="jobboard-txt"> {{USER_VIEW_CNT}}</div> 
-         <div><b>VIEWED </b></div>
-       </td>
-     </tr>
-     <tr><td colspan="3" height="20">&nbsp;</td></tr>
-      <tr>
-            
-           <td align="center" valign="top">
-             <div class="jobboard-txt"> {{USER_SAVE_CNT}} </div> 
-              <div><b>SHORTLISTED </b></div>
-           </td>
-            <td></td>
-           <td align="center" width="40%" valign="top">
-             <div class="jobboard-txt"> {{applied_jobs}} </div> 
-              <div><b>APPLIED </b></div>
-           </td>
-         </tr>
-<tr><td colspan="3" height="60">&nbsp;</td></tr>
-           <tr>
-           <td>
-            <div class="jobboard-box" style="background-color:#fcdeb1;">
-             <img src="public/images/img11.jpg"><br>
-             RECOMMENDED
-           </div> 
-         </td>
-         <td valign="center">
-          <div class="arrow-right1" ></div>
-        </td>
-        <td align="center" width="40%" valign="top">
-         <div class="jobboard-txt"> {{total_jobs}} </div> 
-         <div><b>JOBS </b></div>
-       </td>
-     </tr>
-     <tr><td colspan="3" height="20">&nbsp;</td></tr>
-      <tr>            
-     <td align="center" valign="top">
-       <div class="jobboard-txt"> {{totalView}} </div> 
-        <div><b>EMPLOYERS </b></div>
-     </td>             
-          
-    </tr>
-   </table> 
+    <div style="background-color: #efefef; padding: 0px 0px 10px 0px;">
+      
+    <div class="text-left topBar">
+      ACTIVITIES : </div>
 
- </div>
+
+      <div align="center">
+      <div class="circlebox">{{USER_VIEW_CNT}}</div>
+      </div>
+      <div class="text-center"><b>VIEWED</b></div>
+
+
+
+       <div align="center">
+      <div class="circlebox text-center">{{USER_SAVE_CNT}}</div>
+      </div>
+      <div class="text-center"><b>SHORTLISTED</b></div>
+      <div align="center">
+      <div class="circlebox text-center">{{applied_jobs}}</div>
+      </div>
+      <div class="text-center"><b>APPLIED</b></div>
+    
+   <div  class="text-left topBar">
+      RECOMMENDED : </div>
+      <div align="center">
+      <div class="circlebox text-center"> 
+      {{ totalrecommended_jobs }} 
+     </div>
+      </div>
+      <div class="text-center"><b>JOBS</b></div>
+      <div align="center">
+      <div class="circlebox text-center">{{totalView}}</div>
+      </div>
+      <div class="text-center"><b>EMPLOYERS</b></div>
+
+
+      
  
   
 <div style="clear: both;"></div>

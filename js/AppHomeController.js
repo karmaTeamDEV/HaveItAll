@@ -12,11 +12,14 @@ Description:  home js page
 			$scope.Error = "Something went wrong ??";
 		 };
 
-
 		  // var modalInstance = $uibModal.open({
     //           controller: 'PopupCont',
     //           templateUrl: 'templates/profilemodal.html',
     //       });
+/* This JS is for demonstration purpose */
+
+ 
+
 
     	 $scope.percentage = '';
          var fetch_profile_percentage = function (data) {    
@@ -150,7 +153,9 @@ Description:  home js page
 
 			var fetch_matching_jobs_for_user = function (data) {
 				$scope.matching_jobs_for_user_list = data;
-				//console.log($scope.companyList);	
+				 
+				$scope.totalrecommended_jobs = (parseInt($scope.matching_jobs_for_user_list.length)+parseInt($scope.USER_SAVE_CNT)+parseInt($scope.applied_jobs));
+				//alert($scope.totalrecommended_jobs);
 			};
 			 function fetch_user_matching_job() {
 				var url_path = serviceurl + "API_job/match_jobs_for_user/" ;
@@ -171,6 +176,7 @@ Description:  home js page
 		 }
 
 		 fetch_user_matching_job_unfollow();
+
 
 })
 })();
