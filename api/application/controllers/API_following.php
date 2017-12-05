@@ -491,19 +491,17 @@ Description: viewed users for company
 		$post_data = json_decode(file_get_contents("php://input"));	
 		 
 		$userid = $post_data->user_id;	 
-		$record = $this->API_following_company_model->viewed_count( $userid);
+		$viewed_by_recruiter = $this->API_following_company_model->viewed_count($userid);
 		$user_jobviewed = $this->API_following_company_model->user_jobviewed_count( $userid);
 		$user_save = $this->API_following_company_model->user_saved_count( $userid);	
-		$myrow = $this->API_following_company_model->total_viewed_count();
-		//echo "<pre>";print_r($record);exit;
-		$totalView = round(($record[0][cnt]/$myrow[0][total_view_count])*100);
-
-		if($totalView == ''){
-			$totalView = '0';
+		$matched_employer = $this->API_following_company_model->total_matched_employer_count($userid);
+		
+		$viewed_by_recruiter_percentage = round(($viewed_by_recruiter[0][cnt]/count($matched_employer))*100);
+		//echo "<pre>";print_r($viewed_by_recruiter_percentage);exit;
+		if($viewed_by_recruiter_percentage == ''){
+			$viewed_by_recruiter_percentage = '0';
 		}
-		if($myrow[0][total_view_count] == ''){
-			$myrow[0][total_view_count] = '0';
-		}
+		 
 		if($user_jobviewed[0][USER_VIEW_CNT] == ''){
 			$user_jobviewed[0][USER_VIEW_CNT] = '0';
 		}
@@ -512,7 +510,7 @@ Description: viewed users for company
 		}
 		 
 			//echo round($totalView);exit;
-			$success = array('count' => $totalView,'totalView' => $myrow[0][total_view_count] ,'USER_VIEW_CNT' => $user_jobviewed[0][USER_VIEW_CNT],'USER_SAVE_CNT' => $user_save[0][USER_SAVE_CNT] );
+			$success = array('viewed_by_recruiter_percentage' => $viewed_by_recruiter_percentage,'viewed_by_recruiter' => $viewed_by_recruiter[0][cnt],'total_matched' =>count($matched_employer) ,'USER_VIEW_CNT' => $user_jobviewed[0][USER_VIEW_CNT],'USER_SAVE_CNT' => $user_save[0][USER_SAVE_CNT] );
 			$this->response($success, 200);
 		 
 	}
@@ -524,19 +522,19 @@ Description: viewed users for company
 		  
 		$userid = $post_data->user_id;	 
 		$record = $this->API_following_company_model->user_applied_count( $userid);	
-		$myrow = $this->API_following_company_model->total_jobs_count();
+		//$myrow = $this->API_following_company_model->total_jobs_count();
 		//echo "<pre>";print_r($record);exit;
-		$totalView = round(($record[0][applied_jobs]/$myrow[0][total_jobs])*100);
-		if($totalView == ''){
-			$totalView = '0';
-		}
-		if($myrow[0][total_jobs] == ''){
-			$myrow[0][total_jobs] = '0';
-		} 
+		// $totalView = round(($record[0][applied_jobs]/$myrow[0][total_jobs])*100);
+		// if($totalView == ''){
+		// 	$totalView = '0';
+		// }
+		// if($myrow[0][total_jobs] == ''){
+		// 	$myrow[0][total_jobs] = '0';
+		// } 
 		if($record[0][applied_jobs] == ''){
 			$record[0][applied_jobs] = '0';
 		}
-		$success = array('count' => $totalView,'totalJob' => $myrow[0][total_jobs],'applied_jobs' => $record[0][applied_jobs] );
+		$success = array('applied_jobs' => $record[0][applied_jobs] );
 		$this->response($success, 200);
 		 
 

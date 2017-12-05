@@ -773,9 +773,16 @@ function applied_users_for_company($company_id='', $status='',$short_type='',$ne
 		
 	}
 
-	function total_viewed_count()
+	function total_matched_employer_count($user_id)
 	{	
-		$sql = "SELECT count(users_id) as total_view_count FROM `hia_users` WHERE `users_type` = '2' AND `users_status` = '0' "; 
+		$sql = " SELECT hia_type_user_rel.type_rel_userid FROM `hia_type_user_rel` 
+				JOIN hia_users
+				WHERE hia_type_user_rel.type_id IN (SELECT type_id FROM `hia_type_user_rel` 
+				WHERE (type_rel_category='job_fit' OR type_rel_category='employer_fit') AND type_rel_userid='$user_id') 
+				AND hia_type_user_rel.type_rel_userid=hia_users.users_id
+				AND hia_users.users_status='0'
+				AND hia_users.users_type='2'
+				GROUP by hia_type_user_rel.type_rel_userid"; 
 		  
 		//echo $sql;exit;
 
@@ -872,6 +879,8 @@ function applied_users_for_company($company_id='', $status='',$short_type='',$ne
 		}
 		
 	}
+
+	
 
 	 
 

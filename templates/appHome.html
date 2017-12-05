@@ -1096,20 +1096,26 @@
 .circlebox{
   width:70px;height: 70px; background-color: #333; border-radius: 50%;color: #fff; font-size: 24px; line-height: 70px;
 }
-.topBar{
+.topBar
+{
   background-color:#c7cbea;padding: 2px; color: #333;margin-bottom: 2px;
 }
+.sign
+{
+  font-size:48px;line-height:72px;
+}
+
 </style>
-<!-- About Section -->
  
 
 <section class="container content-section text-center">
+
 <div class="row">
 
 
 
 
-<div class="col-lg-3 col-md-3 text-center">
+<!--<div class="col-lg-3 col-md-3 text-center">
   
   <div class="panel panel-primary" style="margin-bottom: 0px !important;">
     <div class="panel-heading"  style="background-color: #008cc9 !important; padding: 0px !important;">PROFILE INSIGHTS</div>
@@ -1144,11 +1150,8 @@
 </div>
 </div>
 
-</div>
+</div>-->
 <div class="col-lg-6 col-md-6 text-center" >
- 
- 
-
    <div class="box_size" align="center">
     <div class="box_space">
      <div class="box_inner" ng-click="go_to_following('following_me')">
@@ -1208,59 +1211,89 @@
  
  
 </div>
-<div class="col-lg-3 col-md-3 text-center" style="padding-top: 5px;">
-  
-
-  <div class="panel panel-primary" style="margin-bottom: 0px !important;">
-    <div class="panel-heading text-center"  style="background-color: #008cc9 !important;padding: 0px !important;">MY JOB BOARD</div>
-    <div class="panel-body"  style="padding: 0px !important;">
-    <div style="background-color: #efefef; padding: 0px 0px 10px 0px;">
-      
-    <div class="text-left topBar">
-      ACTIVITIES : </div>
-
-
-      <div align="center">
-      <div class="circlebox">{{USER_VIEW_CNT}}</div>
-      </div>
-      <div class="text-center"><b>VIEWED</b></div>
-
-
-
-       <div align="center">
-      <div class="circlebox text-center">{{USER_SAVE_CNT}}</div>
-      </div>
-      <div class="text-center"><b>SHORTLISTED</b></div>
-      <div align="center">
-      <div class="circlebox text-center">{{applied_jobs}}</div>
-      </div>
-      <div class="text-center"><b>APPLIED</b></div>
+<div class="col-lg-6 col-md-6 text-left" >
+<div class="panel panel-primary" style="margin-bottom: 0px !important;margin-top:5px;">
+    <div class="panel-heading text-center"  style="background-color: #008cc9 !important; padding: 0px !important;">MY JOB BOARD</div>
+    <div class="panel-body"  style="padding-bottom: 20px !important;padding:25px 0px;">
     
-   <div  class="text-left topBar">
-      RECOMMENDED : </div>
-      <div align="center">
+    <div class="col-lg-2 col-md-2 text-center" >
+    <div align="center">
+      <div class="circlebox">{{USER_SAVE_CNT}}</div>
+        <div class="text-center">(SAVED)</div>
+      </div>
+    </div>
+    <div class="col-lg-1 col-md-1 text-center" >
+    <div class="text-center sign"><b>+</b></div>
+    </div>
+        <div class="col-lg-2 col-md-2 text-center" >
+    <div align="center">
+      <div class="circlebox text-center">{{applied_jobs}}</div>
+        <div class="text-center">(APPLIED)</div>
+      </div>
+    </div>
+     <div class="col-lg-1 col-md-1 text-center" >
+    <div class="text-center sign"><b>+</b></div>
+    </div>
+     <div class="col-lg-3 col-md-3 text-center" >
+    <div align="center">
+      <div class="circlebox text-center">{{matching_jobs_for_user_list.length}}</div>
+      <div class="text-center" >(ACTIVE JOBS)</div>
+      </div>
+    </div>
+     <div class="col-lg-1 col-md-1 text-center" >
+    <div class="text-center sign"><b>=</b></div>
+    </div>
+     <div class="col-lg-2 col-md-2 text-center" >
+    <div align="center">
       <div class="circlebox text-center"> 
       {{ totalrecommended_jobs }} 
-     </div>
       </div>
-      <div class="text-center"><b>JOBS</b></div>
-      <div align="center">
-      <div class="circlebox text-center">{{totalView}}</div>
+        <div class="text-center">(JOBS)</div>
       </div>
-      <div class="text-center"><b>EMPLOYERS</b></div>
-
-
+    </div>
+    <div class=" col-md-8 col-md-offset-2 text-center" >
+    <div align="center" style="margin-top:10PX;">
+        <div class="progress-radial progress-{{applied_percentage}} " style="float:left;"><b></b></div>
+        <div style="padding-top:20px;float:left;padding-left:20px;"><b>JOBS APPLIED </b>
+        <br>Update your profile to <br>increase your score.
+      </div>
       
- 
-  
-<div style="clear: both;"></div>
-</div>
-</div>
-</div>
+      </div>  
+      </div>
+      <div style="clear:both;"></div>
+        <div class="panel-heading text-center"  style="background-color: #008cc9 !important; padding: 0px !important;color:#fff;margin-top:20px;margin-bottom:20px;" >ACTIVITIES</div>  
+    <div class="col-lg-2 col-md-2 text-center"></div>
 
- 
-</div>
+    <div class="col-lg-4 col-md-4 text-center" >
+      <div align="center">
+        <div class="circlebox">{{viewed_by_recruiter}}</div>
+        <div class="text-center">(VIEWED)</div>
+      </div>
+    </div>
+    
+    <div class="col-lg-4 col-md-4 text-center" >
+      <div align="center">
+        <div class="circlebox text-center">{{total_matched}}</div>
+        <div class="text-center" >(EMPLOYERS)</div>
+      </div>
+    </div>
+
+       <div class="col-lg-2 col-md-2 text-center"></div>
+   
+   
+      
+    <div class=" col-md-8 col-md-offset-2 text-center" >
+    <div align="center" style="margin-top:10px;">
+        <div class="progress-radial progress-{{viewed_by_recruiter_percentage}} " style="float:left;"><b></b></div>
+        <div style="padding-top:20px;float:left;padding-left:20px;"><b>VIEWED BY RECRUITER</b>
+        <br>Update your profile to <br>increase your score.
+      </div>
+      
+      </div>  
+      </div>
+
+      </div>
 </div>
 <div style="height: 100px;"></div>
 </section>
-<!-- <div ng-include="'include/bottom.html'"></div> -->
+

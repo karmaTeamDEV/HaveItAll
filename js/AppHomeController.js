@@ -59,8 +59,9 @@ Description:  home js page
      $scope.viewed_user_count = '';
      var get_viewed_user_count = function (data) {    
      	//alert(data);
-     	$scope.viewed_user_count = data.count;
-     	$scope.totalView = data.totalView;
+     	$scope.viewed_by_recruiter_percentage = data.viewed_by_recruiter_percentage;
+     	$scope.viewed_by_recruiter = data.viewed_by_recruiter;
+     	$scope.total_matched = data.total_matched;
      	
      	$scope.USER_VIEW_CNT = data.USER_VIEW_CNT;
      	$scope.USER_SAVE_CNT = data.USER_SAVE_CNT;
@@ -69,11 +70,11 @@ Description:  home js page
    var object = {user_id:$localStorage.ses_userdata.users_id}
    commonpostService.cmnpost(url,object).then(get_viewed_user_count, errorDetails);
 
-    $scope.applied_percentage = '';
+    
      var get_applied_user_count = function (data) {    
      	//alert(data.count);
-     	$scope.applied_percentage = data.count;
-     	$scope.total_jobs = data.totalJob;
+     	//$scope.applied_percentage = data.count;
+     	//$scope.total_jobs = data.totalJob;
      	$scope.applied_jobs = data.applied_jobs;
      };
    var url = serviceurl + "API_following/applied_usercount/";
@@ -150,12 +151,13 @@ Description:  home js page
 			 }
 			 fetch_user_saved_job();
 
-
+			$scope.applied_percentage = '';
 			var fetch_matching_jobs_for_user = function (data) {
 				$scope.matching_jobs_for_user_list = data;
 				 
 				$scope.totalrecommended_jobs = (parseInt($scope.matching_jobs_for_user_list.length)+parseInt($scope.USER_SAVE_CNT)+parseInt($scope.applied_jobs));
-				//alert($scope.totalrecommended_jobs);
+				$scope.applied_percentage = Math.round((parseInt($scope.applied_jobs)/$scope.totalrecommended_jobs)*100);
+				//alert($scope.applied_percentage);
 			};
 			 function fetch_user_matching_job() {
 				var url_path = serviceurl + "API_job/match_jobs_for_user/" ;
