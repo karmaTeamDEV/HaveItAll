@@ -78,7 +78,7 @@
 				var parameter = { job_id: job_id, user_id: $localStorage.ses_userdata.users_id, applied_type: 'user',url : job_url};
 				commonpostService.cmnpost( url_path, parameter).then(after_apply_for_job_user, errorDetails);
 				//console.log($scope.companyList);	
-			};
+			};   
 
 			var after_apply_for_job_user = function (data) {
 				 
@@ -91,9 +91,9 @@
 
 				fetch_user_applied_jobs();
 				if(data.url != ''){
-					$window.open(data.url, '_blank');
+					//$window.open(data.url, '_blank');
 				}else{
-					$window.open('#!/user/user-job', '_blank');
+					//$window.open('#!/user/user-job', '_blank');
 				}
 				
 
