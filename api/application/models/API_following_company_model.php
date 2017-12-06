@@ -756,7 +756,7 @@ function applied_users_for_company($company_id='', $status='',$short_type='',$ne
 
 	function viewed_count($user_id)
 	{	
-		$sql = "SELECT count(id) as cnt FROM `hia_user_following_company` WHERE `user_id` = '$user_id'"; 
+		$sql = "SELECT count(id) as cnt FROM `hia_user_view_company` WHERE `user_id` = '$user_id' GROUP by company_id"; 
 		 
 		//echo $sql;exit;
 
@@ -774,15 +774,26 @@ function applied_users_for_company($company_id='', $status='',$short_type='',$ne
 	}
 
 	function total_matched_employer_count($user_id)
-	{	
-		$sql = " SELECT hia_type_user_rel.type_rel_userid FROM `hia_type_user_rel` 
-				JOIN hia_users
-				WHERE hia_type_user_rel.type_id IN (SELECT type_id FROM `hia_type_user_rel` 
-				WHERE (type_rel_category='job_fit' OR type_rel_category='employer_fit') AND type_rel_userid='$user_id') 
-				AND hia_type_user_rel.type_rel_userid=hia_users.users_id
-				AND hia_users.users_status='0'
-				AND hia_users.users_type='2'
-				GROUP by hia_type_user_rel.type_rel_userid"; 
+	 {	
+	// 	$sql = " SELECT hia_type_user_rel.type_rel_userid FROM `hia_type_user_rel` 
+	// 			JOIN hia_users
+	// 			WHERE hia_type_user_rel.type_id IN (SELECT type_id FROM `hia_type_user_rel` 
+	// 			WHERE (type_rel_category='job_fit' OR type_rel_category='employer_fit') AND type_rel_userid='$user_id') 
+	// 			AND hia_type_user_rel.type_rel_userid=hia_users.users_id
+	// 			AND hia_users.users_status='0'
+	// 			AND hia_users.users_type='2'
+	// 			GROUP by hia_type_user_rel.type_rel_userid"; 
+
+	$sql = "SELECT COM_MATCH.company_id, COM_MATCH.company_name
+				 	FROM(
+					 
+					SELECT DISTINCT COM.* 
+					FROM hia_company AS COM
+					JOIN hia_users AS USR ON (COM.company_id = USR.users_companyid AND USR.users_type = '2' AND USR.company_type != '1')
+					   
+					) COM_MATCH
+					 
+				WHERE  1  GROUP BY COM_MATCH.company_id ";
 		  
 		//echo $sql;exit;
 

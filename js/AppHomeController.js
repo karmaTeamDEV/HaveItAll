@@ -13,11 +13,10 @@ Description:  home js page
 		 };
 
 		  // var modalInstance = $uibModal.open({
-    //           controller: 'PopupCont',
-    //           templateUrl: 'templates/profilemodal.html',
-    //       });
-/* This JS is for demonstration purpose */
-
+	      //           controller: 'PopupCont',
+	      //           templateUrl: 'templates/profilemodal.html',
+	      //       });
+	      /* This JS is for demonstration purpose */
  
 
 
