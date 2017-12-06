@@ -1392,7 +1392,7 @@ Description:  Profile page
          <a ng-if="come_from_tab == 'vieweduser' " href="#!/user/vieweduser">Back</a>
           <a ng-if="come_from_tab == 'applied_view'" href="#!/user/applieduser">Back</a>
           <a href="#!/user/postsDetails/{{to_view_user_id}}"><img src="public/images/post.png" width="32"></a>
-         <a><img src="public/images/message2.png" width="32"></a>
+         <!-- <a><img src="public/images/message2.png" width="32"></a> -->
            <a  ng-click="go_to_next_user(to_view_user_id, come_from_tab, 'prev')"> <img src="public/images/back.png" width="32"> </a> |
            <a ng-click="go_to_next_user(to_view_user_id, come_from_tab, 'next')"> <img src="public/images/next.png" width="32"></a>
          </span>
@@ -2259,7 +2259,7 @@ Description:  Profile page
                     </div>
                   </div>    -->            
                     <carousel>
-                    <div ng-if="slides.length == '0' "  align="center">No Gallery Image Available.</div>
+                    <div ng-if="slides.length == '0' "  align="center">Need to be able to upload pictures.</div>
                       <slide ng-if="slides.length != '0' " ng-repeat="slide in slides" active="slide.active">
                         <img ng-src="{{slide.image}}" style="margin:auto; height: 350px;">                       
                       </slide>
