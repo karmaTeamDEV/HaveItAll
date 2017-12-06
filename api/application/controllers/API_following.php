@@ -497,7 +497,7 @@ Description: viewed users for company
 		$user_save = $this->API_following_company_model->user_saved_count( $userid);	
 		$matched_employer = $this->API_following_company_model->total_matched_employer_count($userid);
 		
-		$viewed_by_recruiter_percentage = round((count($viewed_by_recruiter)/count($matched_employer))*100);
+		$viewed_by_recruiter_percentage = round(($viewed_by_recruiter[0][cnt]/count($matched_employer))*100);
 		//echo "<pre>";print_r($viewed_by_recruiter_percentage);exit;
 		if($viewed_by_recruiter_percentage == ''){
 			$viewed_by_recruiter_percentage = '0';
@@ -511,7 +511,7 @@ Description: viewed users for company
 		}
 		 
 			//echo round($totalView);exit;
-			$success = array('viewed_by_recruiter_percentage' => $viewed_by_recruiter_percentage,'viewed_by_recruiter' => $viewed_by_recruiter,'total_matched' =>count($matched_employer) ,'USER_VIEW_CNT' => $user_jobviewed[0][USER_VIEW_CNT],'USER_SAVE_CNT' => $user_save[0][USER_SAVE_CNT] );
+			$success = array('viewed_by_recruiter_percentage' => $viewed_by_recruiter_percentage,'viewed_by_recruiter' => $viewed_by_recruiter[0][cnt],'total_matched' =>count($matched_employer) ,'USER_VIEW_CNT' => $user_jobviewed[0][USER_VIEW_CNT],'USER_SAVE_CNT' => $user_save[0][USER_SAVE_CNT] );
 
 			$this->response($success, 200);
 		 
