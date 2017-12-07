@@ -954,7 +954,7 @@ Description: company following feeds
              JOIN hia_users AS U ON( UFC.user_id = U.users_id)              
              WHERE U.users_type != '3'
              AND U.users_status != '1'
-             AND U.company_type != '1'  AND UFC.following_type = 'user' 
+             AND U.company_type != '1'  AND UFC.following_type = 'company' 
              AND UFC.company_id = '$id')
              AND p.post_status = '0' ORDER BY  p.post_date DESC";
 
