@@ -21,6 +21,14 @@
      $scope.param_job_id = $stateParams.job_id;
 
 
+      // $scope.click_on_tab = function (tab_id, divid) {       
+      //   alert(tab_id);
+      //   alert(divid);
+      //   $timeout(function() { $( "#"+tab_id ).addClass('active'); $( "#"+divid ).addClass('in active');  },  500);
+
+      // };
+
+
       if($scope.param_job_id){
           $scope.come_from_tab = $localStorage.come_from_tab;
           $scope.jobpost_status = $localStorage.jobpost_status;
@@ -142,24 +150,36 @@
         $scope.panelnav1 = false;
         $scope.panelnav2 = true;
         $scope.panelnav3 = false;
+        $scope.panelnav4 = false;
       }
       if(tab == 2){
         $scope.panelnav = true;
         $scope.panelnav1 = false;
         $scope.panelnav2 = false;
         $scope.panelnav3 = false;
+        $scope.panelnav4 = false;
       }
       if(tab == 3){
         $scope.panelnav = false;
         $scope.panelnav1 = false;
         $scope.panelnav2 = false;
         $scope.panelnav3 = true;
+         $scope.panelnav4 = false;
       }
       if(tab == 4){
         $scope.panelnav = false;
         $scope.panelnav1 = true;
         $scope.panelnav2 = false;
         $scope.panelnav3 = false;
+        $scope.panelnav4 = false;
+      }
+       if(tab == 5){
+         
+        $scope.panelnav = false;
+        $scope.panelnav1 = false;
+        $scope.panelnav2 = false;
+        $scope.panelnav3 = false;
+        $scope.panelnav4 = true;
       }
      	 
      };
@@ -197,7 +217,16 @@
 
      var url = serviceurl + "API/getpostjobList/";
      var obj = {id:$localStorage.ses_userdata.users_companyid,status:'2'}
-     commonpostService.cmnpost(url,obj).then(fetch_arraylistinactive, errorDetails);  
+     commonpostService.cmnpost(url,obj).then(fetch_arraylistinactive, errorDetails); 
+
+     var getAppliedlist = function(data){      
+      $scope.appliedlist = data;
+      //console.log(JSON.stringify($scope.appliedlist));
+     }
+
+     var url = serviceurl + "API/getAppliedlist/";
+     var obj = {companyid:$localStorage.ses_userdata.users_companyid}
+     commonpostService.cmnpost(url,obj).then(getAppliedlist, errorDetails);  
 
      $scope.jobpostlistpublish = [];
      var fetch_arraylistpublish = function(data){ 
@@ -685,11 +714,7 @@
         $window.location.href = "#!/user/postjobview/";       
     };
 
-    // $scope.click_on_tab = function (tab_id, divid) {      
-    //      alert(tab_id);
-    //      alert(divid);
-    //     $timeout(function() { $( "#"+tab_id ).addClass('active'); $( "#"+divid ).addClass('in active');  },  500);
-    //   };
+    
 
     var updatejobStatus = function (data) {
       //alert(JSON.stringify(data)); 
@@ -721,6 +746,8 @@
           //alert(jobid); 
           $state.go("user.vieweduser");            
     };
+
+
 
        
       

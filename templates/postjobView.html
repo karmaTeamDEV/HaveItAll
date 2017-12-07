@@ -25,7 +25,8 @@ padding:3px 0px;
 <div class="col-lg-12">      
 
         <!-- Tab 1 Start/////////////////////////////////////////// -->
-        <div ng-show="listTab">
+        <div ng-show="listTab" class="container"> 
+
           <ul class="nav nav-tabs">
              <li ng-click="activeList(2)" id="published_tab" class="active" ><a  data-toggle="tab" data-target="#notviewed"> Published    </a></li>
 
@@ -36,6 +37,8 @@ padding:3px 0px;
             <li ng-click="activeList(4)" id="viewed_tab"><a data-toggle="tab" data-target="#viewed"> Expired </a></li>
 
              <li><a href="#!/user/postJob"> New Post </a></li>
+
+            <li  ng-click="activeList(5)" id="applied_tab"><a data-toggle="tab" data-target="#applied"> Applied # <span  ng-if="come_from_tab == 'applied'"  ng-init="click_on_tab('applied_tab', 'applied')"></span> </a></li> 
           </ul>
 
           <div class="tab-content" style="padding:0px;"> 
@@ -491,6 +494,101 @@ padding:3px 0px;
                  </div>
                </div> 
 
+
+                 <div id="applied_tab">
+                  <div ng-show="panelnav4">
+ 
+                    <div class="profile_details">
+                      <div style="width:100%;">
+
+                        <div align="center" ng-if="appliedlist.length == '0' ">No Record Found</div>
+                        <!-- Box start -->
+
+                        <div class="box8_left" ng-repeat="joblist in appliedlist" ng-if="appliedlist.length > '0' ">
+                         <div class="box8_back">
+                           <div style="width: 100%;">
+                             <table width="100%">
+                               <tr>
+                                 <td width="50%">
+                                   <div class="blue" align="left" style="margin-bottom: 5px;">{{joblist.title_name}}</div>
+                                 </td>
+                                 <td width="50%">
+                                  <div style="margin-bottom: 5px;" align="right">
+                                    
+                                   <span ng-if="joblist.jobpost_tilldata != '0000-00-00' ">Date posted : {{joblist.jobpost_tilldata | date : 'MM/dd/yyyy'}}</span>
+                                 </div>
+                               </td>
+                             </tr>
+                           </table>
+                         </div>
+                         <table cellspacing="2" width="100%">                 
+                           <tr>
+                            <td width="100"><span style="margin-right:5px;"><img src="public/images/experience.png" /></span>
+                             </td>
+                             <td width="20">&nbsp;</td>
+                             <td><span style="margin-right:5px;"><img src="public/images/location.png" /></span>
+                             
+                              <span class="blue">{{joblist.countryname}},{{joblist.statename}},{{joblist.cityname}}</span>
+                            </td>
+                          </tr>
+                             
+                            <tr>
+                              <td valign="top" width="100">Relevant Titles</td>
+                              <td width="20" valign="top">:</td>
+                              <td valign="top">
+                              <span ng-repeat="area in joblist.arealist | filter: query | limitTo:1">{{area.industry_name | limitTo:50}}</span>
+                            <span ng-if="joblist.arealist.length > 1" ng-click="view_job(joblist.jobpost_id,'expire');">.....</span>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td valign="top" width="100">Seniority</td>
+                              <td width="20" valign="top">:</td>
+                              <td>
+                                <span ng-repeat="seniority in joblist.seniority | filter: query | limitTo:3">{{seniority.seniority_name | limitTo:20}} | </span>
+                                <span ng-if="joblist.seniority.length > 3" ng-click="view_job(joblist.jobpost_id,'expire');">.....</span>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td valign="top" width="120">Job Fit<!--  & Cultural Fit --></td>                       
+                               <td width="20" valign="top">:</td>
+                               <td valign="top"><span ng-repeat="job in joblist.jobfit | filter: query | limitTo:2">{{job.type_name | limitTo:15}} | </span>
+                          <span ng-if="joblist.jobfit.length > 2" ng-click="view_job(joblist.jobpost_id,'expire');">.....</span>
+                           
+                           </td>
+                                 
+                              </tr>
+                              
+                              <tr>
+                                <td valign="top" width="80" >Job URL</td>
+                                <td width="20" valign="top">:</td>
+                                <td valign="top" style="word-break:break-all;">{{joblist.jobpost_url | limitTo:50}}
+                                   <span ng-if="joblist.jobpost_url.length > 50" ng-click="view_job(joblist.jobpost_id,'expire');">.....</span>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td valign="top" width="80" ></td>
+                                <td width="20" valign="top"></td>
+                                <td align="right" valign="top" colspan="8"><span class="blue">Applied By :</span> {{joblist.name}}</td>
+                              </tr>
+                            </table>
+                          </div>
+                          <div class="box9_back">
+                           <div class="pull-left">
+                             <span style="margin-right:10px;"> </span>
+                           </div>
+                           <div class="pull-right">                        
+                             <!-- <span>
+                               <img src="public/images/delete.png" width="20" title="Delete" ng-click="remove(joblist.jobpost_id);">
+                             </span>  -->                      
+                           </div>
+                           <div style="clear:both;"></div>
+                         </div>
+                       </div>  
+                     </div>
+                   </div>
+                 </div>
+               </div>
+               <!--////////////////////////END///////////////////////////////////// -->
              </div>
            </div>
            <!-- Tab 1 End /////////////////////////////////////////// -->
@@ -914,6 +1012,7 @@ padding:3px 0px;
   });
 
   function activaTab(tab){
+
     $('.nav-tabs a[href="#' + tab + '"]').tab('show');
   };
 

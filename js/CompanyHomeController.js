@@ -10,8 +10,8 @@
 		$scope.Error = "Something went wrong ??";
 	};
 
-	 $scope.go_to_active_jobs = function () {
-	 	//alert(3);
+	 $scope.go_to_active_jobs = function (tab) {
+	 	//alert(tab);
 	 	//$state.go("user.postjobview", true); 
 	 	$window.location.href = "#!/user/postjobview/";
 	 	//alert(4);

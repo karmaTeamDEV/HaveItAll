@@ -2071,6 +2071,65 @@ Author: BAMADEB UPADHYAYA
 Create date:  05/29/2017
 Description:  Get jobpost list
 ============================================================================= */
+
+	function getAppliedlist_post(){
+		$post_data = json_decode(file_get_contents("php://input"));
+		$companyid = $post_data->companyid;
+		if(isset($companyid)){
+			$row11 = $this->API_model->get_applied_job($companyid);
+
+			foreach ($row11 as $key2 => $value2) {
+				
+			   $myrow = $this->API_model->get_jobitem($value2['job_post_id']);
+			   $myrow[$key2]['name'] = $value2['users_firstname'].' '.$value2['users_lastname'];	 
+			   //echo "<pre>";print_r($myrow);exit;
+			   foreach ($myrow as $key => $value) {
+				$row = $this->API_model->get_master_record('jobpost_company_relation','jobpost_id',$value['jobpost_id'],'relation_id');
+				//echo "<pre>";print_r($row);exit;
+				 $locationlist  = '';
+				foreach ($row as $key1 => $value1) {	
+				 
+				 	if($value1['type'] == 'area'){				  
+				 		$arealist = $this->API_model->getpostjobList($value1['jobpost_id'],$value1['type']);				 		 
+				 		 
+				 	}				 	 
+				 	if($value1['type'] == 'jobfit'){				  
+				 		$jobfit = $this->API_model->getpostjobList($value1['jobpost_id'],$value1['type']);	
+				 		 
+				 	}
+				 	if($value1['type'] == 'employerfit'){				  
+				 		$employerfit = $this->API_model->getpostjobList($value1['jobpost_id'],$value1['type']);	
+				 		 
+				 	}		
+					if($value1['type'] == 'seniority'){				  
+				 		$seniority = $this->API_model->getpostjobList($value1['jobpost_id'],$value1['type']);	
+				 		 
+				 	}
+				}
+				 
+				 	
+				$myrow[$key]['arealist'] = $arealist;	
+				$myrow[$key]['jobfit'] = $jobfit;	
+				$myrow[$key]['employerfit'] = $employerfit;		
+				$myrow[$key]['seniority'] = $seniority;	
+
+				//echo "<pre>";print_r($myrow);exit;
+				 
+			  }
+			}
+
+			if(count($myrow)>0)
+			{
+				$this->response($myrow, 200);			 
+			}
+			else
+			{
+				$Error = array();
+				$this->response($Error, 200);
+			}
+		}
+	}
+
 	function getpostjobList_post()
 	{		 
 		$post_data = json_decode(file_get_contents("php://input"));
@@ -3306,7 +3365,7 @@ Description:  Get single job post
 			}
 			if($myrow[0]['users_current_title'] == '' || $myrow[0]['users_current_employer'] == '' ){
 				$percentage = ($percentage+10);
-				$data['current_title'] ='Current title & current employer required!';
+				$data['current_title'] ='Title & employer required!';
 				$count =($count+1);
 			}else{
 				$data['current_title'] = ' ';

@@ -115,6 +115,28 @@ Author: BAMADEB UPADHYAYA
 update date:  7/06/2017
 Description: get list of jobs
 ============================================================================= */
+  public function get_applied_job($id) {
+        $sql =" SELECT AJ.job_post_id,U.users_firstname,U.users_lastname 
+                FROM hia_user_applied_jobs AS AJ 
+                JOIN hia_jobpost AS FC ON (AJ.job_post_id = FC.jobpost_id) 
+                LEFT JOIN hia_user_view_company AS VC ON (AJ.user_id = VC.user_id AND FC.jobpost_companyid = VC.company_id AND VC.company_id = '$id' AND VC.viewing_type='company' ) 
+                LEFT JOIN hia_users AS U ON (U.users_id = AJ.user_id) 
+                WHERE FC.jobpost_companyid = '$id' AND VC.id IS NULL";
+ 
+           // echo $sql;exit;
+
+            if (!$this->db->simple_query($sql))
+            {
+                $error = $this->db->error();                
+                return $error;
+            }
+            else
+            {
+                $query = $this->db->query($sql);                
+                return $query->result_array();
+            }
+    }
+
     public function get_list_job($id, $status,$current_job_id="",$short_type="") {
         $sql ="SELECT `hia_jobpost`.*, `hia_type`.`type_name` as `title_name`, `hia_countries`.`name` as `countryname`, `hia_states`.`name` as `statename`, `hia_cities`.`name` as `cityname`, COUNT(DISTINCT(hia_user_applied_jobs.user_id)) AS applyed_users, COUNT(DISTINCT(hia_user_view_jobs.user_id)) AS viewed_user, `hia_users`.`users_username`
             FROM `hia_jobpost`
@@ -171,6 +193,8 @@ Description: get list of jobs
         //echo $this->db->last_query();exit;      
         return $result->result_array();
     }
+
+
     public function get_users_county_state($id) {
         $this->db->select("users_locations_relation.users_locations_relation_id,users_locations_relation.relation_user_id,users_locations_relation.rel_country_id,users_locations_relation.relation_status,countries.name as countryname");
         $this->db->from('users_locations_relation');
