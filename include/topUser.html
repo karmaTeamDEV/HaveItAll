@@ -31,7 +31,7 @@
 					<li ng-if="userInfo_type == '2' "><a ng-click="check_jobinfo('#!/user/addusers');">Add Users</a></li>
 					<li ng-if="userInfo_type == '2' "><a ng-click="manage_location()">Post a Job</a></li>
           <li ng-if="userInfo_type == '1' && userInfo_companytype == '1' "><a ng-click="manage_location()">Post a Job</a></li>          
-          <li ng-if="userInfo_type == '1' "><a href="#!/user/user-job">View Jobs</a></li>
+          <li ng-if="userInfo_type == '1' "><a ng-click="check_jobinfo('#!/user/user-job');">View Jobs</a></li>
           <li><a ng-click="check_jobinfo('#!/user/gallery');">Gallery</a></li>
           <li ><a ng-click="check_jobinfo('#!/user/posts');">Feeds</a></li>
           <li ng-if="userInfo_type == '2' "><a ng-click="check_jobinfo('#!/user/postjobview/');">View Jobs</a></li>
