@@ -147,7 +147,8 @@ class API extends REST_Controller {
 		
 		if(!empty($_FILES['image'])){
 			$ext = pathinfo($_FILES['image']['name'],PATHINFO_EXTENSION);
-			$image = time().'.'.$ext;
+			//$image = time().'.'.$ext;
+			$image = date('Ymdhis').'.'.$ext;
 			$up =  move_uploaded_file($_FILES["image"]["tmp_name"], image_upload_path.$image);
 			if($up){
 
@@ -2497,7 +2498,8 @@ function  getgalleryList_get($id){
 		
 		if(!empty($_FILES['image'])){
 			$ext = pathinfo($_FILES['image']['name'],PATHINFO_EXTENSION);
-			$image = time().'.'.$ext;
+			//$image = time().'.'.$ext;
+			$image = date('Ymdhis').'.'.$ext;
 			if (!file_exists(gallery_image_upload_path.$user_id)) {
 			    mkdir(gallery_image_upload_path.$user_id, 0777, true);
 			}
@@ -3003,7 +3005,9 @@ Description:  Update cultural fit
 
 	  		if(!empty($_FILES['image'])){
 				$ext = pathinfo($_FILES['image']['name'],PATHINFO_EXTENSION);
-				$image = time().'.'.$ext;
+				//$image = time().'.'.$ext;
+				$image = date('Ymdhis').'.'.$ext;
+				
 				$up =  move_uploaded_file($_FILES["image"]["tmp_name"], image_upload_path.'posts/'.$image);
 	  			if($up){
 	  				$data['post_type'] = 'image';
@@ -3038,7 +3042,8 @@ Description:  Update cultural fit
 
 	  		if(!empty($_FILES['image'])){
 				$ext = pathinfo($_FILES['image']['name'],PATHINFO_EXTENSION);
-				$image = time().'.'.$ext;
+				//$image = time().'.'.$ext;
+				$image = date('Ymdhis').'.'.$ext;
 				$up =  move_uploaded_file($_FILES["image"]["tmp_name"], image_upload_path.'posts/'.$image);
 	  			if($up){
 	  				$data['post_type'] = 'image';
