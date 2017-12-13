@@ -61,6 +61,10 @@ Description:  home js page
      	//alert(data);
      	$scope.viewed_by_recruiter_percentage = data.viewed_by_recruiter_percentage;
      	$scope.viewed_by_recruiter = data.viewed_by_recruiter;
+     	//alert($scope.viewed_by_recruiter);
+     	if($scope.viewed_by_recruiter ==null){
+     		$scope.viewed_by_recruiter = '0';
+     	}
      	$scope.total_matched = data.total_matched;
      	
      	$scope.USER_VIEW_CNT = data.USER_VIEW_CNT;
@@ -157,7 +161,12 @@ Description:  home js page
 				 
 				$scope.totalrecommended_jobs = (parseInt($scope.matching_jobs_for_user_list.length)+parseInt($scope.USER_SAVE_CNT)+parseInt($scope.applied_jobs));
 				$scope.applied_percentage = Math.round((parseInt($scope.applied_jobs)/$scope.totalrecommended_jobs)*100);
-				//alert($scope.applied_percentage);
+				 
+				//alert(isNaN($scope.applied_percentage));
+				 if(isNaN($scope.applied_percentage) ==true){
+				 	$scope.applied_percentage ='0';
+				 }
+				
 			};
 			 function fetch_user_matching_job() {
 				var url_path = serviceurl + "API_job/match_jobs_for_user/" ;
