@@ -84,6 +84,7 @@ Description: user applied for job
 				LEFT JOIN hia_users AS USC ON (COM.company_id = USC.users_companyid AND USC.users_type='2' AND USC.users_status != '1')
 				LEFT JOIN hia_type AS TY ON (JP.jobpost_title = TY.type_id)
 				LEFT JOIN hia_user_following_company AS UFC ON (COM.company_id = UFC.company_id AND UFC.user_id = '$user_id' AND UFC.following_type = 'user')
+				LEFT JOIN hia_user_applied_jobs ON (SJ.job_post_id = hia_user_applied_jobs.job_post_id AND hia_user_applied_jobs.user_id = '$user_id' )
 
 				LEFT JOIN hia_cities ON (JP.jobpost_cityid = hia_cities.id)
 				LEFT JOIN hia_states  ON (JP.jobpost_stateid = hia_states.id)
@@ -91,7 +92,8 @@ Description: user applied for job
 
 				WHERE US.users_status != '1'
 				AND US.users_type = '1'
-				AND US.users_companyid = '' ";
+				AND US.users_companyid = '' 
+				AND  hia_user_applied_jobs.job_post_id IS NULL";
 
 		if ($current_job_id != "") {
 			
