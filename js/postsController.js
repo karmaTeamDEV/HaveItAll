@@ -116,7 +116,9 @@ if(Extension){
           headers: {
                  'Content-Type': undefined
           }
-         }).then(function(response){          
+         }).then(function(response){ 
+                
+                document.getElementById("imageFile").value = "";                  
                 $scope.files = [];
                 $scope.postdatainfo.post_content = '';  
                 fetchrecordsCMSService.fetchrecordsCMS('','getPostlist',$localStorage.ses_userdata.users_id).then(get_list,errorDetails);      
@@ -125,8 +127,8 @@ if(Extension){
        }else{
         
         bootbox.alert("Photo only allows file types of GIF, PNG, JPG, JPEG.");
-         var x = document.getElementById("mydiv");        
-          x.style.display = "none";   
+        var x = document.getElementById("mydiv");        
+        x.style.display = "none";   
 
      }  
 
