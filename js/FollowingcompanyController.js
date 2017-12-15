@@ -20,9 +20,6 @@
 		 	//alert($scope.show_tab);
 
 			 $scope.click_on_tab = function (tab_id, divid) {
-
-				
-				
 				//$timeout( alert(1) ,);
 
 				$timeout(function() { $( "#"+tab_id ).addClass('active'); $( "#"+divid ).addClass('in active');  },  500);
@@ -134,9 +131,18 @@
 
 			var fetch_not_viewed_company_for_user = function (data) {
 				$scope.not_viewed_company_for_user_list = data; 
-				//console.log(data);	
+				
 				angular.forEach($scope.not_viewed_company_for_user_list, function(value, key) {
-				 	 	var get_datal1ist111 = function (data) {				 	 		 
+				 	 	var get_datal1ist111 = function (data) {	
+				 	 		//alert(image_url+$scope.not_viewed_company_for_user_list[key].users_profilepic);	
+				 	 		var result = doesFileExist(image_url+$scope.not_viewed_company_for_user_list[key].users_profilepic); 
+							if (result == true) {
+							    //alert('exists');
+							    $scope.not_viewed_company_for_user_list[key].profileImage = $scope.not_viewed_company_for_user_list[key].users_profilepic;
+							} else {
+							   //alert('Not exists');
+							   $scope.not_viewed_company_for_user_list[key].profileImage = 'no_company_logo.png';
+							}			 	 		 
 				    		$scope.not_viewed_company_for_user_list[key].localationlist = data;				    	 	
 				    	};				 	  
 				 fetchrecordsCMSService.fetchrecordsCMS('','getlocationdata',value.company_id).then(get_datal1ist111, errorDetails); 
@@ -191,6 +197,18 @@
 			commonpostService.cmnpost( url_path, parameter).then(fetch_viewed_company_for_user, errorDetails);
 		 }
 		 fetch_user_viewed_company();
+
+		function doesFileExist(urlToFile) {
+		    var xhr = new XMLHttpRequest();
+		    xhr.open('HEAD', urlToFile, false);
+		    xhr.send();
+		     
+		    if (xhr.status == "404") {
+		        return false;
+		    } else {
+		        return true;
+		    }
+		}
 
 
 
