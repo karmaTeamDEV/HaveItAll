@@ -68,7 +68,7 @@
       var check_industry = function (data) {
          //alert(JSON.stringify(data));       
         // $scope.postjobinfo.profile_industry = data; 
-         //alert(JSON.stringify($scope.industryList));
+         //alert(JSON.stringify($scope.industryList)); 
            
          $scope.postjobinfo.users_id = $localStorage.ses_userdata.users_id;
          $scope.postjobinfo.users_companyid = $localStorage.ses_userdata.users_companyid;  
