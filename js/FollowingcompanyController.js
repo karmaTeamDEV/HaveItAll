@@ -97,7 +97,15 @@
 				$scope.user_following_company_list = data;
 				//console.log(JSON.stringfy($scope.user_following_company_list));
 				angular.forEach($scope.user_following_company_list, function(value, key) {
-				 	 	var get_datal1ist = function (data) {				 	 		 
+				 	 	var get_datal1ist = function (data) {
+				 	 	   var result = doesFileExist(image_url+$scope.user_following_company_list[key].users_profilepic); 
+							if (result == true) {
+							    //alert('exists');
+							    $scope.user_following_company_list[key].profileImage = $scope.user_following_company_list[key].users_profilepic;
+							} else {
+							   //alert('Not exists');
+							   $scope.user_following_company_list[key].profileImage = 'no_company_logo.png';
+							}				 	 		 
 				    		$scope.user_following_company_list[key].localationlist = data;				    	 	
 				    	};				 	  
 				 fetchrecordsCMSService.fetchrecordsCMS('','getlocationdata',value.company_id).then(get_datal1ist, errorDetails); 
@@ -109,7 +117,15 @@
 				$scope.company_following_user_list = data;
 				//console.log($scope.companyList);	
 				angular.forEach($scope.company_following_user_list, function(value, key) {
-				 	 	var get_datal1ist1 = function (data) {				 	 		 
+				 	 	var get_datal1ist1 = function (data) {	
+				 	 	    var result = doesFileExist(image_url+$scope.company_following_user_list[key].users_profilepic); 
+							if (result == true) {
+							    //alert('exists');
+							    $scope.company_following_user_list[key].profileImage = $scope.company_following_user_list[key].users_profilepic;
+							} else {
+							   //alert('Not exists');
+							   $scope.company_following_user_list[key].profileImage = 'no_company_logo.png';
+							}				 	 		 
 				    		$scope.company_following_user_list[key].localationlist = data;				    	 	
 				    	};				 	  
 				 fetchrecordsCMSService.fetchrecordsCMS('','getlocationdata',value.company_id).then(get_datal1ist1, errorDetails); 
@@ -155,7 +171,16 @@
 				$scope.viewed_company_for_user_list = data;
 				//console.log($scope.companyList);
 				angular.forEach($scope.viewed_company_for_user_list, function(value, key) {
-				 	 	var get_datal1ist1111 = function (data) {				 	 		 
+				 	 	var get_datal1ist1111 = function (data) {
+				 	 		//alert(image_url+$scope.viewed_company_for_user_list[key].users_profilepic);
+				 	 		var result = doesFileExist(image_url+$scope.viewed_company_for_user_list[key].users_profilepic); 
+							if (result == true) {
+							    //alert('exists');
+							    $scope.viewed_company_for_user_list[key].profileImage = $scope.viewed_company_for_user_list[key].users_profilepic;
+							} else {
+							   //alert('Not exists');
+							   $scope.viewed_company_for_user_list[key].profileImage = 'no_company_logo.png';
+							}				 	 		 
 				    		$scope.viewed_company_for_user_list[key].localationlist = data;				    	 	
 				    	};				 	  
 				 fetchrecordsCMSService.fetchrecordsCMS('','getlocationdata',value.company_id).then(get_datal1ist1111, errorDetails); 
