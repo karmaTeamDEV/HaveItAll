@@ -1364,8 +1364,8 @@ Description:  Profile page
                  
           </div>
         
-          <a target="_blank" ng-href="{{ProfileInfo.users_twitter_link ? ProfileInfo.users_twitter_link:'#!/user/profile//'}}" ><img src="public/images/facebook.png"></a>
-          <a target="_blank" ng-href="{{ProfileInfo.users_facebook_link ? ProfileInfo.users_facebook_link:'#!/user/profile//'}}" ><img src="public/images/twitter.png"></a>
+          <a target="_blank" ng-href="{{ProfileInfo.users_facebook_link ? ProfileInfo.users_facebook_link:'#!/user/profile//'}}" ><img src="public/images/facebook.png"></a>
+          <a target="_blank" ng-href="{{ProfileInfo.users_twitter_link ? ProfileInfo.users_twitter_link:'#!/user/profile//'}}" ><img src="public/images/twitter.png"></a>
           <a target="_blank" ng-href="{{ProfileInfo.users_istagram_link ? ProfileInfo.users_istagram_link:'#!/user/profile//'}}" ><img src="public/images/camera.png"></a>
          <a target="_blank" ng-href="{{ProfileInfo.users_linkedin_link ? ProfileInfo.users_linkedin_link:'#!/user/profile//'}}" > <img src="public/images/linkedin.png"></a>
          <!--<a ng-href="{{ProfileInfo.users_facebook_link ? ProfileInfo.users_facebook_link:'#!/user/profile//'}}" > <img src="public/images/www.png"></a>-->
@@ -1730,7 +1730,7 @@ Description:  Profile page
     <span class="input-group-addon">
       <img src="public/images/facebook2.png" width="20">
     </span>
-    <input type="text" class="form-control" ng-model="ProfileInfo.users_twitter_link" Placeholder="Add Link" ng-keyup="isValidUrl(ProfileInfo.users_twitter_link);" http-prefix>                                        
+    <input type="text" class="form-control" ng-model="ProfileInfo.users_facebook_link" Placeholder="Add Link" ng-keyup="isValidUrl(ProfileInfo.users_facebook_link);" http-prefix>                                        
   </div>  
 
 </div>
@@ -1741,7 +1741,7 @@ Description:  Profile page
     <span class="input-group-addon">
       <img src="public/images/twitter2.png" width="20">
     </span>
-    <input type="text" class="form-control" ng-model="ProfileInfo.users_facebook_link" Placeholder="Add Link" ng-keyup="isValidUrl(ProfileInfo.users_facebook_link);" http-prefix>                                        
+    <input type="text" class="form-control" ng-model="ProfileInfo.users_twitter_link" Placeholder="Add Link" ng-keyup="isValidUrl(ProfileInfo.users_twitter_link);" http-prefix>                                        
   </div>  
 </div>
 <div style="margin-top:10px;width:49%;margin-bottom:10px;" class="pull-right">
