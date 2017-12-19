@@ -44,9 +44,9 @@ class API_following_company_model extends CI_Model {
 			$sql.= " AND UFC.user_id = '$user_id' ";
 		}
 				
-		 if ($company_id != "") {
-		 	$sql.= " AND UFC.company_id = '$company_id' ";
-		 }
+		 // if ($company_id != "") {
+		 // 	$sql.= " AND UFC.company_id = '$company_id' ";
+		 // }
 
 		if ($company_id != "") {
 			if($lebel == 'next'){
@@ -338,7 +338,7 @@ Description:  suggeted company for user list
 			$sql.= " ORDER BY USER_MATCH.users_id ASC  ";
 		}
 
-		//echo $sql;		
+		//echo $sql;exit;	
 		
 		if ( ! $this->db->simple_query($sql))
 		{
