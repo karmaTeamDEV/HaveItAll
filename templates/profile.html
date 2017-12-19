@@ -2086,7 +2086,7 @@ Description:  Profile page
         <div>
           <div class="blue" style="margin-top: 10px;font-weight: bold;"> 
             {{industry.industry_name}}
-            <span ng-if="industry.area.length == '0' " style="font-weight: normal; margin-left: 10px;">
+            <span ng-if="to_view_type != 'view' && industry.area.length == '0'  " style="font-weight: normal; margin-left: 10px;">
                 <a href="#!/user/industry" style="color: blue;">add experience</a>
             </span>
            <!--  <span style=" float: right; font-weight: normal;">{{industry.level}}</span> -->
