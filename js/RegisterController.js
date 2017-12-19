@@ -105,7 +105,7 @@ Description:  Register js page
 	$scope.registercompanyRuser = function(){	  
 		  //alert(JSON.stringify($scope.userregisterInfo));
 		  //alert($localStorage.ses_jobfit);	  
-
+		  $scope.userregisterInfo.company_type='2';
 		  registeruserService.registerCompanyUser($scope.userregisterInfo).then(registeruserSuccess, errorDetails);
 
 		};
