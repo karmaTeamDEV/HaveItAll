@@ -2257,8 +2257,12 @@ Description:  Profile page
                       <div class="amazingcarousel-nav"></div>
                       <div class="amazingcarousel-engine"><a href="http://amazingcarousel.com">jQuery Scroller</a></div>
                     </div>
-                  </div>    -->            
-                    <carousel>
+                  </div>    -->    
+                   <div style="width:4%;float: right;"  ng-if="to_view_type != 'view'" >
+                    <a href="#!/user/gallery"><img src="public/images/edit3.png" /></a>
+                  </div>
+         
+                    <carousel >
                     <div ng-if="slides.length == '0' "  align="center">Need to be able to upload pictures.</div>
                       <slide ng-if="slides.length != '0' " ng-repeat="slide in slides" active="slide.active">
                         <img ng-src="{{slide.image}}" style="margin:auto; height: 350px;">                       
