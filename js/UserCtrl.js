@@ -13,6 +13,10 @@ app.controller('UserCtrl', function ($scope,$window,$state,$localStorage,commonp
         $localStorage.$reset();            
         $state.go("login", {}, { reload: true });
     };
+
+    $scope.historyBack = function(){
+        $window.history.back();
+    }
     
         $scope.userInfo_email = {};
         
@@ -75,12 +79,15 @@ app.controller('UserCtrl', function ($scope,$window,$state,$localStorage,commonp
         $localStorage.jobinfo.jobfit = [];
         $localStorage.flag = '';
         $scope.check_jobinfo = function(path){
+          
               if(path == '#!/user/user-job' || path == '#!/user/postjobview/'){
                   $localStorage.tab_to_view = 'myjobs';
               }
                if(path == '#!/user/followingcompany' || path == '#!/user/followuser'){
                   $localStorage.tab_to_view = 'following';
               }
+              //alert( $localStorage.tab_to_view);
+
               // alert(JSON.stringify($localStorage.jobinfo.length));
               // alert(JSON.stringify($localStorage.jobinfo.level.length)); 
               // alert(JSON.stringify($localStorage.jobinfo.jobfit.length));

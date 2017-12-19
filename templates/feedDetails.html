@@ -150,7 +150,7 @@ body
 </div>
 </div>
  -->
-<div align="right"><a href="#!/user/profile//">Back</a></div>
+<div align="right"><a ng-click="historyBack()">Back</a></div>
 <div class="box_shadow1" ng-if="postdatalist.length == '' ">No Post Found.</div>
 <div class="box_shadow1" ng-repeat="datalist in postdatalist" ng-if="postdatalist.length != '' ">
 	<div>
