@@ -20,9 +20,6 @@
 		 	//alert($scope.show_tab);
 
 			 $scope.click_on_tab = function (tab_id, divid) {
-
-				
-				
 				//$timeout( alert(1) ,);
 
 				$timeout(function() { $( "#"+tab_id ).addClass('active'); $( "#"+divid ).addClass('in active');  },  1000);
@@ -103,7 +100,7 @@
 			/* SAVE A JOB FUNCTION */
 			 $scope.save_a_job_for_user = function (job_id) {
 
-				//alert(job_id);
+				alert(job_id);
 
 				var url_path = serviceurl + "API_job/insert_save_job_by_user/" ;
 				var parameter = { job_id: job_id, user_id: $localStorage.ses_userdata.users_id, saving_type: 'user' };
@@ -122,28 +119,95 @@
 
 			};
 
+			function doesFileExist(urlToFile) {
+			    var xhr = new XMLHttpRequest();
+			    xhr.open('HEAD', urlToFile, false);
+			    xhr.send();
+			     
+			    if (xhr.status == "404") {
+			        return false;
+			    } else {
+			        return true;
+			    }
+			}
+
 
 			/* ON PAGE LOAD CALLBACK FUNCTIONS*/	
 
 			var set_user_applied_jobs = function (data) {
 				$scope.user_applied_jobs_list = data;
 				//console.log($scope.companyList);	
+
+				angular.forEach($scope.user_applied_jobs_list, function(value, key) {
+				  // alert(image_url+$scope.matching_jobs_for_user_list[key].company_logo);	 	 
+		 	 	   var result = doesFileExist(image_url+$scope.user_applied_jobs_list[key].company_logo); 
+					if (result == true) {
+					    //alert('exists');
+					    $scope.user_applied_jobs_list[key].picture = $scope.user_applied_jobs_list[key].company_logo;
+					} else {
+					   //alert('Not exists');
+					   $scope.user_applied_jobs_list[key].picture = 'no_company_logo.png';
+					}				 	 		 
+				    		 				    	 	
+				});
 			};
 
 
 			var fetch_matching_jobs_for_user = function (data) {
-				$scope.matching_jobs_for_user_list = data;
-				//console.log($scope.matching_jobs_for_user_list);	
+				$scope.matching_jobs_for_user_list = data;			 
+				//console.log(JSON.stringify($scope.matching_jobs_for_user_list));
+
+				angular.forEach($scope.matching_jobs_for_user_list, function(value, key) {
+				  // alert(image_url+$scope.matching_jobs_for_user_list[key].company_logo);	 	 
+		 	 	   var result = doesFileExist(image_url+$scope.matching_jobs_for_user_list[key].company_logo); 
+					if (result == true) {
+					    //alert('exists');
+					    $scope.matching_jobs_for_user_list[key].picture = $scope.matching_jobs_for_user_list[key].company_logo;
+					} else {
+					   //alert('Not exists');
+					   $scope.matching_jobs_for_user_list[key].picture = 'no_company_logo.png';
+					}				 	 		 
+				    		 				    	 	
+				});
+
+
 			};
 
 			var fetch_matching_jobs_for_user_unfollow = function (data) {
 				$scope.matching_jobs_for_user_unfollow_list = data;
 				//console.log($scope.matching_jobs_for_user_unfollow_list);	
+
+				angular.forEach($scope.matching_jobs_for_user_unfollow_list, function(value, key) {
+				  // alert(image_url+$scope.matching_jobs_for_user_list[key].company_logo);	 	 
+		 	 	   var result = doesFileExist(image_url+$scope.matching_jobs_for_user_unfollow_list[key].company_logo); 
+					if (result == true) {
+					    //alert('exists');
+					    $scope.matching_jobs_for_user_unfollow_list[key].picture = $scope.matching_jobs_for_user_unfollow_list[key].company_logo;
+					} else {
+					   //alert('Not exists');
+					   $scope.matching_jobs_for_user_unfollow_list[key].picture = 'no_company_logo.png';
+					}				 	 		 
+				    		 				    	 	
+				});
+
 			};
 
 			var set_user_saved_job = function (data) {
 				$scope.saved_job_for_user_list = data;
 				//console.log($scope.saved_job_for_user_list);	
+
+				angular.forEach($scope.saved_job_for_user_list, function(value, key) {
+				  // alert(image_url+$scope.matching_jobs_for_user_list[key].company_logo);	 	 
+		 	 	   var result = doesFileExist(image_url+$scope.saved_job_for_user_list[key].company_logo); 
+					if (result == true) {
+					    //alert('exists');
+					    $scope.saved_job_for_user_list[key].picture = $scope.saved_job_for_user_list[key].company_logo;
+					} else {
+					   //alert('Not exists');
+					   $scope.saved_job_for_user_list[key].picture = 'no_company_logo.png';
+					}				 	 		 
+				    		 				    	 	
+				});
 
 			};
 
@@ -218,6 +282,8 @@
 				//console.log($scope.companyList);	
 			};
 
+			 
+		 
 
 })
 })();
