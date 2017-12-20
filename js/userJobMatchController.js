@@ -113,6 +113,7 @@
 				$("#matching"+data.job_id).remove();
 				//$("#saved"+data.job_id).remove();
 				$("#viewed"+data.job_id).remove();
+				$("#suggested"+data.job_id).remove();
 
 				fetch_user_saved_job();
 
