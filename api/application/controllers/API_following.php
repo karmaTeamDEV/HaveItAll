@@ -217,47 +217,47 @@ Description:  suggeted company for user
 
 	}
 
-	// function follow_company_by_user_post()
-	// {
-	// 	//echo $table;	
-	// 	$post_data = json_decode(file_get_contents("php://input"));	
-	// 	$company_id = $post_data->company_id; 
-	// 	$user_id = $post_data->user_id; 
-	// 	$following_type = $post_data->following_type; 
-	// 	//echo "ABCD";
-
-	// 	$data = array('user_id' => $user_id, 'company_id' => $company_id, 'following_type' => $following_type, );
-	// 	$companyid = $this->API_model->insert_cmn_tbl('hia_user_following_company', $data);
-
-	// 		$return = array('company_id' => $company_id, 'user_id' => $user_id );
-	// 		$this->response($return, 200);
-
-	// }
 	function follow_company_by_user_post()
 	{
 		//echo $table;	
 		$post_data = json_decode(file_get_contents("php://input"));	
-		//echo '<pre>';print_r($post_data);exit;
 		$company_id = $post_data->company_id; 
 		$user_id = $post_data->user_id; 
 		$following_type = $post_data->following_type; 
+		//echo "ABCD";
 
-		$followingid = $this->API_following_company_model->get_following_company($company_id,$user_id,$following_type);
-		if(!empty($followingid)){
-			$record = $this->API_following_company_model->delete_following_for_user_company_query( $followingid['0']['id'] ) ;	
-			$return = array('company_id' => $company_id, 'user_id' => $user_id ,'status'=>'delete');
+		$data = array('user_id' => $user_id, 'company_id' => $company_id, 'following_type' => $following_type, );
+		$companyid = $this->API_model->insert_cmn_tbl('hia_user_following_company', $data);
 
-		}else{
-			$data = array('user_id' => $user_id, 'company_id' => $company_id, 'following_type' => $following_type);
-			$companyid = $this->API_model->insert_cmn_tbl('hia_user_following_company', $data);
-			$return = array('company_id' => $company_id, 'user_id' => $user_id,'status'=>'insert' );
-		}
+			$return = array('company_id' => $company_id, 'user_id' => $user_id );
+			$this->response($return, 200);
 
-		//echo "<pre>";print_r($followingid);exit; 
+	} 
+	// function follow_company_by_user_post()
+	// {
+	// 	//echo $table;	
+	// 	$post_data = json_decode(file_get_contents("php://input"));	
+	// 	//echo '<pre>';print_r($post_data);exit;
+	// 	$company_id = $post_data->company_id; 
+	// 	$user_id = $post_data->user_id; 
+	// 	$following_type = $post_data->following_type; 
+
+	// 	$followingid = $this->API_following_company_model->get_following_company($company_id,$user_id,$following_type);
+	// 	if(!empty($followingid)){
+	// 		$record = $this->API_following_company_model->delete_following_for_user_company_query( $followingid['0']['id'] ) ;	
+	// 		$return = array('company_id' => $company_id, 'user_id' => $user_id ,'status'=>'delete');
+
+	// 	}else{
+	// 		$data = array('user_id' => $user_id, 'company_id' => $company_id, 'following_type' => $following_type);
+	// 		$companyid = $this->API_model->insert_cmn_tbl('hia_user_following_company', $data);
+	// 		$return = array('company_id' => $company_id, 'user_id' => $user_id,'status'=>'insert' );
+	// 	}
+
+	// 	//echo "<pre>";print_r($followingid);exit; 
 		 
-		$this->response($return, 200);
+	// 	$this->response($return, 200);
 
-	}
+	// }
 
 	function view_a_company_by_user_post()
 	{
