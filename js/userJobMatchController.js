@@ -100,7 +100,7 @@
 			/* SAVE A JOB FUNCTION */
 			 $scope.save_a_job_for_user = function (job_id) {
 
-				alert(job_id);
+				//alert(job_id);
 
 				var url_path = serviceurl + "API_job/insert_save_job_by_user/" ;
 				var parameter = { job_id: job_id, user_id: $localStorage.ses_userdata.users_id, saving_type: 'user' };
