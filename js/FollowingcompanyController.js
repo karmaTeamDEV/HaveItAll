@@ -101,10 +101,10 @@
 				 	 	   var result = doesFileExist(image_url+$scope.user_following_company_list[key].users_profilepic); 
 							if (result == true) {
 							    //alert('exists');
-							    $scope.user_following_company_list[key].profileImage = $scope.user_following_company_list[key].users_profilepic;
+							    $scope.user_following_company_list[key].profileImage = 'upload/'+$scope.user_following_company_list[key].users_profilepic;
 							} else {
 							   //alert('Not exists');
-							   $scope.user_following_company_list[key].profileImage = 'no_company_logo.png';
+							   $scope.user_following_company_list[key].profileImage = 'public/images/no_company_logo.png';
 							}				 	 		 
 				    		$scope.user_following_company_list[key].localationlist = data;				    	 	
 				    	};				 	  
@@ -121,10 +121,10 @@
 				 	 	    var result = doesFileExist(image_url+$scope.company_following_user_list[key].users_profilepic); 
 							if (result == true) {
 							    //alert('exists');
-							    $scope.company_following_user_list[key].profileImage = $scope.company_following_user_list[key].users_profilepic;
+							    $scope.company_following_user_list[key].profileImage = 'upload/'+$scope.company_following_user_list[key].users_profilepic;
 							} else {
 							   //alert('Not exists');
-							   $scope.company_following_user_list[key].profileImage = 'no_company_logo.png';
+							   $scope.company_following_user_list[key].profileImage = 'public/images/no_company_logo.png';
 							}				 	 		 
 				    		$scope.company_following_user_list[key].localationlist = data;				    	 	
 				    	};				 	  
@@ -154,10 +154,10 @@
 				 	 		var result = doesFileExist(image_url+$scope.not_viewed_company_for_user_list[key].users_profilepic); 
 							if (result == true) {
 							    //alert('exists');
-							    $scope.not_viewed_company_for_user_list[key].profileImage = $scope.not_viewed_company_for_user_list[key].users_profilepic;
+							    $scope.not_viewed_company_for_user_list[key].profileImage = 'upload/'+$scope.not_viewed_company_for_user_list[key].users_profilepic;
 							} else {
 							   //alert('Not exists');
-							   $scope.not_viewed_company_for_user_list[key].profileImage = 'no_company_logo.png';
+							   $scope.not_viewed_company_for_user_list[key].profileImage = 'public/images/no_company_logo.png';
 							}			 	 		 
 				    		$scope.not_viewed_company_for_user_list[key].localationlist = data;				    	 	
 				    	};				 	  
@@ -176,10 +176,10 @@
 				 	 		var result = doesFileExist(image_url+$scope.viewed_company_for_user_list[key].users_profilepic); 
 							if (result == true) {
 							    //alert('exists');
-							    $scope.viewed_company_for_user_list[key].profileImage = $scope.viewed_company_for_user_list[key].users_profilepic;
+							    $scope.viewed_company_for_user_list[key].profileImage = 'upload/'+$scope.viewed_company_for_user_list[key].users_profilepic;
 							} else {
 							   //alert('Not exists');
-							   $scope.viewed_company_for_user_list[key].profileImage = 'no_company_logo.png';
+							   $scope.viewed_company_for_user_list[key].profileImage = 'public/images/no_company_logo.png';
 							}				 	 		 
 				    		$scope.viewed_company_for_user_list[key].localationlist = data;				    	 	
 				    	};				 	  

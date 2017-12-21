@@ -144,10 +144,10 @@
 		 	 	   var result = doesFileExist(image_url+$scope.user_applied_jobs_list[key].company_logo); 
 					if (result == true) {
 					    //alert('exists');
-					    $scope.user_applied_jobs_list[key].picture = $scope.user_applied_jobs_list[key].company_logo;
+					    $scope.user_applied_jobs_list[key].picture = 'upload/'+$scope.user_applied_jobs_list[key].company_logo;
 					} else {
 					   //alert('Not exists');
-					   $scope.user_applied_jobs_list[key].picture = 'no_company_logo.png';
+					   $scope.user_applied_jobs_list[key].picture = 'public/images/no_company_logo.png';
 					}				 	 		 
 				    		 				    	 	
 				});
@@ -163,10 +163,10 @@
 		 	 	   var result = doesFileExist(image_url+$scope.matching_jobs_for_user_list[key].company_logo); 
 					if (result == true) {
 					    //alert('exists');
-					    $scope.matching_jobs_for_user_list[key].picture = $scope.matching_jobs_for_user_list[key].company_logo;
+					    $scope.matching_jobs_for_user_list[key].picture = 'upload/'+$scope.matching_jobs_for_user_list[key].company_logo;
 					} else {
 					   //alert('Not exists');
-					   $scope.matching_jobs_for_user_list[key].picture = 'no_company_logo.png';
+					   $scope.matching_jobs_for_user_list[key].picture = 'public/images/no_company_logo.png';
 					}				 	 		 
 				    		 				    	 	
 				});
@@ -183,10 +183,10 @@
 		 	 	   var result = doesFileExist(image_url+$scope.matching_jobs_for_user_unfollow_list[key].company_logo); 
 					if (result == true) {
 					    //alert('exists');
-					    $scope.matching_jobs_for_user_unfollow_list[key].picture = $scope.matching_jobs_for_user_unfollow_list[key].company_logo;
+					    $scope.matching_jobs_for_user_unfollow_list[key].picture = 'upload/'+$scope.matching_jobs_for_user_unfollow_list[key].company_logo;
 					} else {
 					   //alert('Not exists');
-					   $scope.matching_jobs_for_user_unfollow_list[key].picture = 'no_company_logo.png';
+					   $scope.matching_jobs_for_user_unfollow_list[key].picture = 'public/images/no_company_logo.png';
 					}				 	 		 
 				    		 				    	 	
 				});
@@ -202,10 +202,10 @@
 		 	 	   var result = doesFileExist(image_url+$scope.saved_job_for_user_list[key].company_logo); 
 					if (result == true) {
 					    //alert('exists');
-					    $scope.saved_job_for_user_list[key].picture = $scope.saved_job_for_user_list[key].company_logo;
+					    $scope.saved_job_for_user_list[key].picture = 'upload/'+$scope.saved_job_for_user_list[key].company_logo;
 					} else {
 					   //alert('Not exists');
-					   $scope.saved_job_for_user_list[key].picture = 'no_company_logo.png';
+					   $scope.saved_job_for_user_list[key].picture = 'public/images/no_company_logo.png';
 					}				 	 		 
 				    		 				    	 	
 				});
