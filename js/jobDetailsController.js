@@ -138,12 +138,33 @@
 			};
 
 
-
+      function doesFileExist(urlToFile) {
+          var xhr = new XMLHttpRequest();
+          xhr.open('HEAD', urlToFile, false);
+          xhr.send();
+           
+          if (xhr.status == "404") {
+              return false;
+          } else {
+              return true;
+          }
+      }
+      
 		/* CHECK COMPANY FOLLOW OR NOT */
 
       var set_company_details = function(data){         
         $scope.company_details = data;
-        console.log(data);
+        //console.log($scope.company_details);       
+           var result = doesFileExist(image_url+$scope.company_details.users_profilepic); 
+          if (result == true) {
+              //alert('exists');
+              $scope.company_details.picture = 'upload/'+$scope.company_details.users_profilepic;
+          } else {
+             //alert('Not exists');
+             $scope.company_details.picture = 'public/images/job-details.png';
+          }              
+            //alert( $scope.company_details.picture);                   
+        
       }   
 
      function fetch_company_details_from_job_post_id(job_id, user_id) {

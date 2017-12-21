@@ -39,13 +39,10 @@
                        <h4 align="center" >Job Details</h4>
                       <div style="width: 80%; margin-left:12%;background-color: #F8F8F8; padding: 20px;" >
                            <div style="width: 100%;">
-                              <div style="width: 20%; float: left;" ng-if="company_details.users_profilepic != ''  ">
-                              <img height="122" width="122" class="img-responsive" src="upload/{{company_details.users_profilepic}}">
+                              <div style="width: 20%; float: left;" ng-if="company_details.picture != ''  ">
+                              <img height="122" width="122" class="img-responsive" src="{{company_details.picture}}">
                               </div>
-                              <div style="width: 20%; float: left;" ng-if="company_details.users_profilepic == '' ">
-                              <img height="122" width="122" class="img-responsive" src="public/images/job-details.png">
-                              </div>
-        
+                            
                               <div style="width: 80%; float: left; ">
                                 <div style="font-size: 18px;padding-bottom: 8px;">{{viewpostjob.title_name}}</div>
                                 <div style="font-size: 14px;padding-bottom: 8px;">{{viewpostjob.company_name}}</div>
